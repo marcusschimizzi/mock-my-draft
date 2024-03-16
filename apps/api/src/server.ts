@@ -2,6 +2,8 @@ import { json, urlencoded } from "body-parser";
 import express, { type Express } from "express";
 import morgan from "morgan";
 import cors from "cors";
+import compression from "compression";
+import cookieParser from "cookie-parser";
 
 export const createServer = (): Express => {
   const app = express();
@@ -10,6 +12,8 @@ export const createServer = (): Express => {
     .use(morgan("dev"))
     .use(urlencoded({ extended: true }))
     .use(json())
+    .use(compression())
+    .use(cookieParser())
     .use(cors())
     .get("/message/:name", (req, res) => {
       return res.json({ message: `hello ${req.params.name}` });
