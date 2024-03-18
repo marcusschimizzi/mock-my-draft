@@ -13,6 +13,9 @@ interface IUser extends Document {
     notifications: boolean;
     favoriteTeam: string;
   };
+  tokens: string[];
+  isActive: boolean;
+  isVerified: boolean;
 }
 
 const UserSchema: Schema = new Schema({
@@ -27,6 +30,9 @@ const UserSchema: Schema = new Schema({
     notifications: { type: Boolean, required: true },
     favoriteTeam: { type: String, required: true },
   },
+  tokens: [{ type: String, required: true }],
+  isActive: { type: Boolean, required: true },
+  isVerified: { type: Boolean, required: true },
 });
 
 export default mongoose.model<IUser>("User", UserSchema);
