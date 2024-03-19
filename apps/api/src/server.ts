@@ -4,6 +4,7 @@ import morgan from "morgan";
 import cors from "cors";
 import compression from "compression";
 import cookieParser from "cookie-parser";
+import mountRoutes from "./routes";
 
 export const createServer = (): Express => {
   const app = express();
@@ -14,7 +15,11 @@ export const createServer = (): Express => {
     .use(json())
     .use(compression())
     .use(cookieParser())
-    .use(cors())
+    .use(cors());
+
+  mountRoutes(app);
+
+  app
     .get("/message/:name", (req, res) => {
       return res.json({ message: `hello ${req.params.name}` });
     })
