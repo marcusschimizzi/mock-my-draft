@@ -1,9 +1,9 @@
 {
-  "extends": "@repo/typescript-config/base.json",
+  "extends": "@mock-my-draft/typescript-config/base.json",
   "compilerOptions": {
     "lib": ["ES2015"],
     "module": "CommonJS",
-    "outDir": "./dist",
+    "outDir": "./dist"
   },
   "exclude": ["node_modules"],
   "include": ["."]

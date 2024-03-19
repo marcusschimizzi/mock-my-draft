@@ -1,4 +1,4 @@
-import { CounterButton, Link } from "@repo/ui";
+import { CounterButton, Link } from "@mock-my-draft/ui";
 
 export default function Index(): JSX.Element {
   return (

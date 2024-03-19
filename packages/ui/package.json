@@ -1,5 +1,5 @@
 {
-  "name": "@repo/ui",
+  "name": "@mock-my-draft/ui",
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
@@ -19,12 +19,12 @@
     "test": "jest"
   },
   "jest": {
-    "preset": "@repo/jest-presets/browser"
+    "preset": "@mock-my-draft/jest-presets/browser"
   },
   "devDependencies": {
-    "@repo/eslint-config": "*",
-    "@repo/jest-presets": "*",
-    "@repo/typescript-config": "*",
+    "@mock-my-draft/eslint-config": "*",
+    "@mock-my-draft/jest-presets": "*",
+    "@mock-my-draft/typescript-config": "*",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.11.24",
     "@types/react": "^18.2.62",

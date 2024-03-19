@@ -1,5 +1,5 @@
 import { log } from "@repo/logger";
-import { CounterButton, Link } from "@repo/ui";
+import { CounterButton, Link } from "@mock-my-draft/ui";
 
 export const metadata = {
   title: "Store | Kitchen Sink",

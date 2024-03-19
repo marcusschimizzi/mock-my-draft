@@ -1,12 +1,12 @@
 {
   "exclude": ["node_modules", "build"],
-  "extends": "@repo/typescript-config/remix.json",
+  "extends": "@mock-my-draft/typescript-config/remix.json",
   "compilerOptions": {
     "rootDir": "app",
     "outDir": "dist",
     "paths": {
       "~/*": ["./app/*"]
-    },
+    }
   },
-  "include": ["remix.env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["remix.env.d.ts", "**/*.ts", "**/*.tsx"]
 }
