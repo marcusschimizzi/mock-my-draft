@@ -1,7 +1,7 @@
 import type { Document } from "mongoose";
 import mongoose, { Schema } from "mongoose";
 
-interface IDraftPick extends Document {
+interface DraftPick extends Document {
   draftId: mongoose.Schema.Types.ObjectId;
   playerId: mongoose.Schema.Types.ObjectId;
   teamId: mongoose.Schema.Types.ObjectId;
@@ -17,4 +17,4 @@ const DraftPickSchema: Schema = new Schema({
   pickNumber: { type: Number, required: true },
 });
 
-export default mongoose.model<IDraftPick>("DraftPick", DraftPickSchema);
+export default mongoose.model<DraftPick>("DraftPick", DraftPickSchema);

@@ -1,7 +1,7 @@
 import type { Document } from "mongoose";
 import mongoose, { Schema } from "mongoose";
 
-interface IPlayer extends Document {
+interface Player extends Document {
   name: string;
   age: number;
   college: string;
@@ -39,4 +39,4 @@ const PlayerSchema: Schema = new Schema({
   },
 });
 
-export default mongoose.model<IPlayer>("Player", PlayerSchema);
+export default mongoose.model<Player>("Player", PlayerSchema);

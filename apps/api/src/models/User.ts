@@ -1,7 +1,7 @@
 import type { Document } from "mongoose";
 import mongoose, { Schema } from "mongoose";
 
-interface IUser extends Document {
+interface User extends Document {
   username: string;
   email: string;
   password: string;
@@ -35,4 +35,4 @@ const UserSchema: Schema = new Schema({
   isVerified: { type: Boolean, required: true },
 });
 
-export default mongoose.model<IUser>("User", UserSchema);
+export default mongoose.model<User>("User", UserSchema);

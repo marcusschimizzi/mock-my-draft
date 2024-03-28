@@ -1,7 +1,7 @@
 import type { Document } from "mongoose";
 import mongoose, { Schema } from "mongoose";
 
-interface ITeam extends Document {
+interface Team extends Document {
   name: string;
   city: string;
   state: string;
@@ -51,4 +51,4 @@ const TeamSchema: Schema = new Schema({
   draftPicks: { type: [mongoose.Schema.Types.ObjectId], required: true },
 });
 
-export default mongoose.model<ITeam>("Team", TeamSchema);
+export default mongoose.model<Team>("Team", TeamSchema);

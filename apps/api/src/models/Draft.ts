@@ -1,7 +1,7 @@
 import type { Document } from "mongoose";
 import mongoose, { Schema } from "mongoose";
 
-interface IDraft extends Document {
+interface Draft extends Document {
   userId: mongoose.Schema.Types.ObjectId;
   picks: mongoose.Schema.Types.ObjectId[];
   creationDate: Date;
@@ -19,4 +19,4 @@ const DraftSchema: Schema = new Schema({
   description: { type: String, required: true },
 });
 
-export default mongoose.model<IDraft>("Draft", DraftSchema);
+export default mongoose.model<Draft>("Draft", DraftSchema);
