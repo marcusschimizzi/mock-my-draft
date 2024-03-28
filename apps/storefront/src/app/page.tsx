@@ -1,4 +1,4 @@
-import { log } from "@repo/logger";
+import { log } from "@mock-my-draft/logger";
 import { CounterButton, Link } from "@mock-my-draft/ui";
 
 export const metadata = {

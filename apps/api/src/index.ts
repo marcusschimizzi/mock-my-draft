@@ -1,5 +1,5 @@
 import { config } from "dotenv";
-import { log } from "@repo/logger";
+import { log } from "@mock-my-draft/logger";
 import { createServer } from "./server";
 import connectDatabase from "./database/database";
 

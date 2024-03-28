@@ -1,4 +1,4 @@
-import { log } from "@repo/logger";
+import { log } from "@mock-my-draft/logger";
 import mongoose from "mongoose";
 
 const connectDatabase = async (): Promise<void> => {
