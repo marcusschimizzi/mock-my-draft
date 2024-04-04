@@ -1,11 +1,10 @@
-import { createRoot } from "react-dom/client";
+import { render, screen } from "@testing-library/react";
+import "@testing-library/jest-dom";
 import { Slider } from ".";
 
 describe("Slider", () => {
   it("renders without crashing", () => {
-    const div = document.createElement("div");
-    const root = createRoot(div);
-    root.render(
+    render(
       <Slider
         label="Test"
         max={100}
@@ -17,7 +16,40 @@ describe("Slider", () => {
         value={0}
       />
     );
-    root.unmount();
+  });
+
+  it("renders with a value", () => {
+    render(
+      <Slider
+        label="Test"
+        max={100}
+        min={0}
+        onChange={() => {
+          noOp();
+        }}
+        step={1}
+        value={50}
+      />
+    );
+
+    expect(screen.getByDisplayValue("50")).toBeInTheDocument();
+  });
+
+  it("renders with a label", () => {
+    render(
+      <Slider
+        label="Test"
+        max={100}
+        min={0}
+        onChange={() => {
+          noOp();
+        }}
+        step={1}
+        value={50}
+      />
+    );
+
+    expect(screen.getByText("Test")).toBeInTheDocument();
   });
 });
 
