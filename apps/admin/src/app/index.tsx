@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles.css";
-import { CounterButton, Link } from "@mock-my-draft/ui";
+import { Link } from "@mock-my-draft/ui";
 
 function App(): JSX.Element {
   return (
@@ -9,7 +9,6 @@ function App(): JSX.Element {
         Admin <br />
         <span>Kitchen Sink</span>
       </h1>
-      <CounterButton />
       <p className="description">
         Built With{" "}
         <Link href="https://turbo.build/repo" newTab>
