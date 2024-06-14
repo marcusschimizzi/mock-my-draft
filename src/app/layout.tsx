@@ -1,4 +1,5 @@
-import React from "react";
+import React, { ReactNode } from "react";
+import { AppProvider } from "@/providers/app";
 import "./globals.css";
 
 export const metadata = {
@@ -6,10 +7,12 @@ export const metadata = {
   description: "Check out how previous NFL draft classes were graded",
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <AppProvider>{children}</AppProvider>
+      </body>
     </html>
   );
 }
