@@ -1,21 +1,15 @@
-import { extendTheme } from "@chakra-ui/react";
+import { ThemeConfig, extendTheme } from "@chakra-ui/react";
 
 const colors = {
   primary: "#1b239e",
   primaryAccent: "white",
 };
 
-const styles = {
-  global: {
-    "html, body": {
-      height: "100%",
-      bg: "gray.50",
-    },
-    "#__next": {
-      height: "100%",
-      bg: "gray.50",
-    },
-  },
+const styles = {};
+
+const config: ThemeConfig = {
+  initialColorMode: "system",
+  useSystemColorMode: true,
 };
 
-export const theme = extendTheme({ colors, styles });
+export const theme = extendTheme({ colors, styles, config });
