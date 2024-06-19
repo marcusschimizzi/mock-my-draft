@@ -1,17 +1,100 @@
+"use client";
+
 import {
   Button,
   ButtonGroup,
   Container,
   Flex,
+  Grid,
+  GridItem,
   Popover,
   PopoverBody,
-  PopoverCloseButton,
   PopoverContent,
-  PopoverHeader,
   PopoverTrigger,
+  Text,
 } from "@chakra-ui/react";
 import React from "react";
 import Logo from "@/components/logo";
+import { Link } from "@chakra-ui/next-js";
+
+const divisions = [
+  {
+    name: "AFC North",
+    teams: [
+      "Baltimore Ravens",
+      "Cincinnati Bengals",
+      "Cleveland Browns",
+      "Pittsburgh Steelers",
+    ],
+  },
+  {
+    name: "AFC South",
+    teams: [
+      "Houston Texans",
+      "Indianapolis Colts",
+      "Jacksonville Jaguars",
+      "Tennessee Titans",
+    ],
+  },
+  {
+    name: "AFC East",
+    teams: [
+      "Buffalo Bills",
+      "Miami Dolphins",
+      "New England Patriots",
+      "New York Jets",
+    ],
+  },
+  {
+    name: "AFC West",
+    teams: [
+      "Denver Broncos",
+      "Kansas City Chiefs",
+      "Los Angeles Chargers",
+      "Las Vegas Raiders",
+    ],
+  },
+  {
+    name: "NFC North",
+    teams: [
+      "Chicago Bears",
+      "Detroit Lions",
+      "Green Bay Packers",
+      "Minnesota Vikings",
+    ],
+  },
+  {
+    name: "NFC South",
+    teams: [
+      "Atlanta Falcons",
+      "Carolina Panthers",
+      "New Orleans Saints",
+      "Tampa Bay Buccaneers",
+    ],
+  },
+  {
+    name: "NFC East",
+    teams: [
+      "Dallas Cowboys",
+      "New York Giants",
+      "Philadelphia Eagles",
+      "Washington Commanders",
+    ],
+  },
+  {
+    name: "NFC West",
+    teams: [
+      "Arizona Cardinals",
+      "Los Angeles Rams",
+      "San Francisco 49ers",
+      "Seattle Seahawks",
+    ],
+  },
+];
+
+function createTeamID(team: string) {
+  return team.toLowerCase().trim().split(" ").join("-");
+}
 
 export function Nav() {
   return (
@@ -23,22 +106,36 @@ export function Nav() {
           as="nav"
           p={8}
         >
-          <Logo />
+          <Link href="/">
+            <Logo />
+          </Link>
           <ButtonGroup>
-            <Popover>
+            <Popover
+              trigger="hover"
+              placement="bottom"
+              closeOnEsc={true}
+              preventOverflow={true}
+            >
               <PopoverTrigger>
-                <Button>Teams</Button>
+                <Button variant="link">Teams</Button>
               </PopoverTrigger>
-              <PopoverContent>
-                <PopoverCloseButton />
-                <PopoverHeader>Teams</PopoverHeader>
+              <PopoverContent width="fit-content">
                 <PopoverBody>
-                  <ul>
-                    <li>Baltimore Ravens</li>
-                    <li>Pittsburgh Steelers</li>
-                    <li>Cincinnati Bengals</li>
-                    <li>Cleveland Browns</li>
-                  </ul>
+                  <Grid templateColumns="repeat(4, 1fr)" gap={2}>
+                    {divisions.map((division) => (
+                      <GridItem minW="200px">
+                        <Text color="GrayText">{division.name}</Text>
+                        {division.teams.map((team) => (
+                          <Link
+                            display="block"
+                            href={`/teams/${createTeamID(team)}`}
+                          >
+                            {team}
+                          </Link>
+                        ))}
+                      </GridItem>
+                    ))}
+                  </Grid>
                 </PopoverBody>
               </PopoverContent>
             </Popover>
