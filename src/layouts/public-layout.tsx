@@ -1,4 +1,4 @@
-import { Nav } from "@/components/nav";
+import Nav from "@/components/nav";
 import React from "react";
 
 export function PublicLayout({ children }: { children: React.ReactNode }) {

@@ -96,7 +96,7 @@ function createTeamID(team: string) {
   return team.toLowerCase().trim().split(" ").join("-");
 }
 
-export function Nav() {
+export default function Nav() {
   return (
     <>
       <Container maxW="8xl">
