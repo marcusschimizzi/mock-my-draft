@@ -123,12 +123,13 @@ export default function Nav() {
                 <PopoverBody>
                   <Grid templateColumns="repeat(4, 1fr)" gap={2}>
                     {divisions.map((division) => (
-                      <GridItem minW="200px">
+                      <GridItem minW="200px" key={createTeamID(division.name)}>
                         <Text color="GrayText">{division.name}</Text>
                         {division.teams.map((team) => (
                           <Link
                             display="block"
                             href={`/teams/${createTeamID(team)}`}
+                            key={createTeamID(team)}
                           >
                             {team}
                           </Link>
