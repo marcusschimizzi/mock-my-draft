@@ -1,3 +1,5 @@
+import { getInfoFromTeamAbbreviation } from "@/lib/team-utils";
+import { capitalize } from "@/lib/utils";
 import {
   Container,
   Heading,
@@ -44,7 +46,12 @@ export default async function Home() {
           <Tbody>
             {data.map((entry) => (
               <Tr key={entry.team}>
-                <Td>{entry.team}</Td>
+                <Td>
+                  {capitalize(
+                    (getInfoFromTeamAbbreviation(entry.team) ?? {}).fullName ??
+                      ""
+                  )}
+                </Td>
                 {Object.values(entry).map((value: any, index: number) => {
                   if (index === teamIndex) {
                     return null;
