@@ -61,7 +61,7 @@ export default async function Home() {
                       <Td key={keys[index]}>{Number(value).toFixed(2)}</Td>
                     );
                   }
-                  return <Td key={keys[index]}>{value}</Td>;
+                  return <Td key={keys[index]}>{capitalize(value)}</Td>;
                 })}
               </Tr>
             ))}
