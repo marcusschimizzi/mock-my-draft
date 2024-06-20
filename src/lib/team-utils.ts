@@ -307,3 +307,16 @@ export function getInfoFromTeamId(teamId: string): TeamNameLookup | null {
   }
   return teamInfo;
 }
+
+export function getInfoFromTeamAbbreviation(
+  abbreviation: string
+): TeamNameLookup | null {
+  const teamInfo = TEAM_NAMES.find(
+    (team) => team.abbreviation === abbreviation
+  );
+  if (!teamInfo) {
+    console.error(`Invalid team abbreviation: ${abbreviation}`);
+    return null;
+  }
+  return teamInfo;
+}
