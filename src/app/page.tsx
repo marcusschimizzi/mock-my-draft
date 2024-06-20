@@ -1,12 +1,15 @@
+import TeamLogo from "@/components/team-logo";
 import { getInfoFromTeamAbbreviation } from "@/lib/team-utils";
 import { capitalize } from "@/lib/utils";
 import {
   Container,
+  HStack,
   Heading,
   Table,
   TableContainer,
   Tbody,
   Td,
+  Text,
   Th,
   Thead,
   Tr,
@@ -47,10 +50,15 @@ export default async function Home() {
             {data.map((entry) => (
               <Tr key={entry.team}>
                 <Td>
-                  {capitalize(
-                    (getInfoFromTeamAbbreviation(entry.team) ?? {}).fullName ??
-                      ""
-                  )}
+                  <HStack>
+                    <TeamLogo teamAbbreviation={entry.team} size={12} />
+                    <Text marginLeft={5}>
+                      {capitalize(
+                        (getInfoFromTeamAbbreviation(entry.team) ?? {})
+                          .fullName ?? ""
+                      )}
+                    </Text>
+                  </HStack>
                 </Td>
                 {Object.values(entry).map((value: any, index: number) => {
                   if (index === teamIndex) {

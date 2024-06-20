@@ -1,7 +1,9 @@
+import TeamLogo from "@/components/team-logo";
 import { getInfoFromTeamId } from "@/lib/team-utils";
 import { capitalize } from "@/lib/utils";
 import {
   Container,
+  Flex,
   Heading,
   Stat,
   StatGroup,
@@ -79,7 +81,10 @@ export default async function TeamPage({
   return (
     <Container as="main" maxW="container.xl">
       {teamInfo === null && <Heading>Team not found</Heading>}
-      <Heading>{capitalize(teamInfo.fullName)}</Heading>
+      <Flex alignItems="center">
+        <TeamLogo teamAbbreviation={teamInfo.abbreviation} size={24} />
+        <Heading paddingLeft={5}>{capitalize(teamInfo.fullName)}</Heading>
+      </Flex>
       <StatGroup>
         <Stat>
           <StatLabel>Average grade</StatLabel>
