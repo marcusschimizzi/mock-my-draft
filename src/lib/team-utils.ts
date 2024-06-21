@@ -1,4 +1,4 @@
-interface TeamNameLookup {
+export interface TeamNameLookup {
   abbreviation: string;
   location: string;
   nickname: string;

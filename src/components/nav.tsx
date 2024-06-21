@@ -7,6 +7,7 @@ import {
   Flex,
   Grid,
   GridItem,
+  HStack,
   Popover,
   PopoverBody,
   PopoverContent,
@@ -16,85 +17,34 @@ import {
 import React from "react";
 import Logo from "@/components/logo";
 import { Link } from "@chakra-ui/next-js";
+import TeamLogo from "./team-logo";
+import { TEAM_NAMES, TeamNameLookup } from "@/lib/team-utils";
+import { capitalize } from "@/lib/utils";
 
-const divisions = [
-  {
-    name: "AFC North",
-    teams: [
-      "Baltimore Ravens",
-      "Cincinnati Bengals",
-      "Cleveland Browns",
-      "Pittsburgh Steelers",
-    ],
-  },
-  {
-    name: "AFC South",
-    teams: [
-      "Houston Texans",
-      "Indianapolis Colts",
-      "Jacksonville Jaguars",
-      "Tennessee Titans",
-    ],
-  },
-  {
-    name: "AFC East",
-    teams: [
-      "Buffalo Bills",
-      "Miami Dolphins",
-      "New England Patriots",
-      "New York Jets",
-    ],
-  },
-  {
-    name: "AFC West",
-    teams: [
-      "Denver Broncos",
-      "Kansas City Chiefs",
-      "Los Angeles Chargers",
-      "Las Vegas Raiders",
-    ],
-  },
-  {
-    name: "NFC North",
-    teams: [
-      "Chicago Bears",
-      "Detroit Lions",
-      "Green Bay Packers",
-      "Minnesota Vikings",
-    ],
-  },
-  {
-    name: "NFC South",
-    teams: [
-      "Atlanta Falcons",
-      "Carolina Panthers",
-      "New Orleans Saints",
-      "Tampa Bay Buccaneers",
-    ],
-  },
-  {
-    name: "NFC East",
-    teams: [
-      "Dallas Cowboys",
-      "New York Giants",
-      "Philadelphia Eagles",
-      "Washington Commanders",
-    ],
-  },
-  {
-    name: "NFC West",
-    teams: [
-      "Arizona Cardinals",
-      "Los Angeles Rams",
-      "San Francisco 49ers",
-      "Seattle Seahawks",
-    ],
-  },
-];
+interface Divisions {
+  [divisionName: string]: TeamNameLookup[];
+}
+
+function groupDivisions(): Divisions {
+  const divisions: Divisions = {};
+  TEAM_NAMES.forEach((team) => {
+    const divisionName = `${team.conference.toUpperCase()} ${capitalize(
+      team.division
+    )}`;
+    if (divisionName in divisions) {
+      divisions[divisionName].push(team);
+    } else {
+      divisions[divisionName] = [team];
+    }
+  });
+  return divisions;
+}
 
 function createTeamID(team: string) {
   return team.toLowerCase().trim().split(" ").join("-");
 }
+
+const divisions = groupDivisions();
 
 export default function Nav() {
   return (
@@ -122,16 +72,22 @@ export default function Nav() {
               <PopoverContent width="fit-content">
                 <PopoverBody>
                   <Grid templateColumns="repeat(4, 1fr)" gap={2}>
-                    {divisions.map((division) => (
-                      <GridItem minW="200px" key={createTeamID(division.name)}>
-                        <Text color="GrayText">{division.name}</Text>
-                        {division.teams.map((team) => (
+                    {Object.keys(divisions).map((divisionName) => (
+                      <GridItem minW="200px" key={createTeamID(divisionName)}>
+                        <Text color="GrayText">{divisionName}</Text>
+                        {divisions[divisionName].map((team) => (
                           <Link
                             display="block"
-                            href={`/teams/${createTeamID(team)}`}
-                            key={createTeamID(team)}
+                            href={`/teams/${team.id}`}
+                            key={team.id}
                           >
-                            {team}
+                            <HStack>
+                              <TeamLogo
+                                teamAbbreviation={team.abbreviation}
+                                size={8}
+                              />
+                              <Text>{capitalize(team.fullName)}</Text>
+                            </HStack>
                           </Link>
                         ))}
                       </GridItem>
