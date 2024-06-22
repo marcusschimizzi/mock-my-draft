@@ -10,6 +10,13 @@ import {
   StatHelpText,
   StatLabel,
   StatNumber,
+  Table,
+  TableContainer,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
 } from "@chakra-ui/react";
 import React from "react";
 
@@ -18,6 +25,18 @@ async function getData(teamId: string) {
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
+}
+
+async function getResponses(teamId: string) {
+  const res = await fetch(
+    `http://localhost:3000/api/teams/${teamId}/responses`
+  );
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch responses");
   }
 
   return res.json();
@@ -72,6 +91,7 @@ export default async function TeamPage({
 }) {
   const teamInfo = getInfoFromTeamId(params.teamId);
   const data = await getData(params.teamId);
+  const responses = await getResponses(params.teamId);
   let { team, average, ...letterGrades } = data;
   const sortedGrades = getSortedGrades(letterGrades);
 
@@ -101,6 +121,32 @@ export default async function TeamPage({
           <StatHelpText>Source: {lowestGrade.source}</StatHelpText>
         </Stat>
       </StatGroup>
+      <TableContainer marginTop={16} overflow="hidden">
+        <Table>
+          <Thead>
+            <Tr>
+              <Th>Source</Th>
+              <Th>Grade</Th>
+              <Th>Evaluation</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {responses.map((response, index) => (
+              <Tr key={index}>
+                <Td>{capitalize(response.source.replaceAll("-", " "))}</Td>
+                <Td>{capitalize(response.grade)}</Td>
+                <Td
+                  whiteSpace="normal"
+                  overflowWrap="break-word"
+                  minWidth="150px"
+                >
+                  {response.text}
+                </Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+      </TableContainer>
     </Container>
   );
 }
