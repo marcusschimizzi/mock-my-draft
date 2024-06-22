@@ -32,6 +32,13 @@ async function getData() {
 
 export default async function Home() {
   const data = await getData();
+  if (data.length === 0) {
+    return (
+      <>
+        <Heading>Couldn't get any data</Heading>
+      </>
+    );
+  }
   const keys = Object.keys(data[0]);
   const teamIndex = keys.findIndex((value) => value === "team");
   const averageIndex = keys.findIndex((value) => value === "average");
