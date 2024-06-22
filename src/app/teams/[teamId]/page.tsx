@@ -21,25 +21,33 @@ import {
 import React from "react";
 
 async function getData(teamId: string) {
-  const res = await fetch(`http://localhost:3000/api/teams/${teamId}`);
+  try {
+    const res = await fetch(`http://localhost:3000/api/teams/${teamId}`);
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
+    if (!res.ok) {
+      throw new Error("Failed to fetch data");
+    }
+
+    return res.json();
+  } catch (e) {
+    return [];
   }
-
-  return res.json();
 }
 
 async function getResponses(teamId: string) {
-  const res = await fetch(
-    `http://localhost:3000/api/teams/${teamId}/responses`
-  );
+  try {
+    const res = await fetch(
+      `http://localhost:3000/api/teams/${teamId}/responses`
+    );
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch responses");
+    if (!res.ok) {
+      throw new Error("Failed to fetch responses");
+    }
+
+    return res.json();
+  } catch (e) {
+    return [];
   }
-
-  return res.json();
 }
 
 interface GradesMap {
