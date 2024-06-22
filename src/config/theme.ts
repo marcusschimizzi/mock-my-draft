@@ -8,8 +8,8 @@ const colors = {
 const styles = {};
 
 const config: ThemeConfig = {
-  initialColorMode: "system",
-  useSystemColorMode: true,
+  initialColorMode: "light",
+  useSystemColorMode: false,
 };
 
 export const theme = extendTheme({ colors, styles, config });

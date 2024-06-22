@@ -2,6 +2,8 @@ import React, { ReactNode } from "react";
 import { AppProvider } from "@/providers/app";
 import "./globals.css";
 import { PublicLayout } from "@/layouts/public-layout";
+import { ColorModeScript } from "@chakra-ui/react";
+import { theme } from "@/config/theme";
 
 export const metadata = {
   title: "Mock My Draft",
@@ -12,6 +14,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body>
+        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
         <AppProvider>
           <PublicLayout>{children}</PublicLayout>
         </AppProvider>

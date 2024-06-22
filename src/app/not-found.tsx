@@ -9,8 +9,8 @@ const NotFoundPage = () => {
     <>
       <Center h="96">
         <VStack>
-          <Heading size="4xl">🤷</Heading>
-          <Heading>Not Found</Heading>
+          <Heading size="4xl">404</Heading>
+          <Heading>Uh-oh... Looks like that pick is a bust!</Heading>
         </VStack>
       </Center>
       <Center>
