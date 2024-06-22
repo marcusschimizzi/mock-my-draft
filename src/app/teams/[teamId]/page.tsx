@@ -105,7 +105,7 @@ export default async function TeamPage({
         <TeamLogo teamAbbreviation={teamInfo.abbreviation} size={24} />
         <Heading paddingLeft={5}>{capitalize(teamInfo.fullName)}</Heading>
       </Flex>
-      <StatGroup>
+      <StatGroup marginTop={16}>
         <Stat>
           <StatLabel>Average grade</StatLabel>
           <StatNumber>{Number(average).toFixed(2)}</StatNumber>
