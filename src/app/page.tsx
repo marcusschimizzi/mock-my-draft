@@ -1,4 +1,5 @@
 import TeamLogo from "@/components/team-logo";
+import { API_URL } from "@/config/constants";
 import { getInfoFromTeamAbbreviation } from "@/lib/team-utils";
 import { capitalize } from "@/lib/utils";
 import {
@@ -18,7 +19,7 @@ import React from "react";
 
 async function getData() {
   try {
-    const res = await fetch("http://localhost:3000/api");
+    const res = await fetch(API_URL);
 
     if (!res.ok) {
       throw new Error("Failed to fetch data");
