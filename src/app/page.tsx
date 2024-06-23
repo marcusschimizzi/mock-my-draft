@@ -35,9 +35,9 @@ export default async function Home() {
   const data = await getData();
   if (data.length === 0) {
     return (
-      <>
+      <Container as="main" maxW="container.xl">
         <Heading>Couldn't get any data</Heading>
-      </>
+      </Container>
     );
   }
   const keys = Object.keys(data[0]);
