@@ -87,6 +87,12 @@ export default function Nav() {
             <Logo />
           </Link>
           <ButtonGroup>
+            <Button as={Link} variant="link" href="/about-us" mr={8}>
+              About Us
+            </Button>
+            <Button as={Link} variant="link" href="/contact" mr={8}>
+              Contact
+            </Button>
             <Popover
               trigger="hover"
               placement="bottom"
