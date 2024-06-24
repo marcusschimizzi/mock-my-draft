@@ -11,6 +11,7 @@
     "prettier": "prettier \"**/*.+(json|ts|tsx)\"",
     "format:check": "npm run prettier -- --check",
     "format:fix": "npm run prettier -- --write",
+    "types:check": "tsc --noEmit --pretty",
     "prepare": "husky"
   },
   "author": "",
