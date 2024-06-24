@@ -1,9 +1,9 @@
 "use client";
 
 import {
+  Box,
   Button,
   ButtonGroup,
-  Container,
   Flex,
   Grid,
   GridItem,
@@ -14,7 +14,7 @@ import {
   PopoverTrigger,
   Text,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Logo from "@/components/logo";
 import { Link } from "@chakra-ui/next-js";
 import TeamLogo from "./team-logo";
@@ -47,14 +47,37 @@ function createTeamID(team: string) {
 const divisions = groupDivisions();
 
 export default function Nav() {
+  const [atTop, setAtTop] = useState(true);
+
+  const handleScroll = () => {
+    setAtTop(window.scrollY === 0);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <>
-      <Container maxW="8xl">
+      <Box
+        as="header"
+        width="100%"
+        position="sticky"
+        top={0}
+        left={0}
+        right={0}
+        height={{ base: "64px", lg: "88px" }}
+        bg={atTop ? "transparent" : "gray.800"}
+        boxShadow={atTop ? "none" : "md"}
+        transition={"box-shadow 0.2s ease, background-color 0.2s ease"}
+      >
         <Flex
+          maxW="8xl"
           justifyContent="space-between"
           alignContent="center"
-          as="nav"
           p={8}
+          margin="0 auto"
         >
           <Link href="/">
             <Logo />
@@ -98,7 +121,7 @@ export default function Nav() {
             </Popover>
           </ButtonGroup>
         </Flex>
-      </Container>
+      </Box>
     </>
   );
 }
