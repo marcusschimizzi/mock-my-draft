@@ -12,8 +12,8 @@ import {
   PopoverBody,
   PopoverContent,
   PopoverTrigger,
+  Portal,
   Text,
-  useColorModeValue,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import Logo from "@/components/logo";
@@ -49,7 +49,6 @@ const divisions = groupDivisions();
 
 export default function Nav() {
   const [atTop, setAtTop] = useState(true);
-  const bg = useColorModeValue("gray.50", "gray.800");
 
   const handleScroll = () => {
     setAtTop(window.scrollY === 0);
@@ -70,7 +69,10 @@ export default function Nav() {
         left={0}
         right={0}
         height={{ base: "64px", lg: "88px" }}
-        bg={atTop ? "transparent" : bg}
+        bg={atTop ? "transparent" : "gray.50"}
+        _dark={{
+          bg: atTop ? "transparent" : "gray.800",
+        }}
         boxShadow={atTop ? "none" : "md"}
         transition={"box-shadow 0.2s ease, background-color 0.2s ease"}
       >
@@ -94,32 +96,42 @@ export default function Nav() {
               <PopoverTrigger>
                 <Button variant="link">Teams</Button>
               </PopoverTrigger>
-              <PopoverContent width="fit-content">
-                <PopoverBody>
-                  <Grid templateColumns="repeat(4, 1fr)" gap={2}>
-                    {Object.keys(divisions).map((divisionName) => (
-                      <GridItem minW="200px" key={createTeamID(divisionName)}>
-                        <Text color="GrayText">{divisionName}</Text>
-                        {divisions[divisionName].map((team) => (
-                          <Link
-                            display="block"
-                            href={`/teams/${team.id}`}
-                            key={team.id}
-                          >
-                            <HStack>
-                              <TeamLogo
-                                teamAbbreviation={team.abbreviation}
-                                size={8}
-                              />
-                              <Text>{capitalize(team.fullName)}</Text>
-                            </HStack>
-                          </Link>
-                        ))}
-                      </GridItem>
-                    ))}
-                  </Grid>
-                </PopoverBody>
-              </PopoverContent>
+              <Portal>
+                <PopoverContent width="fit-content">
+                  <PopoverBody>
+                    <Grid
+                      templateColumns={[
+                        "repeat(2, 1fr)",
+                        null,
+                        null,
+                        "repeat(4, 1fr)",
+                      ]}
+                      gap={2}
+                    >
+                      {Object.keys(divisions).map((divisionName) => (
+                        <GridItem minW="200px" key={createTeamID(divisionName)}>
+                          <Text color="GrayText">{divisionName}</Text>
+                          {divisions[divisionName].map((team) => (
+                            <Link
+                              display="block"
+                              href={`/teams/${team.id}`}
+                              key={team.id}
+                            >
+                              <HStack>
+                                <TeamLogo
+                                  teamAbbreviation={team.abbreviation}
+                                  size={8}
+                                />
+                                <Text>{capitalize(team.fullName)}</Text>
+                              </HStack>
+                            </Link>
+                          ))}
+                        </GridItem>
+                      ))}
+                    </Grid>
+                  </PopoverBody>
+                </PopoverContent>
+              </Portal>
             </Popover>
           </ButtonGroup>
         </Flex>
