@@ -1,0 +1,10 @@
+version: '1'
+
+services:
+  mock-my-draft-staging:
+    build:
+      context: ../../
+      dockerfile: docker/staging/Dockerfile
+    image: mock-my-draft-staging
+    ports:
+      - '3002:3000'

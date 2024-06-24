@@ -1,0 +1,10 @@
+version: '1'
+
+services:
+  mock-my-draft-production:
+    build:
+      context: ../../
+      dockerfile: docker/production/Dockerfile
+    image: mock-my-draft-production
+    ports:
+      - '3003:3000'
