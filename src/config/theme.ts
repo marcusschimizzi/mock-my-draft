@@ -9,7 +9,7 @@ const styles = {};
 
 const config: ThemeConfig = {
   initialColorMode: "light",
-  useSystemColorMode: false,
+  useSystemColorMode: true,
 };
 
 export const theme = extendTheme({ colors, styles, config });

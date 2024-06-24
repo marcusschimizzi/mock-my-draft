@@ -13,6 +13,7 @@ import {
   PopoverContent,
   PopoverTrigger,
   Text,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import Logo from "@/components/logo";
@@ -48,6 +49,7 @@ const divisions = groupDivisions();
 
 export default function Nav() {
   const [atTop, setAtTop] = useState(true);
+  const bg = useColorModeValue("gray.50", "gray.800");
 
   const handleScroll = () => {
     setAtTop(window.scrollY === 0);
@@ -68,7 +70,7 @@ export default function Nav() {
         left={0}
         right={0}
         height={{ base: "64px", lg: "88px" }}
-        bg={atTop ? "transparent" : "gray.800"}
+        bg={atTop ? "transparent" : bg}
         boxShadow={atTop ? "none" : "md"}
         transition={"box-shadow 0.2s ease, background-color 0.2s ease"}
       >
