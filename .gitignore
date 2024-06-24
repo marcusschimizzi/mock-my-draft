@@ -12,3 +12,9 @@ server/dist
 public/dist
 .vscode/
 *storybook.log
+
+# typescript
+*.tsbuildinfo
+
+# coverage
+coverage
