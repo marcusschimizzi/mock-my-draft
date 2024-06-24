@@ -34,4 +34,4 @@ USER nextjs
 EXPOSE 3000
 ENV PORT=3000
 
-CMD HOST=0.0.0.0 PORT=3000 node server.js
+CMD HOST=0.0.0.0 node server.js
