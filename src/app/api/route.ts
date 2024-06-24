@@ -1,9 +1,9 @@
-import { readFile } from "fs/promises";
+import { readFile } from 'fs/promises';
 
-const GRADES_FILE = "2024-draft-class-grades.tsv";
+const GRADES_FILE = '2024-draft-class-grades.tsv';
 
 interface Grade {
-  type: "class" | "individual";
+  type: 'class' | 'individual';
   source: string;
   grade: string;
   team: string;
@@ -18,12 +18,12 @@ interface TeamGrades {
 async function readInFile(): Promise<Grade[] | null> {
   try {
     const filePath = new URL(`../../data/${GRADES_FILE}`, import.meta.url);
-    const contents = await readFile(filePath, { encoding: "utf-8" });
-    const lines = contents.split("\n");
+    const contents = await readFile(filePath, { encoding: 'utf-8' });
+    const lines = contents.split('\n');
     const data = [];
-    const keys = lines[0].split("\t");
+    const keys = lines[0].split('\t');
     for (let i = 1; i < lines.length; i++) {
-      const values = lines[i].split("\t");
+      const values = lines[i].split('\t');
       const item = {};
       for (let j = 0; j < values.length; j++) {
         item[keys[j].trim()] = values[j].trim();
@@ -39,19 +39,19 @@ async function readInFile(): Promise<Grade[] | null> {
 
 function convertLetterGradeToNumber(letterGrade: string) {
   const conversionChart = {
-    "a+": 4.0,
+    'a+': 4.0,
     a: 4.0,
-    "a-": 3.7,
-    "b+": 3.3,
+    'a-': 3.7,
+    'b+': 3.3,
     b: 3.0,
-    "b-": 2.7,
-    "c+": 2.3,
+    'b-': 2.7,
+    'c+': 2.3,
     c: 2.0,
-    "c-": 1.7,
-    "d+": 1.3,
+    'c-': 1.7,
+    'd+': 1.3,
     d: 1.0,
-    "d-": 0.7,
-    "f+": 0.3,
+    'd-': 0.7,
+    'f+': 0.3,
     f: 0.0,
   };
   if (letterGrade.toLowerCase() in conversionChart) {
@@ -65,7 +65,7 @@ function computeCumulativeGrade(teamGrades: TeamGrades) {
   let sources = 0;
   let total = 0;
   for (let source in teamGrades) {
-    if (source !== "team") {
+    if (source !== 'team') {
       total += convertLetterGradeToNumber(teamGrades[source]);
       sources += 1;
     }
@@ -90,7 +90,7 @@ function computeAverages(grades: Grade[]) {
   }
   const teamGradesArray = Object.values(teamGrades);
   for (let grade of teamGradesArray) {
-    grade["average"] = computeCumulativeGrade(grade as TeamGrades);
+    grade['average'] = computeCumulativeGrade(grade as TeamGrades);
   }
   return teamGradesArray;
 }
@@ -98,7 +98,7 @@ function computeAverages(grades: Grade[]) {
 export async function GET(request: Request) {
   const grades = await readInFile();
   if (!grades) {
-    return new Response("", {
+    return new Response('', {
       status: 500,
     });
   }

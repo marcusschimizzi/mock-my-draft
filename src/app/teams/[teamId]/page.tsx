@@ -1,7 +1,7 @@
-import TeamLogo from "@/components/team-logo";
-import { API_URL } from "@/config/constants";
-import { getInfoFromTeamId } from "@/lib/team-utils";
-import { capitalize } from "@/lib/utils";
+import TeamLogo from '@/components/team-logo';
+import { API_URL } from '@/config/constants';
+import { getInfoFromTeamId } from '@/lib/team-utils';
+import { capitalize } from '@/lib/utils';
 import {
   Container,
   Flex,
@@ -18,15 +18,15 @@ import {
   Th,
   Thead,
   Tr,
-} from "@chakra-ui/react";
-import React from "react";
+} from '@chakra-ui/react';
+import React from 'react';
 
 async function getData(teamId: string) {
   try {
     const res = await fetch(`${API_URL}/teams/${teamId}`);
 
     if (!res.ok) {
-      throw new Error("Failed to fetch data");
+      throw new Error('Failed to fetch data');
     }
 
     return res.json();
@@ -40,7 +40,7 @@ async function getResponses(teamId: string) {
     const res = await fetch(`${API_URL}/teams/${teamId}/responses`);
 
     if (!res.ok) {
-      throw new Error("Failed to fetch responses");
+      throw new Error('Failed to fetch responses');
     }
 
     return res.json();
@@ -60,21 +60,21 @@ interface Grade {
 
 function getSortedGrades(grades: GradesMap) {
   const gradeOrder = [
-    "a+",
-    "a",
-    "a-",
-    "b+",
-    "b",
-    "b-",
-    "c+",
-    "c",
-    "c-",
-    "d+",
-    "d",
-    "d-",
-    "f+",
-    "f",
-    "f-",
+    'a+',
+    'a',
+    'a-',
+    'b+',
+    'b',
+    'b-',
+    'c+',
+    'c',
+    'c-',
+    'd+',
+    'd',
+    'd-',
+    'f+',
+    'f',
+    'f-',
   ];
 
   let sortedGrades: Grade[] = [];
@@ -140,7 +140,7 @@ export default async function TeamPage({
           <Tbody>
             {responses.map((response, index) => (
               <Tr key={index}>
-                <Td>{capitalize(response.source.replaceAll("-", " "))}</Td>
+                <Td>{capitalize(response.source.replaceAll('-', ' '))}</Td>
                 <Td>{capitalize(response.grade)}</Td>
                 <Td
                   whiteSpace="normal"

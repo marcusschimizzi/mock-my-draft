@@ -1,8 +1,8 @@
-"use client";
-import { Box, Flex, Grid, GridItem, Text, VStack } from "@chakra-ui/react";
-import React from "react";
-import Logo from "@/components/logo";
-import { Link } from "@chakra-ui/next-js";
+'use client';
+import { Box, Flex, Grid, GridItem, Text, VStack } from '@chakra-ui/react';
+import React from 'react';
+import Logo from '@/components/logo';
+import { Link } from '@chakra-ui/next-js';
 
 export default function Footer() {
   return (
@@ -10,15 +10,15 @@ export default function Footer() {
       as="footer"
       bg="gray.50"
       _dark={{
-        bg: "gray.800",
+        bg: 'gray.800',
       }}
       py={[16, null, 20, null, 28]}
     >
       <Flex px={[4, 8, 12, 16, 20]}>
         <Grid
           templateColumns={{
-            base: "repeat(6, 1fr)",
-            md: "repeat(12, 1fr)",
+            base: 'repeat(6, 1fr)',
+            md: 'repeat(12, 1fr)',
           }}
           gridGap={{
             base: 4,

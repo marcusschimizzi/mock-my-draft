@@ -1,6 +1,6 @@
-"use client";
-import React from "react";
-import { Image } from "@chakra-ui/next-js";
+'use client';
+import React from 'react';
+import { Image } from '@chakra-ui/next-js';
 
 interface TeamImageProps {
   teamAbbreviation: string;

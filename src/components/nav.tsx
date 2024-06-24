@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   Box,
@@ -14,13 +14,13 @@ import {
   PopoverTrigger,
   Portal,
   Text,
-} from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
-import Logo from "@/components/logo";
-import { Link } from "@chakra-ui/next-js";
-import TeamLogo from "./team-logo";
-import { TEAM_NAMES, TeamNameLookup } from "@/lib/team-utils";
-import { capitalize } from "@/lib/utils";
+} from '@chakra-ui/react';
+import React, { useEffect, useState } from 'react';
+import Logo from '@/components/logo';
+import { Link } from '@chakra-ui/next-js';
+import TeamLogo from './team-logo';
+import { TEAM_NAMES, TeamNameLookup } from '@/lib/team-utils';
+import { capitalize } from '@/lib/utils';
 
 interface Divisions {
   [divisionName: string]: TeamNameLookup[];
@@ -42,7 +42,7 @@ function groupDivisions(): Divisions {
 }
 
 function createTeamID(team: string) {
-  return team.toLowerCase().trim().split(" ").join("-");
+  return team.toLowerCase().trim().split(' ').join('-');
 }
 
 const divisions = groupDivisions();
@@ -55,8 +55,8 @@ export default function Nav() {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
@@ -68,13 +68,13 @@ export default function Nav() {
         top={0}
         left={0}
         right={0}
-        height={{ base: "64px", lg: "88px" }}
-        bg={atTop ? "transparent" : "gray.50"}
+        height={{ base: '64px', lg: '88px' }}
+        bg={atTop ? 'transparent' : 'gray.50'}
         _dark={{
-          bg: atTop ? "transparent" : "gray.800",
+          bg: atTop ? 'transparent' : 'gray.800',
         }}
-        boxShadow={atTop ? "none" : "md"}
-        transition={"box-shadow 0.2s ease, background-color 0.2s ease"}
+        boxShadow={atTop ? 'none' : 'md'}
+        transition={'box-shadow 0.2s ease, background-color 0.2s ease'}
       >
         <Flex
           maxW="8xl"
@@ -101,10 +101,10 @@ export default function Nav() {
                   <PopoverBody>
                     <Grid
                       templateColumns={[
-                        "repeat(2, 1fr)",
+                        'repeat(2, 1fr)',
                         null,
                         null,
-                        "repeat(4, 1fr)",
+                        'repeat(4, 1fr)',
                       ]}
                       gap={2}
                     >

@@ -1,10 +1,10 @@
-import { getInfoFromTeamId } from "@/lib/team-utils";
-import { readFile } from "fs/promises";
+import { getInfoFromTeamId } from '@/lib/team-utils';
+import { readFile } from 'fs/promises';
 
-const GRADES_FILE = "2024-draft-class-grades.tsv";
+const GRADES_FILE = '2024-draft-class-grades.tsv';
 
 interface Grade {
-  type: "class" | "individual";
+  type: 'class' | 'individual';
   source: string;
   grade: string;
   team: string;
@@ -17,12 +17,12 @@ async function readInFile(): Promise<Grade[] | null> {
       `../../../../../data/${GRADES_FILE}`,
       import.meta.url
     );
-    const contents = await readFile(filePath, { encoding: "utf-8" });
-    const lines = contents.split("\n");
+    const contents = await readFile(filePath, { encoding: 'utf-8' });
+    const lines = contents.split('\n');
     const data = [];
-    const keys = lines[0].split("\t");
+    const keys = lines[0].split('\t');
     for (let i = 1; i < lines.length; i++) {
-      const values = lines[i].split("\t");
+      const values = lines[i].split('\t');
       const item = {};
       for (let j = 0; j < values.length; j++) {
         item[keys[j].trim()] = values[j].trim();
@@ -42,13 +42,13 @@ export async function GET(
 ) {
   const grades = await readInFile();
   if (!grades) {
-    return new Response("", {
+    return new Response('', {
       status: 500,
     });
   }
   const teamAbbreviation = getInfoFromTeamId(params.teamId).abbreviation;
   if (!teamAbbreviation) {
-    return new Response("", {
+    return new Response('', {
       status: 400,
     });
   }
@@ -62,7 +62,7 @@ export async function GET(
       };
     });
   if (!teamResponses) {
-    return new Response("", {
+    return new Response('', {
       status: 404,
     });
   }

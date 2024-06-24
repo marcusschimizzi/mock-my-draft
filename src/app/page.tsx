@@ -1,7 +1,7 @@
-import TeamLogo from "@/components/team-logo";
-import { API_URL } from "@/config/constants";
-import { getInfoFromTeamAbbreviation } from "@/lib/team-utils";
-import { capitalize } from "@/lib/utils";
+import TeamLogo from '@/components/team-logo';
+import { API_URL } from '@/config/constants';
+import { getInfoFromTeamAbbreviation } from '@/lib/team-utils';
+import { capitalize } from '@/lib/utils';
 import {
   Box,
   Container,
@@ -19,15 +19,15 @@ import {
   Th,
   Thead,
   Tr,
-} from "@chakra-ui/react";
-import React from "react";
+} from '@chakra-ui/react';
+import React from 'react';
 
 async function getData() {
   try {
     const res = await fetch(API_URL);
 
     if (!res.ok) {
-      throw new Error("Failed to fetch data");
+      throw new Error('Failed to fetch data');
     }
 
     return res.json();
@@ -41,13 +41,13 @@ export default async function Home() {
   if (data.length === 0) {
     return (
       <Container as="main" maxW="container.xl">
-        <Heading>Couldn't get any data</Heading>
+        <Heading>Couldn&apos;t get any data</Heading>
       </Container>
     );
   }
   const keys = Object.keys(data[0]);
-  const teamIndex = keys.findIndex((value) => value === "team");
-  const averageIndex = keys.findIndex((value) => value === "average");
+  const teamIndex = keys.findIndex((value) => value === 'team');
+  const averageIndex = keys.findIndex((value) => value === 'average');
   const highestGrade = data.reduce((acc, curr) =>
     acc.average > curr.average ? acc : curr
   );
@@ -62,14 +62,14 @@ export default async function Home() {
           <Stat>
             <StatNumber>
               <TeamLogo teamAbbreviation={highestGrade.team} size={16} />
-              {highestGrade.average.toFixed(2)}{" "}
+              {highestGrade.average.toFixed(2)}{' '}
             </StatNumber>
             <StatLabel>Highest grade</StatLabel>
           </Stat>
           <Stat>
             <StatNumber>
               <TeamLogo teamAbbreviation={lowestGrade.team} size={16} />
-              {lowestGrade.average.toFixed(2)}{" "}
+              {lowestGrade.average.toFixed(2)}{' '}
             </StatNumber>
             <StatLabel>Lowest grade</StatLabel>
           </Stat>
@@ -80,7 +80,7 @@ export default async function Home() {
               <Tr>
                 <Th>Team</Th>
                 {keys
-                  .filter((key) => key !== "team")
+                  .filter((key) => key !== 'team')
                   .map((key) => (
                     <Th key={key}>{key}</Th>
                   ))}
@@ -95,7 +95,7 @@ export default async function Home() {
                       <Text marginLeft={5}>
                         {capitalize(
                           (getInfoFromTeamAbbreviation(entry.team) ?? {})
-                            .fullName ?? ""
+                            .fullName ?? ''
                         )}
                       </Text>
                     </HStack>
