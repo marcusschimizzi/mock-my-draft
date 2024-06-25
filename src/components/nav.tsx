@@ -80,13 +80,21 @@ export default function Nav() {
           maxW="8xl"
           justifyContent="space-between"
           alignContent="center"
-          p={8}
+          p={{
+            base: 2,
+            lg: 8,
+          }}
           margin="0 auto"
         >
           <Link href="/">
             <Logo />
           </Link>
-          <ButtonGroup>
+          <ButtonGroup
+            visibility={{
+              base: 'hidden',
+              md: 'visible',
+            }}
+          >
             <Button as={Link} variant="link" href="/about-us" mr={8}>
               About Us
             </Button>
@@ -95,7 +103,7 @@ export default function Nav() {
             </Button>
             <Popover
               trigger="hover"
-              placement="bottom"
+              placement="bottom-end"
               closeOnEsc={true}
               preventOverflow={true}
             >
@@ -103,7 +111,7 @@ export default function Nav() {
                 <Button variant="link">Teams</Button>
               </PopoverTrigger>
               <Portal>
-                <PopoverContent width="fit-content">
+                <PopoverContent maxW="100%" width="fit-content">
                   <PopoverBody>
                     <Grid
                       templateColumns={[
