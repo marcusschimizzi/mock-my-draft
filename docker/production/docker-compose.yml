@@ -1,5 +1,3 @@
-version: '1'
-
 services:
   mock-my-draft-production:
     build:
