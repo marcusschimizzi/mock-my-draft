@@ -6,3 +6,20 @@ services:
     image: mock-my-draft-production
     ports:
       - '3003:3000'
+
+  mock-my-draft-production-api:
+    build:
+      context: ../../
+      dockerfile: api/docker/Dockerfile
+    image: mock-my-draft-production-api
+    ports:
+      - '8008:8008'
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:8008/health']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s

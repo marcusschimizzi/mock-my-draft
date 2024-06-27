@@ -51,9 +51,11 @@ export default async function Home() {
   const highestGrade = data.reduce((acc, curr) =>
     acc.average > curr.average ? acc : curr
   );
+  const highestGradeTeamInfo = getInfoFromTeamAbbreviation(highestGrade.team);
   const lowestGrade = data.reduce((acc, curr) =>
     acc.average < curr.average ? acc : curr
   );
+  const lowestGradeTeamInfo = getInfoFromTeamAbbreviation(lowestGrade.team);
   return (
     <Container as="main" maxW="container.xl">
       <Heading>2024 NFL Draft Class Grades</Heading>
@@ -61,14 +63,22 @@ export default async function Home() {
         <StatGroup pb={16}>
           <Stat>
             <StatNumber>
-              <TeamLogo teamAbbreviation={highestGrade.team} size={16} />
+              <TeamLogo
+                teamAbbreviation={highestGrade.team}
+                size={16}
+                href={`/teams/${highestGradeTeamInfo.id}`}
+              />
               {highestGrade.average.toFixed(2)}{' '}
             </StatNumber>
             <StatLabel>Highest grade</StatLabel>
           </Stat>
           <Stat>
             <StatNumber>
-              <TeamLogo teamAbbreviation={lowestGrade.team} size={16} />
+              <TeamLogo
+                teamAbbreviation={lowestGrade.team}
+                size={16}
+                href={`/teams/${lowestGradeTeamInfo.id}`}
+              />
               {lowestGrade.average.toFixed(2)}{' '}
             </StatNumber>
             <StatLabel>Lowest grade</StatLabel>

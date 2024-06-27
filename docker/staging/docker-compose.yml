@@ -6,3 +6,20 @@ services:
     image: mock-my-draft-staging
     ports:
       - '3002:3000'
+
+  mock-my-draft-staging-api:
+    build:
+      context: ../../
+      dockerfile: api/docker/Dockerfile
+    image: mock-my-draft-staging-api
+    ports:
+      - '8008:8008'
+    environment:
+      - NODE_ENV=staging
+    restart: unless-stopped
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:8008/health']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
