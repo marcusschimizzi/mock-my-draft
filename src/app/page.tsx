@@ -87,32 +87,37 @@ export default async function Home() {
               </Tr>
             </Thead>
             <Tbody>
-              {data.map((entry) => (
-                <Tr key={entry.team}>
-                  <Td>
-                    <HStack>
-                      <TeamLogo teamAbbreviation={entry.team} size={12} />
-                      <Text marginLeft={5}>
-                        {capitalize(
-                          (getInfoFromTeamAbbreviation(entry.team) ?? {})
-                            .fullName ?? ''
-                        )}
-                      </Text>
-                    </HStack>
-                  </Td>
-                  {Object.values(entry).map((value: any, index: number) => {
-                    if (index === teamIndex) {
-                      return null;
-                    }
-                    if (index === averageIndex) {
-                      return (
-                        <Td key={keys[index]}>{Number(value).toFixed(2)}</Td>
-                      );
-                    }
-                    return <Td key={keys[index]}>{capitalize(value)}</Td>;
-                  })}
-                </Tr>
-              ))}
+              {data.map((entry) => {
+                const teamInfo = getInfoFromTeamAbbreviation(entry.team);
+
+                return (
+                  <Tr key={entry.team}>
+                    <Td>
+                      <HStack>
+                        <TeamLogo
+                          teamAbbreviation={entry.team}
+                          size={12}
+                          href={`/teams/${teamInfo.id}`}
+                        />
+                        <Text marginLeft={5}>
+                          {capitalize(teamInfo.fullName ?? '')}
+                        </Text>
+                      </HStack>
+                    </Td>
+                    {Object.values(entry).map((value: any, index: number) => {
+                      if (index === teamIndex) {
+                        return null;
+                      }
+                      if (index === averageIndex) {
+                        return (
+                          <Td key={keys[index]}>{Number(value).toFixed(2)}</Td>
+                        );
+                      }
+                      return <Td key={keys[index]}>{capitalize(value)}</Td>;
+                    })}
+                  </Tr>
+                );
+              })}
             </Tbody>
           </Table>
         </TableContainer>

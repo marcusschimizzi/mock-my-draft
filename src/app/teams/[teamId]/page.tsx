@@ -128,8 +128,8 @@ export default async function TeamPage({
           <StatHelpText>Source: {lowestGrade.source}</StatHelpText>
         </Stat>
       </StatGroup>
-      <TableContainer marginTop={16} overflow="hidden">
-        <Table>
+      <TableContainer marginTop={16} overflowX="auto">
+        <Table overflowX="auto" width="max-content">
           <Thead>
             <Tr>
               <Th>Source</Th>
@@ -146,6 +146,7 @@ export default async function TeamPage({
                   whiteSpace="normal"
                   overflowWrap="break-word"
                   minWidth="150px"
+                  maxWidth="800px"
                 >
                   {response.text}
                 </Td>
