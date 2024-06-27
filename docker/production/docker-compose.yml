@@ -9,8 +9,8 @@ services:
 
   mock-my-draft-production-api:
     build:
-      context: ../../
-      dockerfile: api/docker/Dockerfile
+      context: ../../api
+      dockerfile: docker/Dockerfile
     image: mock-my-draft-production-api
     ports:
       - '8008:8008'
