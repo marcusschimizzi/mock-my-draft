@@ -1,11 +1,11 @@
 import TeamsList from '@/components/teams-list';
-import { Container } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import React from 'react';
 
 export default function TeamsPage() {
   return (
-    <Container maxW="container.xl" margin="0 auto" py={16}>
+    <Box py={16} minH="80vh">
       <TeamsList structured={false} />
-    </Container>
+    </Box>
   );
 }

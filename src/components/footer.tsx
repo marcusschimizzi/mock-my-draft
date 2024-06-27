@@ -14,7 +14,7 @@ export default function Footer() {
       }}
       py={[16, null, 20, null, 28]}
     >
-      <Box margin="0 auto" maxW="container.xl">
+      <Box margin="0 auto" maxW="80rem">
         <Grid
           templateColumns={{
             base: 'repeat(6, 1fr)',

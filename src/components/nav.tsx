@@ -63,7 +63,7 @@ export default function Nav() {
         zIndex={11}
       >
         <Flex
-          maxW="8xl"
+          maxW="80rem"
           justifyContent="space-between"
           alignItems="center"
           py={{
