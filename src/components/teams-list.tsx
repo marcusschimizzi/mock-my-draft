@@ -2,13 +2,22 @@
 
 import { TEAM_NAMES, TeamNameLookup } from '@/lib/team-utils';
 import { capitalize } from '@/lib/utils';
-import { Grid, GridItem, HStack, Text } from '@chakra-ui/react';
+import {
+  Grid,
+  GridItem,
+  HStack,
+  Text,
+  VStack,
+  Wrap,
+  WrapItem,
+} from '@chakra-ui/react';
 import { Link } from '@chakra-ui/next-js';
 import React from 'react';
 import TeamLogo from '@/components/team-logo';
 
 interface TeamsListProps {
   columns?: number;
+  structured?: boolean;
 }
 
 interface Divisions {
@@ -36,31 +45,65 @@ function createTeamID(team: string) {
 
 const divisions = groupDivisions();
 
-export default function TeamsList({ columns = 4 }: TeamsListProps) {
+export default function TeamsList({
+  columns = 4,
+  structured = true,
+}: TeamsListProps) {
   return (
     <>
-      <Grid
-        templateColumns={
-          columns
-            ? `repeat(${columns}, 1fr)`
-            : ['repeat(2, 1fr)', null, null, 'repeat(4, 1fr)']
-        }
-        gap={2}
-      >
-        {Object.keys(divisions).map((divisionName) => (
-          <GridItem minW="200px" key={createTeamID(divisionName)}>
-            <Text color="GrayText">{divisionName}</Text>
-            {divisions[divisionName].map((team) => (
-              <Link display="block" href={`/teams/${team.id}`} key={team.id}>
-                <HStack>
-                  <TeamLogo teamAbbreviation={team.abbreviation} size={8} />
-                  <Text>{capitalize(team.fullName)}</Text>
-                </HStack>
-              </Link>
-            ))}
-          </GridItem>
-        ))}
-      </Grid>
+      {structured ? (
+        <Grid
+          templateColumns={
+            columns
+              ? `repeat(${columns}, 1fr)`
+              : ['repeat(2, 1fr)', null, null, 'repeat(4, 1fr)']
+          }
+          gap={2}
+        >
+          {Object.keys(divisions).map((divisionName) => (
+            <GridItem minW="200px" key={createTeamID(divisionName)}>
+              <Text color="GrayText">{divisionName}</Text>
+              {divisions[divisionName].map((team) => (
+                <Link display="block" href={`/teams/${team.id}`} key={team.id}>
+                  <HStack>
+                    <TeamLogo teamAbbreviation={team.abbreviation} size={8} />
+                    <Text>{capitalize(team.fullName)}</Text>
+                  </HStack>
+                </Link>
+              ))}
+            </GridItem>
+          ))}
+        </Grid>
+      ) : (
+        <Wrap>
+          {Object.keys(divisions).map((divisionName) => (
+            <WrapItem
+              minW="200px"
+              key={createTeamID(divisionName)}
+              padding={{
+                base: 3,
+                lg: 8,
+              }}
+            >
+              <VStack alignItems="flex-start">
+                <Text color="GrayText">{divisionName}</Text>
+                {divisions[divisionName].map((team) => (
+                  <Link
+                    display="block"
+                    href={`/teams/${team.id}`}
+                    key={team.id}
+                  >
+                    <HStack>
+                      <TeamLogo teamAbbreviation={team.abbreviation} size={8} />
+                      <Text>{capitalize(team.fullName)}</Text>
+                    </HStack>
+                  </Link>
+                ))}
+              </VStack>
+            </WrapItem>
+          ))}
+        </Wrap>
+      )}
     </>
   );
 }
