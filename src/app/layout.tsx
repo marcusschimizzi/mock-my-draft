@@ -5,6 +5,7 @@ import { PublicLayout } from '@/layouts/public-layout';
 import { ColorModeScript } from '@chakra-ui/react';
 import { theme } from '@/config/theme';
 import { Viewport } from 'next';
+import Fathom from '@/lib/Fathom';
 
 export const metadata = {
   title: 'Mock My Draft',
@@ -22,6 +23,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body>
+        <Fathom />
         <ColorModeScript initialColorMode={theme.config.initialColorMode} />
         <AppProvider>
           <PublicLayout>{children}</PublicLayout>
