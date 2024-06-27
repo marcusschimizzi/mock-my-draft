@@ -7,9 +7,17 @@ jest.mock('@chakra-ui/react', () => ({
 }));
 
 describe(Nav.name, () => {
+  beforeEach(() => {
+    require('@chakra-ui/react').useMediaQuery.mockReturnValue([false]);
+  });
+
   it('should render the nav logo', () => {
-    require('@chakra-ui/react').useMediaQuery.mockReturnValue([true]);
     render(<Nav />);
     expect(screen.getByText('Mock My Draft')).toBeInTheDocument();
+  });
+
+  it('should render hamburger menu on mobile', () => {
+    render(<Nav />);
+    expect(screen.getByTestId('mobileMenuOpenButton')).toBeInTheDocument();
   });
 });

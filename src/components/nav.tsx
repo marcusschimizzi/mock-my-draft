@@ -90,16 +90,22 @@ export default function Nav() {
         }}
         boxShadow={atTop ? 'none' : 'md'}
         transition={'box-shadow 0.2s ease, background-color 0.2s ease'}
+        zIndex={11}
       >
         <Flex
           maxW="8xl"
           justifyContent="space-between"
-          alignContent="center"
-          p={{
-            base: 4,
-            lg: 8,
+          alignItems="center"
+          py={{
+            base: 2,
+            lg: 6,
+          }}
+          px={{
+            base: 3,
+            lg: 9,
           }}
           margin="0 auto"
+          height="full"
         >
           <Link href="/">
             <Logo />
@@ -175,6 +181,7 @@ export default function Nav() {
                 icon={<FontAwesomeIcon icon={faBars} />}
                 ref={mobileMenuBtn}
                 onClick={onOpen}
+                data-testid="mobileMenuOpenButton"
               />
               <Drawer
                 isOpen={isOpen}
