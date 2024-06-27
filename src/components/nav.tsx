@@ -4,23 +4,34 @@ import {
   Box,
   Button,
   ButtonGroup,
+  Drawer,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
+  DrawerOverlay,
   Flex,
   Grid,
   GridItem,
   HStack,
+  IconButton,
   Popover,
   PopoverBody,
   PopoverContent,
   PopoverTrigger,
   Portal,
   Text,
+  VStack,
+  useDisclosure,
+  useMediaQuery,
 } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Logo from '@/components/logo';
 import { Link } from '@chakra-ui/next-js';
 import TeamLogo from './team-logo';
 import { TEAM_NAMES, TeamNameLookup } from '@/lib/team-utils';
 import { capitalize } from '@/lib/utils';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/pro-solid-svg-icons';
 
 interface Divisions {
   [divisionName: string]: TeamNameLookup[];
@@ -49,6 +60,10 @@ const divisions = groupDivisions();
 
 export default function Nav() {
   const [atTop, setAtTop] = useState(true);
+  const isNotMobile = useMediaQuery('(min-width: 768px)', { fallback: true });
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const mobileMenuBtn = useRef();
 
   const handleScroll = () => {
     setAtTop(window.scrollY === 0);
@@ -81,7 +96,7 @@ export default function Nav() {
           justifyContent="space-between"
           alignContent="center"
           p={{
-            base: 2,
+            base: 4,
             lg: 8,
           }}
           margin="0 auto"
@@ -89,65 +104,112 @@ export default function Nav() {
           <Link href="/">
             <Logo />
           </Link>
-          <ButtonGroup
-            visibility={{
-              base: 'hidden',
-              md: 'visible',
-            }}
-          >
-            <Button as={Link} variant="link" href="/about-us" mr={8}>
-              About Us
-            </Button>
-            <Button as={Link} variant="link" href="/contact" mr={8}>
-              Contact
-            </Button>
-            <Popover
-              trigger="hover"
-              placement="bottom-end"
-              closeOnEsc={true}
-              preventOverflow={true}
+          {isNotMobile[0] ? (
+            <ButtonGroup
+              display={{
+                base: 'none',
+                md: 'block',
+              }}
             >
-              <PopoverTrigger>
-                <Button variant="link">Teams</Button>
-              </PopoverTrigger>
-              <Portal>
-                <PopoverContent maxW="100%" width="fit-content">
-                  <PopoverBody>
-                    <Grid
-                      templateColumns={[
-                        'repeat(2, 1fr)',
-                        null,
-                        null,
-                        'repeat(4, 1fr)',
-                      ]}
-                      gap={2}
+              <Button as={Link} variant="link" href="/about-us" mr={8}>
+                About Us
+              </Button>
+              <Button as={Link} variant="link" href="/contact" mr={8}>
+                Contact
+              </Button>
+              <Popover
+                trigger="hover"
+                placement="bottom-end"
+                closeOnEsc={true}
+                preventOverflow={true}
+              >
+                <PopoverTrigger>
+                  <Button variant="link">Teams</Button>
+                </PopoverTrigger>
+                <Portal>
+                  <PopoverContent maxW="100%" width="fit-content">
+                    <PopoverBody>
+                      <Grid
+                        templateColumns={[
+                          'repeat(2, 1fr)',
+                          null,
+                          null,
+                          'repeat(4, 1fr)',
+                        ]}
+                        gap={2}
+                      >
+                        {Object.keys(divisions).map((divisionName) => (
+                          <GridItem
+                            minW="200px"
+                            key={createTeamID(divisionName)}
+                          >
+                            <Text color="GrayText">{divisionName}</Text>
+                            {divisions[divisionName].map((team) => (
+                              <Link
+                                display="block"
+                                href={`/teams/${team.id}`}
+                                key={team.id}
+                              >
+                                <HStack>
+                                  <TeamLogo
+                                    teamAbbreviation={team.abbreviation}
+                                    size={8}
+                                  />
+                                  <Text>{capitalize(team.fullName)}</Text>
+                                </HStack>
+                              </Link>
+                            ))}
+                          </GridItem>
+                        ))}
+                      </Grid>
+                    </PopoverBody>
+                  </PopoverContent>
+                </Portal>
+              </Popover>
+            </ButtonGroup>
+          ) : (
+            <>
+              <IconButton
+                aria-label="Open navigation menu"
+                variant="link"
+                icon={<FontAwesomeIcon icon={faBars} />}
+                ref={mobileMenuBtn}
+                onClick={onOpen}
+              />
+              <Drawer
+                isOpen={isOpen}
+                size="full"
+                onClose={onClose}
+                finalFocusRef={mobileMenuBtn}
+              >
+                <DrawerOverlay />
+                <DrawerContent>
+                  <DrawerCloseButton />
+
+                  <DrawerBody>
+                    <Flex
+                      width="full"
+                      height="full"
+                      justifyContent="center"
+                      alignItems="center"
                     >
-                      {Object.keys(divisions).map((divisionName) => (
-                        <GridItem minW="200px" key={createTeamID(divisionName)}>
-                          <Text color="GrayText">{divisionName}</Text>
-                          {divisions[divisionName].map((team) => (
-                            <Link
-                              display="block"
-                              href={`/teams/${team.id}`}
-                              key={team.id}
-                            >
-                              <HStack>
-                                <TeamLogo
-                                  teamAbbreviation={team.abbreviation}
-                                  size={8}
-                                />
-                                <Text>{capitalize(team.fullName)}</Text>
-                              </HStack>
-                            </Link>
-                          ))}
-                        </GridItem>
-                      ))}
-                    </Grid>
-                  </PopoverBody>
-                </PopoverContent>
-              </Portal>
-            </Popover>
-          </ButtonGroup>
+                      <VStack height="min-content">
+                        <Link href="/" onClick={onClose}>
+                          <Text fontSize="xx-large">Teams</Text>
+                        </Link>
+                        <Link href="/about-us" onClick={onClose}>
+                          <Text fontSize="xx-large">About Us</Text>
+                        </Link>
+                        <Link href="/contact" onClick={onClose}>
+                          <Text fontSize="xx-large">Contact</Text>
+                        </Link>
+                      </VStack>
+                    </Flex>
+                  </DrawerBody>
+                </DrawerContent>
+              </Drawer>
+            </>
+          )}
         </Flex>
       </Box>
     </>
