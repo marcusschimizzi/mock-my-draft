@@ -4,6 +4,8 @@ FROM base AS builder
 WORKDIR /usr/src/app
 
 COPY package*.json ./
+COPY data ./data
+
 
 RUN npm ci
 
@@ -20,6 +22,7 @@ COPY package*.json ./
 RUN npm ci --omit=dev
 
 COPY --from=builder /usr/src/app/dist ./dist
+COPY --from=builder /usr/src/app/data ./data
 
 EXPOSE 8008
 
