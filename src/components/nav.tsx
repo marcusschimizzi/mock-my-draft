@@ -11,11 +11,6 @@ import {
   DrawerOverlay,
   Flex,
   IconButton,
-  Popover,
-  PopoverBody,
-  PopoverContent,
-  PopoverTrigger,
-  Portal,
   Text,
   VStack,
   useDisclosure,
@@ -26,7 +21,7 @@ import Logo from '@/components/logo';
 import { Link } from '@chakra-ui/next-js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import TeamsList from './teams-list';
+import TeamsMenu from './teams-menu';
 
 export default function Nav() {
   const [atTop, setAtTop] = useState(true);
@@ -93,25 +88,7 @@ export default function Nav() {
               <Button as={Link} variant="link" href="/contact" mr={8}>
                 Contact
               </Button>
-              <Popover
-                trigger="hover"
-                placement="bottom-end"
-                closeOnEsc={true}
-                preventOverflow={true}
-              >
-                <PopoverTrigger>
-                  <Button as={Link} variant="link" href="/teams">
-                    Teams
-                  </Button>
-                </PopoverTrigger>
-                <Portal>
-                  <PopoverContent maxW="100%" width="fit-content">
-                    <PopoverBody>
-                      <TeamsList />
-                    </PopoverBody>
-                  </PopoverContent>
-                </Portal>
-              </Popover>
+              <TeamsMenu />
             </ButtonGroup>
           ) : (
             <>
