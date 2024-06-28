@@ -117,16 +117,20 @@ export default async function TeamPage({
           <StatLabel>Average grade</StatLabel>
           <StatNumber>{Number(average).toFixed(2)}</StatNumber>
         </Stat>
-        <Stat>
-          <StatLabel>Highest grade</StatLabel>
-          <StatNumber>{capitalize(highestGrade.letterGrade)}</StatNumber>
-          <StatHelpText>Source: {highestGrade.source}</StatHelpText>
-        </Stat>
-        <Stat>
-          <StatLabel>Lowest grade</StatLabel>
-          <StatNumber>{capitalize(lowestGrade.letterGrade)}</StatNumber>
-          <StatHelpText>Source: {lowestGrade.source}</StatHelpText>
-        </Stat>
+        {highestGrade && (
+          <Stat>
+            <StatLabel>Highest grade</StatLabel>
+            <StatNumber>{capitalize(highestGrade.letterGrade)}</StatNumber>
+            <StatHelpText>Source: {highestGrade.source}</StatHelpText>
+          </Stat>
+        )}
+        {lowestGrade && (
+          <Stat>
+            <StatLabel>Lowest grade</StatLabel>
+            <StatNumber>{capitalize(lowestGrade.letterGrade)}</StatNumber>
+            <StatHelpText>Source: {lowestGrade.source}</StatHelpText>
+          </Stat>
+        )}
       </StatGroup>
       <TableContainer marginTop={16} overflowX="auto">
         <Table overflowX="auto" width="max-content">

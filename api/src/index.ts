@@ -1,10 +1,15 @@
 import express, { Request, Response, Express } from 'express';
 import DataStore from './data-store';
+import loggerMiddleware from './middleware/logger';
 
 const app: Express = express();
 const port = process.env.PORT || 8008;
 
 const dataStore = new DataStore();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(loggerMiddleware);
 
 app.get('/', (req: Request, res: Response) => {
   const grades = dataStore.getTeamAverages();
