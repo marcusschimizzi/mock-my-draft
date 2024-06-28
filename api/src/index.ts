@@ -1,12 +1,36 @@
 import express, { Request, Response, Express } from 'express';
+import DataStore from './data-store';
 
 const app: Express = express();
 const port = process.env.PORT || 8008;
 
-console.log(port);
+const dataStore = new DataStore();
 
 app.get('/', (req: Request, res: Response) => {
-  res.send({ message: 'Howdy there!' });
+  const grades = dataStore.getTeamAverages();
+  if (grades) {
+    res.status(200).json(grades);
+    return;
+  }
+  res.json([]);
+});
+
+app.get('/teams/:teamId/responses', (req: Request, res: Response) => {
+  const teamResponses = dataStore.getTeamResponsesById(req.params.teamId);
+  if (teamResponses) {
+    res.status(200).json(teamResponses);
+    return;
+  }
+  res.status(404).json({ message: 'Team not found' });
+});
+
+app.get('/teams/:teamId', (req: Request, res: Response) => {
+  const teamGrades = dataStore.getTeamAverageById(req.params.teamId);
+  if (teamGrades) {
+    res.status(200).json(teamGrades);
+    return;
+  }
+  res.status(404).json({ message: 'Team not found' });
 });
 
 app.get('/health', (req: Request, res: Response) => {
