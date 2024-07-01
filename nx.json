@@ -50,6 +50,23 @@
       "options": {
         "targetName": "jest:test"
       }
+    },
+    {
+      "plugin": "@nx/vite/plugin",
+      "options": {
+        "buildTargetName": "build",
+        "testTargetName": "test",
+        "serveTargetName": "serve",
+        "previewTargetName": "preview",
+        "serveStaticTargetName": "serve-static"
+      }
     }
-  ]
+  ],
+  "generators": {
+    "@nx/react": {
+      "library": {
+        "unitTestRunner": "jest"
+      }
+    }
+  }
 }
