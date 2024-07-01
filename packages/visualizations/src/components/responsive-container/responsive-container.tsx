@@ -25,7 +25,7 @@ interface ResponsiveContainerProps {
     errorFallback?: ReactElement;
 }
 
-export const ResponsiveContainer = forwardRef<HTMLDivElement, ResponsiveContainerProps>(({ children, aspectRatio, minDimensions = {}, maxDimensions = {}, padding = {}, id, className, style, errorFallback }: ResponsiveContainerProps) => {
+export const ResponsiveContainer = ({ children, aspectRatio, minDimensions = {}, maxDimensions = {}, padding = {}, id, className, style, errorFallback }: ResponsiveContainerProps) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const [dimensions, setDimensions] = useState<Dimensions>({ width: 0, height: 0 });
 
@@ -115,6 +115,6 @@ export const ResponsiveContainer = forwardRef<HTMLDivElement, ResponsiveContaine
             </ErrorBoundary>
         </div>
     )
-});
+};
 
 export default ResponsiveContainer;
