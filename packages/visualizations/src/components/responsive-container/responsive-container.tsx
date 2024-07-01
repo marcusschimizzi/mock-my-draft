@@ -1,4 +1,4 @@
-import { CSSProperties, ReactElement, cloneElement, forwardRef, useEffect, useMemo, useRef, useState } from "react";
+import { CSSProperties, ReactElement, cloneElement, forwardRef, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import ErrorBoundary from "../error-boundary/error-boundary";
 
 interface Dimensions {
@@ -39,37 +39,39 @@ export const ResponsiveContainer = forwardRef<HTMLDivElement, ResponsiveContaine
     const verticalPadding = paddingValues.top + paddingValues.bottom;
     const horizontalPadding = paddingValues.left + paddingValues.right;
 
+    const calculateDimensions = useCallback((entry: ResizeObserverEntry) => {
+        let { width, height } = entry.contentRect;
+
+        // Adjust for padding
+        width -= horizontalPadding;
+        height -= verticalPadding;
+
+        // Adjust for aspect ratio
+        if (aspectRatio) {
+            const calculatedHeight = width / aspectRatio;
+            if (calculatedHeight > height) {
+                width = height * aspectRatio;
+            } else {
+                height = calculatedHeight;
+            }
+        }
+
+        // Apply min and max dimensions
+        width = Math.max(minDimensions.width || 0, Math.min(width, maxDimensions.width || Infinity));
+        height = Math.max(minDimensions.height || 0, Math.min(height, maxDimensions.height || Infinity));
+
+        return { width, height };
+    }, [aspectRatio, minDimensions, maxDimensions, verticalPadding, horizontalPadding]);
+
     useEffect(() => {
         const updateDimensions = (entries: ResizeObserverEntry[]) => {
             if (!entries.length) {
                 return;
             }
-
-            let { width, height } = entries[0].contentRect;
-            
-            // Adjust for padding
-            width -= horizontalPadding;
-            height -= verticalPadding;
-
-            // Adjust for aspect ratio
-            if (aspectRatio) {
-                const calculatedHeight = width / aspectRatio;
-                if (calculatedHeight > height) {
-                    width = height * aspectRatio;
-                } else {
-                    height = calculatedHeight;
-                }
-            }
-
-            // Apply min and max dimensions
-            width = Math.max(minDimensions.width || 0, Math.min(width, maxDimensions.width || Infinity));
-            height = Math.max(minDimensions.height || 0, Math.min(height, maxDimensions.height || Infinity));
-
-            setDimensions({
-                width,
-                height
-            });
+            const newDimensions = calculateDimensions(entries[0]);
+            setDimensions(newDimensions);
         }
+
 
             const observer = new ResizeObserver(updateDimensions);
 
@@ -80,7 +82,7 @@ export const ResponsiveContainer = forwardRef<HTMLDivElement, ResponsiveContaine
             return () => {
                 observer.disconnect();
             }
-    }, [aspectRatio, minDimensions, maxDimensions, verticalPadding, horizontalPadding]);
+    }, [calculateDimensions]);
 
     const containerStyle: CSSProperties = {
         width: '100%',
@@ -93,10 +95,12 @@ export const ResponsiveContainer = forwardRef<HTMLDivElement, ResponsiveContaine
     };
 
     // Clone the children to apply the dimensions
-    const childWithProps = cloneElement(children, {
+    const memoizedChild = useMemo(() => {
+        return cloneElement(children, {
         width: dimensions.width,
         height: dimensions.height,
     });
+}, [children, dimensions]);
 
     return (
         <div
@@ -107,7 +111,7 @@ export const ResponsiveContainer = forwardRef<HTMLDivElement, ResponsiveContaine
         >
             <ErrorBoundary fallback={errorFallback}>
 
-            {childWithProps}
+            {memoizedChild}
             </ErrorBoundary>
         </div>
     )
