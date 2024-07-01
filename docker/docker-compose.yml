@@ -1,0 +1,60 @@
+services:
+  main:
+    build:
+      context: ../
+      dockerfile: apps/main/docker/Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - api
+    networks:
+      - app-network
+
+  admin:
+    build:
+      context: ../
+      dockerfile: apps/admin/docker/Dockerfile
+    ports:
+      - "3001:3000"
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - api
+    networks:
+      - app-network
+  
+  api:
+    build:
+      context: ../
+      dockerfile: apps/api/docker/Dockerfile
+    ports:
+      - "3002:8008"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/app
+    networks:
+      - app-network
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=app
+    networks:
+      - app-network
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  db-data:

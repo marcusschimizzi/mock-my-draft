@@ -1,35 +1,32 @@
-.PHONY: build-development
-build-development: ## Build the development docker image.
-	docker compose -f docker/development/docker-compose.yml build
+.PHONY: build-all
+build-all: ## Build the docker image.
+	docker build -t base-image -f docker/Dockerfile .
+	docker compose -f docker/docker-compose.yml build
 
-.PHONY: start-development
-start-development: ## Start the development docker container.
-	docker compose -f docker/development/docker-compose.yml up -d
+.PHONY: start-all
+start-all: ## Start the docker container.
+	docker compose -f docker/docker-compose.yml up -d
 
-.PHONY: stop-development
-stop-development: ## Stop the development docker container.
-	docker compose -f docker/development/docker-compose.yml down
+.PHONY: stop-all
+stop-all: ## Stop the docker container.
+	docker compose -f docker/docker-compose.yml down
 
-.PHONY: build-staging
-build-staging: ## Build the staging docker image.
-	docker compose -f docker/staging/docker-compose.yml build
+# GIT_SHA1 = $(shell git rev-parse --verify HEAD)
+# IMAGES_TAG = ${shell git describe --exact-match --tags 2> /dev/null || echo "latest"}
+# IMAGE_PREFIX = mock-my-draft-
 
-.PHONY: start-staging
-start-staging: ## Start the staging docker container.
-	docker compose -f docker/staging/docker-compose.yml up -d
+# IMAGE_DIRS = $(wildcard apps/*)
 
-.PHONY: stop-staging
-stop-staging: ## Stop the staging docker container.
-	docker compose -f docker/staging/docker-compose.yml down
-  
-.PHONY: build-production
-build-production: ## Build the production docker image.
-	docker compose -f docker/production/docker-compose.yml build
+# .PHONY: all ${IMAGE_DIRS}
 
-.PHONY: start-production
-start-production: ## Start the production docker container.
-	docker compose -f docker/production/docker-compose.yml up -d
+# all: build-base ${IMAGE_DIRS}
 
-.PHONY: stop-production
-stop-production: ## Stop the production docker container.
-	docker compose -f docker/production/docker-compose.yml down
+# build-base:
+# 	docker build -t base-image -f docker/Dockerfile .
+
+
+# ${IMAGE_DIRS}:
+# 	$(eval IMAGE_NAME := $(subst /,-,$@))
+# 	docker build -f docker/Dockerfile -t ${DOCKERHUB_OWNER}/${IMAGE_PREFIX}${IMAGE_NAME}:${IMAGES_TAG} -t ${DOCKERHUB_OWNER}/${IMAGE_PREFIX}${IMAGE_NAME}:latest --build-arg TAG=${IMAGE_PREFIX}${IMAGE_NAME} --build-arg GIT_SHA1=${GIT_SHA1} $@
+# docker push ${DOCKERHUB_OWNER}/${IMAGE_PREFIX}${IMAGE_NAME}:${IMAGES_TAG}
+# docker push ${DOCKERHUB_OWNER}/${IMAGE_PREFIX}${IMAGE_NAME}:latest

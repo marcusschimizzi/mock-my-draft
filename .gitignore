@@ -1,20 +1,13 @@
-.DS_Store
 node_modules
+.vscode
 .turbo
-*.log
+
+
+.nx/cache
+.nx/workspace-data
+
+# Next.js
 .next
-dist
-dist-ssr
-*.local
-.env
-.cache
-server/dist
-public/dist
-.vscode/
-*storybook.log
+out
 
-# typescript
-*.tsbuildinfo
-
-# coverage
-coverage
+**/dist
