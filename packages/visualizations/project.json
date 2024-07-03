@@ -1,5 +1,5 @@
 {
-  "name": "visualizations",
+  "name": "@mock-my-draft/visualizations",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/visualizations/src",
   "projectType": "library",
