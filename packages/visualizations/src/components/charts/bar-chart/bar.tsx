@@ -14,10 +14,11 @@ export function Bar({ dataKey }: BarProps) {
 
     return (
         <>
-            {data.map((d, i) => (
+            {data.map((d, i) => {
+                return (
                 <rect
                     key={i}
-                    x={xScale(d[xScale.domain()[0]] as string)}
+                    x={xScale(d.team as string)}
                     y={yScale(d[dataKey] as number)}
                     width={xScale.bandwidth()}
                     height={height - yScale(d[dataKey] as number)
@@ -25,7 +26,7 @@ export function Bar({ dataKey }: BarProps) {
                     }
                     fill="steelblue"
                 />
-            ))}
+            )})}
         </>
     );
 }

@@ -27,9 +27,8 @@ export function BarChart({ children, data, width, height }: BarChartProps) {
     const margins = calculateMargins(60, 30, 60, 60);
     const innerWidth = width - margins.left - margins.right;
     const innerHeight = height - margins.top - margins.bottom;
-
-    const xScale = useMemo(() => createBandScale(data.map(d => d.label), [0, innerWidth]), [data, innerWidth]);
-    const yScale = useMemo(() => createLinearScaleFromData(data.map(d => d.value), [innerHeight, 0]), [data, innerHeight]);
+    const xScale = useMemo(() => createBandScale(data.map(d => d.team), [0, innerWidth]), [data, innerWidth]);
+    const yScale = useMemo(() => createLinearScaleFromData(data.map(d => d.average), [innerHeight, 0]), [data, innerHeight]);
 
     const contextValue = useMemo(() => ({
         data,
