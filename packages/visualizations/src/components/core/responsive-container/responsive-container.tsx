@@ -1,5 +1,6 @@
-import { CSSProperties, ReactElement, cloneElement, forwardRef, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { CSSProperties, ReactElement, ReactNode, cloneElement, isValidElement, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import ErrorBoundary from "../error-boundary/error-boundary";
+import React from "react";
 
 interface Dimensions {
     width: number;
@@ -14,7 +15,7 @@ interface Padding {
 }
 
 interface ResponsiveContainerProps {
-    children: ReactElement;
+    children: ReactNode;
     aspectRatio?: number;
     minDimensions?: Partial<Dimensions>;
     maxDimensions?: Partial<Dimensions>;
@@ -94,14 +95,6 @@ export const ResponsiveContainer = ({ children, aspectRatio, minDimensions = {},
         ...style
     };
 
-    // Clone the children to apply the dimensions
-    const memoizedChild = useMemo(() => {
-        return cloneElement(children, {
-        width: dimensions.width,
-        height: dimensions.height,
-    });
-}, [children, dimensions]);
-
     return (
         <div
             ref={containerRef}
@@ -111,7 +104,9 @@ export const ResponsiveContainer = ({ children, aspectRatio, minDimensions = {},
         >
             <ErrorBoundary fallback={errorFallback}>
 
-            {memoizedChild}
+                {React.Children.map(children, child =>
+                    isValidElement(child) ? cloneElement(child, dimensions) : child
+                )}
             </ErrorBoundary>
         </div>
     )
