@@ -1,4 +1,5 @@
 import { Grade } from './file-reader';
+import { getInfoFromTeamAbbreviation } from './lib/team-utils';
 
 interface TeamGrades {
   team: string;
@@ -75,5 +76,14 @@ export function computeAverages(grades: Grade[]): TeamSources[] {
   for (let grade of teamGradesArray) {
     grade['average'] = computeCumulativeGrade(grade as TeamGrades);
   }
+
+  // Add team colors
+  for (let grade of teamGradesArray) {
+    const teamInfo = getInfoFromTeamAbbreviation(grade.team);
+    if (teamInfo) {
+      grade['color'] = teamInfo.colors.primary;
+    }
+  }
+
   return teamGradesArray;
 }

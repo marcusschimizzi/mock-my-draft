@@ -6,6 +6,13 @@ export interface TeamNameLookup {
   id: string;
   division: 'east' | 'west' | 'north' | 'south';
   conference: 'afc' | 'nfc';
+  colors: {
+    primary: string;
+    secondary: string;
+    tertiary?: string;
+    quaternary?: string;
+    quinary?: string;
+  };
 }
 
 export const TEAM_NAMES: TeamNameLookup[] = [
@@ -17,6 +24,10 @@ export const TEAM_NAMES: TeamNameLookup[] = [
     id: 'arizona-cardinals',
     division: 'west',
     conference: 'nfc',
+    colors: {
+      primary: '#97233F',
+      secondary: '#000000',
+    },
   },
   {
     abbreviation: 'atl',
@@ -26,6 +37,10 @@ export const TEAM_NAMES: TeamNameLookup[] = [
     id: 'atlanta-falcons',
     division: 'south',
     conference: 'nfc',
+    colors: {
+      primary: '#A71930',
+      secondary: '#000000',
+    },
   },
   {
     abbreviation: 'bal',
@@ -35,6 +50,10 @@ export const TEAM_NAMES: TeamNameLookup[] = [
     id: 'baltimore-ravens',
     division: 'north',
     conference: 'afc',
+    colors: {
+      primary: '#241773',
+      secondary: '#000000',
+    },
   },
   {
     abbreviation: 'buf',
@@ -44,6 +63,10 @@ export const TEAM_NAMES: TeamNameLookup[] = [
     id: 'buffalo-bills',
     division: 'east',
     conference: 'afc',
+    colors: {
+      primary: '#00338D',
+      secondary: '#C60C30',
+    },
   },
   {
     abbreviation: 'car',
@@ -53,6 +76,10 @@ export const TEAM_NAMES: TeamNameLookup[] = [
     id: 'carolina-panthers',
     division: 'south',
     conference: 'nfc',
+    colors: {
+      primary: '#0085CA',
+      secondary: '#101820',
+    },
   },
   {
     abbreviation: 'chi',
@@ -62,6 +89,10 @@ export const TEAM_NAMES: TeamNameLookup[] = [
     id: 'chicago-bears',
     division: 'north',
     conference: 'nfc',
+    colors: {
+      primary: '#0B162A',
+      secondary: '#C83803',
+    },
   },
   {
     abbreviation: 'cin',
@@ -71,6 +102,10 @@ export const TEAM_NAMES: TeamNameLookup[] = [
     id: 'cincinnati-bengals',
     division: 'north',
     conference: 'afc',
+    colors: {
+      primary: '#FB4F14',
+      secondary: '#000000',
+    },
   },
   {
     abbreviation: 'cle',
@@ -80,6 +115,10 @@ export const TEAM_NAMES: TeamNameLookup[] = [
     id: 'cleveland-browns',
     division: 'north',
     conference: 'afc',
+    colors: {
+      primary: '#311D00',
+      secondary: '#FF3C00',
+    },
   },
   {
     abbreviation: 'dal',
@@ -89,6 +128,10 @@ export const TEAM_NAMES: TeamNameLookup[] = [
     id: 'dallas-cowboys',
     division: 'east',
     conference: 'nfc',
+    colors: {
+      primary: '#041E42',
+      secondary: '#869397',
+    },
   },
   {
     abbreviation: 'den',
@@ -98,6 +141,10 @@ export const TEAM_NAMES: TeamNameLookup[] = [
     id: 'denver-broncos',
     division: 'west',
     conference: 'afc',
+    colors: {
+      primary: '#002244',
+      secondary: '#FB4F14',
+    },
   },
   {
     abbreviation: 'det',
@@ -107,6 +154,10 @@ export const TEAM_NAMES: TeamNameLookup[] = [
     id: 'detroit-lions',
     division: 'north',
     conference: 'nfc',
+    colors: {
+      primary: '#0076B6',
+      secondary: '#B0B7BC',
+    },
   },
   {
     abbreviation: 'gb',
@@ -116,6 +167,10 @@ export const TEAM_NAMES: TeamNameLookup[] = [
     id: 'green-bay-packers',
     division: 'north',
     conference: 'nfc',
+    colors: {
+      primary: '#203731',
+      secondary: '#FFB612',
+    },
   },
   {
     abbreviation: 'hou',
@@ -125,6 +180,10 @@ export const TEAM_NAMES: TeamNameLookup[] = [
     id: 'houston-texans',
     division: 'south',
     conference: 'afc',
+    colors: {
+      primary: '#03202F',
+      secondary: '#A71930',
+    },
   },
   {
     abbreviation: 'ind',
@@ -134,6 +193,10 @@ export const TEAM_NAMES: TeamNameLookup[] = [
     id: 'indianapolis-colts',
     division: 'south',
     conference: 'afc',
+    colors: {
+      primary: '#002C5F',
+      secondary: '#A5ACAF',
+    },
   },
   {
     abbreviation: 'jax',
@@ -143,6 +206,10 @@ export const TEAM_NAMES: TeamNameLookup[] = [
     id: 'jacksonville-jaguars',
     division: 'south',
     conference: 'afc',
+    colors: {
+      primary: '#006778',
+      secondary: '#9F792C',
+    },
   },
   {
     abbreviation: 'kc',
@@ -152,6 +219,10 @@ export const TEAM_NAMES: TeamNameLookup[] = [
     id: 'kansas-city-chiefs',
     division: 'west',
     conference: 'afc',
+    colors: {
+      primary: '#E31837',
+      secondary: '#FFB81C',
+    },
   },
   {
     abbreviation: 'lv',
@@ -161,6 +232,10 @@ export const TEAM_NAMES: TeamNameLookup[] = [
     id: 'las-vegas-raiders',
     division: 'west',
     conference: 'afc',
+    colors: {
+      primary: '#000000',
+      secondary: '#A5ACAF',
+    },
   },
   {
     abbreviation: 'lac',
@@ -170,6 +245,10 @@ export const TEAM_NAMES: TeamNameLookup[] = [
     id: 'los-angeles-chargers',
     division: 'west',
     conference: 'afc',
+    colors: {
+      primary: '#002A5E',
+      secondary: '#FFC20E',
+    },
   },
   {
     abbreviation: 'lar',
@@ -179,6 +258,10 @@ export const TEAM_NAMES: TeamNameLookup[] = [
     id: 'los-angeles-rams',
     division: 'west',
     conference: 'nfc',
+    colors: {
+      primary: '#002244',
+      secondary: '#866D4B',
+    },
   },
   {
     abbreviation: 'mia',
@@ -188,6 +271,10 @@ export const TEAM_NAMES: TeamNameLookup[] = [
     id: 'miami-dolphins',
     division: 'east',
     conference: 'afc',
+    colors: {
+      primary: '#008E97',
+      secondary: '#F58220',
+    },
   },
   {
     abbreviation: 'min',
@@ -197,6 +284,10 @@ export const TEAM_NAMES: TeamNameLookup[] = [
     id: 'minnesota-vikings',
     division: 'north',
     conference: 'nfc',
+    colors: {
+      primary: '#4F2683',
+      secondary: '#FFC62F',
+    },
   },
   {
     abbreviation: 'ne',
@@ -206,6 +297,10 @@ export const TEAM_NAMES: TeamNameLookup[] = [
     id: 'new-england-patriots',
     division: 'east',
     conference: 'afc',
+    colors: {
+      primary: '#002244',
+      secondary: '#C60C30',
+    },
   },
   {
     abbreviation: 'no',
@@ -215,6 +310,10 @@ export const TEAM_NAMES: TeamNameLookup[] = [
     id: 'new-orleans-saints',
     division: 'south',
     conference: 'nfc',
+    colors: {
+      primary: '#D3BC8D',
+      secondary: '#101820',
+    },
   },
   {
     abbreviation: 'nyg',
@@ -224,6 +323,10 @@ export const TEAM_NAMES: TeamNameLookup[] = [
     id: 'new-york-giants',
     division: 'east',
     conference: 'nfc',
+    colors: {
+      primary: '#0B2265',
+      secondary: '#A71930',
+    },
   },
   {
     abbreviation: 'nyj',
@@ -233,6 +336,10 @@ export const TEAM_NAMES: TeamNameLookup[] = [
     id: 'new-york-jets',
     division: 'east',
     conference: 'afc',
+    colors: {
+      primary: '#125740',
+      secondary: '#000000',
+    },
   },
   {
     abbreviation: 'phi',
@@ -242,6 +349,10 @@ export const TEAM_NAMES: TeamNameLookup[] = [
     id: 'philadelphia-eagles',
     division: 'east',
     conference: 'nfc',
+    colors: {
+      primary: '#004C54',
+      secondary: '#A5ACAF',
+    },
   },
   {
     abbreviation: 'pit',
@@ -251,6 +362,10 @@ export const TEAM_NAMES: TeamNameLookup[] = [
     id: 'pittsburgh-steelers',
     division: 'north',
     conference: 'afc',
+    colors: {
+      primary: '#FFB612',
+      secondary: '#101820',
+    },
   },
   {
     abbreviation: 'sf',
@@ -260,6 +375,10 @@ export const TEAM_NAMES: TeamNameLookup[] = [
     id: 'san-francisco-49ers',
     division: 'west',
     conference: 'nfc',
+    colors: {
+      primary: '#AA0000',
+      secondary: '#B3995D',
+    },
   },
   {
     abbreviation: 'sea',
@@ -269,6 +388,10 @@ export const TEAM_NAMES: TeamNameLookup[] = [
     id: 'seattle-seahawks',
     division: 'west',
     conference: 'nfc',
+    colors: {
+      primary: '#002244',
+      secondary: '#69BE28',
+    },
   },
   {
     abbreviation: 'tb',
@@ -278,6 +401,10 @@ export const TEAM_NAMES: TeamNameLookup[] = [
     id: 'tampa-bay-buccaneers',
     division: 'south',
     conference: 'nfc',
+    colors: {
+      primary: '#D50A0A',
+      secondary: '#34302B',
+    },
   },
   {
     abbreviation: 'ten',
@@ -287,6 +414,10 @@ export const TEAM_NAMES: TeamNameLookup[] = [
     id: 'tennessee-titans',
     division: 'south',
     conference: 'afc',
+    colors: {
+      primary: '#4B92DB',
+      secondary: '#0C2340',
+    },
   },
   {
     abbreviation: 'was',
@@ -296,6 +427,10 @@ export const TEAM_NAMES: TeamNameLookup[] = [
     id: 'washington-commanders',
     division: 'east',
     conference: 'nfc',
+    colors: {
+      primary: '#773141',
+      secondary: '#FFC20E',
+    },
   },
 ];
 
@@ -309,10 +444,10 @@ export function getInfoFromTeamId(teamId: string): TeamNameLookup | null {
 }
 
 export function getInfoFromTeamAbbreviation(
-  abbreviation: string
+  abbreviation: string,
 ): TeamNameLookup | null {
   const teamInfo = TEAM_NAMES.find(
-    (team) => team.abbreviation === abbreviation
+    (team) => team.abbreviation === abbreviation,
   );
   if (!teamInfo) {
     console.error(`Invalid team abbreviation: ${abbreviation}`);
