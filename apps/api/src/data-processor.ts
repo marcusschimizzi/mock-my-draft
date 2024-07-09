@@ -77,11 +77,12 @@ export function computeAverages(grades: Grade[]): TeamSources[] {
     grade['average'] = computeCumulativeGrade(grade as TeamGrades);
   }
 
-  // Add team colors
+  // Add team colors and logos
   for (let grade of teamGradesArray) {
     const teamInfo = getInfoFromTeamAbbreviation(grade.team);
     if (teamInfo) {
       grade['color'] = teamInfo.colors.primary;
+      grade['logo'] = teamInfo.logo;
     }
   }
 
