@@ -1,0 +1,14 @@
+{
+  "build": {
+    "executor": "@nx/next:build",
+    "outputs": ["{options.outputPath}"],
+    "defaultConfiguration": "production",
+    "options": {
+      "root": "apps/main",
+      "outputPath": "dist/apps/main"
+    },
+    "configurations": {
+      "production": {}
+    }
+  }
+}

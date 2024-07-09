@@ -1,0 +1,62 @@
+services:
+  main:
+    build:
+      context: .
+      dockerfile: tools/docker/Dockerfile.nextjs
+      args:
+        - APP_NAME=main
+    environment:
+      - NODE_ENV=production
+    ports:
+      - '${MAIN_PORT:-3000}:3000'
+    restart: always
+    depends_on:
+      - api
+      - db
+
+  admin:
+    build:
+      context: .
+      dockerfile: tools/docker/Dockerfile.nextjs
+      args:
+        - APP_NAME=admin
+    environment:
+      - NODE_ENV=production
+    ports:
+      - '${ADMIN_PORT:-3001}:3000'
+    restart: always
+    depends_on:
+      - api
+      - db
+
+  api:
+    build:
+      context: .
+      dockerfile: tools/docker/Dockerfile.node
+      args:
+        - APP_NAME=api
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:${DB_PORT:-5432}/${POSTGRES_DB}
+    ports:
+      - '${API_PORT:-4000}:4000'
+    restart: always
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - '${DB_PORT:-5432}:5432'
+    restart: always
+    volumes:
+      - postgres:/var/lib/postgresql/data
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+    command: ['postgres', '-c', 'log_statement=all']
+
+volumes:
+  postgres:
