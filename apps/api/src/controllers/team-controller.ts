@@ -17,4 +17,82 @@ export class TeamController {
       res.status(500).json({ message: 'Internal server error' });
     }
   };
+
+  public getTeamById = async (req: Request, res: Response): Promise<void> => {
+    try {
+      const id = Number(req.params.id);
+      const team = await this.teamService.getTeamById(id);
+
+      if (!team) {
+        res.status(404).json({ message: 'Team not found' });
+        return;
+      }
+
+      res.json(team);
+    } catch (error) {
+      console.error('Error getting team by id', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  };
+
+  public getTeamBySlug = async (req: Request, res: Response): Promise<void> => {
+    try {
+      const slug = req.params.slug;
+      const team = await this.teamService.getTeamBySlug(slug);
+
+      if (!team) {
+        res.status(404).json({ message: 'Team not found' });
+        return;
+      }
+
+      res.json(team);
+    } catch (error) {
+      console.error('Error getting team by slug', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  };
+
+  public createTeam = async (req: Request, res: Response): Promise<void> => {
+    try {
+      const team = await this.teamService.createTeam(req.body);
+      res.status(201).json(team);
+    } catch (error) {
+      console.error('Error creating team', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  };
+
+  public updateTeam = async (req: Request, res: Response): Promise<void> => {
+    try {
+      const id = Number(req.params.id);
+      const team = await this.teamService.updateTeam(id, req.body);
+
+      if (!team) {
+        res.status(404).json({ message: 'Team not found' });
+        return;
+      }
+
+      res.json(team);
+    } catch (error) {
+      console.error('Error updating team', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  };
+
+  public deleteTeam = async (req: Request, res: Response): Promise<void> => {
+    try {
+      const id = Number(req.params.id);
+      const result = await this.teamService.deleteTeam(id);
+
+      if (!result) {
+        res.status(404).json({ message: 'Team not found' });
+        return;
+      }
+
+      res.status(204).send();
+    } catch (error) {
+      console.error('Error deleting team', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  };
 }
