@@ -1,9 +1,9 @@
 import express, { Request, Response, Express } from 'express';
 import DataStore from './data-store';
 import loggerMiddleware from './middleware/logger';
+import { initializeDatabase } from './database';
 
 const app: Express = express();
-const port = process.env.PORT || 8008;
 
 const dataStore = new DataStore();
 
@@ -42,6 +42,17 @@ app.get('/health', (req: Request, res: Response) => {
   res.status(200).json({ status: 'OK' });
 });
 
-app.listen(port, () => {
-  console.log(`[server]: Server is running on port: ${port}`);
+const startServer = async () => {
+  await initializeDatabase();
+
+  const port = process.env.PORT || 8008;
+
+  app.listen(port, () => {
+    console.log(`[server]: Server is running on port: ${port}`);
+  });
+};
+
+startServer().catch((error) => {
+  console.error('Error starting server', error);
+  process.exit(1);
 });
