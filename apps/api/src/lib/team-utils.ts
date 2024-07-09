@@ -13,6 +13,7 @@ export interface TeamNameLookup {
     quaternary?: string;
     quinary?: string;
   };
+  logo: string;
 }
 
 export const TEAM_NAMES: TeamNameLookup[] = [
@@ -28,6 +29,7 @@ export const TEAM_NAMES: TeamNameLookup[] = [
       primary: '#97233F',
       secondary: '#000000',
     },
+    logo: 'https://upload.wikimedia.org/wikipedia/en/7/72/Arizona_Cardinals_logo.svg',
   },
   {
     abbreviation: 'atl',
@@ -41,6 +43,7 @@ export const TEAM_NAMES: TeamNameLookup[] = [
       primary: '#A71930',
       secondary: '#000000',
     },
+    logo: 'https://upload.wikimedia.org/wikipedia/en/c/c5/Atlanta_Falcons_logo.svg',
   },
   {
     abbreviation: 'bal',
@@ -54,6 +57,7 @@ export const TEAM_NAMES: TeamNameLookup[] = [
       primary: '#241773',
       secondary: '#000000',
     },
+    logo: 'https://upload.wikimedia.org/wikipedia/en/1/16/Baltimore_Ravens_logo.svg',
   },
   {
     abbreviation: 'buf',
@@ -67,6 +71,7 @@ export const TEAM_NAMES: TeamNameLookup[] = [
       primary: '#00338D',
       secondary: '#C60C30',
     },
+    logo: 'https://upload.wikimedia.org/wikipedia/en/7/77/Buffalo_Bills_logo.svg',
   },
   {
     abbreviation: 'car',
@@ -80,6 +85,7 @@ export const TEAM_NAMES: TeamNameLookup[] = [
       primary: '#0085CA',
       secondary: '#101820',
     },
+    logo: 'https://upload.wikimedia.org/wikipedia/en/1/1c/Carolina_Panthers_logo.svg',
   },
   {
     abbreviation: 'chi',
@@ -93,6 +99,7 @@ export const TEAM_NAMES: TeamNameLookup[] = [
       primary: '#0B162A',
       secondary: '#C83803',
     },
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/5/5c/Chicago_Bears_logo.svg',
   },
   {
     abbreviation: 'cin',
@@ -106,6 +113,7 @@ export const TEAM_NAMES: TeamNameLookup[] = [
       primary: '#FB4F14',
       secondary: '#000000',
     },
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/8/81/Cincinnati_Bengals_logo.svg',
   },
   {
     abbreviation: 'cle',
@@ -119,6 +127,7 @@ export const TEAM_NAMES: TeamNameLookup[] = [
       primary: '#311D00',
       secondary: '#FF3C00',
     },
+    logo: 'https://upload.wikimedia.org/wikipedia/en/d/d9/Cleveland_Browns_logo.svg',
   },
   {
     abbreviation: 'dal',
@@ -132,6 +141,7 @@ export const TEAM_NAMES: TeamNameLookup[] = [
       primary: '#041E42',
       secondary: '#869397',
     },
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/1/15/Dallas_Cowboys.svg',
   },
   {
     abbreviation: 'den',
@@ -145,6 +155,7 @@ export const TEAM_NAMES: TeamNameLookup[] = [
       primary: '#002244',
       secondary: '#FB4F14',
     },
+    logo: 'https://upload.wikimedia.org/wikipedia/en/4/44/Denver_Broncos_logo.svg',
   },
   {
     abbreviation: 'det',
@@ -158,6 +169,7 @@ export const TEAM_NAMES: TeamNameLookup[] = [
       primary: '#0076B6',
       secondary: '#B0B7BC',
     },
+    logo: 'https://upload.wikimedia.org/wikipedia/en/7/71/Detroit_Lions_logo.svg',
   },
   {
     abbreviation: 'gb',
@@ -171,6 +183,7 @@ export const TEAM_NAMES: TeamNameLookup[] = [
       primary: '#203731',
       secondary: '#FFB612',
     },
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/5/50/Green_Bay_Packers_logo.svg',
   },
   {
     abbreviation: 'hou',
@@ -184,6 +197,7 @@ export const TEAM_NAMES: TeamNameLookup[] = [
       primary: '#03202F',
       secondary: '#A71930',
     },
+    logo: 'https://upload.wikimedia.org/wikipedia/en/2/28/Houston_Texans_logo.svg',
   },
   {
     abbreviation: 'ind',
@@ -197,6 +211,7 @@ export const TEAM_NAMES: TeamNameLookup[] = [
       primary: '#002C5F',
       secondary: '#A5ACAF',
     },
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/0/00/Indianapolis_Colts_logo.svg',
   },
   {
     abbreviation: 'jax',
@@ -210,6 +225,7 @@ export const TEAM_NAMES: TeamNameLookup[] = [
       primary: '#006778',
       secondary: '#9F792C',
     },
+    logo: 'https://upload.wikimedia.org/wikipedia/en/7/74/Jacksonville_Jaguars_logo.svg',
   },
   {
     abbreviation: 'kc',
@@ -223,6 +239,7 @@ export const TEAM_NAMES: TeamNameLookup[] = [
       primary: '#E31837',
       secondary: '#FFB81C',
     },
+    logo: 'https://upload.wikimedia.org/wikipedia/en/e/e1/Kansas_City_Chiefs_logo.svg',
   },
   {
     abbreviation: 'lv',
@@ -236,6 +253,7 @@ export const TEAM_NAMES: TeamNameLookup[] = [
       primary: '#000000',
       secondary: '#A5ACAF',
     },
+    logo: 'https://upload.wikimedia.org/wikipedia/en/4/48/Las_Vegas_Raiders_logo.svg',
   },
   {
     abbreviation: 'lac',
@@ -249,6 +267,7 @@ export const TEAM_NAMES: TeamNameLookup[] = [
       primary: '#002A5E',
       secondary: '#FFC20E',
     },
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/a/a6/Los_Angeles_Chargers_logo.svg',
   },
   {
     abbreviation: 'lar',
@@ -262,6 +281,7 @@ export const TEAM_NAMES: TeamNameLookup[] = [
       primary: '#002244',
       secondary: '#866D4B',
     },
+    logo: 'https://upload.wikimedia.org/wikipedia/en/8/8a/Los_Angeles_Rams_logo.svg',
   },
   {
     abbreviation: 'mia',
@@ -275,6 +295,7 @@ export const TEAM_NAMES: TeamNameLookup[] = [
       primary: '#008E97',
       secondary: '#F58220',
     },
+    logo: 'https://upload.wikimedia.org/wikipedia/en/3/37/Miami_Dolphins_logo.svg',
   },
   {
     abbreviation: 'min',
@@ -288,6 +309,7 @@ export const TEAM_NAMES: TeamNameLookup[] = [
       primary: '#4F2683',
       secondary: '#FFC62F',
     },
+    logo: 'https://upload.wikimedia.org/wikipedia/en/4/48/Minnesota_Vikings_logo.svg',
   },
   {
     abbreviation: 'ne',
@@ -301,6 +323,7 @@ export const TEAM_NAMES: TeamNameLookup[] = [
       primary: '#002244',
       secondary: '#C60C30',
     },
+    logo: 'https://upload.wikimedia.org/wikipedia/en/b/b9/New_England_Patriots_logo.svg',
   },
   {
     abbreviation: 'no',
@@ -314,6 +337,7 @@ export const TEAM_NAMES: TeamNameLookup[] = [
       primary: '#D3BC8D',
       secondary: '#101820',
     },
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/5/50/New_Orleans_Saints_logo.svg',
   },
   {
     abbreviation: 'nyg',
@@ -327,6 +351,7 @@ export const TEAM_NAMES: TeamNameLookup[] = [
       primary: '#0B2265',
       secondary: '#A71930',
     },
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/6/60/New_York_Giants_logo.svg',
   },
   {
     abbreviation: 'nyj',
@@ -340,6 +365,7 @@ export const TEAM_NAMES: TeamNameLookup[] = [
       primary: '#125740',
       secondary: '#000000',
     },
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/6/69/New_York_Jets_2024.svg',
   },
   {
     abbreviation: 'phi',
@@ -353,6 +379,7 @@ export const TEAM_NAMES: TeamNameLookup[] = [
       primary: '#004C54',
       secondary: '#A5ACAF',
     },
+    logo: 'https://upload.wikimedia.org/wikipedia/en/8/8e/Philadelphia_Eagles_logo.svg',
   },
   {
     abbreviation: 'pit',
@@ -366,6 +393,7 @@ export const TEAM_NAMES: TeamNameLookup[] = [
       primary: '#FFB612',
       secondary: '#101820',
     },
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Pittsburgh_Steelers_logo.svg',
   },
   {
     abbreviation: 'sf',
@@ -379,6 +407,7 @@ export const TEAM_NAMES: TeamNameLookup[] = [
       primary: '#AA0000',
       secondary: '#B3995D',
     },
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/3/3a/San_Francisco_49ers_logo.svg',
   },
   {
     abbreviation: 'sea',
@@ -392,6 +421,7 @@ export const TEAM_NAMES: TeamNameLookup[] = [
       primary: '#002244',
       secondary: '#69BE28',
     },
+    logo: 'https://upload.wikimedia.org/wikipedia/en/8/8e/Seattle_Seahawks_logo.svg',
   },
   {
     abbreviation: 'tb',
@@ -405,6 +435,7 @@ export const TEAM_NAMES: TeamNameLookup[] = [
       primary: '#D50A0A',
       secondary: '#34302B',
     },
+    logo: 'https://upload.wikimedia.org/wikipedia/en/a/a2/Tampa_Bay_Buccaneers_logo.svg',
   },
   {
     abbreviation: 'ten',
@@ -418,6 +449,7 @@ export const TEAM_NAMES: TeamNameLookup[] = [
       primary: '#4B92DB',
       secondary: '#0C2340',
     },
+    logo: 'https://upload.wikimedia.org/wikipedia/en/c/c1/Tennessee_Titans_logo.svg',
   },
   {
     abbreviation: 'was',
@@ -431,6 +463,7 @@ export const TEAM_NAMES: TeamNameLookup[] = [
       primary: '#773141',
       secondary: '#FFC20E',
     },
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/0/0c/Washington_Commanders_logo.svg',
   },
 ];
 
