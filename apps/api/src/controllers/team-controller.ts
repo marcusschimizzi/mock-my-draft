@@ -18,10 +18,13 @@ export class TeamController {
     }
   };
 
-  public getTeamById = async (req: Request, res: Response): Promise<void> => {
+  public getTeamByIdOrSlug = async (
+    req: Request,
+    res: Response,
+  ): Promise<void> => {
     try {
-      const id = Number(req.params.id);
-      const team = await this.teamService.getTeamById(id);
+      const identifier = req.params.identifier;
+      const team = await this.teamService.getTeamByIdOrSlug(identifier);
 
       if (!team) {
         res.status(404).json({ message: 'Team not found' });
@@ -31,23 +34,6 @@ export class TeamController {
       res.json(team);
     } catch (error) {
       console.error('Error getting team by id', error);
-      res.status(500).json({ message: 'Internal server error' });
-    }
-  };
-
-  public getTeamBySlug = async (req: Request, res: Response): Promise<void> => {
-    try {
-      const slug = req.params.slug;
-      const team = await this.teamService.getTeamBySlug(slug);
-
-      if (!team) {
-        res.status(404).json({ message: 'Team not found' });
-        return;
-      }
-
-      res.json(team);
-    } catch (error) {
-      console.error('Error getting team by slug', error);
       res.status(500).json({ message: 'Internal server error' });
     }
   };

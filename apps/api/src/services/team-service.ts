@@ -11,16 +11,18 @@ export class TeamService {
     });
   }
 
-  async getTeamById(id: number): Promise<Team | null> {
-    return this.teamRepository.findOneBy({
-      id,
-    });
-  }
-
-  async getTeamBySlug(slug: string): Promise<Team | null> {
-    return this.teamRepository.findOneBy({
-      slug,
-    });
+  async getTeamByIdOrSlug(identifier: number | string): Promise<Team | null> {
+    if (typeof identifier === 'number' || !isNaN(Number(identifier))) {
+      // If the identifier is a number, we can assume it's an ID
+      return this.teamRepository.findOneBy({
+        id: Number(identifier),
+      });
+    } else {
+      // Otherwise, we can assume it's a slug
+      return this.teamRepository.findOneBy({
+        slug: identifier,
+      });
+    }
   }
 
   async createTeam(data: Partial<Team>): Promise<Team> {
@@ -28,8 +30,11 @@ export class TeamService {
     return this.teamRepository.save(team);
   }
 
-  async updateTeam(id: number, data: Partial<Team>): Promise<Team | null> {
-    const team = await this.getTeamById(id);
+  async updateTeam(
+    identifier: number | string,
+    data: Partial<Team>,
+  ): Promise<Team | null> {
+    const team = await this.getTeamByIdOrSlug(identifier);
 
     if (!team) {
       return null;
@@ -40,8 +45,8 @@ export class TeamService {
     return this.teamRepository.save(updatedTeam);
   }
 
-  async deleteTeam(id: number): Promise<boolean> {
-    const team = await this.getTeamById(id);
+  async deleteTeam(identifier: number | string): Promise<boolean> {
+    const team = await this.getTeamByIdOrSlug(identifier);
 
     if (!team) {
       return false;
