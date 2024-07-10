@@ -1,8 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
 import { AuthService } from '../services/auth-service';
+import { User } from '../database/entities/user';
 
-interface AuthenticatedRequest extends Request {
-  user?: any;
+export interface AuthenticatedRequest extends Request {
+  user?: User;
 }
 
 const authService = new AuthService();
@@ -12,7 +13,8 @@ export const authenticate = (
   res: Response,
   next: NextFunction,
 ) => {
-  const token = req.header('Authorization')?.replace('Bearer ', '');
+  const token = req.cookies.token;
+  console.log('token', token);
 
   if (!token) {
     return res.status(401).json({ message: 'Unauthorized' });
