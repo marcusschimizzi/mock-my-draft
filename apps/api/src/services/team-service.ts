@@ -52,7 +52,7 @@ export class TeamService {
       return false;
     }
 
-    await this.teamRepository.softDelete(team);
+    await this.teamRepository.softDelete(team.id);
 
     return true;
   }
