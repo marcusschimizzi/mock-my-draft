@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 
-export const validateTeamIdentifier = (
+export const validateIdentifier = (
   req: Request,
   res: Response,
   next: NextFunction,
@@ -13,6 +13,6 @@ export const validateTeamIdentifier = (
   ) {
     next();
   } else {
-    res.status(400).json({ message: 'Invalid team identifier' });
+    res.status(400).json({ message: 'Invalid identifier' });
   }
 };
