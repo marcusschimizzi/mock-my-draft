@@ -50,8 +50,8 @@ export class TeamController {
 
   public updateTeam = async (req: Request, res: Response): Promise<void> => {
     try {
-      const id = Number(req.params.id);
-      const team = await this.teamService.updateTeam(id, req.body);
+      const identifier = req.params.identifier;
+      const team = await this.teamService.updateTeam(identifier, req.body);
 
       if (!team) {
         res.status(404).json({ message: 'Team not found' });
@@ -67,7 +67,7 @@ export class TeamController {
 
   public deleteTeam = async (req: Request, res: Response): Promise<void> => {
     try {
-      const id = Number(req.params.id);
+      const id = req.params.identifier;
       const result = await this.teamService.deleteTeam(id);
 
       if (!result) {
