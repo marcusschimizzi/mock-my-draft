@@ -1,22 +1,22 @@
 import { User } from '../database/models/user';
-import { UserService } from './users-service';
+import { UsersService } from './users-service';
 import bcrypt from 'bcrypt';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 
 const SECRET_KEY = process.env.JWT_SECRET_KEY;
 
 export class AuthService {
-  private userService: UserService;
+  private usersService: UsersService;
 
   constructor() {
-    this.userService = new UserService();
+    this.usersService = new UsersService();
   }
 
   async validateUser(username: string, password: string): Promise<User | null> {
-    const user = await this.userService.getUserByUsername(username);
+    const user = await this.usersService.getUserByUsername(username);
 
     if (user && (await bcrypt.compare(password, user.password))) {
-      await this.userService.updateUser(user.id, { lastLogin: new Date() });
+      await this.usersService.updateUser(user.id, { lastLogin: new Date() });
       return user;
     }
 
