@@ -2,11 +2,12 @@ import { DataSource } from 'typeorm';
 import { User } from './models/user';
 import { initAdmin } from './utils/initAdmin';
 import { Team } from './models/team';
+import { Source } from './models/source';
 
 export const AppDataSource: DataSource = new DataSource({
   type: 'postgres',
   url: process.env.DATABASE_URL,
-  entities: [User, Team],
+  entities: [User, Team, Source],
   synchronize: true,
   logging: true,
   migrations: ['src/database/migrations/*.ts'],

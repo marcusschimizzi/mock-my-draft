@@ -1,36 +1,25 @@
-import { MinLength } from 'class-validator';
 import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
   PrimaryGeneratedColumn,
-  Unique,
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity('users')
-@Unique(['username', 'email'])
-export class User {
+@Entity('sources')
+export class Source {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
-  @MinLength(3)
-  username: string;
+  name: string;
 
   @Column()
-  @MinLength(8)
-  password: string;
+  slug: string;
 
   @Column()
-  email: string;
-
-  @Column({ default: false })
-  isAdmin: boolean;
-
-  @Column({ nullable: true })
-  lastLogin?: Date;
+  baseUrl: string;
 
   @CreateDateColumn()
   createdAt: Date;

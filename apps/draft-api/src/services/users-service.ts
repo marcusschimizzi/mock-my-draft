@@ -18,19 +18,19 @@ export class UserService {
     return this.userRepository.save(user);
   }
 
-  async getUserById(id: number): Promise<User> {
-    return this.userRepository.findOneByOrFail({ id });
+  async getUserById(id: string): Promise<User | null> {
+    return this.userRepository.findOneBy({ id });
   }
 
-  async getUserByUsername(username: string): Promise<User> {
-    return this.userRepository.findOneByOrFail({ username });
+  async getUserByUsername(username: string): Promise<User | null> {
+    return this.userRepository.findOneBy({ username });
   }
 
-  async getUserByEmail(email: string): Promise<User> {
-    return this.userRepository.findOneByOrFail({ email });
+  async getUserByEmail(email: string): Promise<User | null> {
+    return this.userRepository.findOneBy({ email });
   }
 
-  async updateUser(id: number, data: Partial<User>): Promise<User | null> {
+  async updateUser(id: string, data: Partial<User>): Promise<User | null> {
     try {
       const user = await this.getUserById(id);
 
@@ -47,7 +47,7 @@ export class UserService {
     }
   }
 
-  async deleteUser(id: number): Promise<boolean> {
+  async deleteUser(id: string): Promise<boolean> {
     try {
       const user = await this.getUserById(id);
 
