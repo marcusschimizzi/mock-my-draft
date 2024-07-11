@@ -1,6 +1,7 @@
 import express from 'express';
 import * as path from 'path';
 import { config } from 'dotenv';
+import 'reflect-metadata';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import authRoutes from './routes/auth-routes';
