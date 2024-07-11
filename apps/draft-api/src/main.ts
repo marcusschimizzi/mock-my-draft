@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser';
 import authRoutes from './routes/auth-routes';
 
 import { initializeDatabase } from './database';
+import logger from './middleware/logger';
 
 config();
 const app = express();
@@ -14,6 +15,7 @@ app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(logger);
 
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
