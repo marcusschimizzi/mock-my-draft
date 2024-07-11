@@ -23,6 +23,7 @@ export function readInFile(): Grade[] | null {
       const item: Partial<Grade> = {};
       for (let j = 0; j < values.length; j++) {
         const key = keys[j].trim() as GradeKey;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         item[key] = values[j].trim() as any;
       }
       data.push(item as Grade);

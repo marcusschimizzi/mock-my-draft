@@ -2,6 +2,7 @@ import express, { Request, Response, Express } from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import { config } from 'dotenv';
+import 'reflect-metadata';
 import loggerMiddleware from './middleware/logger';
 import { initializeDatabase } from './database';
 import teamRouter from './routes/teams';

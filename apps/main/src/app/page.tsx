@@ -1,4 +1,3 @@
-import Chart from '@/components/chart';
 import TeamLogo from '@/components/team-logo';
 import { API_URL } from '@/config/constants';
 import { getInfoFromTeamAbbreviation } from '@/lib/team-utils';
@@ -381,9 +380,6 @@ export default async function Home() {
   return (
     <Container as="main" maxW="container.xl">
       <Heading>2024 NFL Draft Class Grades</Heading>
-      <Box>
-        <Chart data={data} />
-      </Box>
       <Box py={16}>
         <StatGroup pb={16}>
           <Stat>

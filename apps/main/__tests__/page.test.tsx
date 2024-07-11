@@ -8,6 +8,7 @@ jest.mock('@chakra-ui/react', () => ({
 
 describe(Nav.name, () => {
   beforeEach(() => {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     require('@chakra-ui/react').useMediaQuery.mockReturnValue([false]);
   });
 

@@ -31,7 +31,7 @@ export class AuthService {
     );
   }
 
-  verifyToken(token: string): any {
+  verifyToken(token: string) {
     return jwt.verify(token, SECRET_KEY);
   }
 }

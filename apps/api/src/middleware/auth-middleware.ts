@@ -22,7 +22,7 @@ export const authenticate = (
 
   try {
     const decoded = authService.verifyToken(token);
-    req.user = decoded;
+    req.user = decoded as User;
     next();
   } catch (error) {
     return res.status(401).json({ message: 'Unauthorized' });

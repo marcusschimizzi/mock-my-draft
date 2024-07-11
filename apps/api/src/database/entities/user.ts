@@ -13,30 +13,30 @@ export class User {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @Column({ unique: true })
+  @Column({ unique: true, type: 'text' })
   @MinLength(3)
   username!: string;
 
-  @Column()
+  @Column({ type: 'text' })
   @MinLength(8)
   password!: string;
 
-  @Column({ unique: true })
+  @Column({ unique: true, type: 'text' })
   @IsEmail()
   email!: string;
 
-  @Column({ default: false })
+  @Column({ default: false, type: 'boolean' })
   isAdmin!: boolean;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, type: 'timestamp with time zone' })
   lastLogin?: Date;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ type: 'timestamp with time zone' })
   createdAt!: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ type: 'timestamp with time zone' })
   updatedAt!: Date;
 
-  @DeleteDateColumn()
+  @DeleteDateColumn({ type: 'timestamp with time zone' })
   deletedAt?: Date;
 }

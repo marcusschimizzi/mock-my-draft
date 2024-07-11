@@ -77,7 +77,7 @@ function getSortedGrades(grades: GradesMap) {
     'f-',
   ];
 
-  let sortedGrades: Grade[] = [];
+  const sortedGrades: Grade[] = [];
   for (const grade in grades) {
     sortedGrades.push({
       source: grade,
@@ -99,7 +99,7 @@ export default async function TeamPage({
   const teamInfo = getInfoFromTeamId(params.teamId);
   const data = await getData(params.teamId);
   const responses = await getResponses(params.teamId);
-  let { team, average, ...letterGrades } = data;
+  const { average, ...letterGrades } = data;
   const sortedGrades = getSortedGrades(letterGrades);
 
   const highestGrade = sortedGrades[0];

@@ -15,7 +15,7 @@ export class Source {
   @Column({ unique: true, type: 'varchar', length: 255 })
   name!: string;
 
-  @Column()
+  @Column({ unique: true, type: 'varchar', length: 255 })
   slug!: string;
 
   @Column({ type: 'varchar', length: 512, nullable: true })

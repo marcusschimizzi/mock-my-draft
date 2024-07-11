@@ -45,7 +45,7 @@ function convertLetterGradeToNumber(letterGrade: string) {
 function computeCumulativeGrade(teamGrades: TeamGrades) {
   let sources = 0;
   let total = 0;
-  for (let source in teamGrades) {
+  for (const source in teamGrades) {
     if (source !== 'team') {
       total += convertLetterGradeToNumber(teamGrades[source]);
       sources += 1;
@@ -59,10 +59,11 @@ function computeCumulativeGrade(teamGrades: TeamGrades) {
 
 export function computeAverages(grades: Grade[]): TeamSources[] {
   interface TeamGradesMap {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [team: string]: any;
   }
   const teamGrades: TeamGradesMap = {};
-  for (let grade of grades) {
+  for (const grade of grades) {
     if (grade.team in teamGrades) {
       teamGrades[grade.team][grade.source] = grade.grade;
     } else {
@@ -73,12 +74,12 @@ export function computeAverages(grades: Grade[]): TeamSources[] {
     }
   }
   const teamGradesArray = Object.values(teamGrades);
-  for (let grade of teamGradesArray) {
+  for (const grade of teamGradesArray) {
     grade['average'] = computeCumulativeGrade(grade as TeamGrades);
   }
 
   // Add team colors and logos
-  for (let grade of teamGradesArray) {
+  for (const grade of teamGradesArray) {
     const teamInfo = getInfoFromTeamAbbreviation(grade.team);
     if (teamInfo) {
       grade['color'] = teamInfo.colors.primary;

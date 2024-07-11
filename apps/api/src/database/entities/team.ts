@@ -4,7 +4,6 @@ import {
   IsArray,
   IsHexColor,
   MaxLength,
-  MinLength,
 } from 'class-validator';
 import {
   Column,
@@ -20,29 +19,29 @@ export class Team {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @Column()
+  @Column({ type: 'text' })
   name!: string;
 
-  @Column()
+  @Column({ type: 'text' })
   location!: string;
 
-  @Column()
+  @Column({ type: 'text' })
   nickname!: string;
 
-  @Column()
+  @Column({ type: 'enum', enum: ['nfc', 'afc'] })
   conference!: 'nfc' | 'afc';
 
-  @Column()
+  @Column({ type: 'enum', enum: ['north', 'south', 'east', 'west'] })
   division!: 'north' | 'south' | 'east' | 'west';
 
-  @Column()
+  @Column({ type: 'text' })
   @MaxLength(3)
   abbreviation!: string;
 
-  @Column({ unique: true })
+  @Column({ unique: true, type: 'text' })
   slug!: string;
 
-  @Column()
+  @Column({ type: 'text', nullable: true })
   logo?: string;
 
   @Column('simple-array')
@@ -52,12 +51,12 @@ export class Team {
   @IsHexColor({ each: true, message: 'Colors must be valid hex colors' })
   colors?: string[];
 
-  @CreateDateColumn()
+  @CreateDateColumn({ type: 'timestamp with time zone' })
   createdAt!: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ type: 'timestamp with time zone' })
   updatedAt!: Date;
 
-  @DeleteDateColumn()
+  @DeleteDateColumn({ type: 'timestamp with time zone' })
   deletedAt!: Date;
 }
