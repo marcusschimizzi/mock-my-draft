@@ -1,9 +1,10 @@
 import { DataSource } from 'typeorm';
+import { User } from './models/user';
 
 export const AppDataSource: DataSource = new DataSource({
   type: 'postgres',
   url: process.env.DATABASE_URL,
-  entities: [],
+  entities: [User],
   synchronize: true,
   logging: true,
   migrations: ['src/database/migrations/*.ts'],
