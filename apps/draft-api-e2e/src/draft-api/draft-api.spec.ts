@@ -8,3 +8,12 @@ describe('GET /', () => {
     expect(res.data).toEqual({ message: 'Hello API' });
   });
 });
+
+describe('GET /api/health', () => {
+  it('should return a status message', async () => {
+    const res = await axios.get(`/api/health`);
+
+    expect(res.status).toBe(200);
+    expect(res.data).toEqual({ status: 'OK' });
+  });
+});
