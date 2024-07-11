@@ -1,5 +1,6 @@
 import { DataSource } from 'typeorm';
 import { User } from './models/user';
+import { initAdmin } from './utils/initAdmin';
 
 export const AppDataSource: DataSource = new DataSource({
   type: 'postgres',
@@ -15,6 +16,8 @@ export const initializeDatabase = async () => {
   try {
     await AppDataSource.initialize();
     console.log('Database initialized');
+
+    await initAdmin();
 
     return AppDataSource;
   } catch (error) {
