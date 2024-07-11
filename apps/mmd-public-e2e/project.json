@@ -1,0 +1,9 @@
+{
+  "name": "mmd-public-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/mmd-public-e2e/src",
+  "tags": [],
+  "implicitDependencies": ["mmd-public"],
+  "// targets": "to see all targets run: nx show project mmd-public-e2e --web",
+  "targets": {}
+}
