@@ -1,5 +1,5 @@
 {
-  // "extends": "../../tsconfig.base.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -20,13 +20,16 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "@mock-my-draft/visualizations": [
-        "./../../packages/visualizations/src/index.ts"
-      ]
+      "@/*": ["./src/*"]
     },
-    "types": ["@testing-library/jest-dom"]
+    "types": ["@testing-library/jest-dom", "jest", "node"]
   },
-  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "../../dist/apps/main/.next/types/**/*.ts"
+  ],
   "exclude": ["node_modules", "apps/api"]
 }

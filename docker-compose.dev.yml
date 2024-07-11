@@ -1,0 +1,52 @@
+services:
+  main:
+    build:
+      dockerfile: tools/docker/Dockerfile.nextjs.dev
+      args:
+        - APP_NAME=main
+    environment:
+      - NODE_ENV=development
+    ports:
+      - '${MAIN_PORT:-3000}:3000'
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: npx nx serve main
+
+  admin:
+    build:
+      dockerfile: tools/docker/Dockerfile.nextjs.dev
+      args:
+        - APP_NAME=admin
+    environment:
+      - NODE_ENV=development
+      - NEXT_PUBLIC_API_URL=http://localhost:${API_PORT:-4000}
+    ports:
+      - '${ADMIN_PORT:-3001}:3000'
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: npx nx serve admin
+
+  api:
+    build:
+      dockerfile: tools/docker/Dockerfile.node.dev
+      args:
+        - APP_NAME=api
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:${DB_PORT:-5432}/${POSTGRES_DB}
+      - JWT_SECRET=${JWT_SECRET}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - ADMIN_EMAIL=${ADMIN_EMAIL}
+      - ADMIN_USERNAME=${ADMIN_USERNAME}
+    ports:
+      - '${API_PORT:-4000}:3000'
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: npx nx serve api
+
+  db:
+    ports:
+      - '${DB_PORT:-5432}:5432'
