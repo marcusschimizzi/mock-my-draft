@@ -1,5 +1,4 @@
 import styles from './page.module.scss';
-// import { Visualizations } from '@mmd/visualizations';
 
 export default function Index() {
   /*
