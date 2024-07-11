@@ -2,7 +2,7 @@ import { AppDataSource } from '../database';
 import { User } from '../database/models/user';
 import bcrypt from 'bcrypt';
 
-export class UserService {
+export class UsersService {
   private userRepository = AppDataSource.getRepository(User);
 
   async createUser(data: Partial<User>): Promise<User> {

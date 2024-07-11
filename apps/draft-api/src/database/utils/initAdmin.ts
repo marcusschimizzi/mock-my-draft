@@ -1,7 +1,7 @@
-import { UserService } from '../../services/users-service';
+import { UsersService } from '../../services/users-service';
 
 export async function initAdmin() {
-  const userService = new UserService();
+  const userService = new UsersService();
 
   const adminUsername = process.env.ADMIN_USERNAME;
   const adminPassword = process.env.ADMIN_PASSWORD;
