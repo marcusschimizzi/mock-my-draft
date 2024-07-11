@@ -6,6 +6,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import authRoutes from './routes/auth-routes';
 import teamsRoutes from './routes/teams-routes';
+import sourcesRoutes from './routes/sources-routes';
 
 import { initializeDatabase } from './database';
 import logger from './middleware/logger';
@@ -23,6 +24,7 @@ app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/teams', teamsRoutes);
+app.use('/api/sources', sourcesRoutes);
 
 app.get('/api/health', (req, res) => {
   res.send({ status: 'OK' });
