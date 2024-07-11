@@ -1,6 +1,10 @@
+import { composePlugins, withNx } from '@nx/next';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'standalone',
 };
 
-export default nextConfig;
+const plugins = [withNx];
+
+export default composePlugins(...plugins)(nextConfig);
