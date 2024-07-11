@@ -3,6 +3,7 @@ import * as path from 'path';
 import { config } from 'dotenv';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+import authRoutes from './routes/auth-routes';
 
 import { initializeDatabase } from './database';
 
@@ -16,14 +17,15 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
-app.get('/api', (req, res) => {
-  res.send({ message: 'Welcome to draft-api!' });
-});
+app.use('/api/auth', authRoutes);
 
 app.get('/api/health', (req, res) => {
   res.send({ status: 'OK' });
 });
 
+app.get('/api', (req, res) => {
+  res.send({ message: 'Welcome to draft-api!' });
+});
 const port = process.env.PORT || 3333;
 
 const startServer = async () => {
