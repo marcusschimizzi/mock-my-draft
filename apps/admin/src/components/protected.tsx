@@ -1,8 +1,9 @@
 'use client';
-import { useUser } from '@/lib/auth';
-import { Flex } from '@chakra-ui/react';
+
 import { usePathname, useRouter } from 'next/navigation';
 import { ReactNode, useEffect } from 'react';
+import { useUser } from '../lib/get-user';
+import { Flex } from '@chakra-ui/react';
 import { Loading } from './loading';
 
 export interface ProtectedProps {
@@ -15,7 +16,7 @@ export const Protected = ({ children }: ProtectedProps) => {
   const user = useUser();
 
   useEffect(() => {
-    if (!user.data && !user.isLoading) {
+    if (!user.user && !user.isLoading) {
       push(`/login?redirect=${pathname}`);
     }
   }, [user, pathname, push]);
@@ -28,7 +29,7 @@ export const Protected = ({ children }: ProtectedProps) => {
     );
   }
 
-  if (!user.data && !user.isLoading) return null;
+  if (!user.user && !user.isLoading) return null;
 
   return <>{children}</>;
 };
