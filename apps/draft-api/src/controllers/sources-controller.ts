@@ -8,7 +8,7 @@ export class SourcesController {
     this.sourcesService = new SourcesService();
   }
 
-  public async getAllSources(req: Request, res: Response): Promise<void> {
+  public getAllSources = async (req: Request, res: Response): Promise<void> => {
     try {
       const sources = await this.sourcesService.getAllSources();
       res.status(200).json(sources);
@@ -16,9 +16,12 @@ export class SourcesController {
       console.error('Error getting all sources:', error);
       res.status(500).json({ message: 'Internal server error' });
     }
-  }
+  };
 
-  public async getSourceByIdOrSlug(req: Request, res: Response): Promise<void> {
+  public getSourceByIdOrSlug = async (
+    req: Request,
+    res: Response
+  ): Promise<void> => {
     try {
       const source = await this.sourcesService.getSourceByIdOrSlug(
         req.params.idOrSlug
@@ -34,9 +37,9 @@ export class SourcesController {
       console.error('Error getting source by id or slug:', error);
       res.status(500).json({ message: 'Internal server error' });
     }
-  }
+  };
 
-  public async createSource(req: Request, res: Response): Promise<void> {
+  public createSource = async (req: Request, res: Response): Promise<void> => {
     try {
       const source = await this.sourcesService.createSource(req.body);
       res.status(201).json(source);
@@ -44,9 +47,9 @@ export class SourcesController {
       console.error('Error creating source:', error);
       res.status(500).json({ message: 'Internal server error' });
     }
-  }
+  };
 
-  public async updateSource(req: Request, res: Response): Promise<void> {
+  public updateSource = async (req: Request, res: Response): Promise<void> => {
     try {
       const source = await this.sourcesService.updateSource(
         req.params.id,
@@ -63,9 +66,9 @@ export class SourcesController {
       console.error('Error updating source:', error);
       res.status(500).json({ message: 'Internal server error' });
     }
-  }
+  };
 
-  public async deleteSource(req: Request, res: Response): Promise<void> {
+  public deleteSource = async (req: Request, res: Response): Promise<void> => {
     try {
       const deleted = await this.sourcesService.deleteSource(req.params.id);
 
@@ -79,5 +82,5 @@ export class SourcesController {
       console.error('Error deleting source:', error);
       res.status(500).json({ message: 'Internal server error' });
     }
-  }
+  };
 }

@@ -8,7 +8,9 @@ export class TeamsController {
     this.teamsService = new TeamsService();
   }
 
-  public async getAllTeams(req: Request, res: Response): Promise<void> {
+  public getAllTeams = async (req: Request, res: Response): Promise<void> => {
+    console.info('Getting all teams...');
+    console.info(this);
     try {
       const teams = await this.teamsService.getAllTeams();
       res.status(200).json(teams);
@@ -16,9 +18,12 @@ export class TeamsController {
       console.error('Error getting all teams:', error);
       res.status(500).json({ message: 'Internal server error' });
     }
-  }
+  };
 
-  public async getTeamByIdOrSlug(req: Request, res: Response): Promise<void> {
+  public getTeamByIdOrSlug = async (
+    req: Request,
+    res: Response
+  ): Promise<void> => {
     try {
       const team = await this.teamsService.getTeamByIdOrSlug(
         req.params.idOrSlug
@@ -34,9 +39,9 @@ export class TeamsController {
       console.error('Error getting team by id or slug:', error);
       res.status(500).json({ message: 'Internal server error' });
     }
-  }
+  };
 
-  public async createTeam(req: Request, res: Response): Promise<void> {
+  public createTeam = async (req: Request, res: Response): Promise<void> => {
     try {
       const team = await this.teamsService.createTeam(req.body);
       res.status(201).json(team);
@@ -44,9 +49,9 @@ export class TeamsController {
       console.error('Error creating team:', error);
       res.status(500).json({ message: 'Internal server error' });
     }
-  }
+  };
 
-  public async updateTeam(req: Request, res: Response): Promise<void> {
+  public updateTeam = async (req: Request, res: Response): Promise<void> => {
     try {
       const team = await this.teamsService.updateTeam(req.params.id, req.body);
 
@@ -60,9 +65,9 @@ export class TeamsController {
       console.error('Error updating team:', error);
       res.status(500).json({ message: 'Internal server error' });
     }
-  }
+  };
 
-  public async deleteTeam(req: Request, res: Response): Promise<void> {
+  public deleteTeam = async (req: Request, res: Response): Promise<void> => {
     try {
       const deleted = await this.teamsService.deleteTeam(req.params.id);
 
@@ -76,5 +81,5 @@ export class TeamsController {
       console.error('Error deleting team:', error);
       res.status(500).json({ message: 'Internal server error' });
     }
-  }
+  };
 }

@@ -12,7 +12,7 @@ export class AuthController {
     this.usersService = new UsersService();
   }
 
-  public async login(req: Request, res: Response) {
+  public login = async (req: Request, res: Response) => {
     try {
       const { username, password } = req.body;
       const user = await this.authService.validateUser(username, password);
@@ -39,12 +39,12 @@ export class AuthController {
       console.error('Error logging in:', error);
       res.status(500).json({ message: 'Internal server error' });
     }
-  }
+  };
 
-  public async logout(req: Request, res: Response) {
+  public logout = async (req: Request, res: Response) => {
     res.clearCookie('token');
     res.json({ message: 'Logged out' });
-  }
+  };
 
   public async getCurrentUser(req: AuthenticatedRequest, res: Response) {
     if (!req.user) {
@@ -64,7 +64,7 @@ export class AuthController {
     }
   }
 
-  public async register(req: Request, res: Response) {
+  public register = async (req: Request, res: Response) => {
     try {
       const { username, password, email } = req.body;
       let existingUser = await this.usersService.getUserByUsername(username);
@@ -88,5 +88,5 @@ export class AuthController {
       console.error('Error registering user:', error);
       res.status(500).json({ message: 'Internal server error' });
     }
-  }
+  };
 }

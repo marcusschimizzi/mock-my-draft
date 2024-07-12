@@ -22,16 +22,15 @@ app.use(logger);
 
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
+app.get('/api', (req, res) => {
+  res.send({ message: 'Welcome to draft-api!' });
+});
 app.use('/api/auth', authRoutes);
 app.use('/api/teams', teamsRoutes);
 app.use('/api/sources', sourcesRoutes);
 
 app.get('/api/health', (req, res) => {
   res.send({ status: 'OK' });
-});
-
-app.get('/api', (req, res) => {
-  res.send({ message: 'Welcome to draft-api!' });
 });
 const port = process.env.PORT || 3333;
 
