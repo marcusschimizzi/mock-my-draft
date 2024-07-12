@@ -46,7 +46,7 @@ export class AuthController {
     res.json({ message: 'Logged out' });
   };
 
-  public async getCurrentUser(req: AuthenticatedRequest, res: Response) {
+  public getCurrentUser = async (req: AuthenticatedRequest, res: Response) => {
     if (!req.user) {
       return res.status(401).json({ message: 'Unauthorized' });
     }
@@ -62,7 +62,7 @@ export class AuthController {
       console.error('Error getting current user:', error);
       res.status(500).json({ message: 'Internal server error' });
     }
-  }
+  };
 
   public register = async (req: Request, res: Response) => {
     try {
