@@ -9,8 +9,6 @@ export class TeamsController {
   }
 
   public getAllTeams = async (req: Request, res: Response): Promise<void> => {
-    console.info('Getting all teams...');
-    console.info(this);
     try {
       const teams = await this.teamsService.getAllTeams();
       res.status(200).json(teams);
