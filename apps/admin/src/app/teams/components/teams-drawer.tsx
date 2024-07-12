@@ -8,19 +8,26 @@ import {
   DrawerHeader,
   DrawerOverlay,
 } from '@chakra-ui/react';
-import { defaultTeam, Team } from '../../../types';
-import { FormEvent, useState } from 'react';
+import { Team } from '../../../types';
+import { FormEvent } from 'react';
 import { useCreateTeam, useUpdateTeam } from '../../../lib/teams';
 import TeamsForm from './teams-form';
 
 interface TeamsDrawerProps {
+  team: Partial<Team>;
+  onChange: (team: Partial<Team>) => void;
   isOpen: boolean;
   onClose: () => void;
   toggleBtnRef: React.MutableRefObject<null>;
 }
 
-function TeamsDrawer({ isOpen, onClose, toggleBtnRef }: TeamsDrawerProps) {
-  const [team, setTeam] = useState<Partial<Team>>(defaultTeam);
+function TeamsDrawer({
+  team,
+  onChange,
+  isOpen,
+  onClose,
+  toggleBtnRef,
+}: TeamsDrawerProps) {
   const createTeam = useCreateTeam({ onSuccess: onClose });
   const updateTeam = useUpdateTeam({ onSuccess: onClose });
 
@@ -46,10 +53,10 @@ function TeamsDrawer({ isOpen, onClose, toggleBtnRef }: TeamsDrawerProps) {
         <DrawerContent>
           <DrawerCloseButton />
 
-          <DrawerHeader>{team.id ? 'Edit Team' : 'Add Team'}</DrawerHeader>
+          <DrawerHeader>{team.id ? 'Edit team' : 'Add team'}</DrawerHeader>
 
           <DrawerBody>
-            <TeamsForm team={team} onChange={setTeam} />
+            <TeamsForm team={team} onChange={onChange} />
           </DrawerBody>
 
           <DrawerFooter>

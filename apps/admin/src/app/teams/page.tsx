@@ -2,23 +2,24 @@
 import { Box, Button, Heading, useDisclosure } from '@chakra-ui/react';
 import { Loading } from '../../components/loading';
 import DashboardLayout from '../../layouts/dashboard-layout';
-import { useDeleteTeam, useTeams, useUpdateTeam } from '../../lib/teams';
+import { useDeleteTeam, useTeams } from '../../lib/teams';
 import { AddIcon } from '@chakra-ui/icons';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import TeamsDrawer from './components/teams-drawer';
 import TeamsTable from './components/teams-table';
-import { Team } from '../../types';
+import { defaultTeam, Team } from '../../types';
 
 function TeamsPage() {
   const { teams, isLoading } = useTeams();
   const { isOpen, onClose, onOpen } = useDisclosure();
   const teamDrawerRef = useRef(null);
+  const [newTeam, setNewTeam] = useState<Partial<Team>>(defaultTeam);
 
-  const editTeam = useUpdateTeam({});
   const deleteTeam = useDeleteTeam({});
 
   const handleEdit = (team: Team) => {
-    editTeam.submit(team);
+    setNewTeam(team);
+    onOpen();
   };
 
   const handleDelete = (team: Team) => {
@@ -43,6 +44,8 @@ function TeamsPage() {
           Add a new team
         </Button>
         <TeamsDrawer
+          team={newTeam}
+          onChange={setNewTeam}
           isOpen={isOpen}
           onClose={onClose}
           toggleBtnRef={teamDrawerRef}
