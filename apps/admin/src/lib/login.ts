@@ -4,13 +4,7 @@ import apiClient from './api-client';
 import { queryClient } from './react-query';
 
 export const login = async (data: LoginData): Promise<{ user: AuthUser }> => {
-  try {
-    const response = await apiClient.post('/auth/login', data);
-    return response.data;
-  } catch (error) {
-    console.error('Error logging in', error);
-    throw error;
-  }
+  return await apiClient.post('/auth/login', data);
 };
 
 type UseLoginOptions = {
