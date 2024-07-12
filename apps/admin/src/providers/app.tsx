@@ -1,9 +1,9 @@
 'use client';
 
-import { queryClient } from '@/lib/react-query';
-import { ChakraProvider, GlobalStyle } from '@chakra-ui/react';
-import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactNode } from 'react';
+import { ChakraProvider, GlobalStyle } from '@chakra-ui/react';
+import { queryClient } from '../lib/react-query';
+import { QueryClientProvider } from '@tanstack/react-query';
 import { ErrorBoundary } from 'react-error-boundary';
 
 interface AppProviderProps {
@@ -16,7 +16,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
       <GlobalStyle />
       <QueryClientProvider client={queryClient}>
         <ErrorBoundary
-          fallback={<div>Something went wrong!</div>}
+          fallback={<div>Something went wrong</div>}
           onError={console.error}
         >
           {children}
