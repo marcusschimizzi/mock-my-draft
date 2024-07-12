@@ -1,7 +1,8 @@
-import { Button, Input, Stack } from '@chakra-ui/react';
+import { Button, Stack } from '@chakra-ui/react';
 import { useLogin } from '../lib/login';
 import { LoginData } from '../types';
 import { useForm } from 'react-hook-form';
+import { InputField } from './form';
 
 export interface LoginFormProps {
   onSuccess: () => void;
@@ -10,7 +11,7 @@ export interface LoginFormProps {
 export function LoginForm({ onSuccess }: LoginFormProps) {
   const login = useLogin({ onSuccess });
 
-  const { register, handleSubmit } = useForm<LoginData>();
+  const { register, handleSubmit, formState } = useForm<LoginData>();
 
   const onSubmit = (data: LoginData) => {
     login.submit(data);
@@ -18,9 +19,16 @@ export function LoginForm({ onSuccess }: LoginFormProps) {
 
   return (
     <Stack as="form" onSubmit={handleSubmit(onSubmit)} spacing={4} w="full">
-      <Input type="text" {...register('username', { required: 'Required' })} />
-      <Input
+      <InputField
+        label="Username"
+        type="text"
+        error={formState.errors.username}
+        {...register('username', { required: 'Required' })}
+      />
+      <InputField
+        label="Password"
         type="password"
+        error={formState.errors.password}
         {...register('password', { required: 'Required' })}
       />
       <Button
