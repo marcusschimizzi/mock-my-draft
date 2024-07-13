@@ -1,12 +1,13 @@
 export type Entity = {
-  id: number;
-  createdAt: number;
+  id: string;
+  createdAt: string;
 };
 
 export type AuthUser = Entity & {
   email: string;
   username: string;
   token: string;
+  isAdmin?: boolean;
 };
 
 export type LoginData = {
@@ -44,8 +45,6 @@ export const defaultTeam: Partial<Team> = {
   nickname: '',
   abbreviation: '',
   slug: '',
-  logo: '',
-  colors: [],
 };
 
 export type Source = Entity & {

@@ -1,6 +1,5 @@
 'use client';
 
-import { LoginForm } from '@/components/login-form';
 import {
   Box,
   Center,
@@ -9,6 +8,7 @@ import {
   Skeleton,
   Stack,
 } from '@chakra-ui/react';
+import { LoginForm } from '../../components/login-form';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
 
@@ -17,8 +17,7 @@ function Login() {
   const searchParams = useSearchParams();
 
   const onSuccess = () => {
-    console.log('success');
-    const redirect = searchParams.get('redirect') as string;
+    const redirect = searchParams.get('redirect');
     router.replace(redirect || '/');
   };
 
@@ -30,10 +29,10 @@ function LoginPage() {
     <>
       <Center h="full">
         <Container maxW="lg">
-          <Box p={8} boxShadow={'md'} borderRadius={'xl'} bg={'white'} m={5}>
+          <Box p={8} boxShadow="md" borderRadius="xl" m={5}>
             <Stack spacing={6}>
               <Heading textAlign="center">Log In</Heading>
-              <Suspense fallback={<Skeleton />}>
+              <Suspense fallback={<Skeleton height="20px" />}>
                 <Login />
               </Suspense>
             </Stack>

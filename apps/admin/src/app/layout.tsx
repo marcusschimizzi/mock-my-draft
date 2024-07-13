@@ -1,22 +1,25 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.css';
-import { AppProvider } from '@/providers/app';
+// import { Roboto } from 'next/font/google';
+import './global.css';
+import { ReactNode } from 'react';
+import { AppProvider } from '../providers/app';
 
-const inter = Inter({ subsets: ['latin'] });
+// const roboto = Roboto({
+//   weight: ['100', '400', '700'],
+//   style: ['normal', 'italic'],
+//   subsets: ['latin'],
+//   display: 'swap',
+// });
 
 export const metadata: Metadata = {
-  title: 'Admin Dashboard',
+  title: 'MMD Admin Panel',
+  description: 'To do some admin stuff.',
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
         <AppProvider>{children}</AppProvider>
       </body>
     </html>

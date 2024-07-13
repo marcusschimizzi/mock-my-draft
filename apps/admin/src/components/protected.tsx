@@ -1,26 +1,34 @@
 'use client';
-import { useUser } from '@/lib/auth';
-import { Flex } from '@chakra-ui/react';
+
 import { usePathname, useRouter } from 'next/navigation';
 import { ReactNode, useEffect } from 'react';
+import { useUser } from '../lib/get-user';
+import { Flex } from '@chakra-ui/react';
 import { Loading } from './loading';
 
 export interface ProtectedProps {
   children: ReactNode;
+  requireAdmin?: boolean;
 }
 
-export const Protected = ({ children }: ProtectedProps) => {
+export const Protected = ({
+  children,
+  requireAdmin = false,
+}: ProtectedProps) => {
   const { push } = useRouter();
   const pathname = usePathname();
-  const user = useUser();
+  const { data, isLoading, isAdmin } = useUser();
 
   useEffect(() => {
-    if (!user.data && !user.isLoading) {
+    if (!data && !isLoading) {
       push(`/login?redirect=${pathname}`);
     }
-  }, [user, pathname, push]);
+    if (requireAdmin && !data?.user?.isAdmin) {
+      push('/');
+    }
+  }, [data, pathname, push, requireAdmin, isLoading, isAdmin]);
 
-  if (user.isLoading) {
+  if (isLoading) {
     return (
       <Flex direction="column" justify="center" h="full">
         <Loading />
@@ -28,7 +36,7 @@ export const Protected = ({ children }: ProtectedProps) => {
     );
   }
 
-  if (!user.data && !user.isLoading) return null;
+  if (!data && !isLoading) return null;
 
   return <>{children}</>;
 };

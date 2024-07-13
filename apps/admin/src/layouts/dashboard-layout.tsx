@@ -1,20 +1,25 @@
 import { Link } from '@chakra-ui/next-js';
 import { Box, Flex, Heading } from '@chakra-ui/react';
 import { ReactNode } from 'react';
+import { Protected } from '../components/protected';
 
 interface DashboardLayoutProps {
   children: ReactNode;
+  requireAdmin?: boolean;
 }
 
-function DashboardLayout({ children }: DashboardLayoutProps) {
+function DashboardLayout({
+  children,
+  requireAdmin = false,
+}: DashboardLayoutProps) {
   return (
     <>
       <Box
         as="header"
-        bg="gray.800"
+        bg="gray.600"
         color="white"
         p={4}
-        height={24}
+        h={24}
         w="full"
         position="relative"
       >
@@ -30,7 +35,7 @@ function DashboardLayout({ children }: DashboardLayoutProps) {
           </Heading>
         </Flex>
       </Box>
-      {children}
+      <Protected requireAdmin={requireAdmin}>{children}</Protected>
     </>
   );
 }

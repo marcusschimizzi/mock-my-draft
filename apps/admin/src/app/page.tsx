@@ -1,32 +1,37 @@
 'use client';
-import { Box, Button, Heading, VStack } from '@chakra-ui/react';
-import styles from './page.module.css';
-import { Protected } from '@/components/protected';
+
+import { Box, Heading, VStack } from '@chakra-ui/react';
 import { Link } from '@chakra-ui/next-js';
-import { logout, useLogout } from '@/lib/auth';
-import { useRouter } from 'next/navigation';
+import styles from './page.module.scss';
+import { Protected } from '../components/protected';
+import { useUser } from '../lib/get-user';
 
-export default function Home() {
-  const router = useRouter();
-
-  const onSuccess = () => {
-    router.replace('/');
-  };
-
-  const logout = useLogout({ onSuccess });
+export default function Index() {
+  const { isAdmin } = useUser();
 
   return (
     <Protected>
       <main className={styles.main}>
-        <Box maxWidth={800} mx="auto" mt={8} p={4}>
+        <Box maxWidth={800} mx="auto" p={4} mt={8}>
           <Heading mb={6}>Admin Dashboard</Heading>
           <VStack spacing={4} align="stretch">
-            <Link href="/teams">Teams</Link>
-            <Link href="/sources">Sources</Link>
-            {/** Other links will go here */}
-            <Button colorScheme="red" onClick={() => logout.submit()}>
-              Logout
-            </Button>
+            <Link href="/teams">
+              <Box p={4} bg="gray.100" borderRadius={8}>
+                Teams
+              </Box>
+            </Link>
+            <Link href="/sources">
+              <Box p={4} bg="gray.100" borderRadius={8}>
+                Sources
+              </Box>
+            </Link>
+            {isAdmin && (
+              <Link href="/users">
+                <Box p={4} bg="gray.100" borderRadius={8}>
+                  Users
+                </Box>
+              </Link>
+            )}
           </VStack>
         </Box>
       </main>
