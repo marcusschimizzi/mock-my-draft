@@ -28,5 +28,5 @@ export class Source {
   updatedAt: Date;
 
   @DeleteDateColumn()
-  deletedAt: Date;
+  deletedAt?: Date;
 }
