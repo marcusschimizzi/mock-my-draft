@@ -1,14 +1,36 @@
-FROM node:lts-alpine
+FROM node:20-alpine3.20 AS base
 
+FROM base AS deps
+RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-COPY ./dist/apps/draft-api .
 COPY package.json package-lock.json ./
+RUN npm ci
 
-ENV PORT=3333
+FROM base AS builder
+WORKDIR /app
+
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+
+RUN npx nx build draft-api
+
+FROM base AS runner
+WORKDIR /app
+
+ENV NODE_ENV=production
+
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nodeapp
+
+COPY --from=builder /app/dist/apps/draft-api ./
+COPY --from=builder /app/package.json ./
+
+RUN npm install --omit=dev && npm cache clean --force
+
+USER nodeapp
+
+ENV PORT=3000
 EXPOSE ${PORT}
-
-RUN npm install --production
-RUN npm install reflect-metadata express
 
 CMD node ./main.js
