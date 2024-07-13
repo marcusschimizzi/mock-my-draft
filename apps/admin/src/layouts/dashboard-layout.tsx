@@ -5,9 +5,13 @@ import { Protected } from '../components/protected';
 
 interface DashboardLayoutProps {
   children: ReactNode;
+  requireAdmin?: boolean;
 }
 
-function DashboardLayout({ children }: DashboardLayoutProps) {
+function DashboardLayout({
+  children,
+  requireAdmin = false,
+}: DashboardLayoutProps) {
   return (
     <>
       <Box
@@ -31,7 +35,7 @@ function DashboardLayout({ children }: DashboardLayoutProps) {
           </Heading>
         </Flex>
       </Box>
-      <Protected>{children}</Protected>
+      <Protected requireAdmin={requireAdmin}>{children}</Protected>
     </>
   );
 }

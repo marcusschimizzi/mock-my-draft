@@ -2,7 +2,11 @@ import { useQuery } from '@tanstack/react-query';
 import { AuthUser } from '../types';
 import apiClient from './api-client';
 
-export const getAuthUser = async (): Promise<AuthUser> => {
+interface UserResponse {
+  user: AuthUser;
+}
+
+export const getAuthUser = async (): Promise<UserResponse> => {
   return await apiClient.get('/auth/me');
 };
 
@@ -12,5 +16,5 @@ export const useUser = () => {
     queryFn: () => getAuthUser(),
   });
 
-  return { user: data, isLoading };
+  return { data, isLoading, isAdmin: data?.user?.isAdmin };
 };

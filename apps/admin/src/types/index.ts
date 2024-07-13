@@ -7,6 +7,7 @@ export type AuthUser = Entity & {
   email: string;
   username: string;
   token: string;
+  isAdmin?: boolean;
 };
 
 export type LoginData = {
