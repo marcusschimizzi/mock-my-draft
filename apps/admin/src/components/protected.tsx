@@ -8,20 +8,28 @@ import { Loading } from './loading';
 
 export interface ProtectedProps {
   children: ReactNode;
+  requireAdmin?: boolean;
 }
 
-export const Protected = ({ children }: ProtectedProps) => {
+export const Protected = ({
+  children,
+  requireAdmin = false,
+}: ProtectedProps) => {
   const { push } = useRouter();
   const pathname = usePathname();
-  const user = useUser();
+  const { data, isLoading, isAdmin } = useUser();
 
   useEffect(() => {
-    if (!user.user && !user.isLoading) {
+    if (!data && !isLoading) {
       push(`/login?redirect=${pathname}`);
     }
-  }, [user, pathname, push]);
+    console.info('User is admin', isAdmin);
+    if (requireAdmin && !data?.user?.isAdmin) {
+      push('/');
+    }
+  }, [data, pathname, push, requireAdmin, isLoading, isAdmin]);
 
-  if (user.isLoading) {
+  if (isLoading) {
     return (
       <Flex direction="column" justify="center" h="full">
         <Loading />
@@ -29,7 +37,7 @@ export const Protected = ({ children }: ProtectedProps) => {
     );
   }
 
-  if (!user.user && !user.isLoading) return null;
+  if (!data && !isLoading) return null;
 
   return <>{children}</>;
 };
