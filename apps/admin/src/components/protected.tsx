@@ -23,7 +23,6 @@ export const Protected = ({
     if (!data && !isLoading) {
       push(`/login?redirect=${pathname}`);
     }
-    console.info('User is admin', isAdmin);
     if (requireAdmin && !data?.user?.isAdmin) {
       push('/');
     }

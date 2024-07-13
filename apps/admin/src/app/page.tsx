@@ -4,8 +4,11 @@ import { Box, Heading, VStack } from '@chakra-ui/react';
 import { Link } from '@chakra-ui/next-js';
 import styles from './page.module.scss';
 import { Protected } from '../components/protected';
+import { useUser } from '../lib/get-user';
 
 export default function Index() {
+  const { isAdmin } = useUser();
+
   return (
     <Protected>
       <main className={styles.main}>
@@ -22,6 +25,13 @@ export default function Index() {
                 Sources
               </Box>
             </Link>
+            {isAdmin && (
+              <Link href="/users">
+                <Box p={4} bg="gray.100" borderRadius={8}>
+                  Users
+                </Box>
+              </Link>
+            )}
           </VStack>
         </Box>
       </main>
