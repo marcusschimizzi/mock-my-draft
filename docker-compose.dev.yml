@@ -1,9 +1,7 @@
 services:
-  main:
+  mmd-public:
     build:
-      dockerfile: tools/docker/Dockerfile.nextjs.dev
-      args:
-        - APP_NAME=main
+      dockerfile: apps/mmd-public/Dockerfile.dev
     environment:
       - NODE_ENV=development
     ports:
@@ -11,41 +9,35 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
-    command: npx nx serve main
 
   admin:
     build:
-      dockerfile: tools/docker/Dockerfile.nextjs.dev
-      args:
-        - APP_NAME=admin
+      dockerfile: apps/admin/Dockerfile.dev
     environment:
       - NODE_ENV=development
-      - NEXT_PUBLIC_API_URL=http://localhost:${API_PORT:-4000}
+      - NEXT_PUBLIC_API_URL=http://localhost:${API_PORT:-4000}/api
     ports:
       - '${ADMIN_PORT:-3001}:3000'
     volumes:
       - .:/app
       - /app/node_modules
-    command: npx nx serve admin
 
-  api:
+  draft-api:
     build:
-      dockerfile: tools/docker/Dockerfile.node.dev
-      args:
-        - APP_NAME=api
+      dockerfile: apps/draft-api/Dockerfile.dev
     environment:
       - NODE_ENV=development
       - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:${DB_PORT:-5432}/${POSTGRES_DB}
-      - JWT_SECRET=${JWT_SECRET}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
       - ADMIN_PASSWORD=${ADMIN_PASSWORD}
       - ADMIN_EMAIL=${ADMIN_EMAIL}
       - ADMIN_USERNAME=${ADMIN_USERNAME}
+      - CLIENT_ORIGIN=${CLIENT_ORIGIN}
     ports:
       - '${API_PORT:-4000}:3000'
     volumes:
       - .:/app
       - /app/node_modules
-    command: npx nx serve api
 
   db:
     ports:

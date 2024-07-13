@@ -1,30 +1,24 @@
 services:
-  main:
+  mmd-public:
     build:
       context: .
-      dockerfile: tools/docker/Dockerfile.nextjs
-      args:
-        - APP_NAME=main
+      dockerfile: apps/mmd-public/Dockerfile
     depends_on:
-      - api
+      - draft-api
       - db
 
   admin:
     build:
       context: .
-      dockerfile: tools/docker/Dockerfile.nextjs
-      args:
-        - APP_NAME=admin
+      dockerfile: apps/admin/Dockerfile
     depends_on:
-      - api
+      - draft-api
       - db
 
-  api:
+  draft-api:
     build:
       context: .
-      dockerfile: tools/docker/Dockerfile.node
-      args:
-        - APP_NAME=api
+      dockerfile: apps/draft-api/Dockerfile
     depends_on:
       - db
 
