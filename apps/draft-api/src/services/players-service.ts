@@ -10,4 +10,8 @@ export class PlayersService {
       order: { name: 'ASC' },
     });
   }
+
+  async getPlayerById(id: string): Promise<Player | null> {
+    return this.playerRespository.findOneBy({ id });
+  }
 }
