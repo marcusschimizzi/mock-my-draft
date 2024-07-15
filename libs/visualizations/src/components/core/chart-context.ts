@@ -2,7 +2,7 @@ import { ScaleBand, ScaleLinear } from 'd3-scale';
 import { createContext } from 'react';
 
 export interface DataPoint {
-  x: number;
+  x: string | number;
   y: number;
 }
 
