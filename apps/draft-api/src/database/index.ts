@@ -3,11 +3,12 @@ import { User } from './models/user';
 import { initAdmin } from './utils/initAdmin';
 import { Team } from './models/team';
 import { Source } from './models/source';
+import { Player } from './models/player';
 
 export const AppDataSource: DataSource = new DataSource({
   type: 'postgres',
   url: process.env.DATABASE_URL,
-  entities: [User, Team, Source],
+  entities: [User, Team, Source, Player],
   synchronize: true,
   logging: true,
   migrations: ['src/database/migrations/*.ts'],
