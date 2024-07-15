@@ -57,17 +57,20 @@ jobs:
 
           AFFECTED_PROJECTS=$(npx nx show projects --affected --select=projects --base=$BASE_SHA --head=$HEAD_SHA --verbose)
           echo "Affected projects: $AFFECTED_PROJECTS"
+          BUILD_FAILED=0
           for app in $AFFECTED_PROJECTS
           do
-            echo "Building and pushing $app"
-
-            FULL_IMAGE_NAME="${{ secrets.DOCKER_USERNAME }}/${REPO_PREFIX}_${app}"
-
-            docker build \
-              -t ${FULL_IMAGE_NAME}:$GITHUB_SHA \
-              -t ${FULL_IMAGE_NAME}:latest \
-              -f apps/$app/Dockerfile \
-              .
-            docker push ${FULL_IMAGE_NAME}:$GITHUB_SHA
-            docker push ${FULL_IMAGE_NAME}:latest
+            if ./scripts/build-and-push-docker.sh "$app" "${{ secrets.DOCKER_USERNAME }}" "$REPO_PREFIX" "$GITHUB_SHA"; then
+              echo "Successfully built and pushed $app"
+            else
+              echo "Failed to build and push $app"
+              BUILD_FAILED=1
+            fi
           done
+
+          if [ $BUILD_FAILED -ne 0 ]
+          then
+            echo "One or more builds/pushes failed"
+            exit 1
+          fi
+        shell: bash
