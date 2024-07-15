@@ -1,11 +1,11 @@
 import { render } from '@testing-library/react';
 import { ChartContext } from '../chart-context';
-import { YAxis } from './y-axis';
+import { XAxis } from './x-axis';
 import { createBandScale, createLinearScale } from '../../../utils/chart-utils';
 
 // Mock D3 axisLeft function
 jest.mock('d3-axis', () => ({
-  axisLeft: jest.fn(() => ({
+  axisBottom: jest.fn(() => ({
     call: jest.fn(),
   })),
 }));
@@ -30,7 +30,7 @@ jest.mock('d3-scale', () => ({
   })),
 }));
 
-describe('YAxis', () => {
+describe('XAxis', () => {
   test('renders without error', () => {
     const yScale = createLinearScale([0, 100], [0, 100]);
     const xScale = createBandScale(['A', 'B', 'C'], [0, 100]);
@@ -44,7 +44,7 @@ describe('YAxis', () => {
     const { container } = render(
       <svg>
         <ChartContext.Provider value={mockChartContext}>
-          <YAxis label="Label" />
+          <XAxis label="Label" />
         </ChartContext.Provider>
         ,
       </svg>,
