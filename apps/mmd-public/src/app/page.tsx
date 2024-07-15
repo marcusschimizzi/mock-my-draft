@@ -1,7 +1,7 @@
-import TeamLogo from '@/components/team-logo';
-import { API_URL } from '@/config/constants';
-import { getInfoFromTeamAbbreviation } from '@/lib/teams-utils';
-import { capitalize } from '@/lib/common-utils';
+import TeamLogo from '../components/team-logo';
+import { API_URL } from '../config/constants';
+import { getInfoFromTeamAbbreviation } from '../lib/teams-utils';
+import { capitalize } from '../lib/common-utils';
 import {
   Box,
   Container,

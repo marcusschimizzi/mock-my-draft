@@ -16,10 +16,7 @@
         "name": "next"
       }
     ],
-    "types": ["jest", "node"],
-    "paths": {
-      "@/*": ["apps/mmd-public/src/*"]
-    }
+    "types": ["jest", "node"]
   },
   "include": [
     "**/*.ts",

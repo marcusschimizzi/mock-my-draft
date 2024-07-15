@@ -1,11 +1,11 @@
 import { Viewport } from 'next';
 import './global.css';
-import { AppProvider } from '@/providers/app';
+import { AppProvider } from '../providers/app';
 import { ColorModeScript, Container } from '@chakra-ui/react';
-import { theme } from '@/config/theme';
-import Footer from '@/components/footer';
-import Nav from '@/components/nav';
-import Fathom from '@/lib/fathom';
+import { theme } from '../config/theme';
+import Footer from '../components/footer';
+import Nav from '../components/nav';
+import Fathom from '../lib/fathom';
 
 export const metadata = {
   title: 'Mock my draft',

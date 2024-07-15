@@ -1,4 +1,4 @@
-import TeamsList from '@/components/teams-list';
+import TeamsList from '../../components/teams-list';
 import { Box } from '@chakra-ui/react';
 import React from 'react';
 

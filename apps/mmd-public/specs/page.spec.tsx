@@ -1,5 +1,7 @@
+import '@testing-library/jest-dom';
+
 import { render, screen } from '@testing-library/react';
-import Nav from '@/components/nav';
+import Nav from '../src/components/nav';
 
 jest.mock('@chakra-ui/react', () => ({
   ...jest.requireActual('@chakra-ui/react'),

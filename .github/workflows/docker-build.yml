@@ -35,7 +35,7 @@ jobs:
 
       - name: Build and push Docker images for affected projects
         run: |
-          AFFECTED_PROJECTS=$(npx nx show projects --affected --select=projects --base=origin/HEAD~1 --head=HEAD)
+          AFFECTED_PROJECTS=$(npx nx show projects --affected --select=projects --base=origin/main~1 --head=HEAD)
           echo "Affected projects: $AFFECTED_PROJECTS"
           for app in $AFFECTED_PROJECTS
           do

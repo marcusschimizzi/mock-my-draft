@@ -17,7 +17,7 @@ import {
   useMediaQuery,
 } from '@chakra-ui/react';
 import React, { useEffect, useRef, useState } from 'react';
-import Logo from '@/components/logo';
+import Logo from '../components/logo';
 import { Link } from '@chakra-ui/next-js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';

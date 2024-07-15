@@ -1,7 +1,7 @@
 'use client';
 
-import { TEAM_NAMES, TeamNameLookup } from '@/lib/teams-utils';
-import { capitalize } from '@/lib/common-utils';
+import { TEAM_NAMES, TeamNameLookup } from '../lib/teams-utils';
+import { capitalize } from '../lib/common-utils';
 import {
   Grid,
   GridItem,
@@ -13,7 +13,7 @@ import {
 } from '@chakra-ui/react';
 import { Link } from '@chakra-ui/next-js';
 import React from 'react';
-import TeamLogo from '@/components/team-logo';
+import TeamLogo from '../components/team-logo';
 
 interface TeamsListProps {
   columns?: number;
