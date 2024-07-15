@@ -11,10 +11,12 @@
   },
   "dependencies": {
     "d3-scale": "^4.0.2",
-    "d3-selection": "^3.0.0"
+    "d3-selection": "^3.0.0",
+    "d3-axis": "^3.0.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.6",
+    "@types/d3-axis": "^3.0.6",
     "@types/d3-scale": "^4.0.8",
     "@types/d3-selection": "^3.0.10"
   }
