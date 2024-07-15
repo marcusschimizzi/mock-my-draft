@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Heading, Table } from '@chakra-ui/react';
+import { Box, Heading, Table, Thead } from '@chakra-ui/react';
 import DashboardLayout from '../../layouts/dashboard-layout';
 
 function UsersPage() {
@@ -8,7 +8,16 @@ function UsersPage() {
     <DashboardLayout requireAdmin={true}>
       <Box maxWidth={800} mx="auto" mt={8} p={4}>
         <Heading mb={6}>User management</Heading>
-        <Table></Table>
+        <Table>
+          <Thead>
+            <tr>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Actions</th>
+            </tr>
+          </Thead>
+        </Table>
       </Box>
     </DashboardLayout>
   );
