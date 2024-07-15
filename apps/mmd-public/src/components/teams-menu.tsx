@@ -9,7 +9,7 @@ import {
 } from '@chakra-ui/react';
 
 import React from 'react';
-import TeamsList from '@/components/teams-list';
+import TeamsList from '../components/teams-list';
 import { Link } from '@chakra-ui/next-js';
 
 export default function TeamsMenu() {

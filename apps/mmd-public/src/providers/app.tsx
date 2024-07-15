@@ -2,7 +2,7 @@
 
 import { ChakraProvider, GlobalStyle } from '@chakra-ui/react';
 import { ReactNode } from 'react';
-import { theme } from '@/config/theme';
+import { theme } from '../config/theme';
 
 interface AppProviderProps {
   children: ReactNode;
