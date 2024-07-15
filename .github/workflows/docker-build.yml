@@ -36,6 +36,8 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build and push Docker images for affected projects
+        env:
+          REPO_PREFIX: '@mock-my-draft'
         run: |
           echo "Determining base and head commits..."
           if [[ "${{ github.event_name }}" == "pull_request" ]]
@@ -58,7 +60,14 @@ jobs:
           for app in $AFFECTED_PROJECTS
           do
             echo "Building and pushing $app"
-            docker build -t ${{ secrets.DOCKER_USERNAME }}/$app:$GITHUB_SHA -f apps/$app/Dockerfile .
-            docker push ${{ secrets.DOCKER_USERNAME }}/$app:$GITHUB_SHA
-            docker push ${{ secrets.DOCKER_USERNAME }}/$app:latest
+
+            FULL_IMAGE_NAME="${{ secrets.DOCKER_USERNAME }}/${REPO_PREFIX}/${app}"
+
+            docker build \
+              -t ${FULL_IMAGE_NAME}:$GITHUB_SHA \
+              -t ${FULL_IMAGE_NAME}:latest \
+              -f apps/$app/Dockerfile \
+              .
+            docker push ${FULL_IMAGE_NAME}:$GITHUB_SHA
+            docker push ${FULL_IMAGE_NAME}:latest
           done

@@ -8,7 +8,6 @@ function UsersPage() {
     <DashboardLayout requireAdmin={true}>
       <Box maxWidth={800} mx="auto" mt={8} p={4}>
         <Heading mb={6}>User management</Heading>
-        <p>Users page content</p>
       </Box>
     </DashboardLayout>
   );

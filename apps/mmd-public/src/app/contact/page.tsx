@@ -5,7 +5,7 @@ export default function ContactPage() {
   return (
     <Box minH="80vh" fontSize="1.25rem">
       <Heading>Contact Us</Heading>
-      <Box as="p" mt={6} mb={6}>
+      <Box as="p" mt={12} mb={6}>
         Not much to be found here yet, but good on you for finding your way
         here!
       </Box>
