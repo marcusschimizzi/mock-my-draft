@@ -6,10 +6,24 @@ on:
       - closed
     branches:
       - main
+  workflow_dispatch:
+    inputs:
+      rollback:
+        description: 'Rollback to previous version'
+        required: false
+        default: 'false'
+      build:
+        description: 'Build and push Docker images'
+        required: false
+        default: 'true'
+      deploy:
+        description: 'Deploy to VPS'
+        required: false
+        default: 'true'
 
 jobs:
   build:
-    if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true || (github.event_name == 'workflow_dispatch' && ${{ github.event.inputs.build == 'true' }})
     runs-on: ubuntu-latest
 
     steps:
@@ -74,3 +88,42 @@ jobs:
             exit 1
           fi
         shell: bash
+
+  deploy:
+    if: github.event.pull_request.merged == true || (github.event_name == 'workflow_dispatch' && ${{ github.event.inputs.deploy == 'true' }})
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to VPS
+        if: success()
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DIGITAL_OCEAN_HOST }}
+          username: ${{ secrets.DIGITAL_OCEAN_USERNAME }}
+          key: ${{ secrets.DIGITAL_OCEAN_SSH_KEY }}
+          script: |
+            # Create a sparse checkout of the repo if it doesn't exist
+            if [ ! -d "/home/marcus/projects/mock-my-draft" ]; then
+              mkdir -p /home/marcus/projects/mock-my-draft
+              cd /home/marcus/projects/mock-my-draft
+              git init
+              git remote add origin git@github.com:schimizzimj/mock-my-draft.git
+              git config core.sparseCheckout true
+              echo "docker-compose.base.yml" >> .git/info/sparse-checkout
+              echo "docker-compose.prod.yml" >> .git/info/sparse-checkout
+              echo "scripts/deploy.sh" >> .git/info/sparse-checkout
+              echo "scripts/rollback.sh" >> .git/info/sparse-checkout
+            fi
+
+            # Pull the latest changes
+            cd /home/marcus/projects/mock-my-draft
+            git pull origin main
+
+            if [ ${{ github.event.inputs.rollback }} == 'true' ]; then
+              chmod +x scripts/rollback.sh
+              ./scripts/rollback.sh
+            else
+              # Deploy the latest changes
+              chmod +x scripts/deploy.sh
+              ./scripts/deploy.sh
+            fi
