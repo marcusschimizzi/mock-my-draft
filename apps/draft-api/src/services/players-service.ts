@@ -14,4 +14,9 @@ export class PlayersService {
   async getPlayerById(id: string): Promise<Player | null> {
     return this.playerRespository.findOneBy({ id });
   }
+
+  async createPlayer(data: Partial<Player>): Promise<Player> {
+    const player = this.playerRespository.create(data);
+    return this.playerRespository.save(player);
+  }
 }
