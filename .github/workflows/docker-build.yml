@@ -15,6 +15,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v2
@@ -46,6 +48,11 @@ jobs:
           fi
           echo "Base commit: $BASE_SHA"
           echo "Head commit: $HEAD_SHA"
+
+          echo "Fetching any missing objects..."
+          git fetch --depth=1 origin $BASE_SHA
+          git fetch --depth=1 origin $HEAD_SHA
+
           AFFECTED_PROJECTS=$(npx nx show projects --affected --select=projects --base=$BASE_SHA --head=$HEAD_SHA --verbose)
           echo "Affected projects: $AFFECTED_PROJECTS"
           for app in $AFFECTED_PROJECTS
