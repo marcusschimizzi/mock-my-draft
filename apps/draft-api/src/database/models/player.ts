@@ -21,6 +21,18 @@ export class Player {
   @Column()
   position: string;
 
+  @Column()
+  dateOfBirth?: Date;
+
+  @Column()
+  college?: string;
+
+  @Column()
+  height?: string;
+
+  @Column()
+  weight?: string;
+
   @CreateDateColumn()
   createdAt: Date;
 
