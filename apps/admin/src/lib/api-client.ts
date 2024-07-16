@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8004/api';
+const API_URL =
+  process.env.NEXT_PUBLIC_API_URL || 'https://api.mockmydraft.com/api';
 
 const apiClient = axios.create({
   baseURL: API_URL,
@@ -20,7 +21,7 @@ apiClient.interceptors.response.use(
     }
 
     return Promise.reject(error);
-  }
+  },
 );
 
 export default apiClient;
