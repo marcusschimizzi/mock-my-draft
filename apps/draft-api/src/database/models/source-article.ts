@@ -3,25 +3,30 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
-  OneToMany,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { SourceArticle } from './source-article';
+import { Source } from './source';
 
-@Entity('sources')
-export class Source {
+@Entity('source_articles')
+export class SourceArticle {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
-  name: string;
+  @ManyToOne(() => Source, (source) => source.sourceArticles)
+  @JoinColumn({ name: 'source_id' })
+  source: Source;
 
   @Column()
-  slug: string;
+  year: number;
 
   @Column()
-  baseUrl: string;
+  title: string;
+
+  @Column()
+  url: string;
 
   @CreateDateColumn()
   createdAt: Date;
@@ -31,7 +36,4 @@ export class Source {
 
   @DeleteDateColumn()
   deletedAt?: Date;
-
-  @OneToMany(() => SourceArticle, (sourceArticle) => sourceArticle.source)
-  sourceArticles: SourceArticle[];
 }
