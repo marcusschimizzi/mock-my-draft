@@ -1,9 +1,18 @@
 import { Request, Response, NextFunction } from 'express';
 import { validate } from 'class-validator';
 import { plainToClass } from 'class-transformer';
-import { ParsedUrlQuery } from 'querystring';
 
-export function validateQuery<T extends ParsedUrlQuery>(type: new () => T) {
+export interface RequestWithValidatedQuery<T> extends Request {
+  validatedQuery?: T;
+}
+
+export const isRequestWithValidatedQuery = <T>(
+  req: Request,
+): req is RequestWithValidatedQuery<T> => {
+  return 'validatedQuery' in req;
+};
+
+export function validateQuery<T extends object>(type: new () => T) {
   return async (req: Request, res: Response, next: NextFunction) => {
     const query = plainToClass(type, req.query);
     const errors = await validate(query);
@@ -13,7 +22,7 @@ export function validateQuery<T extends ParsedUrlQuery>(type: new () => T) {
       );
       return res.status(400).json({ errorMessages });
     }
-    req.query = query;
+    (req as RequestWithValidatedQuery<T>).validatedQuery = query;
     next();
   };
 }

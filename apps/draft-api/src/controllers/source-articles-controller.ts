@@ -1,9 +1,12 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { SourceArticlesService } from '../services/source-articles-service';
 import {
   CreateSourceArticleDto,
+  SourceArticleQueryDto,
   UpdateSourceArticleDto,
 } from '../dtos/source-article.dto';
+import { WithValidatedQuery } from '../decorators/with-validated-query';
+import { RequestWithValidatedQuery } from '../middleware/validate-query.middleware';
 
 export class SourceArticlesController {
   private sourceArticlesService: SourceArticlesService;
@@ -12,9 +15,16 @@ export class SourceArticlesController {
     this.sourceArticlesService = new SourceArticlesService();
   }
 
-  async getAllSourceArticles(req: Request, res: Response) {
+  @WithValidatedQuery<SourceArticleQueryDto>()
+  async getAllSourceArticles(
+    req: RequestWithValidatedQuery<SourceArticleQueryDto>,
+    res: Response,
+    next: NextFunction,
+  ) {
     try {
-      const articles = await this.sourceArticlesService.getAllSourceArticles();
+      const articles = await this.sourceArticlesService.getAllSourceArticles(
+        req.validatedQuery,
+      );
       res.status(200).json(articles);
     } catch (error) {
       console.error('Error getting all source articles:', error);

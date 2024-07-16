@@ -13,10 +13,27 @@ export class SourceArticlesService {
   private sourceArticlesRepository = AppDataSource.getRepository(SourceArticle);
   private sourceRepository = AppDataSource.getRepository(Source);
 
-  async getAllSourceArticles(): Promise<SourceArticleCollectionResponseDto> {
-    const articles = await this.sourceArticlesRepository.find({
-      where: { deletedAt: null },
-    });
+  async getAllSourceArticles(filters?: {
+    sourceId?: string;
+    year?: number;
+  }): Promise<SourceArticleCollectionResponseDto> {
+    const queryBuilder = this.sourceArticlesRepository
+      .createQueryBuilder('sourceArticle')
+      .leftJoinAndSelect('sourceArticle.source', 'source');
+
+    if (filters?.sourceId) {
+      queryBuilder.andWhere('sourceArticle.sourceId = :sourceId', {
+        sourceId: filters.sourceId,
+      });
+    }
+
+    if (filters?.year) {
+      queryBuilder.andWhere('sourceArticle.year = :year', {
+        year: filters.year,
+      });
+    }
+
+    const articles = await queryBuilder.getMany();
     return articles.map(SourceArticleMapper.toResponseDto);
   }
 
@@ -35,7 +52,7 @@ export class SourceArticlesService {
     if (!source) {
       throw new Error(`Source with id ${data.sourceId} not found`);
     }
-    const newArticle = await SourceArticleMapper.toEntity(data, source);
+    const newArticle = SourceArticleMapper.toEntity(data, source);
     const savedArticle = await this.sourceArticlesRepository.save(newArticle);
     return SourceArticleMapper.toResponseDto(savedArticle);
   }

@@ -1,3 +1,4 @@
+import { Type } from 'class-transformer';
 import {
   IsDateString,
   IsInt,
@@ -5,7 +6,24 @@ import {
   IsString,
   IsUrl,
   IsUUID,
+  Max,
+  Min,
 } from 'class-validator';
+
+export class SourceArticleQueryDto {
+  @IsOptional()
+  @IsString()
+  @IsUUID()
+  @Type(() => String)
+  readonly sourceId?: string;
+
+  @IsOptional()
+  @IsInt()
+  @Min(1900)
+  @Max(2100)
+  @Type(() => Number)
+  readonly year?: number;
+}
 
 export class CreateSourceArticleDto {
   @IsString()
