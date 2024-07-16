@@ -364,7 +364,7 @@ export default async function Home() {
   const data = await getData();
   if (data.length === 0) {
     return (
-      <Container as="main" maxW="container.xl">
+      <Container as="main" maxW="container.xl" minH="80vh">
         <Heading>Couldn&apos;t get any data</Heading>
       </Container>
     );
