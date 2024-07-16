@@ -9,6 +9,7 @@ import { DraftPick } from './models/draft-pick';
 import { SourceArticle } from './models/source-article';
 import { PlayerGrade } from './models/player-grade';
 import { PlayerRanking } from './models/player-ranking';
+import { DraftPickTrade } from './models/draft-pick-trade';
 
 export const AppDataSource: DataSource = new DataSource({
   type: 'postgres',
@@ -23,7 +24,7 @@ export const AppDataSource: DataSource = new DataSource({
     SourceArticle,
     PlayerGrade,
     PlayerRanking,
-    DraftClassGrade,
+    DraftPickTrade,
   ],
   synchronize: true,
   logging: true,
