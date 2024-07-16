@@ -22,7 +22,7 @@ fi
 echo "Rolling back to version: $ROLLBACK_VERSION"
 
 # Bring down current images
-docker-compose -f docker-compose.base.yml -f docker-compose.prod.yml down
+docker-compose -f docker-compose.prod.yml down
 
 # Bring up new images
 docker-compose -f $ROLLBACK_VERSION up -d
