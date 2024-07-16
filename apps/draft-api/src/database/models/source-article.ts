@@ -31,6 +31,9 @@ export class SourceArticle {
   @Column()
   url: string;
 
+  @Column()
+  publicationDate?: Date;
+
   @CreateDateColumn()
   createdAt: Date;
 
