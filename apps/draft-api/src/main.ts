@@ -10,6 +10,7 @@ import sourcesRoutes from './routes/sources-routes';
 
 import { initializeDatabase } from './database';
 import logger from './middleware/logger';
+import { errorHandler } from './middleware/error-handler.middleware';
 
 config();
 const app = express();
@@ -32,7 +33,7 @@ app.use(
       return callback(null, true);
     },
     credentials: true,
-  })
+  }),
 );
 app.use(cookieParser());
 app.use(express.json());
@@ -51,6 +52,8 @@ app.use('/api/sources', sourcesRoutes);
 app.get('/api/health', (req, res) => {
   res.send({ status: 'OK' });
 });
+
+app.use(errorHandler);
 const port = process.env.PORT || 3333;
 
 const startServer = async () => {
