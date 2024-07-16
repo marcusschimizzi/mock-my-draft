@@ -10,9 +10,12 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { DraftClassGrade } from './draft-class-grade';
+import { PlayerGrade } from './player-grade';
 
 @Entity('teams')
 export class Team {
@@ -59,4 +62,10 @@ export class Team {
 
   @DeleteDateColumn()
   deletedAt?: Date;
+
+  @OneToMany(() => DraftClassGrade, (draftClassGrade) => draftClassGrade.team)
+  draftClassGrades: DraftClassGrade[];
+
+  @OneToMany(() => PlayerGrade, (playerGrade) => playerGrade.team)
+  playerGrades: PlayerGrade[];
 }

@@ -5,10 +5,13 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { Source } from './source';
+import { DraftClassGrade } from './draft-class-grade';
+import { PlayerGrade } from './player-grade';
 
 @Entity('source_articles')
 export class SourceArticle {
@@ -36,4 +39,13 @@ export class SourceArticle {
 
   @DeleteDateColumn()
   deletedAt?: Date;
+
+  @OneToMany(
+    () => DraftClassGrade,
+    (draftClassGrade) => draftClassGrade.sourceArticle,
+  )
+  draftClassGrades: DraftClassGrade[];
+
+  @OneToMany(() => PlayerGrade, (playerGrade) => playerGrade.sourceArticle)
+  playerGrades: PlayerGrade[];
 }
