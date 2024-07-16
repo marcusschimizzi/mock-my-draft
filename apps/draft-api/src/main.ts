@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser';
 import authRoutes from './routes/auth-routes';
 import teamsRoutes from './routes/teams-routes';
 import sourcesRoutes from './routes/sources-routes';
+import sourceArticlesRoutes from './routes/source-articles';
 
 import { initializeDatabase } from './database';
 import logger from './middleware/logger';
@@ -48,6 +49,7 @@ app.get('/api', (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/teams', teamsRoutes);
 app.use('/api/sources', sourcesRoutes);
+app.use('/api/source-articles', sourceArticlesRoutes);
 
 app.get('/api/health', (req, res) => {
   res.send({ status: 'OK' });
