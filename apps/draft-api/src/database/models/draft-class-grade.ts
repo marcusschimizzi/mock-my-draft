@@ -37,7 +37,7 @@ export class DraftClassGrade {
   year: number;
 
   @Column()
-  text: string;
+  text?: string;
 
   @CreateDateColumn()
   createdAt: Date;
