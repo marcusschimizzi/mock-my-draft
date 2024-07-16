@@ -6,7 +6,7 @@ cd "$(dirname "$0")/.."
 
 # Tag the current version
 CURRENT_VERSION=$(date +%Y%m%d_%H%M%S)
-docker-compose -f docker-compose.base.yml -f docker-compose.prod.yml config > docker-compose.$CURRENT_VERSION.yml
+docker-compose -f docker-compose.prod.yml config > docker-compose.$CURRENT_VERSION.yml
 
 # Function to rollback
 rollback() {
@@ -22,18 +22,18 @@ rollback() {
 }
 
 # Pull latest images
-docker-compose -f docker-compose.base.yml -f docker-compose.prod.yml pull
+docker-compose -f docker-compose.prod.yml pull
 
 # Bring down current images
-docker-compose -f docker-compose.base.yml -f docker-compose.prod.yml down
+docker-compose -f docker-compose.prod.yml down
 
 # Bring up new images
-docker-compose -f docker-compose.base.yml -f docker-compose.prod.yml up -d
+docker-compose -f docker-compose.prod.yml up -d
 
 # Check if services are healthy
 sleep 30 # Wait for services to start
 
-if ! docker-compose -f docker-compose.base.yml -f docker-compose.prod.yml ps | grep -q "healthy"; then
+if ! docker-compose -f docker-compose.prod.yml ps | grep -q "healthy"; then
     echo "One or more services are not healthy"
     rollback
     exit 1
