@@ -1,5 +1,9 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { SourceArticle } from '../types';
+import {
+  CreateSourceArticleDto,
+  SourceArticle,
+  UpdateSourceArticleDto,
+} from '../types';
 import apiClient from './api-client';
 import { queryClient } from './react-query';
 
@@ -8,14 +12,14 @@ export const getSourceArticles = async (): Promise<SourceArticle[]> => {
 };
 
 export const createSourceArticle = async (
-  sourceArticleData: Partial<SourceArticle>,
+  sourceArticleData: CreateSourceArticleDto,
 ): Promise<SourceArticle> => {
   return await apiClient.post('/source-articles', sourceArticleData);
 };
 
 export const updateSourceArticle = async (
   sourceArticleId: string,
-  sourceArticleData: Partial<SourceArticle>,
+  sourceArticleData: UpdateSourceArticleDto,
 ): Promise<SourceArticle> => {
   return await apiClient.put(
     `/source-articles/${sourceArticleId}`,
