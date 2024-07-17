@@ -30,13 +30,17 @@ export class CreateDraftClassGradeDto {
   readonly sourceArticleId: string;
 
   @IsString()
-  readonly grade: string;
-
-  @IsString()
   readonly text?: string;
 
+  // Should have at least one of grade or gradeNumeric
+  // We can fill in the other in the mapper
+  @IsOptional()
+  @IsString()
+  readonly grade?: string;
+
+  @IsOptional()
   @IsNumber()
-  readonly gradeNumeric: number;
+  readonly gradeNumeric?: number;
 
   @IsNumber()
   readonly year: number;
