@@ -58,3 +58,21 @@ export const defaultSource: Partial<Source> = {
   slug: '',
   baseUrl: '',
 };
+
+export type DraftGradeTeam = Pick<Team, 'id' | 'name' | 'abbreviation'>;
+export type DraftGradeSource = Pick<Source, 'id' | 'name' | 'slug'>;
+
+export type DraftGrade = Entity & {
+  id: string;
+  grade: string;
+  gradeNumeric: number;
+  year: number;
+  text?: string;
+  team: DraftGradeTeam;
+  sourceArticle: {
+    id: string;
+    title: string;
+    url: string;
+    source: DraftGradeSource;
+  };
+};
