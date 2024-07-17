@@ -13,6 +13,11 @@ export class DraftClassGradesController {
 
   constructor() {
     this.draftClassGradesService = new DraftClassGradesService();
+    this.getAllDraftClassGrades = this.getAllDraftClassGrades.bind(this);
+    this.getDraftClassGradeById = this.getDraftClassGradeById.bind(this);
+    this.createDraftClassGrade = this.createDraftClassGrade.bind(this);
+    this.updateDraftClassGrade = this.updateDraftClassGrade.bind(this);
+    this.deleteDraftClassGrade = this.deleteDraftClassGrade.bind(this);
   }
 
   @WithValidatedQuery<DraftClassGradeQueryDto>()
