@@ -13,6 +13,13 @@ export class SourceArticlesController {
 
   constructor() {
     this.sourceArticlesService = new SourceArticlesService();
+    this.getAllSourceArticles = this.getAllSourceArticles.bind(this);
+    this.getSourceArticleById = this.getSourceArticleById.bind(this);
+    this.createSourceArticle = this.createSourceArticle.bind(this);
+    this.updateSourceArticle = this.updateSourceArticle.bind(this);
+    this.deleteSourceArticle = this.deleteSourceArticle.bind(this);
+    this.getArticlesBySource = this.getArticlesBySource.bind(this);
+    this.getArticlesByYear = this.getArticlesByYear.bind(this);
   }
 
   @WithValidatedQuery<SourceArticleQueryDto>()
