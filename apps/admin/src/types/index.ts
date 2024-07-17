@@ -84,3 +84,19 @@ export type SourceArticle = Entity & {
   publicationDate?: string;
   source: SourceArticleSource;
 };
+
+export type CreateSourceArticleDto = {
+  sourceId: string;
+  year: number;
+  url: string;
+  title?: string;
+  publicationDate?: string;
+};
+
+export type UpdateSourceArticleDto = Partial<CreateSourceArticleDto>;
+
+export const defaultSourceArticle: Partial<SourceArticle> = {
+  title: '',
+  url: '',
+  year: 2024,
+};
