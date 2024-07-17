@@ -53,13 +53,13 @@ export class SourceArticlesService {
   ): Promise<SourceArticleResponseDto> {
     const source = await this.sourceRepository.findOne({
       where: { id: data.sourceId },
-      relations: ['source'],
     });
     if (!source) {
       throw new Error(`Source with id ${data.sourceId} not found`);
     }
     const newArticle = SourceArticleMapper.toEntity(data, source);
     const savedArticle = await this.sourceArticlesRepository.save(newArticle);
+    savedArticle.source = source;
     return SourceArticleMapper.toResponseDto(savedArticle);
   }
 
