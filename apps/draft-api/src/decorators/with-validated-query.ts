@@ -24,7 +24,7 @@ export function WithValidatedQuery<T>() {
       next: NextFunction,
     ) {
       if (isRequestWithValidatedQuery<T>(req)) {
-        return originalMethod(req, res, next);
+        return originalMethod.call(this, req, res, next);
       } else {
         next(
           new Error(
