@@ -70,11 +70,15 @@ export class UpdateSourceArticleDto {
 
 export class SourceArticleResponseDto {
   readonly id: string;
-  readonly sourceId: string;
   readonly year: number;
   readonly title: string;
   readonly url: string;
   readonly publicationDate?: Date;
+  readonly source: {
+    id: string;
+    name: string;
+    slug: string;
+  };
 }
 
 export type SourceArticleCollectionResponseDto = SourceArticleResponseDto[];

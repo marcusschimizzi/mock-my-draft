@@ -38,7 +38,10 @@ export class SourceArticlesService {
   }
 
   async getSourceArticleById(id: string): Promise<SourceArticleResponseDto> {
-    const article = await this.sourceArticlesRepository.findOneBy({ id });
+    const article = await this.sourceArticlesRepository.findOne({
+      relations: ['source'],
+      where: { id },
+    });
     if (!article) {
       throw new Error('Source article not found');
     }
@@ -48,7 +51,10 @@ export class SourceArticlesService {
   async createSourceArticle(
     data: CreateSourceArticleDto,
   ): Promise<SourceArticleResponseDto> {
-    const source = await this.sourceRepository.findOneBy({ id: data.sourceId });
+    const source = await this.sourceRepository.findOne({
+      where: { id: data.sourceId },
+      relations: ['source'],
+    });
     if (!source) {
       throw new Error(`Source with id ${data.sourceId} not found`);
     }
@@ -112,6 +118,7 @@ export class SourceArticlesService {
     }
     const articles = await this.sourceArticlesRepository.find({
       where: { source, deletedAt: null },
+      relations: ['source'],
     });
     return articles.map(SourceArticleMapper.toResponseDto);
   }
@@ -121,6 +128,7 @@ export class SourceArticlesService {
   ): Promise<SourceArticleCollectionResponseDto> {
     const articles = await this.sourceArticlesRepository.find({
       where: { year, deletedAt: null },
+      relations: ['source'],
     });
     return articles.map(SourceArticleMapper.toResponseDto);
   }

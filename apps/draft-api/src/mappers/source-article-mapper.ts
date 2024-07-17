@@ -42,7 +42,11 @@ export class SourceArticleMapper {
       url: entity.url,
       year: entity.year,
       publicationDate: entity.publicationDate,
-      sourceId: entity.source.id,
+      source: {
+        id: entity.source.id,
+        name: entity.source.name,
+        slug: entity.source.slug,
+      },
     };
   }
 }
