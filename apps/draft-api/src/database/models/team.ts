@@ -12,12 +12,14 @@ import {
   Entity,
   OneToMany,
   PrimaryGeneratedColumn,
+  Unique,
   UpdateDateColumn,
 } from 'typeorm';
 import { DraftClassGrade } from './draft-class-grade';
 import { PlayerGrade } from './player-grade';
 
 @Entity('teams')
+@Unique(['slug'])
 export class Team {
   @PrimaryGeneratedColumn('uuid')
   id: string;
