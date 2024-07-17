@@ -25,7 +25,7 @@ export class PlayerGrade {
   @Column()
   grade: string;
 
-  @Column()
+  @Column({ type: 'float' })
   gradeNumeric: number;
 
   @Column()

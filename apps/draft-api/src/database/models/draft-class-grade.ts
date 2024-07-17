@@ -30,7 +30,7 @@ export class DraftClassGrade {
   @Column()
   grade: string;
 
-  @Column()
+  @Column({ type: 'float' })
   gradeNumeric: number;
 
   @Column()
