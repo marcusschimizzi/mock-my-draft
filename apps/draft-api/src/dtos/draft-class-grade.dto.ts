@@ -92,6 +92,7 @@ export class DraftClassGradeResponseDto {
     source: {
       id: string;
       name: string;
+      slug: string;
     };
   };
 }

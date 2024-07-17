@@ -170,6 +170,7 @@ export class DraftClassGradeMapper {
         source: {
           id: entity.sourceArticle.source.id,
           name: entity.sourceArticle.source.name,
+          slug: entity.sourceArticle.source.slug,
         },
       },
     };
