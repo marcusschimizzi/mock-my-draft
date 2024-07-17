@@ -22,7 +22,7 @@ export class SourceArticlesService {
       .leftJoinAndSelect('sourceArticle.source', 'source');
 
     if (filters?.sourceId) {
-      queryBuilder.andWhere('sourceArticle.sourceId = :sourceId', {
+      queryBuilder.andWhere('source.id = :sourceId', {
         sourceId: filters.sourceId,
       });
     }

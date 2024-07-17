@@ -28,7 +28,7 @@ export class DraftClassGradesService {
       .leftJoinAndSelect('sourceArticle.source', 'source');
 
     if (filters?.teamId) {
-      queryBuilder.andWhere('draftClassGrade.teamId = :teamId', {
+      queryBuilder.andWhere('team.id = :teamId', {
         teamId: filters.teamId,
       });
     }
@@ -40,7 +40,7 @@ export class DraftClassGradesService {
     }
 
     if (filters?.sourceId) {
-      queryBuilder.andWhere('sourceArticle.sourceId = :sourceId', {
+      queryBuilder.andWhere('source.id = :sourceId', {
         sourceId: filters.sourceId,
       });
     }
