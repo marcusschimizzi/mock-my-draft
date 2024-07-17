@@ -2,16 +2,15 @@
 
 import { Box, Heading, VStack } from '@chakra-ui/react';
 import { Link } from '@chakra-ui/next-js';
-import styles from './page.module.scss';
-import { Protected } from '../components/protected';
 import { useUser } from '../lib/get-user';
+import DashboardLayout from '../layouts/dashboard-layout';
 
 export default function Index() {
   const { isAdmin } = useUser();
 
   return (
-    <Protected>
-      <main className={styles.main}>
+    <DashboardLayout>
+      <main>
         <Box maxWidth={800} mx="auto" p={4} mt={8}>
           <Heading mb={6}>Admin Dashboard</Heading>
           <VStack spacing={4} align="stretch">
@@ -35,6 +34,6 @@ export default function Index() {
           </VStack>
         </Box>
       </main>
-    </Protected>
+    </DashboardLayout>
   );
 }
