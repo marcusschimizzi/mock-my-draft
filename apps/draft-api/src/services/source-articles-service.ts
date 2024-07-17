@@ -73,9 +73,6 @@ export class SourceArticlesService {
         ? await this.sourceRepository.findOneBy({ id: data.sourceId })
         : undefined;
 
-    if (!source) {
-      throw new Error(`Source with id ${data.sourceId} not found`);
-    }
     const updatedArticle = SourceArticleMapper.toUpdateEntity(
       article,
       data,

@@ -74,8 +74,9 @@ export class DraftClassGradesService {
     if (!team) {
       throw new Error(`Team with id ${data.teamId} not found`);
     }
-    const sourceArticle = await this.sourceArticleRepository.findOneBy({
-      id: data.sourceArticleId,
+    const sourceArticle = await this.sourceArticleRepository.findOne({
+      where: { id: data.sourceArticleId },
+      relations: ['source'],
     });
     if (!sourceArticle) {
       throw new Error(
