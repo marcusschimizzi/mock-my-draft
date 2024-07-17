@@ -10,6 +10,11 @@ import {
   faBars,
 } from '@fortawesome/free-solid-svg-icons';
 import {
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
   Box,
   Button,
   Drawer,
@@ -18,6 +23,7 @@ import {
   DrawerContent,
   DrawerHeader,
   DrawerOverlay,
+  Heading,
   Text,
   useBreakpointValue,
   useDisclosure,
@@ -25,13 +31,18 @@ import {
 } from '@chakra-ui/react';
 import { Link } from '@chakra-ui/next-js';
 
+interface NavCategory {
+  name: string;
+  items: NavItem[];
+}
+
 interface NavItem {
   name: string;
   path: string;
   icon: ReactElement;
 }
 
-const navItems: NavItem[] = [
+const navItems: (NavItem | NavCategory)[] = [
   { name: 'Dashboard', path: '/', icon: <FontAwesomeIcon icon={faHome} /> },
   {
     name: 'Teams',
@@ -49,16 +60,52 @@ const navItems: NavItem[] = [
     icon: <FontAwesomeIcon icon={faPeopleGroup} />,
   },
   {
-    name: 'Draft Grades',
-    path: '/draft-grades',
-    icon: <FontAwesomeIcon icon={faRulerVertical} />,
+    name: 'Sources',
+    items: [
+      {
+        name: 'Manage sources',
+        path: '/sources',
+        icon: <FontAwesomeIcon icon={faNewspaper} />,
+      },
+      {
+        name: 'Source articles',
+        path: '/source-articles',
+        icon: <FontAwesomeIcon icon={faNewspaper} />,
+      },
+    ],
   },
   {
-    name: 'Sources',
-    path: '/sources',
-    icon: <FontAwesomeIcon icon={faNewspaper} />,
+    name: 'Grades',
+    items: [
+      {
+        name: 'Draft Grades',
+        path: '/draft-grades',
+        icon: <FontAwesomeIcon icon={faRulerVertical} />,
+      },
+    ],
   },
 ];
+
+const NavItemButton: React.FC<{
+  item: NavItem;
+  isMobile?: boolean;
+  onClose: () => void;
+}> = ({ item, isMobile, onClose }) => (
+  <Button
+    as={Link}
+    href={item.path}
+    leftIcon={item.icon}
+    justifyContent="flex-start"
+    variant="ghost"
+    w="full"
+    onClick={isMobile ? onClose : undefined}
+  >
+    {item.name}
+  </Button>
+);
+
+const isNavCategory = (item: NavItem | NavCategory): item is NavCategory =>
+  (item as NavCategory).items !== undefined;
 
 const SideNavMenu: React.FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -66,20 +113,42 @@ const SideNavMenu: React.FC = () => {
 
   const NavContent = () => (
     <VStack align="stretch" spacing={4}>
-      {navItems.map((item) => (
-        <Button
-          key={item.name}
-          as={Link}
-          href={item.path}
-          leftIcon={item.icon}
-          justifyContent="flex-start"
-          variant="ghost"
-          w="full"
-          onClick={isMobile ? onClose : undefined}
-        >
-          {item.name}
-        </Button>
-      ))}
+      {navItems.map((item) => {
+        if (isNavCategory(item)) {
+          return (
+            <Accordion allowToggle key={item.name}>
+              <AccordionItem>
+                <Heading>
+                  <AccordionButton>
+                    <Box as="span" flex="1" textAlign="left">
+                      {item.name}
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </Heading>
+                <AccordionPanel pb={4}>
+                  {item.items.map((subItem) => (
+                    <NavItemButton
+                      key={subItem.path}
+                      item={subItem}
+                      isMobile={isMobile}
+                      onClose={onClose}
+                    />
+                  ))}
+                </AccordionPanel>
+              </AccordionItem>
+            </Accordion>
+          );
+        }
+        return (
+          <NavItemButton
+            key={item.path}
+            item={item}
+            isMobile={isMobile}
+            onClose={onClose}
+          />
+        );
+      })}
     </VStack>
   );
 
