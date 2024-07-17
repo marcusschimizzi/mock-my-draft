@@ -77,6 +77,21 @@ export type DraftGrade = Entity & {
   };
 };
 
+export const defaultDraftGrade: Partial<CreateDraftGradeDto> = {
+  grade: '',
+  year: 2024,
+  teamId: '',
+  sourceArticleId: '',
+};
+
+export type CreateDraftGradeDto = {
+  teamId: string;
+  grade: string;
+  year: number;
+  sourceArticleId: string;
+  text?: string;
+};
+
 export type SourceArticle = Entity & {
   title: string;
   url: string;
