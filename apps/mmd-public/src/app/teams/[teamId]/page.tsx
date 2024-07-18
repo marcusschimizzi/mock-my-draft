@@ -1,6 +1,5 @@
+'use client';
 import TeamLogo from '../../../components/team-logo';
-import { API_URL } from '../../../config/constants';
-import { getInfoFromTeamId } from '../../../lib/teams-utils';
 import { capitalize } from '../../../lib/common-utils';
 import {
   Container,
@@ -19,150 +18,128 @@ import {
   Thead,
   Tr,
 } from '@chakra-ui/react';
-import React from 'react';
+import { useEffect, useState } from 'react';
+import { useTeamDraftSummary } from '../../../lib/draft-summary';
+import { DraftGrade } from '../../../types';
+import Card from '../../../components/card';
 
-async function getData(teamId: string) {
-  try {
-    const res = await fetch(`${API_URL}/teams/${teamId}`);
+export default function TeamPage({ params }: { params: { teamId: string } }) {
+  const { draftSummary, isLoading } = useTeamDraftSummary(2024, params.teamId);
+  const [highestGrade, setHighestGrade] = useState<DraftGrade | null>(null);
+  const [lowestGrade, setLowestGrade] = useState<DraftGrade | null>(null);
 
-    if (!res.ok) {
-      throw new Error('Failed to fetch data');
+  useEffect(() => {
+    if (!draftSummary) {
+      return;
     }
 
-    return res.json();
-  } catch (e) {
-    return [];
-  }
-}
-
-async function getResponses(teamId: string) {
-  try {
-    const res = await fetch(`${API_URL}/teams/${teamId}/responses`);
-
-    if (!res.ok) {
-      throw new Error('Failed to fetch responses');
-    }
-
-    return res.json();
-  } catch (e) {
-    return [];
-  }
-}
-
-interface GradesMap {
-  [source: string]: string;
-}
-
-interface Grade {
-  source: string;
-  letterGrade: string;
-}
-
-function getSortedGrades(grades: GradesMap) {
-  const gradeOrder = [
-    'a+',
-    'a',
-    'a-',
-    'b+',
-    'b',
-    'b-',
-    'c+',
-    'c',
-    'c-',
-    'd+',
-    'd',
-    'd-',
-    'f+',
-    'f',
-    'f-',
-  ];
-
-  const sortedGrades: Grade[] = [];
-  for (const grade in grades) {
-    sortedGrades.push({
-      source: grade,
-      letterGrade: grades[grade],
-    });
-  }
-  return sortedGrades.sort((a, b) => {
-    return (
-      gradeOrder.indexOf(a.letterGrade) - gradeOrder.indexOf(b.letterGrade)
+    setHighestGrade(
+      draftSummary.draftGrades.reduce((acc: DraftGrade, grade) => {
+        if (grade.gradeNumeric > acc.gradeNumeric) {
+          return grade;
+        }
+        return acc;
+      }),
     );
-  });
-}
 
-export default async function TeamPage({
-  params,
-}: {
-  params: { teamId: string };
-}) {
-  const teamInfo = getInfoFromTeamId(params.teamId);
-  const data = await getData(params.teamId);
-  const responses = await getResponses(params.teamId);
-  const { average, ...letterGrades } = data;
-  const sortedGrades = getSortedGrades(letterGrades);
+    setLowestGrade(
+      draftSummary.draftGrades.reduce((acc: DraftGrade, grade) => {
+        if (grade.gradeNumeric < acc.gradeNumeric) {
+          return grade;
+        }
+        return acc;
+      }),
+    );
+  }, [draftSummary]);
 
-  const highestGrade = sortedGrades[0];
-  const lowestGrade = sortedGrades[sortedGrades.length - 1];
-
-  if (teamInfo === null) {
+  if (!draftSummary && !isLoading) {
     return null;
+  }
+
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
 
   return (
     <Container as="main" maxW="container.xl">
-      {teamInfo === null && <Heading>Team not found</Heading>}
-      <Flex alignItems="center">
-        <TeamLogo teamAbbreviation={teamInfo.abbreviation} size="medium" />
-        <Heading paddingLeft={5}>{capitalize(teamInfo.fullName)}</Heading>
-      </Flex>
-      <StatGroup marginTop={16}>
-        <Stat>
-          <StatLabel>Average grade</StatLabel>
-          <StatNumber>{Number(average).toFixed(2)}</StatNumber>
-        </Stat>
-        {highestGrade && (
-          <Stat>
-            <StatLabel>Highest grade</StatLabel>
-            <StatNumber>{capitalize(highestGrade.letterGrade)}</StatNumber>
-            <StatHelpText>Source: {highestGrade.source}</StatHelpText>
-          </Stat>
-        )}
-        {lowestGrade && (
-          <Stat>
-            <StatLabel>Lowest grade</StatLabel>
-            <StatNumber>{capitalize(lowestGrade.letterGrade)}</StatNumber>
-            <StatHelpText>Source: {lowestGrade.source}</StatHelpText>
-          </Stat>
-        )}
-      </StatGroup>
-      <TableContainer marginTop={16} overflowX="auto">
-        <Table overflowX="auto" width="max-content">
-          <Thead>
-            <Tr>
-              <Th>Source</Th>
-              <Th>Grade</Th>
-              <Th>Evaluation</Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            {responses.map((response: any, index: number) => (
-              <Tr key={index}>
-                <Td>{capitalize(response.source.replaceAll('-', ' '))}</Td>
-                <Td>{capitalize(response.grade)}</Td>
-                <Td
-                  whiteSpace="normal"
-                  overflowWrap="break-word"
-                  minWidth="150px"
-                  maxWidth="800px"
-                >
-                  {response.text}
-                </Td>
-              </Tr>
-            ))}
-          </Tbody>
-        </Table>
-      </TableContainer>
+      {!draftSummary ? (
+        <Heading>Team not found</Heading>
+      ) : (
+        <>
+          <Flex alignItems="center">
+            <TeamLogo
+              teamAbbreviation={draftSummary.team.abbreviation}
+              size="medium"
+            />
+            <Heading paddingLeft={5}>
+              {capitalize(draftSummary.team.name)}
+            </Heading>
+          </Flex>
+          <StatGroup marginTop={16} mb={16}>
+            <Card flex={1} h={36} mr={2}>
+              <Stat>
+                <StatLabel>Average grade</StatLabel>
+                <StatNumber>{draftSummary?.averageGrade.toFixed(2)}</StatNumber>
+              </Stat>
+            </Card>
+            {highestGrade && (
+              <Card flex={1} h={36} mx={2}>
+                <Stat>
+                  <StatLabel>Highest grade</StatLabel>
+                  <StatNumber>{capitalize(highestGrade.grade)}</StatNumber>
+                  <StatHelpText>
+                    Source: {highestGrade.sourceArticle.source.name}
+                  </StatHelpText>
+                </Stat>
+              </Card>
+            )}
+            {lowestGrade && (
+              <Card flex={1} h={36} ml={2}>
+                <Stat>
+                  <StatLabel>Lowest grade</StatLabel>
+                  <StatNumber>{capitalize(lowestGrade.grade)}</StatNumber>
+                  <StatHelpText>
+                    Source: {lowestGrade.sourceArticle.source.name}
+                  </StatHelpText>
+                </Stat>
+              </Card>
+            )}
+          </StatGroup>
+          <Card mb={16}>
+            <TableContainer marginTop={16} overflowX="auto">
+              <Table overflowX="auto" width="max-content">
+                <Thead>
+                  <Tr>
+                    <Th>Source</Th>
+                    <Th>Grade</Th>
+                    <Th>Evaluation</Th>
+                  </Tr>
+                </Thead>
+                <Tbody>
+                  {draftSummary.draftGrades.map(
+                    (response: DraftGrade, index: number) => (
+                      <Tr key={index}>
+                        <Td>
+                          {capitalize(response.sourceArticle.source.name)}
+                        </Td>
+                        <Td>{capitalize(response.grade)}</Td>
+                        <Td
+                          whiteSpace="normal"
+                          overflowWrap="break-word"
+                          minWidth="150px"
+                          maxWidth="800px"
+                        >
+                          {response.text}
+                        </Td>
+                      </Tr>
+                    ),
+                  )}
+                </Tbody>
+              </Table>
+            </TableContainer>
+          </Card>
+        </>
+      )}
     </Container>
   );
 }
