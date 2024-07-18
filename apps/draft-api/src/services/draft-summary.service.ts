@@ -1,3 +1,4 @@
+import { isUUID } from 'class-validator';
 import { AppDataSource } from '../database';
 import { DraftClassGrade } from '../database/models/draft-class-grade';
 import { Team } from '../database/models/team';
@@ -26,13 +27,14 @@ export class DraftSummaryService {
       const teamGrades = draftGrades.filter(
         (grade) => grade.team.id === team.id,
       );
+
       const averageGrade =
         teamGrades.reduce((acc, grade) => acc + grade.gradeNumeric, 0) /
         teamGrades.length;
 
       return DraftSummaryMapper.toTeamResponseDto({
         team,
-        draftGrades,
+        draftGrades: teamGrades,
         averageGrade,
       });
     });
@@ -52,9 +54,21 @@ export class DraftSummaryService {
     year: number,
     teamId: string,
   ): Promise<TeamDraftSummaryDto> {
-    const team = await this.teamRepository.findOneByOrFail({ id: teamId });
+    // Team ID is allowed to be the UUID or the slug
+    let team: Team;
+
+    if (isUUID(teamId)) {
+      team = await this.teamRepository.findOneByOrFail({ id: teamId });
+    } else {
+      team = await this.teamRepository.findOneByOrFail({ slug: teamId });
+    }
+
+    if (!team) {
+      throw new Error('Team not found');
+    }
+
     const draftGrades = await this.draftClassGradeRepository.find({
-      where: { year, team: { id: teamId } },
+      where: { year, team: { id: team.id } },
       relations: ['sourceArticle', 'sourceArticle.source'],
     });
 
