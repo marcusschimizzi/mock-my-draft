@@ -9,6 +9,7 @@ import teamsRoutes from './routes/teams-routes';
 import sourcesRoutes from './routes/sources-routes';
 import sourceArticlesRoutes from './routes/source-articles';
 import draftClassGradesRoutes from './routes/draft-class-grades.routes';
+import draftSummaryRoutes from './routes/draft-summary.routes';
 
 import { initializeDatabase } from './database';
 import logger from './middleware/logger';
@@ -52,6 +53,7 @@ app.use('/api/teams', teamsRoutes);
 app.use('/api/sources', sourcesRoutes);
 app.use('/api/source-articles', sourceArticlesRoutes);
 app.use('/api/draft-class-grades', draftClassGradesRoutes);
+app.use('/api/draft-summary', draftSummaryRoutes);
 
 app.get('/api/health', (req, res) => {
   res.send({ status: 'OK' });
