@@ -1,0 +1,34 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# poetry
+poetry.lock
+.venv/
+
+# env variables
+.env
+
+#IDEs
+.idea/
+.vscode/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Test coverage
+.coverage
+htmlcov/
+
+# Temp files
+*.swp
+*.swo
+*.tmp
+
+# DB
+*.sqlite3

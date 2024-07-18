@@ -60,7 +60,8 @@
         "previewTargetName": "preview",
         "serveStaticTargetName": "serve-static"
       }
-    }
+    },
+    "@nxlv/python"
   ],
   "generators": {
     "@nx/next": {

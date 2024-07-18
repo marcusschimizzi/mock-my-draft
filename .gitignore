@@ -49,3 +49,6 @@ out
 .env
 .env.*
 !.env.example
+
+
+reports/
