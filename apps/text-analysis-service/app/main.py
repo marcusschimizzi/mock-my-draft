@@ -10,6 +10,7 @@ app = FastAPI(title=settings.PROJECT_NAME, version=settings.PROJECT_VERSION)
 port = os.getenv("PORT", 3000)
 word_counter = SentimentWordCounter()
 
+
 class TextInput(BaseModel):
     text: str
     custom_stopwords: List[str] = None
@@ -19,15 +20,18 @@ class TextInput(BaseModel):
 async def read_root():
     return {"message": "Welcome to the Text Analysis Service!"}
 
+
 @app.get("/health")
 async def health_check():
     return {"status": "ok"}
+
 
 @app.post("/analyze/sentiment")
 async def analyze_sentiment_route(input: TextInput):
     print(input.text)
     sentiment = analyze_sentiment(input.text)
-    return { "sentiment": sentiment }
+    return {"sentiment": sentiment}
+
 
 @app.post("/wordcount")
 async def get_word_counts(
@@ -41,7 +45,8 @@ async def get_word_counts(
         use_sentiment=use_sentiment,
         sentiment_threshold=sentiment_threshold
     )
-    return { "word_count": counts }
+    return {"word_count": counts}
+
 
 if __name__ == "__main__":
     import uvicorn

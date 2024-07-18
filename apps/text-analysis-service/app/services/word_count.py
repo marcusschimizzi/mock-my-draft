@@ -11,10 +11,11 @@ nltk.download('punkt', quiet=True)
 nltk.download('stopwords', quiet=True)
 nltk.download('vader_lexicon', quiet=True)
 
+
 class SentimentWordCounter:
     def __init__(self):
         self.stop_words = set(stopwords.words('english'))
-    
+
     @staticmethod
     def process_chunk(chunk: Tuple[List[str], set, bool, Optional[float]]) -> Counter:
         words, stopwords, use_sentiment, sentiment_threshold = chunk
@@ -28,7 +29,14 @@ class SentimentWordCounter:
             ]
         return Counter(filtered_words)
 
-    def count_words(self, text: str, custom_stopwords: List[str] = None, use_sentiment: bool = False, sentiment_threshold: Optional[float] = None, chunk_size: int = 10000) -> Dict[str, int]:
+    def count_words(
+            self,
+            text: str,
+            custom_stopwords: List[str] = None,
+            use_sentiment: bool = False,
+            sentiment_threshold: Optional[float] = None,
+            chunk_size: int = 10000
+    ) -> Dict[str, int]:
         # Tokenize the text and convert to lowercase
         words: list[str] = word_tokenize(text.lower())
 

@@ -22,7 +22,7 @@ poetry.lock
 Thumbs.db
 
 # Test coverage
-.coverage
+.coverage*
 htmlcov/
 
 # Temp files

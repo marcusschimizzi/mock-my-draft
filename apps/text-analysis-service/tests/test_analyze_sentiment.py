@@ -2,7 +2,7 @@ import pytest
 from fastapi.testclient import TestClient
 from app.main import app
 from app.services.sentiment_analysis import analyze_sentiment
-from pytest_mock import mocker
+
 
 # Mock the nltk sentiment analyzer for predictable results
 def mock_polarity_scores(text):
@@ -13,6 +13,7 @@ def mock_polarity_scores(text):
         'compound': 0.8402
     }
 
+
 def mock_sentiment_analyzer():
     return mock_polarity_scores
 
@@ -21,16 +22,19 @@ def mock_sentiment_analyzer():
 def client():
     return TestClient(app)
 
+
 # Unit tests for sentiment analysis
 def test_analyze_sentiment():
     text = "I love this amazing product! It's incredibly helpful."
     sentiment = analyze_sentiment(text)
     assert sentiment['compound'] > 0
 
+
 def test_analyze_sentiment_negative():
     text = "I hate this terrible product! It's incredibly unhelpful."
     sentiment = analyze_sentiment(text)
     assert sentiment['compound'] < 0
+
 
 def test_analyze_sentiment_return_type():
     text = "I love this amazing product! It's incredibly helpful."
@@ -40,6 +44,7 @@ def test_analyze_sentiment_return_type():
     assert 'neu' in sentiment
     assert 'pos' in sentiment
     assert 'compound' in sentiment
+
 
 # Integration tests
 def test_analyze_sentiment_route(client, mocker):
