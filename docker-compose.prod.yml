@@ -10,6 +10,13 @@ services:
     depends_on:
       - draft-api
       - db
+    healthcheck:
+      test: ['CMD', 'node', 'healthcheck.js']
+
+      interval: 45s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
   admin:
     image: marcusjoseph/mock-my-draft_admin:latest
@@ -22,6 +29,12 @@ services:
     depends_on:
       - draft-api
       - db
+    healthcheck:
+      test: ['CMD', 'node', 'healthcheck.js']
+      interval: 45s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
   draft-api:
     image: marcusjoseph/mock-my-draft_draft-api:latest
@@ -38,6 +51,12 @@ services:
     restart: always
     depends_on:
       - db
+    healthcheck:
+      test: ['CMD', 'node', 'healthcheck.js']
+      interval: 45s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
   db:
     image: postgres:13
@@ -48,6 +67,13 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data
     command: ['postgres', '-c', 'log_statement=all']
+    healthcheck:
+      test:
+        ['CMD', 'pg_isready', '-U', '${POSTGRES_USER}', '-d', '${POSTGRES_DB}']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
 
 volumes:
   db-data:
