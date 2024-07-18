@@ -1,3 +1,4 @@
+import { isUUID } from 'class-validator';
 import { AppDataSource } from '../database';
 import { Team } from '../database/models/team';
 
@@ -12,7 +13,11 @@ export class TeamsService {
   }
 
   async getTeamByIdOrSlug(idOrSlug: string): Promise<Team | null> {
-    return this.teamRepository.findOneBy({ id: idOrSlug, slug: idOrSlug });
+    if (isUUID(idOrSlug)) {
+      return this.teamRepository.findOneBy({ id: idOrSlug });
+    }
+
+    return this.teamRepository.findOneBy({ slug: idOrSlug });
   }
 
   async createTeam(data: Partial<Team>): Promise<Team> {

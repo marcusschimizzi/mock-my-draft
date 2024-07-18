@@ -3,9 +3,11 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { SourceArticle } from './source-article';
 
 @Entity('sources')
 export class Source {
@@ -29,4 +31,7 @@ export class Source {
 
   @DeleteDateColumn()
   deletedAt?: Date;
+
+  @OneToMany(() => SourceArticle, (sourceArticle) => sourceArticle.source)
+  sourceArticles: SourceArticle[];
 }

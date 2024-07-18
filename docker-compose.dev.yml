@@ -1,6 +1,7 @@
 services:
   mmd-public:
     build:
+      context: .
       dockerfile: apps/mmd-public/Dockerfile.dev
     environment:
       - NODE_ENV=development
@@ -9,9 +10,12 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
+    depends_on:
+      - draft-api
 
   admin:
     build:
+      context: .
       dockerfile: apps/admin/Dockerfile.dev
     environment:
       - NODE_ENV=development
@@ -21,9 +25,12 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
+    depends_on:
+      - draft-api
 
   draft-api:
     build:
+      context: .
       dockerfile: apps/draft-api/Dockerfile.dev
     environment:
       - NODE_ENV=development
@@ -38,7 +45,18 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
+    depends_on:
+      - db
 
   db:
-    ports:
-      - '${DB_PORT:-5432}:5432'
+    image: postgres:13
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    command: ['postgres', '-c', 'log_statement=all']
+
+volumes:
+  db-data:

@@ -58,3 +58,60 @@ export const defaultSource: Partial<Source> = {
   slug: '',
   baseUrl: '',
 };
+
+export type DraftGradeTeam = Pick<Team, 'id' | 'name' | 'abbreviation'>;
+export type DraftGradeSource = Pick<Source, 'id' | 'name' | 'slug'>;
+export type SourceArticleSource = Pick<Source, 'id' | 'name' | 'slug'>;
+
+export type DraftGrade = Entity & {
+  grade: string;
+  gradeNumeric: number;
+  year: number;
+  text?: string;
+  team: DraftGradeTeam;
+  sourceArticle: {
+    id: string;
+    title: string;
+    url: string;
+    source: DraftGradeSource;
+  };
+};
+
+export const defaultDraftGrade: Partial<CreateDraftGradeDto> = {
+  grade: '',
+  year: 2024,
+  teamId: '',
+  sourceArticleId: '',
+};
+
+export type CreateDraftGradeDto = {
+  teamId: string;
+  grade: string;
+  year: number;
+  sourceArticleId: string;
+  text?: string;
+};
+
+export type SourceArticle = Entity & {
+  title: string;
+  url: string;
+  year: number;
+  publicationDate?: string;
+  source: SourceArticleSource;
+};
+
+export type CreateSourceArticleDto = {
+  sourceId: string;
+  year: number;
+  url: string;
+  title?: string;
+  publicationDate?: string;
+};
+
+export type UpdateSourceArticleDto = Partial<CreateSourceArticleDto>;
+
+export const defaultSourceArticle: Partial<SourceArticle> = {
+  title: '',
+  url: '',
+  year: 2024,
+};

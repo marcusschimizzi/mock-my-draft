@@ -29,7 +29,7 @@ export class AuthService {
       SECRET_KEY,
       {
         expiresIn: '1h',
-      }
+      },
     );
   }
 

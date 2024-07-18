@@ -7,9 +7,13 @@ import cookieParser from 'cookie-parser';
 import authRoutes from './routes/auth-routes';
 import teamsRoutes from './routes/teams-routes';
 import sourcesRoutes from './routes/sources-routes';
+import sourceArticlesRoutes from './routes/source-articles';
+import draftClassGradesRoutes from './routes/draft-class-grades.routes';
+import draftSummaryRoutes from './routes/draft-summary.routes';
 
 import { initializeDatabase } from './database';
 import logger from './middleware/logger';
+import { errorHandler } from './middleware/error-handler.middleware';
 
 config();
 const app = express();
@@ -32,7 +36,7 @@ app.use(
       return callback(null, true);
     },
     credentials: true,
-  })
+  }),
 );
 app.use(cookieParser());
 app.use(express.json());
@@ -47,10 +51,15 @@ app.get('/api', (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/teams', teamsRoutes);
 app.use('/api/sources', sourcesRoutes);
+app.use('/api/source-articles', sourceArticlesRoutes);
+app.use('/api/draft-class-grades', draftClassGradesRoutes);
+app.use('/api/draft-summary', draftSummaryRoutes);
 
 app.get('/api/health', (req, res) => {
   res.send({ status: 'OK' });
 });
+
+app.use(errorHandler);
 const port = process.env.PORT || 3333;
 
 const startServer = async () => {
