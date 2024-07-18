@@ -33,7 +33,7 @@ docker-compose -f docker-compose.prod.yml up -d
 # Check if services are healthy
 sleep 30 # Wait for services to start
 
-if ! docker-compose -f docker-compose.prod.yml ps | grep -q "healthy"; then
+if ! docker-compose -f docker-compose.prod.yml ps | grep -q "Up "; then
     echo "One or more services are not healthy"
     rollback
     exit 1

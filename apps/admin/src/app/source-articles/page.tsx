@@ -19,23 +19,37 @@ import {
 import { Loading } from '../../components/loading';
 import { AddIcon, DeleteIcon, EditIcon } from '@chakra-ui/icons';
 import { useRef, useState } from 'react';
-import { defaultSourceArticle, SourceArticle } from '../../types';
+import {
+  CreateSourceArticleDto,
+  defaultSourceArticle,
+  SourceArticle,
+} from '../../types';
 import SourceArticleDrawer from './components/source-article-drawer';
 
 function SourceArticlesPage() {
-  const [sourceArticle, setSourceArticle] = useState(defaultSourceArticle);
+  const [sourceArticle, setSourceArticle] =
+    useState<Partial<CreateSourceArticleDto>>(defaultSourceArticle);
+  const [selectedSourceArticleId, setSelectedSourceArticleId] = useState('');
   const { sourceArticles, isLoading } = useSourceArticles();
   const toggleDrawerBtnRef = useRef(null);
   const { isOpen, onClose, onOpen } = useDisclosure();
   const deleteSourceArticle = useDeleteSourceArticle({});
 
   const handleCreateSource = () => {
+    setSelectedSourceArticleId('');
     setSourceArticle(defaultSourceArticle);
     onOpen();
   };
 
   const handleEdit = (sourceArticle: SourceArticle) => {
-    setSourceArticle(sourceArticle);
+    setSelectedSourceArticleId(sourceArticle.id);
+    setSourceArticle({
+      title: sourceArticle.title,
+      url: sourceArticle.url,
+      sourceId: sourceArticle.source.id,
+      year: sourceArticle.year,
+      publicationDate: sourceArticle.publicationDate,
+    });
     onOpen();
   };
 
@@ -62,6 +76,7 @@ function SourceArticlesPage() {
           isOpen={isOpen}
           onClose={onClose}
           toggleBtnRef={toggleDrawerBtnRef}
+          selectedSourceArticleId={selectedSourceArticleId}
         />
         <Table variant={'simple'}>
           <Thead>

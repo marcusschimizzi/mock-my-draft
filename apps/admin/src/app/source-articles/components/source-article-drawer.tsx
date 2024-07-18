@@ -104,11 +104,12 @@ function SourceArticleForm({
 }
 
 interface SourceArticleDrawerProps {
-  sourceArticle: Partial<SourceArticle>;
-  onChange: (sourceArticle: Partial<SourceArticle>) => void;
+  sourceArticle: Partial<CreateSourceArticleDto>;
+  onChange: (sourceArticle: Partial<CreateSourceArticleDto>) => void;
   isOpen: boolean;
   onClose: () => void;
   toggleBtnRef: React.MutableRefObject<null>;
+  selectedSourceArticleId?: string;
 }
 
 function SourceArticleDrawer({
@@ -117,6 +118,7 @@ function SourceArticleDrawer({
   isOpen,
   onClose,
   toggleBtnRef,
+  selectedSourceArticleId,
 }: SourceArticleDrawerProps) {
   const createSourceArticle = useCreateSourceArticle({ onSuccess: onClose });
   const updateSourceArticle = useUpdateSourceArticle({ onSuccess: onClose });
@@ -126,7 +128,7 @@ function SourceArticleDrawer({
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    if (sourceArticle.id) {
+    if (selectedSourceArticleId) {
       updateSourceArticle.submit(sourceArticle as SourceArticle);
     } else {
       createSourceArticle.submit(sourceArticle as CreateSourceArticleDto);
@@ -137,7 +139,7 @@ function SourceArticleDrawer({
     setIsValid(
       !!sourceArticle.title &&
         !!sourceArticle.url &&
-        !!sourceArticle.source &&
+        !!sourceArticle.sourceId &&
         !!sourceArticle.year,
     );
   }, [sourceArticle]);
@@ -155,7 +157,9 @@ function SourceArticleDrawer({
           <DrawerCloseButton />
 
           <DrawerHeader>
-            {sourceArticle.id ? 'Edit source article' : 'Add source article'}
+            {selectedSourceArticleId
+              ? 'Edit source article'
+              : 'Add source article'}
           </DrawerHeader>
 
           <DrawerBody>
