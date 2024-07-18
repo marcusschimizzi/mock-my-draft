@@ -56,6 +56,7 @@ app.use('/api/draft-class-grades', draftClassGradesRoutes);
 app.use('/api/draft-summary', draftSummaryRoutes);
 
 app.get('/api/health', (req, res) => {
+  //TODO: Add database health check
   res.send({ status: 'OK' });
 });
 
