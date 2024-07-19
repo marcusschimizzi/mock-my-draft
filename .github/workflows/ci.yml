@@ -28,6 +28,10 @@ jobs:
           node-version: 20
           cache: 'npm'
 
+      - uses: ITProKyle/action-setup-python@v1.0.0
+        with:
+          python-version: 3.9
+
       - run: npm ci
       - uses: nrwl/nx-set-shas@v4
 
