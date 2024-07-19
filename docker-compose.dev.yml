@@ -83,5 +83,16 @@ services:
       retries: 5
       start_period: 15s
 
+  text-analysis-service:
+    build:
+      context: .
+      dockerfile: apps/text-analysis-service/Dockerfile.dev
+    environment:
+      - NODE_ENV=development
+    ports:
+      - '${TEXT_ANALYSIS_PORT:-5000}:3000'
+    volumes:
+      - ./apps/text-analysis-service:/app
+
 volumes:
   db-data:
