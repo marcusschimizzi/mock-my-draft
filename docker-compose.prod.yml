@@ -58,6 +58,20 @@ services:
       retries: 3
       start_period: 40s
 
+  text-analysis-service:
+    image: marcusjoseph/mock-my-draft_text-analysis-service:latest
+    environment:
+      - NODE_ENV=production
+    ports:
+      - '${TEXT_ANALYSIS_PORT:-8000}:8000'
+    restart: always
+    healthcheck:
+      test: ['CMD', 'python', 'scripts/healthcheck.js']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+
   db:
     image: postgres:13
     environment:
@@ -74,14 +88,6 @@ services:
       timeout: 5s
       retries: 5
       start_period: 15s
-
-  text-analysis-service:
-    image: marcusjoseph/mock-my-draft_text-analysis-service:latest
-    environment:
-      - NODE_ENV=production
-    ports:
-      - '${TEXT_ANALYSIS_PORT:-8000}:8000'
-    restart: always
 
 volumes:
   db-data:
