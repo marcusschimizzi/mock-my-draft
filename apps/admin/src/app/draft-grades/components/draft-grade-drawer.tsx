@@ -154,7 +154,13 @@ function DraftGradeDrawer({
     if (selectedId) {
       updateDraftGrade.submit(draftGrade as DraftGrade);
     } else {
-      createDraftGrade.submit(draftGrade as DraftGrade);
+      createDraftGrade.submit({
+        year: draftGrade.year,
+        sourceArticleId: draftGrade.sourceArticleId,
+        teamId: draftGrade.teamId,
+        grade: draftGrade.grade,
+        text: draftGrade.text,
+      } as CreateDraftGradeDto);
     }
   };
 
