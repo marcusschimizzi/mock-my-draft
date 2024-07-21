@@ -72,9 +72,9 @@ function TeamGradesStep({
                       </option>
                     ))}
                   </Select>
-                  {errors.draftClassGrades?.[index]?.grade && (
+                  {errors?.draftClassGrades?.[index]?.grade && (
                     <FormErrorMessage>
-                      {errors.draftClassGrades?.[index]?.grade.message}
+                      {errors?.draftClassGrades?.[index]?.grade?.message}
                     </FormErrorMessage>
                   )}
                 </FormControl>
