@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Flex, Heading, Wrap, WrapItem } from '@chakra-ui/react';
+import { Box, Heading, Wrap, WrapItem } from '@chakra-ui/react';
 import DashboardLayout from '../layouts/dashboard-layout';
 import { useTeams } from '../lib/teams';
 import { useSources } from '../lib/sources';

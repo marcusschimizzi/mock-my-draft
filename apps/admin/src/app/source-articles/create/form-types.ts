@@ -64,7 +64,7 @@ export const formSchema = yup.object().shape({
           .oneOf(gradeOptions, 'Grade is not valid'),
         comments: yup
           .string()
-          .max(1000, 'Comments must be less than 1000 characters'),
+          .max(5000, 'Comments must be less than 5000 characters'),
         teamId: yup.string().required('Team ID is required'),
       }),
     )

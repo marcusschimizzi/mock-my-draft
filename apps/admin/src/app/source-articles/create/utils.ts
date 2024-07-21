@@ -2,27 +2,27 @@ import { Team } from '@/types';
 
 export const getGradeColor = (grade: string | number) => {
   if (typeof grade === 'number') {
-    if (grade >= 3.7) return 'green';
-    if (grade >= 2.7) return 'blue';
-    if (grade >= 1.7) return 'yellow';
-    if (grade >= 0.7) return 'orange';
-    if (grade >= 0) return 'red';
-    return 'gray';
+    if (grade >= 3.7) return '#38A169';
+    if (grade >= 2.7) return '#3182CE';
+    if (grade >= 1.7) return '#F6E05E';
+    if (grade >= 0.7) return '#DD6B20';
+    if (grade >= 0) return '#E53E3E';
+    return '#A0AEC0';
   } else {
     const firstChar = grade.charAt(0);
     switch (firstChar) {
       case 'A':
-        return 'green';
+        return '#38A169';
       case 'B':
-        return 'blue';
+        return '#3182CE';
       case 'C':
-        return 'yellow';
+        return '#F6E05E';
       case 'D':
-        return 'orange';
+        return '#DD6B20';
       case 'F':
-        return 'red';
+        return '#E53E3E';
       default:
-        return 'gray';
+        return '#A0AEC0';
     }
   }
 };

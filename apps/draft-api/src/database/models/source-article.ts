@@ -7,6 +7,7 @@ import {
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
+  Unique,
   UpdateDateColumn,
 } from 'typeorm';
 import { Source } from './source';
@@ -14,6 +15,7 @@ import { DraftClassGrade } from './draft-class-grade';
 import { PlayerGrade } from './player-grade';
 
 @Entity('source_articles')
+@Unique(['year', 'url'])
 export class SourceArticle {
   @PrimaryGeneratedColumn('uuid')
   id: string;
