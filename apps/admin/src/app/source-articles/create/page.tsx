@@ -30,18 +30,8 @@ const SourceArticleForm: React.FC = () => {
   const toast = useToast();
   const router = useRouter();
 
-  const {
-    submit: submitSourceArticle,
-    isLoading: createSourceArticleLoading,
-    submitAsync: submitSourceArticleAsync,
-    data: sourceArticleData,
-  } = useCreateSourceArticle({});
-  const {
-    submit: submitDraftGrade,
-    isLoading: createDraftGradeLoading,
-    data: draftGradeData,
-    submitAsync: submitDraftGradeAsync,
-  } = useCreateDraftGrade({});
+  const { submitAsync: submitSourceArticleAsync } = useCreateSourceArticle({});
+  const { submitAsync: submitDraftGradeAsync } = useCreateDraftGrade({});
 
   const steps = [
     {
