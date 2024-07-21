@@ -2,6 +2,7 @@ import sys
 import urllib.request
 import json
 
+
 def healthcheck():
     try:
         url = "http://localhost:8000/health"
@@ -14,9 +15,10 @@ def healthcheck():
                 else:
                     print("Healthcheck failed")
                     sys.exit(1)
-    except:
+    except Exception:
         print("Healthcheck failed")
         sys.exit(1)
+
 
 if __name__ == "__main__":
     healthcheck()
