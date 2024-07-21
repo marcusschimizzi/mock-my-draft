@@ -49,7 +49,12 @@ export const useCreateSourceArticle = ({
 }: {
   onSuccess?: (sourceArticle: SourceArticle) => void;
 }) => {
-  const { mutate: submit, isPending } = useMutation({
+  const {
+    mutate: submit,
+    isPending,
+    data,
+    mutateAsync: submitAsync,
+  } = useMutation({
     mutationFn: createSourceArticle,
     onSuccess: (sourceArticle) => {
       queryClient.invalidateQueries({ queryKey: ['source-articles'] });
@@ -57,7 +62,7 @@ export const useCreateSourceArticle = ({
     },
   });
 
-  return { submit, isLoading: isPending };
+  return { submit, isLoading: isPending, data, submitAsync };
 };
 
 export const useUpdateSourceArticle = ({
