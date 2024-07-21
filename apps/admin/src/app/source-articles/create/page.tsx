@@ -1,79 +1,47 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Box, useToast, Progress } from '@chakra-ui/react';
 import {
-  Box,
-  Button,
-  FormControl,
-  FormLabel,
-  Input,
-  Select,
-  VStack,
-  HStack,
-  Text,
-  Textarea,
-  useToast,
-  Stepper,
-  Step,
-  StepIndicator,
-  StepStatus,
-  StepIcon,
-  StepNumber,
-  StepTitle,
-  StepDescription,
-  StepSeparator,
-} from '@chakra-ui/react';
-import { useForm, useFieldArray, SubmitHandler } from 'react-hook-form';
+  useForm,
+  useFieldArray,
+  SubmitHandler,
+  FieldPath,
+} from 'react-hook-form';
 import { useSources } from '../../../lib/sources';
-
-interface FormData {
-  sourceId: string;
-  title: string;
-  url: string;
-  publicationDate: string;
-  draftClassGrades: {
-    teamId: string;
-    grade: string;
-    comments: string;
-  }[];
-  playerGrades: {
-    playerId: string;
-    grade: string;
-    comments: string;
-  }[];
-}
+import DashboardLayout from '@/layouts/dashboard-layout';
+import { useTeams } from '@/lib/teams';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { FormValues, formSchema } from './form-types';
+import ReviewStep from './review-step';
+import TeamGradesStep from './team-grades-step';
+import SourceArticleStep from './source-article-step';
+import NavigationButtons from './navigation-buttons';
+import FormStepper from './form-stepper';
+import { useCreateSourceArticle } from '@/lib/sources-articles';
+import { useCreateDraftGrade } from '@/lib/draft-grades';
+import { useRouter } from 'next/navigation';
 
 const SourceArticleForm: React.FC = () => {
   const { sources, isLoading } = useSources();
-  const [step, setStep] = useState(0);
+  const { teams, isLoading: teamsLoading } = useTeams();
+  const [step, setStep] = useState(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [progress, setProgress] = useState(0);
   const toast = useToast();
+  const router = useRouter();
+
   const {
-    register,
-    control,
-    handleSubmit,
-    formState: { errors },
-    getValues,
-  } = useForm<FormData>({
-    defaultValues: {
-      draftClassGrades: [{ teamId: '', grade: '', comments: '' }],
-      playerGrades: [{ playerId: '', grade: '', comments: '' }],
-    },
-  });
+    submit: submitSourceArticle,
+    isLoading: createSourceArticleLoading,
+    submitAsync: submitSourceArticleAsync,
+    data: sourceArticleData,
+  } = useCreateSourceArticle({});
   const {
-    fields: draftClassFields,
-    append: appendDraftClass,
-    remove: removeDraftClass,
-  } = useFieldArray({
-    control,
-    name: 'draftClassGrades',
-  });
-  const {
-    fields: playerFields,
-    append: appendPlayer,
-    remove: removePlayer,
-  } = useFieldArray({
-    control,
-    name: 'playerGrades',
-  });
+    submit: submitDraftGrade,
+    isLoading: createDraftGradeLoading,
+    data: draftGradeData,
+    submitAsync: submitDraftGradeAsync,
+  } = useCreateDraftGrade({});
 
   const steps = [
     {
@@ -81,233 +49,229 @@ const SourceArticleForm: React.FC = () => {
       description: 'Enter source article information',
     },
     { title: 'Draft Class Grades', description: 'Add grades for each team' },
-    {
-      title: 'Player Grades',
-      description: 'Add grades for individual players',
-    },
     { title: 'Review', description: 'Review and submit' },
   ];
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
+  const {
+    handleSubmit,
+    control,
+    watch,
+    trigger,
+    formState: { errors, touchedFields },
+    reset,
+  } = useForm<FormValues>({
+    resolver: async (data, context, options) => {
+      console.log('Validating data', data);
+      console.log(
+        'Result:',
+        await yupResolver<FormValues>(formSchema)(data, context, options),
+      );
+      return yupResolver<FormValues>(formSchema)(data, context, options);
+    },
+    mode: 'onBlur',
+    defaultValues: {
+      sourceId: '',
+      title: '',
+      url: '',
+      publicationDate: '',
+      year: new Date().getFullYear(),
+      draftClassGrades: [],
+    },
+  });
+
+  const { fields: draftClassFields, append: appendDraftClass } = useFieldArray({
+    control,
+    name: 'draftClassGrades',
+  });
+
+  // Initialize the form with teams if they are loaded
+  useEffect(() => {
+    if (teams.length > 0 && draftClassFields.length === 0) {
+      console.info('Initializing draft class fields');
+      console.info(
+        'Teams length: ',
+        teams.length,
+        'Draft class fields length: ',
+        draftClassFields.length,
+      );
+      teams.forEach((team) => {
+        appendDraftClass({ teamId: team.id, grade: '', comments: '' });
+      });
+    }
+  });
+
+  useEffect(() => {
+    console.log('Step changed:', step);
+  }, [step]);
+
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    console.info('Submitting data', 'step:', step);
+    if (step !== 3) {
+      return;
+    }
+
+    console.info('Submitting data');
     console.log(data);
-    toast({
-      title: 'Form submitted',
-      description: "We've received your submission",
-      status: 'success',
-      duration: 3000,
-      isClosable: true,
-    });
+
+    setIsSubmitting(true);
+    setProgress(0);
+
+    // Simulate API calls
+    try {
+      const sourceArticle = await submitSourceArticleAsync({
+        sourceId: data.sourceId,
+        title: data.title,
+        url: data.url,
+        year: data.year,
+        publicationDate: data.publicationDate,
+      });
+      setProgress(10);
+
+      for (let i = 0; i < data.draftClassGrades.length; i++) {
+        const grade = data.draftClassGrades[i];
+        await submitDraftGradeAsync({
+          sourceArticleId: sourceArticle.id,
+          teamId: grade.teamId,
+          grade: grade.grade,
+          text: grade.comments,
+          year: data.year,
+        });
+        setProgress(10 + ((i + 1) / data.draftClassGrades.length) * 90);
+      }
+      toast({
+        title: 'Draft grades submitted',
+        description: 'All draft grades have been submitted successfully',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      });
+      reset();
+      setStep(1);
+      router.push('/draft-grades');
+    } catch (error) {
+      toast({
+        title: 'Error',
+        description: 'An error occurred while submitting the draft grades',
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      });
+    } finally {
+      setIsSubmitting(false);
+      setProgress(0);
+    }
   };
 
-  const nextStep = () =>
-    setStep((prevStep) => Math.min(prevStep + 1, steps.length - 1));
-  const prevStep = () => setStep((prevStep) => Math.max(prevStep - 1, 0));
+  const handleNext = async () => {
+    console.info('Handling next', 'step:', step);
+    let fieldsToValidate: FieldPath<FormValues>[] = [];
+    if (step === 1) {
+      fieldsToValidate = ['title', 'url', 'year', 'sourceId'];
+    } else if (step === 2) {
+      fieldsToValidate = draftClassFields.map(
+        (_, index) => `draftClassGrades.${index}.grade` as const,
+      );
+    }
+    console.info('We should be here');
+    const isStepValid = await trigger(fieldsToValidate);
+    if (isStepValid) {
+      setStep((prevStep) => prevStep + 1);
+    } else {
+      toast({
+        title: 'Error',
+        description: 'Please fix the errors before proceeding',
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+  };
+
+  const handlePrev = () => {
+    setStep((prevStep) => prevStep - 1);
+  };
+
+  const isNextDisabled = () => {
+    if (isSubmitting) return true;
+
+    if (step === 1) {
+      return !(
+        touchedFields.title &&
+        touchedFields.url &&
+        touchedFields.year &&
+        touchedFields.sourceId &&
+        !errors.title &&
+        !errors.url &&
+        !errors.year &&
+        !errors.sourceId
+      );
+    }
+
+    if (step === 2) {
+      return !draftClassFields.every(
+        (_, index) =>
+          touchedFields.draftClassGrades?.[index]?.grade &&
+          !errors.draftClassGrades?.[index]?.grade,
+      );
+    }
+
+    return false;
+  };
+
+  if (isLoading || teamsLoading) {
+    return (
+      <DashboardLayout>
+        <Box>Loading...</Box>
+      </DashboardLayout>
+    );
+  }
 
   return (
-    <Box maxWidth="container.xl" margin="auto" p={5}>
-      <Stepper index={step} mb={8}>
-        {steps.map((stepInfo, index) => (
-          <Step key={index}>
-            <StepIndicator>
-              <StepStatus
-                complete={<StepIcon />}
-                incomplete={<StepNumber />}
-                active={<StepNumber />}
-              />
-            </StepIndicator>
-            <Box flexShrink="0">
-              <StepTitle>{stepInfo.title}</StepTitle>
-              <StepDescription>{stepInfo.description}</StepDescription>
-            </Box>
-            <StepSeparator />
-          </Step>
-        ))}
-      </Stepper>
+    <DashboardLayout>
+      <Box maxWidth="container.xl" margin="auto" p={5}>
+        <FormStepper step={step} steps={steps} />
 
-      <form onSubmit={handleSubmit(onSubmit)}>
-        {step === 0 && (
-          <VStack spacing={4} align="stretch">
-            <FormControl isRequired>
-              <FormLabel>Source</FormLabel>
-              <Select {...register('sourceId', { required: true })}>
-                <option value="">Select a source</option>
-                {sources.map((source) => (
-                  <option key={source.id} value={source.id}>
-                    {source.name}
-                  </option>
-                ))}
-              </Select>
-            </FormControl>
-            <FormControl isRequired>
-              <FormLabel>Title</FormLabel>
-              <Input {...register('title', { required: true })} />
-            </FormControl>
-            <FormControl isRequired>
-              <FormLabel>URL</FormLabel>
-              <Input {...register('url', { required: true })} type="url" />
-            </FormControl>
-            <FormControl isRequired>
-              <FormLabel>Publication Date</FormLabel>
-              <Input
-                {...register('publicationDate', { required: true })}
-                type="date"
-              />
-            </FormControl>
-          </VStack>
-        )}
-
-        {step === 1 && (
-          <VStack spacing={4} align="stretch">
-            {draftClassFields.map((field, index) => (
-              <Box key={field.id} p={4} borderWidth={1} borderRadius="md">
-                <FormControl isRequired>
-                  <FormLabel>Team</FormLabel>
-                  <Select
-                    {...register(`draftClassGrades.${index}.teamId` as const, {
-                      required: true,
-                    })}
-                  >
-                    <option value="">Select a team</option>
-                    <option value="1">New England Patriots</option>
-                    <option value="2">Buffalo Bills</option>
-                    {/* Add more teams as needed */}
-                  </Select>
-                </FormControl>
-                <FormControl isRequired mt={2}>
-                  <FormLabel>Grade</FormLabel>
-                  <Input
-                    {...register(`draftClassGrades.${index}.grade` as const, {
-                      required: true,
-                    })}
-                  />
-                </FormControl>
-                <FormControl mt={2}>
-                  <FormLabel>Comments</FormLabel>
-                  <Textarea
-                    {...register(`draftClassGrades.${index}.comments` as const)}
-                  />
-                </FormControl>
-                {index > 0 && (
-                  <Button mt={2} onClick={() => removeDraftClass(index)}>
-                    Remove
-                  </Button>
-                )}
-              </Box>
-            ))}
-            <Button
-              onClick={() =>
-                appendDraftClass({ teamId: '', grade: '', comments: '' })
-              }
-            >
-              Add Another Team Grade
-            </Button>
-          </VStack>
-        )}
-
-        {step === 2 && (
-          <VStack spacing={4} align="stretch">
-            {playerFields.map((field, index) => (
-              <Box key={field.id} p={4} borderWidth={1} borderRadius="md">
-                <FormControl isRequired>
-                  <FormLabel>Player</FormLabel>
-                  <Select
-                    {...register(`playerGrades.${index}.playerId` as const, {
-                      required: true,
-                    })}
-                  >
-                    <option value="">Select a player</option>
-                    <option value="1">Tom Brady</option>
-                    <option value="2">Patrick Mahomes</option>
-                    {/* Add more players as needed */}
-                  </Select>
-                </FormControl>
-                <FormControl isRequired mt={2}>
-                  <FormLabel>Grade</FormLabel>
-                  <Input
-                    {...register(`playerGrades.${index}.grade` as const, {
-                      required: true,
-                    })}
-                  />
-                </FormControl>
-                <FormControl mt={2}>
-                  <FormLabel>Comments</FormLabel>
-                  <Textarea
-                    {...register(`playerGrades.${index}.comments` as const)}
-                  />
-                </FormControl>
-                {index > 0 && (
-                  <Button mt={2} onClick={() => removePlayer(index)}>
-                    Remove
-                  </Button>
-                )}
-              </Box>
-            ))}
-            <Button
-              onClick={() =>
-                appendPlayer({ playerId: '', grade: '', comments: '' })
-              }
-            >
-              Add Another Player Grade
-            </Button>
-          </VStack>
-        )}
-
-        {step === 3 && (
-          <VStack spacing={4} align="stretch">
-            <Text fontSize="xl" fontWeight="bold">
-              Review Your Submission
-            </Text>
-            <Text fontSize="large" mt={12}>
-              Source info:
-            </Text>
-            <hr />
-            <Text>
-              Source:{' '}
-              {
-                sources.find((source) => source.id === getValues().sourceId)
-                  ?.name
-              }
-            </Text>
-            <Text>Title: {getValues().title}</Text>
-            <Text>URL: {getValues().url}</Text>
-            <Text>Publication Date: {getValues().publicationDate}</Text>
-            <Text fontSize="large" mt={12}>
-              Draft Class Grades:
-            </Text>
-            <hr />
-            {getValues().draftClassGrades.map((field, index) => (
-              <Box key={index}>
-                <Text>Team: {field.teamId}</Text>
-                <Text>Grade: {field.grade}</Text>
-                <Text>Comments: {field.comments}</Text>
-              </Box>
-            ))}
-            <Text fontSize="large" mt={12}>
-              Player Grades:
-            </Text>
-            <hr />
-            {getValues().playerGrades.map((field, index) => (
-              <Box key={index}>
-                <Text>Player: {field.playerId}</Text>
-                <Text>Grade: {field.grade}</Text>
-                <Text>Comments: {field.comments}</Text>
-              </Box>
-            ))}
-          </VStack>
-        )}
-
-        <HStack justifyContent="space-between" mt={8}>
-          {step > 0 && <Button onClick={prevStep}>Previous</Button>}
-          {step < steps.length - 1 ? (
-            <Button onClick={nextStep}>Next</Button>
-          ) : (
-            <Button type="submit" colorScheme="blue">
-              Submit
-            </Button>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Progress
+            value={progress}
+            mb={8}
+            isIndeterminate={isSubmitting && progress === 0}
+          />
+          {step === 1 && (
+            <SourceArticleStep
+              control={control}
+              errors={errors}
+              sources={sources}
+            />
           )}
-        </HStack>
-      </form>
-    </Box>
+          {step === 2 && (
+            <TeamGradesStep
+              control={control}
+              errors={errors}
+              fields={draftClassFields}
+              teams={teams}
+              sources={sources}
+            />
+          )}
+          {step === 3 && (
+            <ReviewStep
+              watch={watch}
+              setStep={setStep}
+              teams={teams}
+              sources={sources}
+            />
+          )}
+
+          <NavigationButtons
+            step={step}
+            onBack={handlePrev}
+            onNext={handleNext}
+            isNextDisabled={isNextDisabled}
+            isSubmitting={isSubmitting}
+          />
+        </form>
+      </Box>
+    </DashboardLayout>
   );
 };
 

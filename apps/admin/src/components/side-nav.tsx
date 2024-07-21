@@ -8,6 +8,7 @@ import {
   faRulerVertical,
   faNewspaper,
   faBars,
+  faWandSparkles,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   Accordion,
@@ -71,6 +72,11 @@ const navItems: (NavItem | NavCategory)[] = [
         name: 'Source articles',
         path: '/source-articles',
         icon: <FontAwesomeIcon icon={faNewspaper} />,
+      },
+      {
+        name: 'Add source article',
+        path: '/source-articles/create',
+        icon: <FontAwesomeIcon icon={faWandSparkles} />,
       },
     ],
   },
