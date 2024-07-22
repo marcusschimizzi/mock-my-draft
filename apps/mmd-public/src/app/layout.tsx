@@ -33,7 +33,10 @@ export default function RootLayout({
             maxW="80rem"
             margin="0 auto"
             width="100%"
-            padding="0 2rem"
+            padding={{
+              base: '5px',
+              md: '0 2rem',
+            }}
             position="relative"
           >
             {children}
