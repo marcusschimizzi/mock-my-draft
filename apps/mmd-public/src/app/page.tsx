@@ -19,7 +19,7 @@ import {
 } from '@chakra-ui/react';
 import { useDraftSummary } from '../lib/draft-summary';
 import { useEffect, useState } from 'react';
-import { TeamDraftSummary } from '../types';
+import { TeamDraftSummary, Team } from '../types';
 import {
   ResponsiveContainer,
   BarChart,
@@ -30,7 +30,16 @@ import {
   Cell,
 } from 'recharts';
 import Card from '../components/card';
-import { getContrastingColor, getGradeColor } from '../lib/grade-utils';
+import {
+  getContrastingColor,
+  getGradeColor,
+  gradeToLetter,
+} from '../lib/grade-utils';
+
+interface GradeRange {
+  team: Team;
+  range: [number, number];
+}
 
 export default function Home() {
   const [year, setYear] = useState(2024);
@@ -39,6 +48,7 @@ export default function Home() {
   const [sortedTeams, setSortedTeams] = useState<TeamDraftSummary[] | null>(
     null,
   );
+  const [gradeRanges, setGradeRanges] = useState<GradeRange[] | null>(null);
 
   useEffect(() => {
     if (!draftSummary) {
@@ -48,6 +58,22 @@ export default function Home() {
     setSortedTeams(
       draftSummary.teams.sort((a, b) => b.averageGrade - a.averageGrade),
     );
+
+    const gradeRanges: GradeRange[] = [];
+    draftSummary.teams.forEach((team) => {
+      const min = Math.min(
+        ...team.draftGrades.map((grade) => grade.gradeNumeric),
+      );
+      const max = Math.max(
+        ...team.draftGrades.map((grade) => grade.gradeNumeric),
+      );
+      gradeRanges.push({
+        team: team.team,
+        range: [min, max],
+      });
+    });
+
+    setGradeRanges(gradeRanges);
   }, [draftSummary]);
 
   useEffect(() => {
@@ -192,6 +218,112 @@ export default function Home() {
           </Card>
         </HStack>
       </Box>
+      {gradeRanges && (
+        <Card py={8}>
+          <Heading size="md">Grade ranges</Heading>
+          <ResponsiveContainer width="100%" height={400}>
+            <BarChart data={gradeRanges}>
+              <XAxis
+                dataKey="team.abbreviation"
+                height={40}
+                tick={({ x, y, payload }) => {
+                  return (
+                    <g transform={`translate(${x},${y})`}>
+                      <text x={0} y={0} dy={16} textAnchor="middle" fill="#666">
+                        {payload.value}
+                      </text>
+                    </g>
+                  );
+                }}
+              />
+              <YAxis
+                label={{
+                  value: 'Grade Range',
+                  angle: -90,
+                  position: 'insideLeft',
+                }}
+                domain={[0, 4.3]}
+                tick={(props) => {
+                  console.info('props', props);
+                  return (
+                    <g transform={`translate(${props.x},${props.y})`}>
+                      <text
+                        x={0}
+                        y={0}
+                        textAnchor="end"
+                        alignmentBaseline="middle"
+                        fill="#666"
+                      >
+                        {gradeToLetter(props.payload.value)}
+                      </text>
+                    </g>
+                  );
+                }}
+                tickCount={3}
+              />
+              <Tooltip
+                content={({ payload }) => {
+                  if (!payload || !payload.length) {
+                    return null;
+                  }
+                  const gradeRange = payload[0].payload as GradeRange;
+                  const team = gradeRange.team;
+                  return (
+                    <Box
+                      bg="white"
+                      p={4}
+                      rounded="md"
+                      borderColor={team.colors[1]}
+                      borderStyle={'solid'}
+                      borderWidth={3}
+                    >
+                      <Box>
+                        <TeamLogo
+                          size="medium"
+                          teamAbbreviation={team.abbreviation}
+                        />
+                      </Box>
+                      <Text fontWeight="bold">{team.name}</Text>
+                      <Text fontWeight="bold">
+                        <Badge
+                          bg={getGradeColor(gradeRange.range[0])}
+                          color={getContrastingColor(
+                            getGradeColor(gradeRange.range[0]),
+                          )}
+                          mr={2}
+                          p={1}
+                          fontSize={'0.9rem'}
+                        >
+                          {gradeToLetter(gradeRange.range[0])}
+                        </Badge>
+                        to
+                        <Badge
+                          ml={2}
+                          p={1}
+                          fontSize={'0.9rem'}
+                          bg={getGradeColor(gradeRange.range[1])}
+                          color={getContrastingColor(
+                            getGradeColor(gradeRange.range[1]),
+                          )}
+                        >
+                          {gradeToLetter(gradeRange.range[1])}
+                        </Badge>
+                      </Text>
+                    </Box>
+                  );
+                }}
+              />
+              <Bar dataKey="range" fill="#8884d8">
+                {gradeRanges?.map((entry: GradeRange) => {
+                  return (
+                    <Cell key={entry.team.id} fill={entry.team.colors[0]} />
+                  );
+                })}
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
+        </Card>
+      )}
       <Box py={8}>
         <Card>
           <TableContainer>
