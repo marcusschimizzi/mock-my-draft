@@ -20,6 +20,18 @@ import {
   Tr,
   Text,
   Badge,
+  Wrap,
+  WrapItem,
+  SimpleGrid,
+  useBreakpointValue,
+  Accordion,
+  AccordionItem,
+  AccordionPanel,
+  AccordionButton,
+  AccordionIcon,
+  HStack,
+  Link,
+  Button,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { useTeamDraftSummary } from '../../../lib/draft-summary';
@@ -45,6 +57,7 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
   const { draftSummary, isLoading } = useTeamDraftSummary(2024, params.teamId);
   const [sortedGrades, setSortedGrades] = useState<DraftGrade[] | null>(null);
   const [gradeCounts, setGradeCounts] = useState<GradeCount[] | null>(null);
+  const isMobile = useBreakpointValue({ base: true, md: false });
 
   useEffect(() => {
     if (!draftSummary) {
@@ -98,18 +111,50 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
               {capitalize(draftSummary.team.name)}
             </Heading>
           </Flex>
-          <StatGroup marginTop={16} mb={16}>
-            <Card flex={1} h={36} mr={2}>
+          <SimpleGrid
+            marginTop={16}
+            mb={16}
+            columns={{
+              base: 1,
+              md: 3,
+            }}
+            rowGap={4}
+            columnGap={4}
+          >
+            <Card flex={1} h={36}>
               <Stat>
                 <StatLabel>Average grade</StatLabel>
-                <StatNumber>{draftSummary?.averageGrade.toFixed(2)}</StatNumber>
+                <StatNumber>
+                  <Badge
+                    mt={2}
+                    fontSize="2rem"
+                    bg={getGradeColor(draftSummary.averageGrade)}
+                    color={getContrastingColor(
+                      getGradeColor(draftSummary.averageGrade),
+                    )}
+                  >
+                    {draftSummary?.averageGrade.toFixed(2)}
+                  </Badge>
+                </StatNumber>
               </Stat>
             </Card>
             {sortedGrades && (
-              <Card flex={1} h={36} mx={2}>
+              <Card flex={1} h={36}>
                 <Stat>
                   <StatLabel>Highest grade</StatLabel>
-                  <StatNumber>{capitalize(sortedGrades[0].grade)}</StatNumber>
+                  <StatNumber>
+                    {' '}
+                    <Badge
+                      mt={2}
+                      fontSize="2rem"
+                      bg={getGradeColor(sortedGrades[0].grade)}
+                      color={getContrastingColor(
+                        getGradeColor(sortedGrades[0].grade),
+                      )}
+                    >
+                      {capitalize(sortedGrades[0].grade)}
+                    </Badge>
+                  </StatNumber>
                   <StatHelpText>
                     Source: {sortedGrades[0].sourceArticle.source.name}
                   </StatHelpText>
@@ -117,11 +162,24 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
               </Card>
             )}
             {sortedGrades && (
-              <Card flex={1} h={36} ml={2}>
+              <Card flex={1} h={36}>
                 <Stat>
                   <StatLabel>Lowest grade</StatLabel>
                   <StatNumber>
-                    {capitalize(sortedGrades[sortedGrades.length - 1].grade)}
+                    <Badge
+                      mt={2}
+                      fontSize="2rem"
+                      bg={getGradeColor(
+                        sortedGrades[sortedGrades.length - 1].grade,
+                      )}
+                      color={getContrastingColor(
+                        getGradeColor(
+                          sortedGrades[sortedGrades.length - 1].grade,
+                        ),
+                      )}
+                    >
+                      {capitalize(sortedGrades[sortedGrades.length - 1].grade)}
+                    </Badge>
                   </StatNumber>
                   <StatHelpText>
                     Source:{' '}
@@ -133,7 +191,7 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
                 </Stat>
               </Card>
             )}
-          </StatGroup>
+          </SimpleGrid>
           {gradeCounts && (
             <Card mb={16}>
               <Heading size="md">Grade distribution</Heading>
@@ -190,48 +248,108 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
             </Card>
           )}
           <Card mb={16}>
-            <TableContainer marginTop={16} overflowX="auto">
-              <Table overflowX="auto" width="max-content">
-                <Thead>
-                  <Tr>
-                    <Th>Source</Th>
-                    <Th>Grade</Th>
-                    <Th>Evaluation</Th>
-                  </Tr>
-                </Thead>
-                <Tbody>
-                  {draftSummary.draftGrades.map(
-                    (response: DraftGrade, index: number) => (
-                      <Tr key={index}>
-                        <Td>
-                          {capitalize(response.sourceArticle.source.name)}
-                        </Td>
-                        <Td>
-                          <Badge
-                            bg={getGradeColor(response.grade)}
-                            color={getContrastingColor(
-                              getGradeColor(response.grade),
-                            )}
-                            fontSize={'1.2rem'}
-                            padding={2}
-                          >
-                            {capitalize(response.grade)}
-                          </Badge>
-                        </Td>
-                        <Td
-                          whiteSpace="normal"
-                          overflowWrap="break-word"
-                          minWidth="150px"
-                          maxWidth="800px"
+            {isMobile ? (
+              <Accordion allowToggle>
+                {draftSummary.draftGrades.map((grade: DraftGrade, index) => (
+                  <AccordionItem key={grade.id}>
+                    <Heading
+                      borderBottom={'1px solid'}
+                      p={2}
+                      borderColor="gray.100"
+                    >
+                      <AccordionButton>
+                        <Box flex="1" textAlign="left">
+                          <HStack justifyContent="space-between" mr={2}>
+                            <Text>{grade.sourceArticle.source.name}</Text>
+                            <Badge
+                              bg={getGradeColor(grade.grade)}
+                              color={getContrastingColor(
+                                getGradeColor(grade.grade),
+                              )}
+                              fontSize={'1.2rem'}
+                              padding={2}
+                            >
+                              {capitalize(grade.grade)}
+                            </Badge>
+                          </HStack>
+                        </Box>
+                        <AccordionIcon />
+                      </AccordionButton>
+                    </Heading>
+                    <AccordionPanel>
+                      <Text>{grade.text}</Text>
+                      <Text mt={2}>
+                        <Button
+                          as={Link}
+                          variant={'link'}
+                          href={grade.sourceArticle.url}
+                          target="_blank"
+                          rel="noreferrer noopener"
+                          colorScheme={'blue'}
                         >
-                          {response.text}
-                        </Td>
-                      </Tr>
-                    ),
-                  )}
-                </Tbody>
-              </Table>
-            </TableContainer>
+                          View Source
+                        </Button>
+                      </Text>
+                    </AccordionPanel>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            ) : (
+              <TableContainer marginTop={16} overflowX="auto">
+                <Table overflowX="auto" width="max-content">
+                  <Thead>
+                    <Tr>
+                      <Th>Source</Th>
+                      <Th>Grade</Th>
+                      <Th>Evaluation</Th>
+                    </Tr>
+                  </Thead>
+                  <Tbody>
+                    {draftSummary.draftGrades.map(
+                      (response: DraftGrade, index: number) => (
+                        <Tr key={index}>
+                          <Td>
+                            {capitalize(response.sourceArticle.source.name)}
+                          </Td>
+                          <Td>
+                            <Badge
+                              bg={getGradeColor(response.grade)}
+                              color={getContrastingColor(
+                                getGradeColor(response.grade),
+                              )}
+                              fontSize={'1.2rem'}
+                              padding={2}
+                            >
+                              {capitalize(response.grade)}
+                            </Badge>
+                          </Td>
+                          <Td
+                            whiteSpace="normal"
+                            overflowWrap="break-word"
+                            minWidth="150px"
+                            maxWidth="800px"
+                          >
+                            <Text>{response.text}</Text>
+                            <Text mt={2}>
+                              <Button
+                                as={Link}
+                                variant={'link'}
+                                href={response.sourceArticle.url}
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                colorScheme={'blue'}
+                              >
+                                View Source
+                              </Button>
+                            </Text>
+                          </Td>
+                        </Tr>
+                      ),
+                    )}
+                  </Tbody>
+                </Table>
+              </TableContainer>
+            )}
           </Card>
         </>
       )}

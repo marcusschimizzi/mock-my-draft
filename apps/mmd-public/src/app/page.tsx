@@ -2,12 +2,19 @@
 import TeamLogo from '../components/team-logo';
 import { capitalize } from '../lib/common-utils';
 import {
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
   Badge,
   Box,
   Container,
   HStack,
   Heading,
   List,
+  ListItem,
+  SimpleGrid,
   Table,
   TableContainer,
   Tbody,
@@ -16,6 +23,7 @@ import {
   Th,
   Thead,
   Tr,
+  useBreakpointValue,
 } from '@chakra-ui/react';
 import { useDraftSummary } from '../lib/draft-summary';
 import { useEffect, useState } from 'react';
@@ -49,6 +57,7 @@ export default function Home() {
     null,
   );
   const [gradeRanges, setGradeRanges] = useState<GradeRange[] | null>(null);
+  const isMobile = useBreakpointValue({ base: true, md: false });
 
   useEffect(() => {
     if (!draftSummary) {
@@ -108,21 +117,22 @@ export default function Home() {
   }
 
   return (
-    <Container as="main" maxW="container.xl">
+    <Container as="main" maxW="container.xl" padding={0}>
       <Heading>2024 NFL Draft Class Grades</Heading>
-      <Box py={8}>
+      <Card py={8}>
         <ResponsiveContainer width="100%" height={400}>
           <BarChart
             data={draftSummary?.teams}
             margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
           >
-            <XAxis dataKey="team.name" />
+            <XAxis dataKey="team.abbreviation" />
             <YAxis
               label={{
                 value: 'Average Grade',
                 angle: -90,
                 position: 'insideLeft',
               }}
+              domain={[0, 4.3]}
             />
             <Tooltip
               content={({ active, payload, label }) => {
@@ -146,7 +156,7 @@ export default function Home() {
                         teamAbbreviation={team.abbreviation}
                       />
                     </Box>
-                    <Text fontWeight="bold">{label}</Text>
+                    <Text fontWeight="bold">{team.name}</Text>
                     <Text fontWeight="bold">
                       Average: {draftSummary.averageGrade.toFixed(2)}
                     </Text>
@@ -161,10 +171,17 @@ export default function Home() {
             </Bar>
           </BarChart>
         </ResponsiveContainer>
-      </Box>
+      </Card>
       <Box py={8}>
-        <HStack>
-          <Card flex={1} mr={2}>
+        <SimpleGrid
+          columns={{
+            base: 1,
+            md: 2,
+          }}
+          columnGap={4}
+          rowGap={4}
+        >
+          <Card flex={1}>
             <Heading size="md">Top performers</Heading>
             <List>
               {sortedTeams &&
@@ -182,6 +199,7 @@ export default function Home() {
                         color={getContrastingColor(
                           getGradeColor(team.averageGrade),
                         )}
+                        fontSize="1.1rem"
                       >
                         {team.averageGrade.toFixed(2)}
                       </Badge>
@@ -190,7 +208,7 @@ export default function Home() {
                 ))}
             </List>
           </Card>
-          <Card flex={1} ml={2}>
+          <Card flex={1}>
             <Heading size="md">Bottom performers</Heading>
             <List>
               {sortedTeams &&
@@ -208,6 +226,7 @@ export default function Home() {
                         color={getContrastingColor(
                           getGradeColor(team.averageGrade),
                         )}
+                        fontSize="1.1rem"
                       >
                         {team.averageGrade.toFixed(2)}
                       </Badge>
@@ -216,11 +235,13 @@ export default function Home() {
                 ))}
             </List>
           </Card>
-        </HStack>
+        </SimpleGrid>
       </Box>
       {gradeRanges && (
-        <Card py={8}>
-          <Heading size="md">Grade ranges</Heading>
+        <Card py={8} my={8}>
+          <Box mb={4} w="full" textAlign="center">
+            <Heading size="md">Grade ranges</Heading>
+          </Box>
           <ResponsiveContainer width="100%" height={400}>
             <BarChart data={gradeRanges}>
               <XAxis
@@ -313,7 +334,7 @@ export default function Home() {
                   );
                 }}
               />
-              <Bar dataKey="range" fill="#8884d8">
+              <Bar dataKey="range">
                 {gradeRanges?.map((entry: GradeRange) => {
                   return (
                     <Cell key={entry.team.id} fill={entry.team.colors[0]} />
@@ -324,8 +345,8 @@ export default function Home() {
           </ResponsiveContainer>
         </Card>
       )}
-      <Box py={8}>
-        <Card>
+      {!isMobile ? (
+        <Card py={8} my={8}>
           <TableContainer>
             <Table variant="simple">
               <Thead>
@@ -354,11 +375,33 @@ export default function Home() {
                       {entry.draftGrades.map((grade) => {
                         return (
                           <Td key={grade.id}>
-                            <Text>{grade.grade}</Text>
+                            <Badge
+                              bg={getGradeColor(grade.grade)}
+                              color={getContrastingColor(
+                                getGradeColor(grade.grade),
+                              )}
+                              fontSize="1.1rem"
+                              py={1}
+                              px={2}
+                            >
+                              {grade.grade}
+                            </Badge>
                           </Td>
                         );
                       })}
-                      <Td>{entry.averageGrade.toFixed(2)}</Td>
+                      <Td>
+                        <Badge
+                          bg={getGradeColor(entry.averageGrade)}
+                          color={getContrastingColor(
+                            getGradeColor(entry.averageGrade),
+                          )}
+                          fontSize="1.1rem"
+                          py={1}
+                          px={2}
+                        >
+                          {entry.averageGrade.toFixed(2)}
+                        </Badge>
+                      </Td>
                     </Tr>
                   );
                 })}
@@ -366,7 +409,71 @@ export default function Home() {
             </Table>
           </TableContainer>
         </Card>
-      </Box>
+      ) : (
+        <Card py={8} my={8}>
+          <Accordion allowToggle>
+            {draftSummary?.teams.map((entry: TeamDraftSummary) => {
+              return (
+                <AccordionItem key={entry.team.id}>
+                  <Heading borderBottom="1px solid" borderColor="gray.100">
+                    <AccordionButton>
+                      <Box as="span" flex="1" textAlign="left">
+                        <HStack>
+                          <TeamLogo
+                            teamAbbreviation={entry.team.abbreviation}
+                            size="medium"
+                            href={`/teams/${entry.team.id}`}
+                          />
+                          <Text marginLeft={5}>{entry.team.name}</Text>
+                        </HStack>
+                      </Box>
+                      <AccordionIcon />
+                    </AccordionButton>
+                  </Heading>
+                  <AccordionPanel pb={4}>
+                    <List>
+                      {entry.draftGrades
+                        .sort((a, b) =>
+                          a.sourceArticle.source.name >
+                          b.sourceArticle.source.name
+                            ? 1
+                            : -1,
+                        )
+                        .map((grade) => {
+                          return (
+                            <ListItem
+                              key={grade.id}
+                              my={3}
+                              w="full"
+                              display="flex"
+                              justifyContent="space-between"
+                            >
+                              <Text as="span">
+                                {capitalize(grade.sourceArticle.source.name)}
+                              </Text>
+                              <Badge
+                                bg={getGradeColor(grade.grade)}
+                                color={getContrastingColor(
+                                  getGradeColor(grade.grade),
+                                )}
+                                fontSize="1.1rem"
+                                py={1}
+                                px={2}
+                                mr={2}
+                              >
+                                {grade.grade}
+                              </Badge>
+                            </ListItem>
+                          );
+                        })}
+                    </List>
+                  </AccordionPanel>
+                </AccordionItem>
+              );
+            })}
+          </Accordion>
+        </Card>
+      )}
     </Container>
   );
 }
