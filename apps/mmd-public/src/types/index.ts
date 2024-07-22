@@ -1,11 +1,13 @@
+export interface Team {
+  id: string;
+  name: string;
+  abbreviation: string;
+  logo: string;
+  colors: string[];
+}
+
 export interface TeamDraftSummary {
-  team: {
-    id: string;
-    name: string;
-    abbreviation: string;
-    logo: string;
-    colors: string[];
-  };
+  team: Team;
   draftGrades: DraftGrade[];
   averageGrade: number;
 }
