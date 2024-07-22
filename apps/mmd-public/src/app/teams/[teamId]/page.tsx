@@ -2,6 +2,7 @@
 import TeamLogo from '../../../components/team-logo';
 import { capitalize } from '../../../lib/common-utils';
 import {
+  Box,
   Container,
   Flex,
   Heading,
@@ -17,39 +18,61 @@ import {
   Th,
   Thead,
   Tr,
+  Text,
+  Badge,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { useTeamDraftSummary } from '../../../lib/draft-summary';
 import { DraftGrade } from '../../../types';
 import Card from '../../../components/card';
+import {
+  Bar,
+  BarChart,
+  Cell,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from 'recharts';
+import { getContrastingColor, getGradeColor } from '../../../lib/grade-utils';
+
+interface GradeCount {
+  grade: string;
+  count: number;
+}
 
 export default function TeamPage({ params }: { params: { teamId: string } }) {
   const { draftSummary, isLoading } = useTeamDraftSummary(2024, params.teamId);
-  const [highestGrade, setHighestGrade] = useState<DraftGrade | null>(null);
-  const [lowestGrade, setLowestGrade] = useState<DraftGrade | null>(null);
+  const [sortedGrades, setSortedGrades] = useState<DraftGrade[] | null>(null);
+  const [gradeCounts, setGradeCounts] = useState<GradeCount[] | null>(null);
 
   useEffect(() => {
     if (!draftSummary) {
       return;
     }
 
-    setHighestGrade(
-      draftSummary.draftGrades.reduce((acc: DraftGrade, grade) => {
-        if (grade.gradeNumeric > acc.gradeNumeric) {
-          return grade;
-        }
-        return acc;
-      }),
+    setSortedGrades(
+      draftSummary.draftGrades
+        .sort((a, b) => b.gradeNumeric - a.gradeNumeric)
+        .map((grade) => ({
+          ...grade,
+          grade: grade.grade.toUpperCase(),
+        })),
     );
 
-    setLowestGrade(
-      draftSummary.draftGrades.reduce((acc: DraftGrade, grade) => {
-        if (grade.gradeNumeric < acc.gradeNumeric) {
-          return grade;
-        }
-        return acc;
-      }),
-    );
+    const counts: GradeCount[] = [];
+    for (const grade of draftSummary.draftGrades.map((g) => ({
+      ...g,
+      grade: g.grade.toUpperCase(),
+    }))) {
+      const existingGrade = counts.find((g) => g.grade === grade.grade);
+      if (existingGrade) {
+        existingGrade.count++;
+      } else {
+        counts.push({ grade: grade.grade, count: 1 });
+      }
+    }
+    setGradeCounts(counts);
   }, [draftSummary]);
 
   if (!draftSummary && !isLoading) {
@@ -82,29 +105,90 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
                 <StatNumber>{draftSummary?.averageGrade.toFixed(2)}</StatNumber>
               </Stat>
             </Card>
-            {highestGrade && (
+            {sortedGrades && (
               <Card flex={1} h={36} mx={2}>
                 <Stat>
                   <StatLabel>Highest grade</StatLabel>
-                  <StatNumber>{capitalize(highestGrade.grade)}</StatNumber>
+                  <StatNumber>{capitalize(sortedGrades[0].grade)}</StatNumber>
                   <StatHelpText>
-                    Source: {highestGrade.sourceArticle.source.name}
+                    Source: {sortedGrades[0].sourceArticle.source.name}
                   </StatHelpText>
                 </Stat>
               </Card>
             )}
-            {lowestGrade && (
+            {sortedGrades && (
               <Card flex={1} h={36} ml={2}>
                 <Stat>
                   <StatLabel>Lowest grade</StatLabel>
-                  <StatNumber>{capitalize(lowestGrade.grade)}</StatNumber>
+                  <StatNumber>
+                    {capitalize(sortedGrades[sortedGrades.length - 1].grade)}
+                  </StatNumber>
                   <StatHelpText>
-                    Source: {lowestGrade.sourceArticle.source.name}
+                    Source:{' '}
+                    {
+                      sortedGrades[sortedGrades.length - 1].sourceArticle.source
+                        .name
+                    }
                   </StatHelpText>
                 </Stat>
               </Card>
             )}
           </StatGroup>
+          {gradeCounts && (
+            <Card mb={16}>
+              <Heading size="md">Grade distribution</Heading>
+              <Box>
+                <ResponsiveContainer width="100%" height={300}>
+                  <BarChart data={gradeCounts}>
+                    <XAxis dataKey="grade" />
+                    <YAxis />
+                    <Tooltip
+                      content={({ active, payload, label }) => {
+                        if (!active || !payload || !label) {
+                          return null;
+                        }
+
+                        const grade = payload[0].payload as GradeCount;
+                        const sources = draftSummary.draftGrades.filter(
+                          (g) =>
+                            g.grade.toUpperCase() === grade.grade.toUpperCase(),
+                        );
+                        return (
+                          <Box
+                            bg="white"
+                            p={4}
+                            rounded="md"
+                            borderColor={getGradeColor(grade.grade)}
+                            borderStyle={'solid'}
+                            borderWidth={3}
+                          >
+                            <Text fontWeight="bold">{grade.grade}</Text>
+                            <Text fontWeight="bold">Count: {grade.count}</Text>
+                            <Text fontWeight="bold">
+                              Sources:{' '}
+                              {sources
+                                .map((s) =>
+                                  capitalize(s.sourceArticle.source.name),
+                                )
+                                .join(', ')}
+                            </Text>
+                          </Box>
+                        );
+                      }}
+                    />
+                    <Bar dataKey="count">
+                      {gradeCounts.map((entry, index) => (
+                        <Cell
+                          key={`cell-${index}`}
+                          fill={getGradeColor(entry.grade)}
+                        />
+                      ))}
+                    </Bar>
+                  </BarChart>
+                </ResponsiveContainer>
+              </Box>
+            </Card>
+          )}
           <Card mb={16}>
             <TableContainer marginTop={16} overflowX="auto">
               <Table overflowX="auto" width="max-content">
@@ -122,7 +206,18 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
                         <Td>
                           {capitalize(response.sourceArticle.source.name)}
                         </Td>
-                        <Td>{capitalize(response.grade)}</Td>
+                        <Td>
+                          <Badge
+                            bg={getGradeColor(response.grade)}
+                            color={getContrastingColor(
+                              getGradeColor(response.grade),
+                            )}
+                            fontSize={'1.2rem'}
+                            padding={2}
+                          >
+                            {capitalize(response.grade)}
+                          </Badge>
+                        </Td>
                         <Td
                           whiteSpace="normal"
                           overflowWrap="break-word"
