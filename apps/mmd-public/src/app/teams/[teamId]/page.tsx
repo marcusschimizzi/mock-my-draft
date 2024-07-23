@@ -32,9 +32,10 @@ import {
   HStack,
   Link,
   Button,
+  Select,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
-import { useTeamDraftSummary } from '../../../lib/draft-summary';
+import { useTeamDraftSummary, useYears } from '../../../lib/draft-summary';
 import { DraftGrade } from '../../../types';
 import Card from '../../../components/card';
 import {
@@ -54,10 +55,18 @@ interface GradeCount {
 }
 
 export default function TeamPage({ params }: { params: { teamId: string } }) {
-  const { draftSummary, isLoading } = useTeamDraftSummary(2024, params.teamId);
+  const [year, setYear] = useState(2024);
+  const { years, isLoading: isYearsLoading } = useYears();
+  const { draftSummary, isLoading } = useTeamDraftSummary(year, params.teamId);
   const [sortedGrades, setSortedGrades] = useState<DraftGrade[] | null>(null);
   const [gradeCounts, setGradeCounts] = useState<GradeCount[] | null>(null);
   const isMobile = useBreakpointValue({ base: true, md: false });
+
+  useEffect(() => {
+    if (years) {
+      setYear(years[0]);
+    }
+  }, [years]);
 
   useEffect(() => {
     if (!draftSummary) {
@@ -102,14 +111,26 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
         <Heading>Team not found</Heading>
       ) : (
         <>
-          <Flex alignItems="center">
-            <TeamLogo
-              teamAbbreviation={draftSummary.team.abbreviation}
-              size="medium"
-            />
-            <Heading paddingLeft={5}>
-              {capitalize(draftSummary.team.name)}
-            </Heading>
+          <Flex justifyContent="space-between">
+            <HStack as="span">
+              <TeamLogo
+                teamAbbreviation={draftSummary.team.abbreviation}
+                size="medium"
+              />
+              <Heading>{capitalize(draftSummary.team.name)}</Heading>
+            </HStack>
+            <Box as="span" display="inline-block">
+              <Select
+                value={year}
+                onChange={(e) => setYear(parseInt(e.target.value))}
+              >
+                {years?.map((year) => (
+                  <option key={year} value={year}>
+                    {year}
+                  </option>
+                ))}
+              </Select>
+            </Box>
           </Flex>
           <SimpleGrid
             marginTop={16}

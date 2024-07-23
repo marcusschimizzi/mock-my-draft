@@ -8,6 +8,7 @@ export class DraftSummaryController {
     this.draftSummaryService = new DraftSummaryService();
     this.getDraftSummary = this.getDraftSummary.bind(this);
     this.getTeamDraftSummary = this.getTeamDraftSummary.bind(this);
+    this.getYears = this.getYears.bind(this);
   }
 
   async getDraftSummary(req: Request, res: Response) {
@@ -17,6 +18,16 @@ export class DraftSummaryController {
       res.status(200).json(summary);
     } catch (error) {
       console.error('Error getting draft summary:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  }
+
+  async getYears(req: Request, res: Response) {
+    try {
+      const years = await this.draftSummaryService.getYears();
+      res.status(200).json(years);
+    } catch (error) {
+      console.error('Error getting years:', error);
       res.status(500).json({ message: 'Internal server error' });
     }
   }

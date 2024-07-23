@@ -27,10 +27,10 @@ export class DraftPickTrade {
   @JoinColumn({ name: 'to_team_id' })
   toTeam: Team;
 
-  @Column()
-  tradeDate: Date;
+  @Column({ type: 'date', nullable: true })
+  tradeDate?: Date;
 
-  @Column()
+  @Column({ nullable: true })
   tradeDetails?: string;
 
   @CreateDateColumn()

@@ -22,14 +22,14 @@ export class PlayerGrade {
   @JoinColumn({ name: 'draft_pick_id' })
   draftPick: DraftPick;
 
-  @Column()
-  grade: string;
+  @Column({ nullable: true })
+  grade?: string;
 
-  @Column({ type: 'float' })
-  gradeNumeric: number;
+  @Column({ type: 'float', nullable: true })
+  gradeNumeric?: number;
 
-  @Column()
-  text: string;
+  @Column({ nullable: true })
+  text?: string;
 
   @CreateDateColumn()
   createdAt: Date;

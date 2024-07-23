@@ -14,6 +14,7 @@ import {
   Heading,
   List,
   ListItem,
+  Select,
   SimpleGrid,
   Table,
   TableContainer,
@@ -25,7 +26,7 @@ import {
   Tr,
   useBreakpointValue,
 } from '@chakra-ui/react';
-import { useDraftSummary } from '../lib/draft-summary';
+import { useDraftSummary, useYears } from '../lib/draft-summary';
 import { useEffect, useState } from 'react';
 import { TeamDraftSummary, Team } from '../types';
 import {
@@ -52,6 +53,7 @@ interface GradeRange {
 export default function Home() {
   const [year, setYear] = useState(2024);
   const { draftSummary, isLoading } = useDraftSummary(year);
+  const { years, isLoading: isYearsLoading } = useYears();
   const [sources, setSources] = useState<string[]>([]);
   const [sortedTeams, setSortedTeams] = useState<TeamDraftSummary[] | null>(
     null,
@@ -100,6 +102,13 @@ export default function Home() {
     setSources([...new Set(sources)]);
   }, [draftSummary]);
 
+  useEffect(() => {
+    if (!years || !years.length) {
+      return;
+    }
+    setYear(years[0]);
+  }, [years]);
+
   if (!draftSummary && !isLoading) {
     return (
       <Container as="main" maxW="container.xl" minH="80vh">
@@ -118,7 +127,21 @@ export default function Home() {
 
   return (
     <Container as="main" maxW="container.xl" padding={0}>
-      <Heading>2024 NFL Draft Class Grades</Heading>
+      <Heading w="full" display="flex" justifyContent="space-between">
+        <Text>NFL Draft Class Grades</Text>
+        <Select
+          value={year}
+          onChange={(e) => setYear(Number(e.target.value))}
+          w={32}
+          display={'inline-block'}
+        >
+          {years?.map((year) => (
+            <option key={year} value={year}>
+              {year}
+            </option>
+          ))}
+        </Select>
+      </Heading>
       <Card py={8}>
         <ResponsiveContainer width="100%" height={400}>
           <BarChart
@@ -265,7 +288,6 @@ export default function Home() {
                 }}
                 domain={[0, 4.3]}
                 tick={(props) => {
-                  console.info('props', props);
                   return (
                     <g transform={`translate(${props.x},${props.y})`}>
                       <text

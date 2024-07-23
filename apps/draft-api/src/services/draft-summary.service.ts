@@ -50,6 +50,16 @@ export class DraftSummaryService {
     };
   }
 
+  async getYears(): Promise<number[]> {
+    const years = await this.draftClassGradeRepository
+      .createQueryBuilder('draftClassGrade')
+      .select('DISTINCT draftClassGrade.year', 'year')
+      .orderBy('year', 'DESC')
+      .getRawMany();
+
+    return years.map((year) => year.year);
+  }
+
   async getTeamDraftSummary(
     year: number,
     teamId: string,
