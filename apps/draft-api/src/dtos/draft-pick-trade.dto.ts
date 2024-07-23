@@ -1,5 +1,12 @@
 import { IsDateString, IsOptional, IsString, IsUUID } from 'class-validator';
 
+export class DraftPickTradeQueryDto {
+  @IsOptional()
+  @IsString()
+  @IsUUID()
+  readonly teamId?: string;
+}
+
 export class CreateDraftPickTradeDto {
   @IsString()
   @IsUUID()
