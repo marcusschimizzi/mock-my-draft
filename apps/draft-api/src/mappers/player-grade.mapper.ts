@@ -188,7 +188,7 @@ export class PlayerGradeMapper {
       draftPick: {
         id: entity.draftPick.id,
         round: entity.draftPick.round,
-        pick: entity.draftPick.pick_number,
+        pick: entity.draftPick.pickNumber,
         year: entity.draftPick.year,
       },
     };
