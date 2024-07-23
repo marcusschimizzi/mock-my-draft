@@ -28,10 +28,10 @@ export class Player {
   college?: string;
 
   @Column()
-  height?: string;
+  height?: number;
 
   @Column()
-  weight?: string;
+  weight?: number;
 
   @CreateDateColumn()
   createdAt: Date;
