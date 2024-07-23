@@ -10,6 +10,7 @@ import {
   faBars,
   faWandSparkles,
   faFootball,
+  faFootballBall,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   Accordion,
@@ -98,6 +99,11 @@ const navItems: (NavItem | NavCategory)[] = [
         name: 'Manage draft picks',
         path: '/draft-picks',
         icon: <FontAwesomeIcon icon={faFootball} />,
+      },
+      {
+        name: 'Bulk edit draft picks',
+        path: '/draft-picks/bulk',
+        icon: <FontAwesomeIcon icon={faFootballBall} />,
       },
     ],
   },
