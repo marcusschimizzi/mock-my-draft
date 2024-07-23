@@ -23,7 +23,7 @@ export class DraftPick {
   round: number;
 
   @Column()
-  pick_number: number;
+  pickNumber: number;
 
   @OneToMany(() => DraftPickTrade, (draftPickTrade) => draftPickTrade.draftPick)
   draftPickTrades: DraftPickTrade[];
