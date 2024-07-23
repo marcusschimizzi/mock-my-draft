@@ -13,6 +13,21 @@ export const createDraftPick = async (
   return await apiClient.post('/draft-picks', draftPickData);
 };
 
+interface BulkCreateDraftPicksResponse {
+  message: string;
+  successfulPicks: DraftPick[];
+  failedPicks: {
+    index: number;
+    error: string;
+  }[];
+}
+
+export const bulkCreateDraftPicks = async (
+  draftPickData: CreateDraftPickDto[],
+): Promise<BulkCreateDraftPicksResponse> => {
+  return await apiClient.post('/draft-picks/bulk', draftPickData);
+};
+
 export const updateDraftPick = async (
   draftPickId: string,
   draftPickData: UpdateDraftPickDto,
@@ -56,6 +71,27 @@ export const useCreateDraftPick = ({
   });
 
   return { submit, isLoading: isPending, isError };
+};
+
+export const useBulkCreateDraftPicks = ({
+  onSuccess,
+}: {
+  onSuccess?: (draftPicks: BulkCreateDraftPicksResponse) => void;
+}) => {
+  const {
+    mutate: submit,
+    mutateAsync: submitAsync,
+    isPending,
+    isError,
+  } = useMutation({
+    mutationFn: bulkCreateDraftPicks,
+    onSuccess: (draftPicks) => {
+      queryClient.invalidateQueries({ queryKey: ['draft-picks'] });
+      onSuccess?.(draftPicks);
+    },
+  });
+
+  return { submit, isLoading: isPending, isError, submitAsync };
 };
 
 export const useUpdateDraftPick = ({
