@@ -14,13 +14,17 @@ export class DraftPicksService {
   async getAllDraftPicks(): Promise<DraftPickResponseDto[]> {
     const picks = await this.draftPickRepository.find({
       order: { round: 'ASC', pickNumber: 'ASC' },
+      relations: ['originalTeam', 'currentTeam'],
     });
 
     return picks.map((pick) => DraftPickMapper.toResponseDto(pick));
   }
 
   async getDraftPickById(id: string): Promise<DraftPickResponseDto> {
-    const pick = await this.draftPickRepository.findOneBy({ id });
+    const pick = await this.draftPickRepository.findOne({
+      where: { id },
+      relations: ['originalTeam', 'currentTeam'],
+    });
 
     if (!pick) {
       throw new Error(`Draft pick with id ${id} not found`);
@@ -34,10 +38,13 @@ export class DraftPicksService {
     round: number,
     pickNumber: number,
   ): Promise<DraftPickResponseDto> {
-    const pick = await this.draftPickRepository.findOneBy({
-      year,
-      round,
-      pickNumber,
+    const pick = await this.draftPickRepository.findOne({
+      where: {
+        year,
+        round,
+        pickNumber,
+      },
+      relations: ['originalTeam', 'currentTeam'],
     });
 
     if (!pick) {
@@ -77,7 +84,10 @@ export class DraftPicksService {
     id: string,
     dto: CreateDraftPickDto,
   ): Promise<DraftPickResponseDto> {
-    const pick = await this.draftPickRepository.findOneBy({ id });
+    const pick = await this.draftPickRepository.findOne({
+      where: { id },
+      relations: ['originalTeam', 'currentTeam'],
+    });
 
     if (!pick) {
       throw new Error(`Draft pick with id ${id} not found`);
@@ -117,7 +127,12 @@ export class DraftPicksService {
         throw new Error(`Draft pick with id ${id} not found`);
       }
 
-      await this.draftPickRepository.delete(pick);
+      await this.draftPickRepository
+        .createQueryBuilder()
+        .delete()
+        .from(DraftPick)
+        .where('id = :id', { id })
+        .execute();
       return true;
     } catch (error) {
       console.error('Error deleting draft pick:', error);
