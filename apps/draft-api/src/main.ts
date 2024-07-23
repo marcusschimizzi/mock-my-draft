@@ -61,8 +61,8 @@ app.use('/api/draft-class-grades', draftClassGradesRoutes);
 app.use('/api/draft-summary', draftSummaryRoutes);
 app.use('/api/players', playersRoutes);
 app.use('/api/player-grades', playerGradesRoutes);
-app.use('/api/draft-picks', draftPicksRoutes);
 app.use('/api/draft-pick-trades', draftPickTradesRoutes);
+app.use('/api/draft-picks', draftPicksRoutes);
 app.use('/api/player-rankings', playerRankingsRoutes);
 
 app.get('/api/health', (req, res) => {
