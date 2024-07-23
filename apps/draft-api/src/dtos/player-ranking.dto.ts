@@ -17,7 +17,7 @@ export class PlayerRankingQueryDto {
   @IsOptional()
   @IsString()
   @IsUUID()
-  readonly sourceArticleId?: string;
+  readonly sourceId?: string;
 }
 
 export class CreatePlayerRankingDto {
