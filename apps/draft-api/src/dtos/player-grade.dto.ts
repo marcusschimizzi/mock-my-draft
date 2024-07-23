@@ -99,6 +99,8 @@ export class PlayerGradeResponseDto {
   readonly player: {
     readonly id: string;
     readonly name: string;
+    readonly position: string;
+    readonly college: string;
   };
   readonly team: {
     readonly id: string;
