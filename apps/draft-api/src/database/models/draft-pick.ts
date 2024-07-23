@@ -6,12 +6,14 @@ import {
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
+  Unique,
   UpdateDateColumn,
 } from 'typeorm';
 import { DraftPickTrade } from './draft-pick-trade';
 import { Team } from './team';
 
 @Entity('draft_picks')
+@Unique('unique_draft_pick', ['year', 'round', 'pickNumber'])
 export class DraftPick {
   @PrimaryGeneratedColumn('uuid')
   id: string;
