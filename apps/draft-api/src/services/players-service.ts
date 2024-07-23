@@ -19,4 +19,41 @@ export class PlayersService {
     const player = this.playerRespository.create(data);
     return this.playerRespository.save(player);
   }
+
+  async updatePlayer(
+    id: string,
+    data: Partial<Player>,
+  ): Promise<Player | null> {
+    try {
+      const player = await this.getPlayerById(id);
+
+      if (!player) {
+        return null;
+      }
+
+      const updatedPlayer = this.playerRespository.merge(player, data);
+
+      return this.playerRespository.save(updatedPlayer);
+    } catch (error) {
+      console.error('Error updating player:', error);
+      return null;
+    }
+  }
+
+  async deletePlayer(id: string): Promise<boolean> {
+    try {
+      const player = await this.getPlayerById(id);
+
+      if (!player) {
+        return false;
+      }
+
+      await this.playerRespository.softDelete(player.id);
+
+      return true;
+    } catch (error) {
+      console.error('Error deleting player:', error);
+      return false;
+    }
+  }
 }
