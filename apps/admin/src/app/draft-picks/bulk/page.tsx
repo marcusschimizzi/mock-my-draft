@@ -242,11 +242,7 @@ function BulkEditDraftPicksPage() {
       picks: [],
     },
   });
-  const {
-    fields: draftPicks,
-    append: appendDraftPick,
-    remove: removeDraftPick,
-  } = useFieldArray({
+  const { fields: draftPicks, append: appendDraftPick } = useFieldArray({
     control,
     name: 'picks',
   });
@@ -356,7 +352,11 @@ function BulkEditDraftPicksPage() {
               </Button>
             </Box>
           </VStack>
-          <Button type="submit" mt={4}>
+          <Button
+            type="submit"
+            mt={4}
+            isLoading={isCreateDraftPicksLoading || isLoading}
+          >
             Save
           </Button>
         </Box>
