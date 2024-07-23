@@ -80,6 +80,19 @@ export class DraftPicksController {
     }
   };
 
+  public bulkCreateDraftPicks = async (
+    req: Request,
+    res: Response,
+  ): Promise<void> => {
+    try {
+      const picks = await this.draftPicksService.createBulkDraftPicks(req.body);
+      res.status(207).json(picks);
+    } catch (error) {
+      console.error('Error bulk creating draft picks:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  };
+
   public updateDraftPick = async (
     req: Request,
     res: Response,

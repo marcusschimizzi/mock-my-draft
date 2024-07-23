@@ -17,6 +17,12 @@ router.post(
   requireAdmin,
   draftPicksController.createDraftPick,
 );
+router.post(
+  '/bulk',
+  authenticate,
+  requireAdmin,
+  draftPicksController.bulkCreateDraftPicks,
+);
 router.put(
   '/:id',
   authenticate,

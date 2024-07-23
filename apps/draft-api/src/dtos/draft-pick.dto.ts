@@ -59,3 +59,12 @@ export class DraftPickResponseDto {
     abbreviation: string;
   };
 }
+
+export class BulkDraftPickOperationResponseDto {
+  message: string;
+  successfulPicks: DraftPickResponseDto[];
+  failedPicks: {
+    index: number;
+    error: string;
+  }[];
+}

@@ -2,6 +2,7 @@ import { AppDataSource } from '../database';
 import { DraftPick } from '../database/models/draft-pick';
 import { Team } from '../database/models/team';
 import {
+  BulkDraftPickOperationResponseDto,
   CreateDraftPickDto,
   DraftPickResponseDto,
 } from '../dtos/draft-pick.dto';
@@ -78,6 +79,54 @@ export class DraftPicksService {
     await this.draftPickRepository.save(pick);
 
     return DraftPickMapper.toResponseDto(pick);
+  }
+
+  async createBulkDraftPicks(
+    dto: CreateDraftPickDto[],
+  ): Promise<BulkDraftPickOperationResponseDto> {
+    const results = await Promise.allSettled(
+      dto.map(async (pick, index) => {
+        try {
+          const createdPick = await this.createDraftPick(pick);
+          return { index, pick: createdPick, success: true };
+        } catch (error) {
+          return { index, error: error.message, success: false };
+        }
+      }),
+    );
+
+    const successfulPicks = results
+      .filter(
+        (
+          result,
+        ): result is PromiseFulfilledResult<{
+          index: number;
+          pick: DraftPickResponseDto;
+          success: true;
+        }> => result.status === 'fulfilled' && result.value.success,
+      )
+      .map((result) => result.value.pick);
+
+    const failedPicks = results
+      .filter(
+        (
+          result,
+        ): result is PromiseFulfilledResult<{
+          index: number;
+          error: string;
+          success: false;
+        }> => result.status === 'rejected',
+      )
+      .map((result) => ({
+        index: result.value.index,
+        error: result.value.error,
+      }));
+
+    return {
+      message: 'Bulk operation complete',
+      successfulPicks,
+      failedPicks,
+    };
   }
 
   async updateDraftPick(
