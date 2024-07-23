@@ -12,16 +12,16 @@ router.get(
   draftPicksController.getDraftPickByYearRoundAndPickNumber,
 );
 router.post(
-  '/',
-  authenticate,
-  requireAdmin,
-  draftPicksController.createDraftPick,
-);
-router.post(
   '/bulk',
   authenticate,
   requireAdmin,
   draftPicksController.bulkCreateDraftPicks,
+);
+router.post(
+  '/',
+  authenticate,
+  requireAdmin,
+  draftPicksController.createDraftPick,
 );
 router.put(
   '/:id',
