@@ -109,13 +109,19 @@ export class DraftPicksService {
     return DraftPickMapper.toResponseDto(updatedPick);
   }
 
-  async deleteDraftPick(id: string): Promise<void> {
-    const pick = await this.draftPickRepository.findOneBy({ id });
+  async deleteDraftPick(id: string): Promise<boolean> {
+    try {
+      const pick = await this.draftPickRepository.findOneBy({ id });
 
-    if (!pick) {
-      throw new Error(`Draft pick with id ${id} not found`);
+      if (!pick) {
+        throw new Error(`Draft pick with id ${id} not found`);
+      }
+
+      await this.draftPickRepository.delete(pick);
+      return true;
+    } catch (error) {
+      console.error('Error deleting draft pick:', error);
+      return false;
     }
-
-    await this.draftPickRepository.delete(pick);
   }
 }
