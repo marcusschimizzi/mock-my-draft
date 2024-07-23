@@ -21,6 +21,16 @@ export class DraftSummaryController {
     }
   }
 
+  async getYears(req: Request, res: Response) {
+    try {
+      const years = await this.draftSummaryService.getYears();
+      res.status(200).json(years);
+    } catch (error) {
+      console.error('Error getting years:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  }
+
   async getTeamDraftSummary(req: Request, res: Response) {
     try {
       const year = Number(req.params.year);
