@@ -3,7 +3,7 @@ import { IsDateString, IsOptional, IsString, IsUUID } from 'class-validator';
 export class CreateDraftPickTradeDto {
   @IsString()
   @IsUUID()
-  readonly originalDraftPickId: string;
+  readonly draftPickId: string;
 
   @IsString()
   @IsUUID()
@@ -26,7 +26,7 @@ export class UpdateDraftPickTradeDto {
   @IsOptional()
   @IsString()
   @IsUUID()
-  readonly originalDraftPickId?: string;
+  readonly draftPickId?: string;
 
   @IsOptional()
   @IsString()
@@ -47,7 +47,7 @@ export class UpdateDraftPickTradeDto {
   readonly tradeDetails?: string;
 }
 
-export class DraftPickResponseDto {
+export class DraftPickTradeResponseDto {
   id: string;
   round: number;
   pickNumber: number;

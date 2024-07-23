@@ -1,7 +1,10 @@
 import { DraftPick } from '../database/models/draft-pick';
 import { DraftPickTrade } from '../database/models/draft-pick-trade';
 import { Team } from '../database/models/team';
-import { CreateDraftPickTradeDto } from '../dtos/draft-pick-trade.dto';
+import {
+  CreateDraftPickTradeDto,
+  UpdateDraftPickTradeDto,
+} from '../dtos/draft-pick-trade.dto';
 import { DraftPickResponseDto } from '../dtos/draft-pick.dto';
 
 export class DraftPickTradeMapper {
@@ -22,7 +25,7 @@ export class DraftPickTradeMapper {
 
   static toUpdateEntity(
     entity: DraftPickTrade,
-    dto: CreateDraftPickTradeDto,
+    dto: UpdateDraftPickTradeDto,
     draftPick?: DraftPick,
     fromTeam?: Team,
     toTeam?: Team,
