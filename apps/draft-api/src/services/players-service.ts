@@ -1,39 +1,49 @@
 import { AppDataSource } from '../database';
 import { Player } from '../database/models/player';
+import {
+  PlayerCollectionResponseDto,
+  PlayerResponseDto,
+  UpdatePlayerDto,
+} from '../dtos/player.dto';
+import { PlayerMapper } from '../mappers/player.mapper';
 
 export class PlayersService {
-  private playerRespository = AppDataSource.getRepository(Player);
+  private playerRepository = AppDataSource.getRepository(Player);
 
-  async getAllPlayers(): Promise<Player[]> {
-    return this.playerRespository.find({
+  async getAllPlayers(): Promise<PlayerCollectionResponseDto> {
+    const players = await this.playerRepository.find({
       where: { deletedAt: null },
       order: { name: 'ASC' },
     });
+    return players.map(PlayerMapper.toResponseDto);
   }
 
-  async getPlayerById(id: string): Promise<Player | null> {
-    return this.playerRespository.findOneBy({ id });
+  async getPlayerById(id: string): Promise<PlayerResponseDto> {
+    const player = await this.playerRepository.findOneBy({ id });
+    return player ? PlayerMapper.toResponseDto(player) : null;
   }
 
-  async createPlayer(data: Partial<Player>): Promise<Player> {
-    const player = this.playerRespository.create(data);
-    return this.playerRespository.save(player);
+  async createPlayer(data: Partial<Player>): Promise<PlayerResponseDto> {
+    const player = this.playerRepository.create(data);
+    const savedPlayer = await this.playerRepository.save(player);
+    return PlayerMapper.toResponseDto(savedPlayer);
   }
 
   async updatePlayer(
     id: string,
-    data: Partial<Player>,
-  ): Promise<Player | null> {
+    data: UpdatePlayerDto,
+  ): Promise<PlayerResponseDto> {
     try {
-      const player = await this.getPlayerById(id);
+      const player = await this.playerRepository.findOneBy({ id });
 
       if (!player) {
         return null;
       }
 
-      const updatedPlayer = this.playerRespository.merge(player, data);
+      const updatedPlayer = PlayerMapper.toUpdateEntity(player, data);
 
-      return this.playerRespository.save(updatedPlayer);
+      const savedPlayer = await this.playerRepository.save(updatedPlayer);
+      return PlayerMapper.toResponseDto(savedPlayer);
     } catch (error) {
       console.error('Error updating player:', error);
       return null;
@@ -48,7 +58,7 @@ export class PlayersService {
         return false;
       }
 
-      await this.playerRespository.softDelete(player.id);
+      await this.playerRepository.softDelete(player.id);
 
       return true;
     } catch (error) {
