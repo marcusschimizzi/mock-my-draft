@@ -79,7 +79,11 @@ export const useUpdateDraftPick = ({
   return { submit, isLoading: isPending, isError };
 };
 
-export const useDeleteSource = ({ onSuccess }: { onSuccess?: () => void }) => {
+export const useDeleteDraftPick = ({
+  onSuccess,
+}: {
+  onSuccess?: () => void;
+}) => {
   const {
     mutate: submit,
     isPending,

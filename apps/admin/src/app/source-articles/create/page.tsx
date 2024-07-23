@@ -77,31 +77,16 @@ const SourceArticleForm: React.FC = () => {
   // Initialize the form with teams if they are loaded
   useEffect(() => {
     if (teams.length > 0 && draftClassFields.length === 0) {
-      console.info('Initializing draft class fields');
-      console.info(
-        'Teams length: ',
-        teams.length,
-        'Draft class fields length: ',
-        draftClassFields.length,
-      );
       teams.forEach((team) => {
         appendDraftClass({ teamId: team.id, grade: '', comments: '' });
       });
     }
   });
 
-  useEffect(() => {
-    console.log('Step changed:', step);
-  }, [step]);
-
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    console.info('Submitting data', 'step:', step);
     if (step !== 3) {
       return;
     }
-
-    console.info('Submitting data');
-    console.log(data);
 
     setIsSubmitting(true);
     setProgress(0);
@@ -153,7 +138,6 @@ const SourceArticleForm: React.FC = () => {
   };
 
   const handleNext = async () => {
-    console.info('Handling next', 'step:', step);
     let fieldsToValidate: FieldPath<FormValues>[] = [];
     if (step === 1) {
       fieldsToValidate = ['title', 'url', 'year', 'sourceId'];
@@ -162,7 +146,6 @@ const SourceArticleForm: React.FC = () => {
         (_, index) => `draftClassGrades.${index}.grade` as const,
       );
     }
-    console.info('We should be here');
     const isStepValid = await trigger(fieldsToValidate);
     if (isStepValid) {
       setStep((prevStep) => prevStep + 1);
