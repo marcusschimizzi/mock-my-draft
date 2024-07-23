@@ -8,6 +8,7 @@ export class DraftSummaryController {
     this.draftSummaryService = new DraftSummaryService();
     this.getDraftSummary = this.getDraftSummary.bind(this);
     this.getTeamDraftSummary = this.getTeamDraftSummary.bind(this);
+    this.getYears = this.getYears.bind(this);
   }
 
   async getDraftSummary(req: Request, res: Response) {

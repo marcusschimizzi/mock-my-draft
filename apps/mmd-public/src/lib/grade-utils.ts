@@ -3,7 +3,6 @@ export const getGradeColor = (grade: string | number) => {
     grade = gradeToLetter(grade);
   }
   grade = grade.toUpperCase();
-  console.info('Grade', grade);
   switch (grade) {
     case 'A+':
       return '#1A9850';

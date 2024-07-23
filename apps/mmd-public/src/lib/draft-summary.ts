@@ -13,6 +13,10 @@ export const getTeamDraftSummary = async (
   return await apiClient.get(`/draft-summary/${year}/team/${teamId}`);
 };
 
+export const getYears = async (): Promise<number[]> => {
+  return await apiClient.get('/draft-summary/years');
+};
+
 export const useDraftSummary = (year: number) => {
   const { data, isFetching, isFetched } = useQuery({
     queryKey: ['draft-summary', year],
@@ -35,6 +39,19 @@ export const useTeamDraftSummary = (year: number, teamId: string) => {
 
   return {
     draftSummary: data,
+    isLoading: isFetching && !isFetched,
+  };
+};
+
+export const useYears = () => {
+  const { data, isFetching, isFetched } = useQuery({
+    queryKey: ['draft-summary', 'years'],
+    queryFn: getYears,
+    initialData: null,
+  });
+
+  return {
+    years: data,
     isLoading: isFetching && !isFetched,
   };
 };
