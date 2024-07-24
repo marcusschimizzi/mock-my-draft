@@ -3,13 +3,15 @@
 import { Box, Grid, GridItem, Text, VStack } from '@chakra-ui/react';
 import { Link } from '@chakra-ui/next-js';
 import Logo from './logo';
+import { boxShadow } from '../utils/style-utils';
 
 export default function Footer() {
   return (
     <Box
       as="footer"
-      bg="gray.50"
-      _dark={{ bg: 'gray.800' }}
+      bg="elevations.light.dp01"
+      _dark={{ bg: 'elevations.dark.dp01' }}
+      boxShadow={boxShadow(2)}
       py={[16, null, 20, null, 28]}
     >
       <Box margin="0 auto" maxW="80rem">

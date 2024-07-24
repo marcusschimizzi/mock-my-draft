@@ -33,6 +33,7 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { Link } from '@chakra-ui/next-js';
+import { boxShadow } from '@/utils/style-utils';
 
 interface NavCategory {
   name: string;
@@ -140,10 +141,10 @@ const SideNavMenu: React.FC = () => {
         if (isNavCategory(item)) {
           return (
             <Accordion allowToggle key={item.name}>
-              <AccordionItem>
+              <AccordionItem border="none">
                 <Heading>
                   <AccordionButton>
-                    <Box as="span" flex="1" textAlign="left">
+                    <Box as="span" flex="1" textAlign="left" fontWeight="700">
                       {item.name}
                     </Box>
                     <AccordionIcon />
@@ -209,8 +210,11 @@ const SideNavMenu: React.FC = () => {
       left={0}
       h="full"
       w={64}
-      bg="gray.100"
-      boxShadow="md"
+      bg="elevations.light.dp8"
+      _dark={{
+        bg: 'elevations.dark.dp8',
+      }}
+      boxShadow={boxShadow(8)}
       p={4}
     >
       <Text fontSize="xl" fontWeight="bold" mb={6}>

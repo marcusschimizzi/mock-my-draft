@@ -1,7 +1,24 @@
+export enum Conference {
+  NFC = 'nfc',
+  AFC = 'afc',
+}
+
+export enum Division {
+  North = 'north',
+  South = 'south',
+  East = 'east',
+  West = 'west',
+}
+
 export interface Team {
   id: string;
   name: string;
+  location: string;
+  nickname: string;
+  conference: Conference;
+  division: Division;
   abbreviation: string;
+  slug: string;
   logo: string;
   colors: string[];
 }

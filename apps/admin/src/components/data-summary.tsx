@@ -1,5 +1,6 @@
 import { Box, Heading, SkeletonText, Stat, StatNumber } from '@chakra-ui/react';
 import { Entity } from '../types';
+import { boxShadow } from '@/utils/style-utils';
 
 interface DataSummaryProps {
   title: string;
@@ -9,10 +10,10 @@ interface DataSummaryProps {
 function DataSummary({ title, data, isLoading }: DataSummaryProps) {
   return (
     <Box
-      boxShadow="large"
-      width={['200px', null, '300px']}
+      boxShadow={boxShadow(2)}
       height={32}
-      bg="gray.100"
+      bg="elevations.light.dp02"
+      _dark={{ bg: 'elevations.dark.dp02' }}
       borderRadius="md"
       p={4}
       mr={4}

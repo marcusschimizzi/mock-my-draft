@@ -44,6 +44,7 @@ import {
   getGradeColor,
   gradeToLetter,
 } from '../lib/grade-utils';
+import { boxShadow } from '../utils/style-utils';
 
 interface GradeRange {
   team: Team;
@@ -126,7 +127,7 @@ export default function Home() {
   }
 
   return (
-    <Container as="main" maxW="container.xl" padding={0}>
+    <Container as="main" maxW="container.xl" my={8}>
       <Heading w="full" display="flex" justifyContent="space-between">
         <Text>NFL Draft Class Grades</Text>
         <Select
@@ -142,21 +143,47 @@ export default function Home() {
           ))}
         </Select>
       </Heading>
-      <Card py={8}>
+      <Card mt={8} py={4}>
         <ResponsiveContainer width="100%" height={400}>
           <BarChart
             data={draftSummary?.teams}
-            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+            margin={
+              isMobile
+                ? {
+                    top: 5,
+                    right: 5,
+                    left: 5,
+                    bottom: 20,
+                  }
+                : { top: 5, right: 30, left: 20, bottom: 5 }
+            }
+            layout={isMobile ? 'vertical' : 'horizontal'}
           >
-            <XAxis dataKey="team.abbreviation" />
-            <YAxis
-              label={{
-                value: 'Average Grade',
-                angle: -90,
-                position: 'insideLeft',
-              }}
-              domain={[0, 4.3]}
-            />
+            {isMobile ? (
+              <>
+                <XAxis
+                  label={{
+                    value: 'Average Grade',
+                    position: 'bottom',
+                  }}
+                  domain={[0, 4.3]}
+                  type="number"
+                />
+                <YAxis dataKey="team.abbreviation" type="category" />
+              </>
+            ) : (
+              <>
+                <XAxis dataKey="team.abbreviation" />
+                <YAxis
+                  label={{
+                    value: 'Average Grade',
+                    angle: -90,
+                    position: 'insideLeft',
+                  }}
+                  domain={[0, 4.3]}
+                />
+              </>
+            )}
             <Tooltip
               content={({ active, payload, label }) => {
                 if (!active || !payload || !label) {
@@ -166,12 +193,16 @@ export default function Home() {
                 const team = draftSummary.team;
                 return (
                   <Box
-                    bg="white"
+                    bg="elevations.light.base"
+                    _dark={{
+                      bg: 'elevations.dark.base',
+                    }}
                     p={4}
                     rounded="md"
                     borderColor={team.colors[1]}
                     borderStyle={'solid'}
                     borderWidth={3}
+                    boxShadow={boxShadow(2)}
                   >
                     <Box>
                       <TeamLogo
@@ -195,7 +226,7 @@ export default function Home() {
           </BarChart>
         </ResponsiveContainer>
       </Card>
-      <Box py={8}>
+      <Box mt={8} py={4}>
         <SimpleGrid
           columns={{
             base: 1,
@@ -204,29 +235,36 @@ export default function Home() {
           columnGap={4}
           rowGap={4}
         >
-          <Card flex={1}>
+          <Card flex={1} py={4} px={8}>
             <Heading size="md">Top performers</Heading>
             <List>
               {sortedTeams &&
-                sortedTeams.slice(0, 3).map((team) => (
-                  <HStack key={team.team.id}>
-                    <TeamLogo
-                      teamAbbreviation={team.team.abbreviation}
-                      size="medium"
-                      href={`/teams/${team.team.id}`}
-                    />{' '}
-                    <Text key={team.team.id} fontSize="1.2rem">
-                      {team.team.name} -{' '}
-                      <Badge
-                        bg={getGradeColor(team.averageGrade)}
-                        color={getContrastingColor(
-                          getGradeColor(team.averageGrade),
-                        )}
-                        fontSize="1.1rem"
-                      >
-                        {team.averageGrade.toFixed(2)}
-                      </Badge>
-                    </Text>
+                sortedTeams.slice(0, 3).map((team, index) => (
+                  <HStack
+                    key={team.team.id}
+                    w="full"
+                    justifyContent="space-between"
+                    mt={4}
+                  >
+                    <HStack>
+                      <TeamLogo
+                        teamAbbreviation={team.team.abbreviation}
+                        size="medium"
+                        href={`/teams/${team.team.id}`}
+                      />{' '}
+                      <Text key={team.team.id} fontSize="1.2rem">
+                        {team.team.name}
+                      </Text>
+                    </HStack>
+                    <Badge
+                      bg={getGradeColor(team.averageGrade)}
+                      color={getContrastingColor(
+                        getGradeColor(team.averageGrade),
+                      )}
+                      fontSize="1.1rem"
+                    >
+                      {team.averageGrade.toFixed(2)}
+                    </Badge>
                   </HStack>
                 ))}
             </List>
@@ -236,24 +274,31 @@ export default function Home() {
             <List>
               {sortedTeams &&
                 sortedTeams.slice(-3).map((team) => (
-                  <HStack key={team.team.id}>
-                    <TeamLogo
-                      teamAbbreviation={team.team.abbreviation}
-                      size="medium"
-                      href={`/teams/${team.team.id}`}
-                    />{' '}
-                    <Text key={team.team.id} fontSize="1.2rem">
-                      {team.team.name} -{' '}
-                      <Badge
-                        bg={getGradeColor(team.averageGrade)}
-                        color={getContrastingColor(
-                          getGradeColor(team.averageGrade),
-                        )}
-                        fontSize="1.1rem"
-                      >
-                        {team.averageGrade.toFixed(2)}
-                      </Badge>
-                    </Text>
+                  <HStack
+                    key={team.team.id}
+                    w="full"
+                    justifyContent="space-between"
+                    mt={4}
+                  >
+                    <HStack>
+                      <TeamLogo
+                        teamAbbreviation={team.team.abbreviation}
+                        size="medium"
+                        href={`/teams/${team.team.id}`}
+                      />{' '}
+                      <Text key={team.team.id} fontSize="1.2rem">
+                        {team.team.name}
+                      </Text>
+                    </HStack>
+                    <Badge
+                      bg={getGradeColor(team.averageGrade)}
+                      color={getContrastingColor(
+                        getGradeColor(team.averageGrade),
+                      )}
+                      fontSize="1.1rem"
+                    >
+                      {team.averageGrade.toFixed(2)}
+                    </Badge>
                   </HStack>
                 ))}
             </List>
@@ -261,49 +306,104 @@ export default function Home() {
         </SimpleGrid>
       </Box>
       {gradeRanges && (
-        <Card py={8} my={8}>
+        <Card py={4} mt={8}>
           <Box mb={4} w="full" textAlign="center">
             <Heading size="md">Grade ranges</Heading>
           </Box>
           <ResponsiveContainer width="100%" height={400}>
-            <BarChart data={gradeRanges}>
-              <XAxis
-                dataKey="team.abbreviation"
-                height={40}
-                tick={({ x, y, payload }) => {
-                  return (
-                    <g transform={`translate(${x},${y})`}>
-                      <text x={0} y={0} dy={16} textAnchor="middle" fill="#666">
-                        {payload.value}
-                      </text>
-                    </g>
-                  );
-                }}
-              />
-              <YAxis
-                label={{
-                  value: 'Grade Range',
-                  angle: -90,
-                  position: 'insideLeft',
-                }}
-                domain={[0, 4.3]}
-                tick={(props) => {
-                  return (
-                    <g transform={`translate(${props.x},${props.y})`}>
-                      <text
-                        x={0}
-                        y={0}
-                        textAnchor="end"
-                        alignmentBaseline="middle"
-                        fill="#666"
-                      >
-                        {gradeToLetter(props.payload.value)}
-                      </text>
-                    </g>
-                  );
-                }}
-                tickCount={3}
-              />
+            <BarChart
+              data={gradeRanges}
+              layout={isMobile ? 'vertical' : 'horizontal'}
+              margin={
+                isMobile
+                  ? { top: 5, right: 5, left: 5, bottom: 20 }
+                  : {
+                      top: 5,
+                      right: 30,
+                      left: 20,
+                      bottom: 5,
+                    }
+              }
+            >
+              {isMobile ? (
+                <>
+                  <XAxis
+                    label={{
+                      value: 'Grade Range',
+                      position: 'bottom',
+                    }}
+                    domain={[0, 4.3]}
+                    type="number"
+                    tick={(props) => {
+                      return (
+                        <g transform={`translate(${props.x},${props.y})`}>
+                          <text
+                            x={0}
+                            y={0}
+                            dy={2}
+                            textAnchor="middle"
+                            alignmentBaseline="hanging"
+                            fill="#666"
+                          >
+                            {gradeToLetter(props.payload.value)}
+                          </text>
+                        </g>
+                      );
+                    }}
+                  />
+                  <YAxis
+                    dataKey="team.abbreviation"
+                    type="category"
+                    width={40}
+                  />
+                </>
+              ) : (
+                <>
+                  <XAxis
+                    dataKey="team.abbreviation"
+                    height={40}
+                    tick={({ x, y, payload }) => {
+                      return (
+                        <g transform={`translate(${x},${y})`}>
+                          <text
+                            x={0}
+                            y={0}
+                            dy={16}
+                            textAnchor="middle"
+                            fill="#666"
+                          >
+                            {payload.value}
+                          </text>
+                        </g>
+                      );
+                    }}
+                  />
+                  <YAxis
+                    label={{
+                      value: 'Grade Range',
+                      angle: -90,
+                      position: 'insideLeft',
+                    }}
+                    domain={[0, 4.3]}
+                    tick={(props) => {
+                      return (
+                        <g transform={`translate(${props.x},${props.y})`}>
+                          <text
+                            x={0}
+                            y={0}
+                            textAnchor="end"
+                            alignmentBaseline="middle"
+                            fill="#666"
+                          >
+                            {gradeToLetter(props.payload.value)}
+                          </text>
+                        </g>
+                      );
+                    }}
+                    tickCount={3}
+                  />
+                </>
+              )}
               <Tooltip
                 content={({ payload }) => {
                   if (!payload || !payload.length) {
@@ -313,8 +413,12 @@ export default function Home() {
                   const team = gradeRange.team;
                   return (
                     <Box
-                      bg="white"
+                      bg="elevations.light.base"
+                      _dark={{
+                        bg: 'elevations.dark.base',
+                      }}
                       p={4}
+                      boxShadow={boxShadow(2)}
                       rounded="md"
                       borderColor={team.colors[1]}
                       borderStyle={'solid'}
@@ -359,7 +463,12 @@ export default function Home() {
               <Bar dataKey="range">
                 {gradeRanges?.map((entry: GradeRange) => {
                   return (
-                    <Cell key={entry.team.id} fill={entry.team.colors[0]} />
+                    <Cell
+                      key={entry.team.id}
+                      fill={entry.team.colors[0]}
+                      strokeWidth={1}
+                      stroke={entry.team.colors[0]}
+                    />
                   );
                 })}
               </Bar>
@@ -368,7 +477,7 @@ export default function Home() {
         </Card>
       )}
       {!isMobile ? (
-        <Card py={8} my={8}>
+        <Card py={4} mt={8}>
           <TableContainer>
             <Table variant="simple">
               <Thead>
@@ -432,7 +541,7 @@ export default function Home() {
           </TableContainer>
         </Card>
       ) : (
-        <Card py={8} my={8}>
+        <Card py={4} my={8}>
           <Accordion allowToggle>
             {draftSummary?.teams.map((entry: TeamDraftSummary) => {
               return (

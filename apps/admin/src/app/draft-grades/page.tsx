@@ -93,21 +93,23 @@ function DraftGradesPage() {
                 <Td>{grade.grade.toUpperCase()}</Td>
                 <Td>{grade.sourceArticle.source.name}</Td>
                 <Td>{grade.year}</Td>
-                <Td justifyContent="space-around" display="flex">
-                  <Button
-                    colorScheme="blue"
-                    onClick={() => handleEdit(grade)}
-                    size={'sm'}
-                  >
-                    <EditIcon />
-                  </Button>
-                  <Button
-                    colorScheme="red"
-                    onClick={() => deleteDraftGrade.submit(grade.id)}
-                    size={'sm'}
-                  >
-                    <DeleteIcon />
-                  </Button>
+                <Td>
+                  <Box w="full" display="flex" justifyContent="space-around">
+                    <Button
+                      colorScheme="primary"
+                      onClick={() => handleEdit(grade)}
+                      size={'sm'}
+                    >
+                      <EditIcon />
+                    </Button>
+                    <Button
+                      colorScheme="secondary"
+                      onClick={() => deleteDraftGrade.submit(grade.id)}
+                      size={'sm'}
+                    >
+                      <DeleteIcon />
+                    </Button>
+                  </Box>
                 </Td>
               </Tr>
             ))}
