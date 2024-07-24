@@ -4,11 +4,13 @@ import {
   DeleteDateColumn,
   Entity,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { PlayerGrade } from './player-grade';
 import { PlayerRanking } from './player-ranking';
+import { DraftPick } from './draft-pick';
 
 @Entity('players')
 export class Player {
@@ -47,4 +49,7 @@ export class Player {
 
   @OneToMany(() => PlayerRanking, (playerRanking) => playerRanking.player)
   rankings: PlayerRanking[];
+
+  @OneToOne(() => DraftPick, (draftPick) => draftPick.player)
+  draftPick?: DraftPick;
 }

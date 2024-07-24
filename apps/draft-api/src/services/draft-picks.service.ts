@@ -2,6 +2,7 @@ import { AppDataSource } from '../database';
 import { DraftPick } from '../database/models/draft-pick';
 import { Team } from '../database/models/team';
 import {
+  BulkDraftPickOperationResponseDto,
   CreateDraftPickDto,
   DraftPickResponseDto,
 } from '../dtos/draft-pick.dto';
@@ -14,13 +15,17 @@ export class DraftPicksService {
   async getAllDraftPicks(): Promise<DraftPickResponseDto[]> {
     const picks = await this.draftPickRepository.find({
       order: { round: 'ASC', pickNumber: 'ASC' },
+      relations: ['originalTeam', 'currentTeam'],
     });
 
     return picks.map((pick) => DraftPickMapper.toResponseDto(pick));
   }
 
   async getDraftPickById(id: string): Promise<DraftPickResponseDto> {
-    const pick = await this.draftPickRepository.findOneBy({ id });
+    const pick = await this.draftPickRepository.findOne({
+      where: { id },
+      relations: ['originalTeam', 'currentTeam'],
+    });
 
     if (!pick) {
       throw new Error(`Draft pick with id ${id} not found`);
@@ -34,10 +39,13 @@ export class DraftPicksService {
     round: number,
     pickNumber: number,
   ): Promise<DraftPickResponseDto> {
-    const pick = await this.draftPickRepository.findOneBy({
-      year,
-      round,
-      pickNumber,
+    const pick = await this.draftPickRepository.findOne({
+      where: {
+        year,
+        round,
+        pickNumber,
+      },
+      relations: ['originalTeam', 'currentTeam'],
     });
 
     if (!pick) {
@@ -73,11 +81,62 @@ export class DraftPicksService {
     return DraftPickMapper.toResponseDto(pick);
   }
 
+  async createBulkDraftPicks(
+    dto: CreateDraftPickDto[],
+  ): Promise<BulkDraftPickOperationResponseDto> {
+    const results = await Promise.allSettled(
+      dto.map(async (pick, index) => {
+        try {
+          const createdPick = await this.createDraftPick(pick);
+          return { index, pick: createdPick, success: true };
+        } catch (error) {
+          return { index, error: error.message, success: false };
+        }
+      }),
+    );
+
+    const successfulPicks = results
+      .filter(
+        (
+          result,
+        ): result is PromiseFulfilledResult<{
+          index: number;
+          pick: DraftPickResponseDto;
+          success: true;
+        }> => result.status === 'fulfilled' && result.value.success,
+      )
+      .map((result) => result.value.pick);
+
+    const failedPicks = results
+      .filter(
+        (
+          result,
+        ): result is PromiseFulfilledResult<{
+          index: number;
+          error: string;
+          success: false;
+        }> => result.status === 'rejected',
+      )
+      .map((result) => ({
+        index: result.value.index,
+        error: result.value.error,
+      }));
+
+    return {
+      message: 'Bulk operation complete',
+      successfulPicks,
+      failedPicks,
+    };
+  }
+
   async updateDraftPick(
     id: string,
     dto: CreateDraftPickDto,
   ): Promise<DraftPickResponseDto> {
-    const pick = await this.draftPickRepository.findOneBy({ id });
+    const pick = await this.draftPickRepository.findOne({
+      where: { id },
+      relations: ['originalTeam', 'currentTeam'],
+    });
 
     if (!pick) {
       throw new Error(`Draft pick with id ${id} not found`);
@@ -117,7 +176,12 @@ export class DraftPicksService {
         throw new Error(`Draft pick with id ${id} not found`);
       }
 
-      await this.draftPickRepository.delete(pick);
+      await this.draftPickRepository
+        .createQueryBuilder()
+        .delete()
+        .from(DraftPick)
+        .where('id = :id', { id })
+        .execute();
       return true;
     } catch (error) {
       console.error('Error deleting draft pick:', error);

@@ -1,6 +1,6 @@
 export type Entity = {
   id: string;
-  createdAt: string;
+  createdAt?: string;
 };
 
 export type AuthUser = Entity & {
@@ -114,4 +114,30 @@ export const defaultSourceArticle: Partial<SourceArticle> = {
   title: '',
   url: '',
   year: 2024,
+};
+
+export type DraftPick = Entity & {
+  round: number;
+  pickNumber: number;
+  year: number;
+  originalTeam: Pick<Team, 'id' | 'name' | 'abbreviation'>;
+  currentTeam: Pick<Team, 'id' | 'name' | 'abbreviation'>;
+};
+
+export type CreateDraftPickDto = {
+  round: number;
+  pickNumber: number;
+  year: number;
+  originalTeamId: string;
+  currentTeamId: string;
+};
+
+export type UpdateDraftPickDto = Entity & Partial<CreateDraftPickDto>;
+
+export const defaultDraftPick: Partial<CreateDraftPickDto> = {
+  round: undefined,
+  pickNumber: undefined,
+  year: 2024,
+  originalTeamId: '',
+  currentTeamId: '',
 };
