@@ -7,6 +7,7 @@ import { useSources } from '../lib/sources';
 import { useSourceArticles } from '../lib/sources-articles';
 import { useDraftGrades } from '../lib/draft-grades';
 import DataSummary from '../components/data-summary';
+import { useDraftPicks } from '@/lib/draft-picks';
 
 export default function Index() {
   const { teams, isLoading: teamsLoading } = useTeams();
@@ -14,6 +15,7 @@ export default function Index() {
   const { sourceArticles, isLoading: sourceArticlesLoading } =
     useSourceArticles();
   const { draftGrades, isLoading: draftGradesLoading } = useDraftGrades();
+  const { draftPicks, isLoading: draftPicksLoading } = useDraftPicks();
 
   return (
     <DashboardLayout requireAdmin={true}>
@@ -47,6 +49,13 @@ export default function Index() {
                 title="Draft Grades"
                 data={draftGrades}
                 isLoading={draftGradesLoading}
+              />
+            </WrapItem>
+            <WrapItem>
+              <DataSummary
+                title="Draft Picks"
+                data={draftPicks}
+                isLoading={draftPicksLoading}
               />
             </WrapItem>
           </Wrap>
