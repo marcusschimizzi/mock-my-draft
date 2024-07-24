@@ -48,6 +48,7 @@ import {
   YAxis,
 } from 'recharts';
 import { getContrastingColor, getGradeColor } from '../../../lib/grade-utils';
+import { boxShadow } from '../../../utils/style-utils';
 
 interface GradeCount {
   grade: string;
@@ -106,7 +107,7 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
   }
 
   return (
-    <Container as="main" maxW="container.xl">
+    <Container as="main" maxW="container.xl" my={8}>
       {!draftSummary ? (
         <Heading>Team not found</Heading>
       ) : (
@@ -133,8 +134,8 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
             </Box>
           </Flex>
           <SimpleGrid
-            marginTop={16}
-            mb={16}
+            marginTop={8}
+            py={4}
             columns={{
               base: 1,
               md: 3,
@@ -214,13 +215,23 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
             )}
           </SimpleGrid>
           {gradeCounts && (
-            <Card mb={16}>
+            <Card mt={8} py={4}>
               <Heading size="md">Grade distribution</Heading>
               <Box>
                 <ResponsiveContainer width="100%" height={300}>
-                  <BarChart data={gradeCounts}>
-                    <XAxis dataKey="grade" />
-                    <YAxis />
+                  <BarChart
+                    data={gradeCounts}
+                    layout={isMobile ? 'vertical' : 'horizontal'}
+                  >
+                    <XAxis
+                      dataKey={isMobile ? 'count' : 'grade'}
+                      type={isMobile ? 'number' : 'category'}
+                    />
+                    <YAxis
+                      dataKey={isMobile ? 'grade' : 'count'}
+                      type={isMobile ? 'category' : 'number'}
+                      width={isMobile ? 30 : undefined}
+                    />
                     <Tooltip
                       content={({ active, payload, label }) => {
                         if (!active || !payload || !label) {
@@ -234,7 +245,9 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
                         );
                         return (
                           <Box
-                            bg="white"
+                            bg="elevations.light.dp02"
+                            _dark={{ bg: 'elevations.dark.dp02' }}
+                            boxShadow={boxShadow(2)}
                             p={4}
                             rounded="md"
                             borderColor={getGradeColor(grade.grade)}
@@ -268,7 +281,7 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
               </Box>
             </Card>
           )}
-          <Card mb={16}>
+          <Card mt={8} py={4}>
             {isMobile ? (
               <Accordion allowToggle>
                 {draftSummary.draftGrades.map((grade: DraftGrade, index) => (
@@ -316,7 +329,7 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
                 ))}
               </Accordion>
             ) : (
-              <TableContainer marginTop={16} overflowX="auto">
+              <TableContainer marginTop={8} py={4} overflowX="auto">
                 <Table overflowX="auto" width="max-content">
                   <Thead>
                     <Tr>
@@ -358,7 +371,7 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
                                 href={response.sourceArticle.url}
                                 target="_blank"
                                 rel="noreferrer noopener"
-                                colorScheme={'blue'}
+                                colorScheme={'primary'}
                               >
                                 View Source
                               </Button>
