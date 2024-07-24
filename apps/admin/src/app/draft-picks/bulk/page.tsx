@@ -89,7 +89,7 @@ function DraftRound({
                 />
                 {errors?.picks?.[index]?.round && (
                   <FormErrorMessage>
-                    {errors?.picks?.[index]?.round.message}
+                    {errors?.picks?.[index]?.round.message ?? ''}
                   </FormErrorMessage>
                 )}
               </FormControl>
@@ -114,7 +114,7 @@ function DraftRound({
                 />
                 {errors?.picks?.[index]?.pickNumber && (
                   <FormErrorMessage>
-                    {errors?.picks?.[index]?.pickNumber.message}
+                    {errors?.picks?.[index]?.pickNumber.message ?? ''}
                   </FormErrorMessage>
                 )}
               </FormControl>
@@ -145,7 +145,7 @@ function DraftRound({
                 </Select>
                 {errors?.picks?.[index]?.currentTeamId && (
                   <FormErrorMessage>
-                    {errors?.picks?.[index]?.currentTeamId.message}
+                    {errors?.picks?.[index]?.currentTeamId.message ?? ''}
                   </FormErrorMessage>
                 )}
               </FormControl>
