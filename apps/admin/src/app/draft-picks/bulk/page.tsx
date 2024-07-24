@@ -356,6 +356,7 @@ function BulkEditDraftPicksPage() {
             type="submit"
             mt={4}
             isLoading={isCreateDraftPicksLoading || isLoading}
+            colorScheme="primary"
           >
             Save
           </Button>

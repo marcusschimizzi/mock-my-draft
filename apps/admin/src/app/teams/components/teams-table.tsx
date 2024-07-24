@@ -1,4 +1,4 @@
-import { Button, Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
+import { Box, Button, Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
 import { Team } from '../../../types';
 import { Image } from '@chakra-ui/next-js';
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
@@ -35,17 +35,23 @@ function TeamsTable({ teams, onEdit, onDelete }: TeamsTableProps) {
               )}
             </Td>
             <Td>{team.abbreviation}</Td>
-            <Td justifyContent="space-around" display="flex">
-              <Button colorScheme="blue" size="sm" onClick={() => onEdit(team)}>
-                <EditIcon />
-              </Button>
-              <Button
-                colorScheme="red"
-                size="sm"
-                onClick={() => onDelete(team)}
-              >
-                <DeleteIcon />
-              </Button>
+            <Td>
+              <Box w="full" display="flex" justifyContent="space-around">
+                <Button
+                  colorScheme="blue"
+                  size="sm"
+                  onClick={() => onEdit(team)}
+                >
+                  <EditIcon />
+                </Button>
+                <Button
+                  colorScheme="secondary"
+                  size="sm"
+                  onClick={() => onDelete(team)}
+                >
+                  <DeleteIcon />
+                </Button>
+              </Box>
             </Td>
           </Tr>
         ))}

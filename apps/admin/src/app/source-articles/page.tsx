@@ -99,21 +99,25 @@ function SourceArticlesPage() {
                     ? new Date(sourceArticle.publicationDate).toDateString()
                     : null}
                 </Td>
-                <Td justifyContent={'space-around'} display={'flex'}>
-                  <Button
-                    onClick={() => handleEdit(sourceArticle)}
-                    colorScheme={'blue'}
-                    size={'sm'}
-                  >
-                    <EditIcon />
-                  </Button>
-                  <Button
-                    colorScheme={'red'}
-                    size={'sm'}
-                    onClick={() => deleteSourceArticle.submit(sourceArticle.id)}
-                  >
-                    <DeleteIcon />
-                  </Button>
+                <Td>
+                  <Box w="full" display="flex" justifyContent="space-around">
+                    <Button
+                      onClick={() => handleEdit(sourceArticle)}
+                      colorScheme={'blue'}
+                      size={'sm'}
+                    >
+                      <EditIcon />
+                    </Button>
+                    <Button
+                      colorScheme={'red'}
+                      size={'sm'}
+                      onClick={() =>
+                        deleteSourceArticle.submit(sourceArticle.id)
+                      }
+                    >
+                      <DeleteIcon />
+                    </Button>
+                  </Box>
                 </Td>
               </Tr>
             ))}

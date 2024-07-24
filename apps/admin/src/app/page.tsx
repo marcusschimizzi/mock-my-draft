@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Heading, Wrap, WrapItem } from '@chakra-ui/react';
+import { Box, Heading, SimpleGrid, Wrap, WrapItem } from '@chakra-ui/react';
 import DashboardLayout from '../layouts/dashboard-layout';
 import { useTeams } from '../lib/teams';
 import { useSources } from '../lib/sources';
@@ -22,43 +22,37 @@ export default function Index() {
       <main>
         <Box maxWidth={800} mx="auto" p={4} mt={8}>
           <Heading mb={6}>Admin Dashboard</Heading>
-          <Wrap>
-            <WrapItem>
-              <DataSummary
-                title="Teams"
-                data={teams}
-                isLoading={teamsLoading}
-              />
-            </WrapItem>
-            <WrapItem>
-              <DataSummary
-                title="Sources"
-                data={sources}
-                isLoading={sourcesLoading}
-              />
-            </WrapItem>
-            <WrapItem>
-              <DataSummary
-                title="Source Articles"
-                data={sourceArticles}
-                isLoading={sourceArticlesLoading}
-              />
-            </WrapItem>
-            <WrapItem>
-              <DataSummary
-                title="Draft Grades"
-                data={draftGrades}
-                isLoading={draftGradesLoading}
-              />
-            </WrapItem>
-            <WrapItem>
-              <DataSummary
-                title="Draft Picks"
-                data={draftPicks}
-                isLoading={draftPicksLoading}
-              />
-            </WrapItem>
-          </Wrap>
+          <SimpleGrid
+            columns={{
+              base: 1,
+              md: 2,
+              lg: 3,
+            }}
+            columnGap={4}
+            rowGap={4}
+          >
+            <DataSummary title="Teams" data={teams} isLoading={teamsLoading} />
+            <DataSummary
+              title="Sources"
+              data={sources}
+              isLoading={sourcesLoading}
+            />
+            <DataSummary
+              title="Source Articles"
+              data={sourceArticles}
+              isLoading={sourceArticlesLoading}
+            />
+            <DataSummary
+              title="Draft Grades"
+              data={draftGrades}
+              isLoading={draftGradesLoading}
+            />
+            <DataSummary
+              title="Draft Picks"
+              data={draftPicks}
+              isLoading={draftPicksLoading}
+            />
+          </SimpleGrid>
         </Box>
       </main>
     </DashboardLayout>

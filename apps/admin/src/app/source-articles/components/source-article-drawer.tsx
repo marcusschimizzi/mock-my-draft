@@ -20,6 +20,7 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { useSources } from '../../../lib/sources';
+import { boxShadow } from '@/utils/style-utils';
 
 interface SourceArticleFormProps {
   sourceArticle: Partial<CreateSourceArticleDto>;
@@ -153,7 +154,11 @@ function SourceArticleDrawer({
         placement="right"
       >
         <DrawerOverlay />
-        <DrawerContent>
+        <DrawerContent
+          bg="elevations.light.dp12"
+          _dark={{ bg: 'elevations.dark.dp12' }}
+          boxShadow={boxShadow(12)}
+        >
           <DrawerCloseButton />
 
           <DrawerHeader>
@@ -171,16 +176,18 @@ function SourceArticleDrawer({
           </DrawerBody>
 
           <DrawerFooter>
-            <Button variant="outline" mr={3} onClick={onClose}>
-              Cancel
-            </Button>
-            <Button
-              colorScheme="blue"
-              onClick={handleSubmit}
-              isDisabled={!isValid}
-            >
-              Save
-            </Button>
+            <Box display="flex" justifyContent="space-between" w="full">
+              <Button variant="outline" mr={3} onClick={onClose}>
+                Cancel
+              </Button>
+              <Button
+                colorScheme="blue"
+                onClick={handleSubmit}
+                isDisabled={!isValid}
+              >
+                Save
+              </Button>
+            </Box>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

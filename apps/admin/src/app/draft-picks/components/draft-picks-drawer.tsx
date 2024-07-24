@@ -1,5 +1,6 @@
 import { useCreateDraftPick, useUpdateDraftPick } from '@/lib/draft-picks';
 import { CreateDraftPickDto, DraftPick, Team } from '@/types';
+import { boxShadow } from '@/utils/style-utils';
 import {
   Box,
   Button,
@@ -268,7 +269,11 @@ function DraftPickDrawer({
       placement="right"
     >
       <DrawerOverlay />
-      <DrawerContent>
+      <DrawerContent
+        bg="elevations.light.dp12"
+        _dark={{ bg: 'elevations.dark.dp12' }}
+        boxShadow={boxShadow(12)}
+      >
         <DrawerCloseButton />
 
         <DrawerHeader>
@@ -285,17 +290,19 @@ function DraftPickDrawer({
         </DrawerBody>
 
         <DrawerFooter>
-          <Button variant="outline" mr={3} onClick={onClose}>
-            Cancel
-          </Button>
-          <Button
-            colorScheme="blue"
-            type="submit"
-            form={DRAFT_PICK_FORM_ID}
-            isLoading={isSubmitting}
-          >
-            {selectedDraftPickId ? 'Save' : 'Create'}
-          </Button>
+          <Box w="full" display="flex" justifyContent="space-between">
+            <Button variant="outline" mr={3} onClick={onClose}>
+              Cancel
+            </Button>
+            <Button
+              colorScheme="blue"
+              type="submit"
+              form={DRAFT_PICK_FORM_ID}
+              isLoading={isSubmitting}
+            >
+              {selectedDraftPickId ? 'Save' : 'Create'}
+            </Button>
+          </Box>
         </DrawerFooter>
       </DrawerContent>
     </Drawer>

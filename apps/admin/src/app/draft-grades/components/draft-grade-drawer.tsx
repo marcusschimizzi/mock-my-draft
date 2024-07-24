@@ -28,6 +28,7 @@ import {
 } from '@chakra-ui/react';
 import { useSourceArticles } from '../../../lib/sources-articles';
 import { useTeams } from '../../../lib/teams';
+import { boxShadow } from '@/utils/style-utils';
 
 interface DraftGradeFormProps {
   draftGrade: Partial<CreateDraftGradeDto>;
@@ -188,7 +189,11 @@ function DraftGradeDrawer({
         placement="right"
       >
         <DrawerOverlay />
-        <DrawerContent>
+        <DrawerContent
+          bg="elevations.light.dp12"
+          _dark={{ bg: 'elevations.dark.dp12' }}
+          boxShadow={boxShadow(12)}
+        >
           <DrawerCloseButton />
 
           <DrawerHeader>
@@ -205,16 +210,18 @@ function DraftGradeDrawer({
           </DrawerBody>
 
           <DrawerFooter>
-            <Button variant="outline" mr={3} onClick={onClose}>
-              Cancel
-            </Button>
-            <Button
-              colorScheme="blue"
-              onClick={handleSubmit}
-              isDisabled={!isValid}
-            >
-              Save
-            </Button>
+            <Box w="full" display="flex" justifyContent="space-between">
+              <Button variant="outline" mr={3} onClick={onClose}>
+                Cancel
+              </Button>
+              <Button
+                colorScheme="blue"
+                onClick={handleSubmit}
+                isDisabled={!isValid}
+              >
+                Save
+              </Button>
+            </Box>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

@@ -2,6 +2,7 @@ import { useCreateSource, useUpdateSource } from '../../../lib/sources';
 import { Source } from '../../../types';
 import { FormEvent } from 'react';
 import {
+  Box,
   Button,
   Drawer,
   DrawerBody,
@@ -12,6 +13,7 @@ import {
   DrawerOverlay,
 } from '@chakra-ui/react';
 import SourceForm from './source-form';
+import { boxShadow } from '@/utils/style-utils';
 
 interface SourcesDrawerProps {
   source: Partial<Source>;
@@ -50,7 +52,11 @@ function SourcesDrawer({
         placement="right"
       >
         <DrawerOverlay />
-        <DrawerContent>
+        <DrawerContent
+          bg="elevations.light.dp12"
+          _dark={{ bg: 'elevations.dark.dp12' }}
+          boxShadow={boxShadow(12)}
+        >
           <DrawerCloseButton />
 
           <DrawerHeader>
@@ -62,12 +68,14 @@ function SourcesDrawer({
           </DrawerBody>
 
           <DrawerFooter>
-            <Button variant="outline" mr={3} onClick={onClose}>
-              Cancel
-            </Button>
-            <Button colorScheme="blue" onClick={handleSubmit}>
-              Save
-            </Button>
+            <Box display="flex" justifyContent="space-between" w="full">
+              <Button variant="outline" mr={3} onClick={onClose}>
+                Cancel
+              </Button>
+              <Button colorScheme="blue" onClick={handleSubmit}>
+                Save
+              </Button>
+            </Box>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

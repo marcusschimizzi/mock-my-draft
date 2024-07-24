@@ -12,6 +12,7 @@ import { Team } from '../../../types';
 import { FormEvent } from 'react';
 import { useCreateTeam, useUpdateTeam } from '../../../lib/teams';
 import TeamsForm from './teams-form';
+import { boxShadow } from '@/utils/style-utils';
 
 interface TeamsDrawerProps {
   team: Partial<Team>;
@@ -50,7 +51,11 @@ function TeamsDrawer({
         placement="right"
       >
         <DrawerOverlay />
-        <DrawerContent>
+        <DrawerContent
+          bg="elevations.light.dp12"
+          _dark={{ bg: 'elevations.dark.dp12' }}
+          boxShadow={boxShadow(12)}
+        >
           <DrawerCloseButton />
 
           <DrawerHeader>{team.id ? 'Edit team' : 'Add team'}</DrawerHeader>
@@ -59,7 +64,7 @@ function TeamsDrawer({
             <TeamsForm team={team} onChange={onChange} />
           </DrawerBody>
 
-          <DrawerFooter>
+          <DrawerFooter justifyContent="space-between">
             <Button variant="outline" mr={3} onClick={onClose}>
               Cancel
             </Button>

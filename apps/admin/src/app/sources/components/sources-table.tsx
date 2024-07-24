@@ -1,4 +1,4 @@
-import { Button, Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
+import { Box, Button, Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
 import { Source } from '../../../types';
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
 
@@ -23,21 +23,23 @@ function SourcesTable({ sources, onEdit, onDelete }: SourcesTableProps) {
           <Tr key={source.id}>
             <Td>{source.name}</Td>
             <Td>{source.baseUrl}</Td>
-            <Td justifyContent="space-around" display="flex">
-              <Button
-                onClick={() => onEdit(source)}
-                colorScheme="blue"
-                size="sm"
-              >
-                <EditIcon />
-              </Button>
-              <Button
-                onClick={() => onDelete(source)}
-                colorScheme="red"
-                size="sm"
-              >
-                <DeleteIcon />
-              </Button>
+            <Td>
+              <Box w="full" display="flex" justifyContent="space-around">
+                <Button
+                  onClick={() => onEdit(source)}
+                  colorScheme="blue"
+                  size="sm"
+                >
+                  <EditIcon />
+                </Button>
+                <Button
+                  onClick={() => onDelete(source)}
+                  colorScheme="red"
+                  size="sm"
+                >
+                  <DeleteIcon />
+                </Button>
+              </Box>
             </Td>
           </Tr>
         ))}
