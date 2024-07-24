@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 interface TeamLogoProps {
   teamAbbreviation: string;
-  size?: 'small' | 'medium' | 'large';
+  size?: 'small' | 'medium' | 'large' | number;
 
   /** Optional link to a team page */
   href?: string;
@@ -21,7 +21,14 @@ export default function TeamLogo({
   href,
 }: TeamLogoProps) {
   const src = buildLogoUrl(teamAbbreviation);
-  const pixelSize = size === 'small' ? 24 : size === 'medium' ? 48 : 96;
+  const pixelSize =
+    typeof size === 'number'
+      ? size
+      : size === 'small'
+      ? 24
+      : size === 'medium'
+      ? 48
+      : 96;
 
   return (
     <>

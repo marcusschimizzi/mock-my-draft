@@ -22,6 +22,7 @@ import { Link } from '@chakra-ui/next-js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import TeamsMenu from './teams-menu';
+import { boxShadow } from '../utils/style-utils';
 
 export default function Nav() {
   const [atTop, setAtTop] = useState(true);
@@ -49,13 +50,13 @@ export default function Nav() {
         left={0}
         right={0}
         height={{ base: '64px', lg: '88px' }}
-        bg={atTop ? 'transparent' : 'gray.50'}
+        bg={atTop ? 'transparent' : 'elevations.light.dp01'}
         _dark={{
-          bg: atTop ? 'transparent' : 'gray.800',
+          bg: atTop ? 'transparent' : 'elevations.dark.dp08',
         }}
-        boxShadow={atTop ? 'none' : 'md'}
+        boxShadow={atTop ? 'none' : boxShadow(8)}
         transition={'box-shadow 0.2s ease, background-color 0.2s ease'}
-        zIndex={11}
+        zIndex={9}
       >
         <Flex
           maxW="80rem"
@@ -107,7 +108,11 @@ export default function Nav() {
                 finalFocusRef={mobileMenuBtn}
               >
                 <DrawerOverlay />
-                <DrawerContent>
+                <DrawerContent
+                  bg="elevations.light.dp12"
+                  _dark={{ bg: 'elevations.dark.dp12' }}
+                  boxShadow={boxShadow(12)}
+                >
                   <DrawerCloseButton />
 
                   <DrawerBody>

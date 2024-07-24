@@ -11,6 +11,7 @@ import {
 import React from 'react';
 import TeamsList from '../components/teams-list';
 import { Link } from '@chakra-ui/next-js';
+import { boxShadow } from '../utils/style-utils';
 
 export default function TeamsMenu() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -33,7 +34,13 @@ export default function TeamsMenu() {
         </Button>
       </PopoverTrigger>
       <Portal>
-        <PopoverContent maxW="100%" width="fit-content">
+        <PopoverContent
+          maxW="100%"
+          width="fit-content"
+          boxShadow={boxShadow(16)}
+          bg="elevations.light.dp01"
+          _dark={{ bg: 'elevations.dark.dp16' }}
+        >
           <PopoverBody>
             <TeamsList />
           </PopoverBody>

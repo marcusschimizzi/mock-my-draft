@@ -3,9 +3,9 @@
 import { TEAM_NAMES, TeamNameLookup } from '../lib/teams-utils';
 import { capitalize } from '../lib/common-utils';
 import {
-  Grid,
-  GridItem,
+  Box,
   HStack,
+  SimpleGrid,
   Text,
   VStack,
   Wrap,
@@ -52,17 +52,23 @@ export default function TeamsList({
   return (
     <>
       {structured ? (
-        <Grid
-          templateColumns={
-            columns
-              ? `repeat(${columns}, 1fr)`
-              : ['repeat(2, 1fr)', null, null, 'repeat(4, 1fr)']
-          }
+        <SimpleGrid
+          columns={{
+            base: 1,
+            md: columns,
+          }}
           gap={2}
         >
           {Object.keys(divisions).map((divisionName) => (
-            <GridItem minW="200px" key={createTeamID(divisionName)}>
-              <Text color="GrayText">{divisionName}</Text>
+            <Box minW="200px" key={createTeamID(divisionName)}>
+              <Text
+                color="text.light"
+                _dark={{
+                  color: 'text.dark',
+                }}
+              >
+                {divisionName}
+              </Text>
               {divisions[divisionName].map((team) => (
                 <Link display="block" href={`/teams/${team.id}`} key={team.id}>
                   <HStack>
@@ -74,9 +80,9 @@ export default function TeamsList({
                   </HStack>
                 </Link>
               ))}
-            </GridItem>
+            </Box>
           ))}
-        </Grid>
+        </SimpleGrid>
       ) : (
         <Wrap>
           {Object.keys(divisions).map((divisionName) => (
