@@ -1,3 +1,4 @@
+import { isUUID } from 'class-validator';
 import { AppDataSource } from '../database';
 import { Source } from '../database/models/source';
 
@@ -12,7 +13,16 @@ export class SourcesService {
   }
 
   async getSourceByIdOrSlug(idOrSlug: string): Promise<Source | null> {
-    return this.sourceRepository.findOneBy({ id: idOrSlug, slug: idOrSlug });
+    if (isUUID(idOrSlug)) {
+      return this.sourceRepository.findOne({
+        where: { id: idOrSlug },
+        relations: ['sourceArticles'],
+      });
+    }
+    return this.sourceRepository.findOne({
+      where: { slug: idOrSlug },
+      relations: ['sourceArticles'],
+    });
   }
 
   async createSource(data: Partial<Source>): Promise<Source> {
@@ -22,7 +32,7 @@ export class SourcesService {
 
   async updateSource(
     id: string,
-    data: Partial<Source>
+    data: Partial<Source>,
   ): Promise<Source | null> {
     try {
       const source = await this.getSourceByIdOrSlug(id);
