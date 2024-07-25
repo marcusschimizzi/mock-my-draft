@@ -70,7 +70,13 @@ function SourceArticleForm({
           <FormLabel>Publication date</FormLabel>
           <Input
             type="date"
-            value={sourceArticle.publicationDate}
+            value={
+              sourceArticle.publicationDate
+                ? new Date(sourceArticle.publicationDate)
+                    .toISOString()
+                    .split('T')[0]
+                : ''
+            }
             onChange={(e) =>
               onChange({
                 ...sourceArticle,
@@ -83,7 +89,7 @@ function SourceArticleForm({
           <FormLabel>Source</FormLabel>
           <Input
             as="select"
-            value={sourceArticle.sourceId}
+            value={sourceArticle.sourceId ? sourceArticle.sourceId : ''}
             onChange={(e) =>
               onChange({
                 ...sourceArticle,
