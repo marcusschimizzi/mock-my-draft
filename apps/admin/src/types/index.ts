@@ -47,6 +47,20 @@ export const defaultTeam: Partial<Team> = {
   slug: '',
 };
 
+export type Player = Entity & {
+  name: string;
+  position: string;
+  dateOfBirth?: string;
+  college?: string;
+  height?: number;
+  weight?: number;
+};
+
+export const defaultPlayer: Partial<Player> = {
+  name: '',
+  position: '',
+};
+
 export type Source = Entity & {
   name: string;
   slug: string;
