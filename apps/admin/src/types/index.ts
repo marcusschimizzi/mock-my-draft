@@ -51,6 +51,7 @@ export type Source = Entity & {
   name: string;
   slug: string;
   baseUrl: string;
+  sourceArticles?: SourceArticle[];
 };
 
 export const defaultSource: Partial<Source> = {
@@ -98,6 +99,10 @@ export type SourceArticle = Entity & {
   year: number;
   publicationDate?: string;
   source: SourceArticleSource;
+  draftClassGrades?: Pick<
+    DraftGrade,
+    'id' | 'grade' | 'year' | 'text' | 'team'
+  >[];
 };
 
 export type CreateSourceArticleDto = {

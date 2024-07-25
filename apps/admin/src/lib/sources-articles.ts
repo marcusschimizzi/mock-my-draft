@@ -11,6 +11,12 @@ export const getSourceArticles = async (): Promise<SourceArticle[]> => {
   return await apiClient.get('/source-articles');
 };
 
+export const getSourceArticle = async (
+  sourceArticleId: string,
+): Promise<SourceArticle> => {
+  return await apiClient.get(`/source-articles/${sourceArticleId}`);
+};
+
 export const createSourceArticle = async (
   sourceArticleData: CreateSourceArticleDto,
 ): Promise<SourceArticle> => {
@@ -40,6 +46,18 @@ export const useSourceArticles = () => {
 
   return {
     sourceArticles: data,
+    isLoading: isFetching && !isFetched,
+  };
+};
+
+export const useSourceArticle = (sourceArticleId: string) => {
+  const { data, isFetching, isFetched } = useQuery({
+    queryKey: ['source-articles', sourceArticleId],
+    queryFn: () => getSourceArticle(sourceArticleId),
+  });
+
+  return {
+    sourceArticle: data,
     isLoading: isFetching && !isFetched,
   };
 };
