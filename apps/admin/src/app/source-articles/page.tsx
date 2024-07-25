@@ -25,6 +25,7 @@ import {
   SourceArticle,
 } from '../../types';
 import SourceArticleDrawer from './components/source-article-drawer';
+import { Link } from '@chakra-ui/next-js';
 
 function SourceArticlesPage() {
   const [sourceArticle, setSourceArticle] =
@@ -91,7 +92,11 @@ function SourceArticlesPage() {
           <Tbody>
             {sourceArticles.map((sourceArticle) => (
               <Tr key={sourceArticle.id}>
-                <Td>{sourceArticle.title}</Td>
+                <Td>
+                  <Link href={`/source-articles/${sourceArticle.id}`}>
+                    {sourceArticle.title}
+                  </Link>
+                </Td>
                 <Td>{sourceArticle.source.name}</Td>
                 <Td>{sourceArticle.year}</Td>
                 <Td>
