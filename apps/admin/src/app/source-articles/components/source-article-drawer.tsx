@@ -17,6 +17,7 @@ import {
   FormControl,
   FormLabel,
   Input,
+  useToast,
   VStack,
 } from '@chakra-ui/react';
 import { useSources } from '../../../lib/sources';
@@ -131,14 +132,38 @@ function SourceArticleDrawer({
   const updateSourceArticle = useUpdateSourceArticle({ onSuccess: onClose });
   const { sources } = useSources();
   const [isValid, setIsValid] = useState(false);
+  const toast = useToast();
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-
-    if (selectedSourceArticleId) {
-      updateSourceArticle.submit(sourceArticle as SourceArticle);
-    } else {
-      createSourceArticle.submit(sourceArticle as CreateSourceArticleDto);
+    try {
+      if (selectedSourceArticleId) {
+        updateSourceArticle.submit(sourceArticle as SourceArticle);
+        toast({
+          title: 'Source article updated',
+          description: 'The source article has been updated successfully.',
+          status: 'success',
+          duration: 5000,
+          isClosable: true,
+        });
+      } else {
+        createSourceArticle.submit(sourceArticle as CreateSourceArticleDto);
+        toast({
+          title: 'Source article created',
+          description: 'The source article has been created successfully.',
+          status: 'success',
+          duration: 5000,
+          isClosable: true,
+        });
+      }
+    } catch (error) {
+      toast({
+        title: 'We encountered an error',
+        description: 'Couldn’t save the source article. Please try again.',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
     }
   };
 
