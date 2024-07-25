@@ -1,5 +1,6 @@
 import { Player } from '@/types';
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
+import { Link } from '@chakra-ui/next-js';
 import {
   Table,
   TableContainer,
@@ -33,7 +34,9 @@ function PlayersTable({ players, onEdit, onDelete }: PlayersTableProps) {
         <Tbody>
           {players.map((player) => (
             <Tr key={player.id}>
-              <Td>{player.name}</Td>
+              <Td>
+                <Link href={`/players/${player.id}`}>{player.name}</Link>
+              </Td>
               <Td>{player.position}</Td>
               <Td>{player.college}</Td>
               <Td>
