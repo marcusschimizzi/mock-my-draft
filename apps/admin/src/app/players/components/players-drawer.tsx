@@ -23,7 +23,7 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { ComponentType, FormEvent, useState } from 'react';
+import { ComponentType, useState } from 'react';
 import {
   Control,
   Controller,
@@ -51,21 +51,19 @@ const positionOptions = [
 ];
 
 interface HeightInputProps {
-  control: Control<any>;
-  name: string;
+  control: Control<PlayerFormValues>;
   label?: string;
 }
 
 const HeightInput: ComponentType<HeightInputProps> = ({
   control,
-  name,
   label = 'Height',
 }) => {
   const {
     field: { onChange, value },
     fieldState: { error },
   } = useController({
-    name,
+    name: 'height',
     control,
     rules: { required: 'Height is required' },
   });
@@ -86,7 +84,7 @@ const HeightInput: ComponentType<HeightInputProps> = ({
 
   return (
     <Controller
-      name={name}
+      name={'height'}
       control={control}
       render={({ field }) => (
         <FormControl>
@@ -101,7 +99,7 @@ const HeightInput: ComponentType<HeightInputProps> = ({
                 min={0}
                 max={9}
               />
-              <InputRightAddon children="ft" />
+              <InputRightAddon>ft</InputRightAddon>
             </InputGroup>
             <InputGroup>
               <Input
@@ -112,7 +110,7 @@ const HeightInput: ComponentType<HeightInputProps> = ({
                 min={0}
                 max={11}
               />
-              <InputRightAddon children="in" />
+              <InputRightAddon>in</InputRightAddon>
             </InputGroup>
           </HStack>
           {error && <FormErrorMessage>{error.message}</FormErrorMessage>}
@@ -152,7 +150,6 @@ function PlayerForm({ player, onChange, handleSubmit }: PlayerFormProps) {
   const {
     handleSubmit: formSubmit,
     control,
-    formState: { errors },
     reset,
   } = useForm<PlayerFormValues>({
     resolver: async (data, context, options) => {
@@ -242,7 +239,7 @@ function PlayerForm({ player, onChange, handleSubmit }: PlayerFormProps) {
             </FormControl>
           )}
         />
-        <HeightInput control={control} name="height" />
+        <HeightInput control={control} />
         <Controller
           name="weight"
           control={control}
@@ -251,7 +248,7 @@ function PlayerForm({ player, onChange, handleSubmit }: PlayerFormProps) {
               <FormLabel>Weight</FormLabel>
               <InputGroup>
                 <Input {...field} type="number" />
-                <InputRightAddon children="lbs" />
+                <InputRightAddon>lbs</InputRightAddon>
               </InputGroup>
               {error && <FormErrorMessage>{error.message}</FormErrorMessage>}
             </FormControl>

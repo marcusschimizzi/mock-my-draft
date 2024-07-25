@@ -13,7 +13,6 @@ import {
   Button,
   useDisclosure,
 } from '@chakra-ui/react';
-import { on } from 'events';
 import { useParams } from 'next/navigation';
 import { useRef, useState } from 'react';
 import PlayersDrawer from '../components/players-drawer';
@@ -79,10 +78,12 @@ function PlayerPage() {
   );
 }
 
-export default () => (
+const WrappedPlayerPage = () => (
   <DashboardLayout requireAdmin={true}>
     <Box maxWidth={800} mx="auto" mt={8} p={4} position="relative">
       <PlayerPage />
     </Box>
   </DashboardLayout>
 );
+
+export default WrappedPlayerPage;
