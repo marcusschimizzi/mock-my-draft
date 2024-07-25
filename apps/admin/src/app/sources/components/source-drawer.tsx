@@ -11,6 +11,7 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
+  useToast,
 } from '@chakra-ui/react';
 import SourceForm from './source-form';
 import { boxShadow } from '@/utils/style-utils';
@@ -32,14 +33,36 @@ function SourcesDrawer({
 }: SourcesDrawerProps) {
   const createSource = useCreateSource({ onSuccess: onClose });
   const updateSource = useUpdateSource({ onSuccess: onClose });
+  const toast = useToast();
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-
-    if (source.id) {
-      updateSource.submit(source as Source);
-    } else {
-      createSource.submit(source as Source);
+    try {
+      if (source.id) {
+        updateSource.submit(source as Source);
+        toast({
+          title: 'Source updated',
+          status: 'success',
+          duration: 5000,
+          isClosable: true,
+        });
+      } else {
+        createSource.submit(source as Source);
+        toast({
+          title: 'Source created',
+          status: 'success',
+          duration: 5000,
+          isClosable: true,
+        });
+      }
+    } catch (error) {
+      toast({
+        title: 'We encountered an error',
+        description: 'Could not save source.',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
     }
   };
 

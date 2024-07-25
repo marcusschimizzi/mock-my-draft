@@ -2,9 +2,12 @@
 
 import DashboardLayout from '@/layouts/dashboard-layout';
 import { useSource } from '@/lib/sources';
+import { Source } from '@/types';
+import { EditIcon } from '@chakra-ui/icons';
 import { Link } from '@chakra-ui/next-js';
 import {
   Box,
+  Button,
   Heading,
   Table,
   TableContainer,
@@ -13,43 +16,87 @@ import {
   Th,
   Thead,
   Tr,
+  useDisclosure,
 } from '@chakra-ui/react';
+import { useRef, useState } from 'react';
+import SourcesDrawer from '../components/source-drawer';
+import { useParams } from 'next/navigation';
 
-function SourcePage({ params }: { params: { sourceId: string } }) {
-  const { source, isLoading } = useSource(params.sourceId);
+function SourcePage() {
+  const { sourceId } = useParams<{ sourceId: string }>();
+  const { source, isLoading } = useSource(sourceId);
+  const editButtonRef = useRef(null);
+  const [newSource, setNewSource] = useState<Partial<Source>>({});
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const handleEdit = (source: Source) => {
+    setNewSource(source);
+    onOpen();
+  };
+
+  if (!source) {
+    return <div>Source not found</div>;
+  }
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <DashboardLayout>
-      <Box p={4} mt={8} mx="auto" maxW="800px">
-        <Heading>{source?.name}</Heading>
-        <Box mt={4}>{source?.baseUrl}</Box>
-        {source?.sourceArticles && (
-          <TableContainer mt={8}>
-            <Table variant="simple">
-              <Thead>
-                <Tr>
-                  <Th>Title</Th>
-                  <Th>Year</Th>
+    <>
+      <Heading>{source?.name}</Heading>
+      <Box mt={4}>{source?.baseUrl}</Box>
+      {source?.sourceArticles && (
+        <TableContainer mt={8}>
+          <Table variant="simple">
+            <Thead>
+              <Tr>
+                <Th>Title</Th>
+                <Th>Year</Th>
+              </Tr>
+            </Thead>
+            <Tbody>
+              {source.sourceArticles.map((sourceArticle) => (
+                <Tr key={sourceArticle.id}>
+                  <Td>
+                    <Link href={`/source-articles/${sourceArticle.id}`}>
+                      {sourceArticle.title}
+                    </Link>
+                  </Td>
+                  <Td>{sourceArticle.year}</Td>
                 </Tr>
-              </Thead>
-              <Tbody>
-                {source.sourceArticles.map((sourceArticle) => (
-                  <Tr key={sourceArticle.id}>
-                    <Td>
-                      <Link href={`/source-articles/${sourceArticle.id}`}>
-                        {sourceArticle.title}
-                      </Link>
-                    </Td>
-                    <Td>{sourceArticle.year}</Td>
-                  </Tr>
-                ))}
-              </Tbody>
-            </Table>
-          </TableContainer>
-        )}
-      </Box>
-    </DashboardLayout>
+              ))}
+            </Tbody>
+          </Table>
+        </TableContainer>
+      )}
+      <Button
+        position="absolute"
+        right={8}
+        top={8}
+        colorScheme="primary"
+        ref={editButtonRef}
+        onClick={() => handleEdit(source)}
+      >
+        <EditIcon />
+      </Button>
+      <SourcesDrawer
+        isOpen={isOpen}
+        onClose={onClose}
+        source={newSource}
+        onChange={setNewSource}
+        toggleBtnRef={editButtonRef}
+      />
+    </>
   );
 }
 
-export default SourcePage;
+const WrappedSourcePage = () => (
+  <DashboardLayout requireAdmin={true}>
+    <Box maxWidth={800} mx="auto" mt={8} p={4} position="relative">
+      <SourcePage />
+    </Box>
+  </DashboardLayout>
+);
+
+export default WrappedSourcePage;
