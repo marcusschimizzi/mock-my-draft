@@ -3,6 +3,7 @@ import { SourceArticle } from '../database/models/source-article';
 import {
   CreateSourceArticleDto,
   SourceArticleResponseDto,
+  SourceArticleResponseWithGradesDto,
   UpdateSourceArticleDto,
 } from '../dtos/source-article.dto';
 
@@ -47,6 +48,44 @@ export class SourceArticleMapper {
         name: entity.source.name,
         slug: entity.source.slug,
       },
+    };
+  }
+
+  static toResponseWithGradesDto(
+    entity: SourceArticle,
+  ): SourceArticleResponseWithGradesDto {
+    return {
+      id: entity.id,
+      title: entity.title,
+      url: entity.url,
+      year: entity.year,
+      publicationDate: entity.publicationDate,
+      source: {
+        id: entity.source.id,
+        name: entity.source.name,
+        slug: entity.source.slug,
+      },
+      playerGrades: entity.playerGrades.map((grade) => ({
+        id: grade.id,
+        grade: grade.grade,
+        player: {
+          id: grade.player.id,
+          name: grade.player.name,
+          position: grade.player.position,
+          college: grade.player.college,
+        },
+      })),
+      draftClassGrades: entity.draftClassGrades.map((grade) => ({
+        id: grade.id,
+        grade: grade.grade,
+        year: grade.year,
+        text: grade.text,
+        team: {
+          id: grade.team.id,
+          name: grade.team.name,
+          abbreviation: grade.team.abbreviation,
+        },
+      })),
     };
   }
 }

@@ -20,11 +20,11 @@ export class SourcesController {
 
   public getSourceByIdOrSlug = async (
     req: Request,
-    res: Response
+    res: Response,
   ): Promise<void> => {
     try {
       const source = await this.sourcesService.getSourceByIdOrSlug(
-        req.params.idOrSlug
+        req.params.idOrSlug,
       );
 
       if (!source) {
@@ -53,7 +53,7 @@ export class SourcesController {
     try {
       const source = await this.sourcesService.updateSource(
         req.params.id,
-        req.body
+        req.body,
       );
 
       if (!source) {

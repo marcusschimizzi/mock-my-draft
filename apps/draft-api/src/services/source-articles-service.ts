@@ -39,13 +39,19 @@ export class SourceArticlesService {
 
   async getSourceArticleById(id: string): Promise<SourceArticleResponseDto> {
     const article = await this.sourceArticlesRepository.findOne({
-      relations: ['source'],
+      relations: [
+        'source',
+        'playerGrades',
+        'playerGrades.player',
+        'draftClassGrades',
+        'draftClassGrades.team',
+      ],
       where: { id },
     });
     if (!article) {
       throw new Error('Source article not found');
     }
-    return SourceArticleMapper.toResponseDto(article);
+    return SourceArticleMapper.toResponseWithGradesDto(article);
   }
 
   async createSourceArticle(

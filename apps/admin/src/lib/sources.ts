@@ -7,15 +7,19 @@ export const getSources = async (): Promise<Source[]> => {
   return await apiClient.get('/sources');
 };
 
+export const getSource = async (sourceId: string): Promise<Source> => {
+  return await apiClient.get(`/sources/${sourceId}`);
+};
+
 export const createSource = async (
-  sourceData: Partial<Source>
+  sourceData: Partial<Source>,
 ): Promise<Source> => {
   return await apiClient.post('/sources', sourceData);
 };
 
 export const updateSource = async (
   sourceId: string,
-  sourceData: Partial<Source>
+  sourceData: Partial<Source>,
 ): Promise<Source> => {
   return await apiClient.put(`/sources/${sourceId}`, sourceData);
 };
@@ -33,6 +37,18 @@ export const useSources = () => {
 
   return {
     sources: data,
+    isLoading: isFetching && !isFetched,
+  };
+};
+
+export const useSource = (sourceId: string) => {
+  const { data, isFetching, isFetched } = useQuery({
+    queryKey: ['sources', sourceId],
+    queryFn: () => getSource(sourceId),
+  });
+
+  return {
+    source: data,
     isLoading: isFetching && !isFetched,
   };
 };
