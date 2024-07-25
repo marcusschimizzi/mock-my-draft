@@ -1,6 +1,7 @@
 import { Box, Button, Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
 import { Source } from '../../../types';
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
+import { Link } from '@chakra-ui/next-js';
 
 interface SourcesTableProps {
   sources: Source[];
@@ -21,7 +22,9 @@ function SourcesTable({ sources, onEdit, onDelete }: SourcesTableProps) {
       <Tbody>
         {sources.map((source) => (
           <Tr key={source.id}>
-            <Td>{source.name}</Td>
+            <Td>
+              <Link href={`/sources/${source.id}`}>{source.name}</Link>
+            </Td>
             <Td>{source.baseUrl}</Td>
             <Td>
               <Box w="full" display="flex" justifyContent="space-around">
