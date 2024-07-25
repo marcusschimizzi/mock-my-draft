@@ -311,7 +311,7 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
                       </AccordionButton>
                     </Heading>
                     <AccordionPanel>
-                      <Text>{grade.text}</Text>
+                      <Text whiteSpace="preserve">{grade.text}</Text>
                       <Text mt={2}>
                         <Button
                           as={Link}
@@ -363,7 +363,7 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
                             minWidth="150px"
                             maxWidth="800px"
                           >
-                            <Text>{response.text}</Text>
+                            <Text whiteSpace="preserve">{response.text}</Text>
                             <Text mt={2}>
                               <Button
                                 as={Link}
