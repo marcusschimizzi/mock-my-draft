@@ -63,12 +63,6 @@ function DraftRound({
   teams: Team[];
   appendDraftPick: UseFieldArrayAppend<BulkEditDraftPicksFormValues, 'picks'>;
 }) {
-  useEffect(() => {
-    console.info(
-      `Round ${currentRoundDetails.round} starts at pick ${currentRoundDetails.startPick}`,
-    );
-  }, [currentRoundDetails]);
-
   return (
     <VStack spacing={4} align="stretch">
       {Array.from({ length: currentRoundDetails.picks }).map((_, index) => (
@@ -247,11 +241,8 @@ function BulkEditDraftPicksPage() {
     name: 'picks',
   });
   const [roundDetails, setRoundDetails] = useState<RoundDetails[]>([]);
-  const {
-    submitAsync,
-    isError,
-    isLoading: isCreateDraftPicksLoading,
-  } = useBulkCreateDraftPicks({});
+  const { submitAsync, isLoading: isCreateDraftPicksLoading } =
+    useBulkCreateDraftPicks({});
   const toast = useToast();
   const router = useRouter();
 

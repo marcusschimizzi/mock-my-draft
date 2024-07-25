@@ -27,6 +27,23 @@ export enum Division {
   West = 'west',
 }
 
+export enum Position {
+  Quarterback = 'QB',
+  RunningBack = 'RB',
+  WideReceiver = 'WR',
+  TightEnd = 'TE',
+  Center = 'C',
+  Guard = 'G',
+  Tackle = 'T',
+  DefensiveInterior = 'DI',
+  EdgeDefender = 'ED',
+  Linebacker = 'LB',
+  Cornerback = 'CB',
+  Safety = 'S',
+  Kicker = 'K',
+  Punter = 'P',
+}
+
 export type Team = Entity & {
   name: string;
   location: string;
@@ -45,6 +62,20 @@ export const defaultTeam: Partial<Team> = {
   nickname: '',
   abbreviation: '',
   slug: '',
+};
+
+export type Player = Entity & {
+  name: string;
+  position: string;
+  dateOfBirth?: string;
+  college?: string;
+  height?: number;
+  weight?: number;
+};
+
+export const defaultPlayer: Partial<Player> = {
+  name: '',
+  position: '',
 };
 
 export type Source = Entity & {
