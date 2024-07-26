@@ -23,17 +23,47 @@ export class Player {
   @Column()
   position: string;
 
-  @Column()
+  @Column({ nullable: true })
   dateOfBirth?: Date;
 
-  @Column()
+  @Column({ nullable: true })
   college?: string;
 
-  @Column()
+  @Column({ nullable: true })
   height?: number;
 
-  @Column()
+  @Column({ nullable: true })
   weight?: number;
+
+  @Column({ nullable: true })
+  armLength?: number;
+
+  @Column({ nullable: true })
+  handSize?: number;
+
+  @Column({ nullable: true })
+  fortyYardDash?: number;
+
+  @Column({ nullable: true })
+  tenYardSplit?: number;
+
+  @Column({ nullable: true })
+  twentyYardSplit?: number;
+
+  @Column({ nullable: true })
+  twentyYardShuttle?: number;
+
+  @Column({ nullable: true })
+  threeConeDrill?: number;
+
+  @Column({ nullable: true })
+  verticalJump?: number;
+
+  @Column({ nullable: true })
+  broadJump?: number;
+
+  @Column({ nullable: true })
+  benchPress?: number;
 
   @CreateDateColumn()
   createdAt: Date;

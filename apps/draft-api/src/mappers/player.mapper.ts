@@ -16,6 +16,16 @@ export class PlayerMapper {
     entity.college = dto.college;
     entity.height = dto.height;
     entity.weight = dto.weight;
+    entity.armLength = dto.armLength;
+    entity.handSize = dto.handSize;
+    entity.fortyYardDash = dto.fortyYardDash;
+    entity.tenYardSplit = dto.tenYardSplit;
+    entity.twentyYardSplit = dto.twentyYardSplit;
+    entity.twentyYardShuttle = dto.twentyYardShuttle;
+    entity.threeConeDrill = dto.threeConeDrill;
+    entity.verticalJump = dto.verticalJump;
+    entity.broadJump = dto.broadJump;
+    entity.benchPress = dto.benchPress;
     return entity;
   }
 
@@ -29,6 +39,20 @@ export class PlayerMapper {
     if (dto.college !== undefined) entity.college = dto.college;
     if (dto.height !== undefined) entity.height = dto.height;
     if (dto.weight !== undefined) entity.weight = dto.weight;
+    if (dto.armLength !== undefined) entity.armLength = dto.armLength;
+    if (dto.handSize !== undefined) entity.handSize = dto.handSize;
+    if (dto.fortyYardDash !== undefined)
+      entity.fortyYardDash = dto.fortyYardDash;
+    if (dto.tenYardSplit !== undefined) entity.tenYardSplit = dto.tenYardSplit;
+    if (dto.twentyYardSplit !== undefined)
+      entity.twentyYardSplit = dto.twentyYardSplit;
+    if (dto.twentyYardShuttle !== undefined)
+      entity.twentyYardShuttle = dto.twentyYardShuttle;
+    if (dto.threeConeDrill !== undefined)
+      entity.threeConeDrill = dto.threeConeDrill;
+    if (dto.verticalJump !== undefined) entity.verticalJump = dto.verticalJump;
+    if (dto.broadJump !== undefined) entity.broadJump = dto.broadJump;
+    if (dto.benchPress !== undefined) entity.benchPress = dto.benchPress;
     return entity;
   }
 
@@ -41,6 +65,16 @@ export class PlayerMapper {
       college: player.college,
       height: player.height,
       weight: player.weight,
+      armLength: player.armLength,
+      handSize: player.handSize,
+      fortyYardDash: player.fortyYardDash,
+      tenYardSplit: player.tenYardSplit,
+      twentyYardSplit: player.twentyYardSplit,
+      twentyYardShuttle: player.twentyYardShuttle,
+      threeConeDrill: player.threeConeDrill,
+      verticalJump: player.verticalJump,
+      broadJump: player.broadJump,
+      benchPress: player.benchPress,
     };
   }
 }

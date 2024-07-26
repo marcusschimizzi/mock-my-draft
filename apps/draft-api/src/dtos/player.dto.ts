@@ -22,6 +22,46 @@ export class CreatePlayerDto {
   @IsNumber()
   @IsOptional()
   weight?: number;
+
+  @IsNumber()
+  @IsOptional()
+  armLength?: number;
+
+  @IsNumber()
+  @IsOptional()
+  handSize?: number;
+
+  @IsNumber()
+  @IsOptional()
+  fortyYardDash?: number;
+
+  @IsNumber()
+  @IsOptional()
+  tenYardSplit?: number;
+
+  @IsNumber()
+  @IsOptional()
+  twentyYardSplit?: number;
+
+  @IsNumber()
+  @IsOptional()
+  twentyYardShuttle?: number;
+
+  @IsNumber()
+  @IsOptional()
+  threeConeDrill?: number;
+
+  @IsNumber()
+  @IsOptional()
+  verticalJump?: number;
+
+  @IsNumber()
+  @IsOptional()
+  broadJump?: number;
+
+  @IsNumber()
+  @IsOptional()
+  benchPress?: number;
 }
 
 export class UpdatePlayerDto {
@@ -48,6 +88,46 @@ export class UpdatePlayerDto {
   @IsNumber()
   @IsOptional()
   weight?: number;
+
+  @IsNumber()
+  @IsOptional()
+  armLength?: number;
+
+  @IsNumber()
+  @IsOptional()
+  handSize?: number;
+
+  @IsNumber()
+  @IsOptional()
+  fortyYardDash?: number;
+
+  @IsNumber()
+  @IsOptional()
+  tenYardSplit?: number;
+
+  @IsNumber()
+  @IsOptional()
+  twentyYardSplit?: number;
+
+  @IsNumber()
+  @IsOptional()
+  twentyYardShuttle?: number;
+
+  @IsNumber()
+  @IsOptional()
+  threeConeDrill?: number;
+
+  @IsNumber()
+  @IsOptional()
+  verticalJump?: number;
+
+  @IsNumber()
+  @IsOptional()
+  broadJump?: number;
+
+  @IsNumber()
+  @IsOptional()
+  benchPress?: number;
 }
 
 export class PlayerResponseDto {
@@ -58,6 +138,16 @@ export class PlayerResponseDto {
   readonly college?: string;
   readonly height?: number;
   readonly weight?: number;
+  readonly armLength?: number;
+  readonly handSize?: number;
+  readonly fortyYardDash?: number;
+  readonly tenYardSplit?: number;
+  readonly twentyYardSplit?: number;
+  readonly twentyYardShuttle?: number;
+  readonly threeConeDrill?: number;
+  readonly verticalJump?: number;
+  readonly broadJump?: number;
+  readonly benchPress?: number;
 }
 
 export type PlayerCollectionResponseDto = PlayerResponseDto[];
