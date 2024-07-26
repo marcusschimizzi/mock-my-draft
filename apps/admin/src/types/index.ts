@@ -71,6 +71,16 @@ export type Player = Entity & {
   college?: string;
   height?: number;
   weight?: number;
+  armLength?: number;
+  handSize?: number;
+  fortyYardDash?: number;
+  tenYardSplit?: number;
+  twentyYardSplit?: number;
+  twentyYardShuttle?: number;
+  threeConeDrill?: number;
+  verticalJump?: number;
+  broadJump?: number;
+  benchPress?: number;
 };
 
 export const defaultPlayer: Partial<Player> = {
