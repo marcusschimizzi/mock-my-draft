@@ -57,6 +57,33 @@ function PlayerPage() {
           Height: {player.height ? formattedHeight(player.height) : '--'}
         </Text>
         <Text>Weight: {player.weight ? `${player.weight}lbs` : '--'}</Text>
+        <Text>
+          Arm Length: {player.armLength ? `${player.armLength}"` : '--'}
+        </Text>
+        <Text>Hand Size: {player.handSize ? `${player.handSize}"` : '--'}</Text>
+        <Text>
+          40-Yard Dash: {player.fortyYardDash ? player.fortyYardDash : '--'}
+        </Text>
+        <Text>
+          10-Yard Split: {player.tenYardSplit ? player.tenYardSplit : '--'}
+        </Text>
+        <Text>
+          20-Yard Split:{' '}
+          {player.twentyYardSplit ? player.twentyYardSplit : '--'}
+        </Text>
+        <Text>
+          20-Yard Shuttle:{' '}
+          {player.twentyYardShuttle ? player.twentyYardShuttle : '--'}
+        </Text>
+        <Text>
+          Three-Cone Drill:{' '}
+          {player.threeConeDrill ? player.threeConeDrill : '--'}
+        </Text>
+        <Text>
+          Vertical Jump: {player.verticalJump ? player.verticalJump : '--'}
+        </Text>
+        <Text>Broad Jump: {player.broadJump ? player.broadJump : '--'}</Text>
+        <Text>Bench Press: {player.benchPress ? player.benchPress : '--'}</Text>
       </Stack>
       <Button
         colorScheme="primary"
