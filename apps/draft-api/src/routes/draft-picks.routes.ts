@@ -8,6 +8,10 @@ const draftPicksController = new DraftPicksController();
 router.get('/', draftPicksController.getAllDraftPicks);
 router.get('/:id', draftPicksController.getDraftPickById);
 router.get(
+  '/:year/team/:teamId',
+  draftPicksController.getDraftPicksByYearAndTeamId,
+);
+router.get(
   '/:year/:round/:pickNumber',
   draftPicksController.getDraftPickByYearRoundAndPickNumber,
 );
