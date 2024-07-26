@@ -24,7 +24,7 @@ import { useRouter } from 'next/navigation';
 const SourceArticleForm: React.FC = () => {
   const { sources, isLoading } = useSources();
   const { teams, isLoading: teamsLoading } = useTeams();
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [progress, setProgress] = useState(0);
   const toast = useToast();
@@ -84,7 +84,7 @@ const SourceArticleForm: React.FC = () => {
   });
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    if (step !== 3) {
+    if (step !== steps.length - 1) {
       return;
     }
 
@@ -121,7 +121,7 @@ const SourceArticleForm: React.FC = () => {
         isClosable: true,
       });
       reset();
-      setStep(1);
+      setStep(0);
       router.push('/draft-grades');
     } catch (error) {
       toast({
@@ -139,9 +139,9 @@ const SourceArticleForm: React.FC = () => {
 
   const handleNext = async () => {
     let fieldsToValidate: FieldPath<FormValues>[] = [];
-    if (step === 1) {
+    if (step === 0) {
       fieldsToValidate = ['title', 'url', 'year', 'sourceId'];
-    } else if (step === 2) {
+    } else if (step === 1) {
       fieldsToValidate = draftClassFields.map(
         (_, index) => `draftClassGrades.${index}.grade` as const,
       );
@@ -167,7 +167,7 @@ const SourceArticleForm: React.FC = () => {
   const isNextDisabled = () => {
     if (isSubmitting) return true;
 
-    if (step === 1) {
+    if (step === 0) {
       return !(
         touchedFields.title &&
         touchedFields.url &&
@@ -180,7 +180,7 @@ const SourceArticleForm: React.FC = () => {
       );
     }
 
-    if (step === 2) {
+    if (step === 1) {
       return !draftClassFields.every(
         (_, index) =>
           touchedFields.draftClassGrades?.[index]?.grade &&
@@ -210,14 +210,14 @@ const SourceArticleForm: React.FC = () => {
             mb={8}
             isIndeterminate={isSubmitting && progress === 0}
           />
-          {step === 1 && (
+          {step === 0 && (
             <SourceArticleStep
               control={control}
               errors={errors}
               sources={sources}
             />
           )}
-          {step === 2 && (
+          {step === 1 && (
             <TeamGradesStep
               control={control}
               errors={errors}
@@ -226,7 +226,7 @@ const SourceArticleForm: React.FC = () => {
               sources={sources}
             />
           )}
-          {step === 3 && (
+          {step === 2 && (
             <ReviewStep
               watch={watch}
               setStep={setStep}
@@ -237,6 +237,7 @@ const SourceArticleForm: React.FC = () => {
 
           <NavigationButtons
             step={step}
+            numSteps={steps.length}
             onBack={handlePrev}
             onNext={handleNext}
             isNextDisabled={isNextDisabled}
