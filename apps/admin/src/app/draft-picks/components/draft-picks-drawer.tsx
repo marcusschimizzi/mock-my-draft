@@ -55,7 +55,7 @@ const draftPickFormSchema = yup.object().shape({
 });
 
 interface DraftPickFormProps {
-  draftPick: Partial<DraftPick>;
+  draftPick: Partial<CreateDraftPickDto>;
   teams: Team[];
   onChange: (draftPick: Partial<DraftPick>) => void;
   handleSubmit: (data: DraftPickFormValues) => void;
@@ -68,8 +68,8 @@ function DraftPickForm({
   handleSubmit: handleFormSubmit,
 }: DraftPickFormProps) {
   const [toggleOriginalTeam, setToggleOriginalTeam] = useState(
-    draftPick.originalTeam?.id &&
-      draftPick.originalTeam?.id !== draftPick.currentTeam?.id
+    draftPick.originalTeamId &&
+      draftPick.originalTeamId !== draftPick.currentTeamId
       ? true
       : false,
   );
@@ -91,8 +91,8 @@ function DraftPickForm({
       round: draftPick.round || 1,
       pickNumber: draftPick.pickNumber || 1,
       year: draftPick.year,
-      originalTeamId: draftPick.originalTeam?.id,
-      currentTeamId: draftPick.currentTeam?.id,
+      originalTeamId: draftPick.originalTeamId,
+      currentTeamId: draftPick.currentTeamId,
     },
   });
 
@@ -224,7 +224,6 @@ function DraftPickDrawer({
   const toast = useToast();
 
   const handleFormSubmit = (data: DraftPickFormValues) => {
-    console.info('Submitting draft pick', data);
     setIsSubmitting(true);
     try {
       if (selectedDraftPickId) {
@@ -248,7 +247,6 @@ function DraftPickDrawer({
         isClosable: true,
       });
     } catch (error) {
-      console.error('Error submitting draft pick', error);
       toast({
         title: 'An error occurred',
         description: 'Unable to submit draft pick',

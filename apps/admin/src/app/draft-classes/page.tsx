@@ -173,7 +173,7 @@ interface HeightInputProps {
   name: FieldPath<FormValues>;
 }
 
-export const HeightInput: ComponentType<HeightInputProps> = ({
+const HeightInput: ComponentType<HeightInputProps> = ({
   control,
   name,
   label = 'Height',
