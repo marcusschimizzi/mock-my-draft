@@ -228,10 +228,19 @@ const SideNavMenu: React.FC = () => {
       boxShadow={boxShadow(8)}
       p={4}
     >
-      <Text fontSize="xl" fontWeight="bold" mb={6}>
-        Admin Dashboard
-      </Text>
-      <NavContent />
+      <Box w="full" h="full" position="relative">
+        <Text fontSize="xl" fontWeight="bold" mb={6}>
+          Admin Dashboard
+        </Text>
+        <NavContent />
+        <Box position="absolute" bottom={4} w="full">
+          <Link href="/logout">
+            <Button w="full" colorScheme="red" mt={4}>
+              Logout
+            </Button>
+          </Link>
+        </Box>
+      </Box>
     </Box>
   );
 };
