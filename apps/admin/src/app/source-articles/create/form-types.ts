@@ -30,6 +30,7 @@ export interface FormValues {
       playerId: string;
       grade?: string;
       comments?: string;
+      draftPickId: string;
     }[];
   }[];
 }
@@ -40,6 +41,7 @@ const playerGradeSchema = yup.object().shape({
   comments: yup
     .string()
     .max(5000, 'Comments must be less than 5000 characters'),
+  draftPickId: yup.string().required('Draft pick ID is required'),
 });
 
 export const formSchema = yup.object().shape({
