@@ -1,4 +1,10 @@
-import { IsDateString, IsNumber, IsOptional, IsString } from 'class-validator';
+import {
+  IsDateString,
+  IsNumber,
+  IsOptional,
+  IsString,
+  IsUUID,
+} from 'class-validator';
 
 export class CreatePlayerDto {
   @IsString()
@@ -65,6 +71,11 @@ export class CreatePlayerDto {
 }
 
 export class UpdatePlayerDto {
+  @IsString()
+  @IsOptional()
+  @IsUUID()
+  id?: string;
+
   @IsString()
   @IsOptional()
   name?: string;
