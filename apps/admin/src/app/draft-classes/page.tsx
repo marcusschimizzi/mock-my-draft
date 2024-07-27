@@ -44,10 +44,6 @@ import {
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {
-  getDraftPicksByYearAndTeamId,
-  useDraftPicksByYearAndTeamId,
-} from '@/lib/draft-picks';
-import {
   getDraftClassByYearAndTeamId,
   useCreateDraftClass,
   useUpdateDraftClass,
@@ -622,14 +618,8 @@ function DraftClassPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [existingPicks, setExistingPicks] = useState<DraftPick[]>([]);
   const toast = useToast();
-  const {
-    submitAsync: submitCreateDraftClassAsync,
-    isLoading: isCreateDraftClassLoading,
-  } = useCreateDraftClass({});
-  const {
-    submitAsync: submitUpdateDraftClassAsync,
-    isLoading: isUpdateDraftClassLoading,
-  } = useUpdateDraftClass({});
+  const { submitAsync: submitCreateDraftClassAsync } = useCreateDraftClass({});
+  const { submitAsync: submitUpdateDraftClassAsync } = useUpdateDraftClass({});
 
   const steps = [
     { title: 'Basic info', description: 'Enter year and team.' },
