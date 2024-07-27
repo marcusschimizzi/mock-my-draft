@@ -8,6 +8,7 @@ import { useSourceArticles } from '../lib/sources-articles';
 import { useDraftGrades } from '../lib/draft-grades';
 import DataSummary from '../components/data-summary';
 import { useDraftPicks } from '@/lib/draft-picks';
+import { usePlayers } from '@/lib/players';
 
 export default function Index() {
   const { teams, isLoading: teamsLoading } = useTeams();
@@ -16,6 +17,7 @@ export default function Index() {
     useSourceArticles();
   const { draftGrades, isLoading: draftGradesLoading } = useDraftGrades();
   const { draftPicks, isLoading: draftPicksLoading } = useDraftPicks();
+  const { players, isLoading: playersLoading } = usePlayers();
 
   return (
     <DashboardLayout requireAdmin={true}>
@@ -51,6 +53,11 @@ export default function Index() {
               title="Draft Picks"
               data={draftPicks}
               isLoading={draftPicksLoading}
+            />
+            <DataSummary
+              title="Players"
+              data={players}
+              isLoading={playersLoading}
             />
           </SimpleGrid>
         </Box>
