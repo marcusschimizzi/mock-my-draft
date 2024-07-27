@@ -7,6 +7,13 @@ export const getDraftPicks = async (): Promise<DraftPick[]> => {
   return await apiClient.get('/draft-picks');
 };
 
+export const getDraftPicksByYearAndTeamId = async (
+  year: number,
+  teamId: string,
+): Promise<DraftPick[]> => {
+  return await apiClient.get(`/draft-picks/${year}/team/${teamId}`);
+};
+
 export const createDraftPick = async (
   draftPickData: CreateDraftPickDto,
 ): Promise<DraftPick> => {
@@ -43,6 +50,26 @@ export const useDraftPicks = () => {
   const { data, isFetching, isFetched, isError } = useQuery({
     queryKey: ['draft-picks'],
     queryFn: () => getDraftPicks(),
+    initialData: [],
+  });
+
+  return {
+    draftPicks: data,
+    isLoading: isFetching && !isFetched,
+    isError,
+  };
+};
+
+export const useDraftPicksByYearAndTeamId = ({
+  year,
+  teamId,
+}: {
+  year: number;
+  teamId: string;
+}) => {
+  const { data, isFetching, isFetched, isError } = useQuery({
+    queryKey: ['draft-picks', year, teamId],
+    queryFn: () => getDraftPicksByYearAndTeamId(year, teamId),
     initialData: [],
   });
 
