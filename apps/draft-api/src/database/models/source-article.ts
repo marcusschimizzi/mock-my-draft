@@ -33,7 +33,7 @@ export class SourceArticle {
   @Column()
   url: string;
 
-  @Column()
+  @Column({ nullable: true })
   publicationDate?: Date;
 
   @CreateDateColumn()
