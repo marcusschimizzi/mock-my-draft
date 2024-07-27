@@ -11,6 +11,7 @@ import {
   faWandSparkles,
   faFootball,
   faFootballBall,
+  faPeopleArrows,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   Accordion,
@@ -87,8 +88,13 @@ const navItems: (NavItem | NavCategory)[] = [
     name: 'Grades',
     items: [
       {
-        name: 'Draft Grades',
+        name: 'Draft grades',
         path: '/draft-grades',
+        icon: <FontAwesomeIcon icon={faRulerVertical} />,
+      },
+      {
+        name: 'Player grades',
+        path: '/player-grades',
         icon: <FontAwesomeIcon icon={faRulerVertical} />,
       },
     ],
@@ -105,6 +111,11 @@ const navItems: (NavItem | NavCategory)[] = [
         name: 'Bulk edit draft picks',
         path: '/draft-picks/bulk',
         icon: <FontAwesomeIcon icon={faFootballBall} />,
+      },
+      {
+        name: 'Manage draft classes',
+        path: '/draft-classes',
+        icon: <FontAwesomeIcon icon={faPeopleArrows} />,
       },
     ],
   },
