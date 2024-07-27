@@ -2,7 +2,13 @@
 
 import DashboardLayout from '@/layouts/dashboard-layout';
 import { useTeams } from '@/lib/teams';
-import { DraftPick, Player, Team, UpdateDraftClassDraftPickDto } from '@/types';
+import {
+  CreateDraftPickDto,
+  DraftPick,
+  Player,
+  Team,
+  UpdateDraftClassDraftPickDto,
+} from '@/types';
 import { boxShadow } from '@/utils/style-utils';
 import { AddIcon, DeleteIcon } from '@chakra-ui/icons';
 import {
@@ -737,7 +743,9 @@ function DraftClassPage() {
 
             return player;
           })
-          .filter((player: Omit<Player, 'id'> | null) => player !== null),
+          .filter(
+            (player: Omit<Player, 'id'> | null) => player !== null,
+          ) as Omit<Player, 'id'>[], // TODO: Fix this type
       );
       setExistingPicks(response.draftPicks);
       setIsEditing(true);
@@ -864,7 +872,7 @@ function DraftClassPage() {
                   player: data.players?.[index],
                 };
               })
-              .filter((pick) => pick !== null),
+              .filter((pick) => pick !== null) as CreateDraftPickDto[], // TODO: Fix this type
           });
           toast({
             title: 'Draft class created!',
