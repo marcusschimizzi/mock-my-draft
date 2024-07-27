@@ -26,8 +26,21 @@ export interface FormValues {
     teamId: string;
     grade: string;
     comments?: string;
+    playerGrades?: {
+      playerId: string;
+      grade?: string;
+      comments?: string;
+    }[];
   }[];
 }
+
+const playerGradeSchema = yup.object().shape({
+  playerId: yup.string().required('Player ID is required'),
+  grade: yup.string().oneOf(gradeOptions, 'Grade is not valid'),
+  comments: yup
+    .string()
+    .max(5000, 'Comments must be less than 5000 characters'),
+});
 
 export const formSchema = yup.object().shape({
   title: yup
@@ -66,6 +79,7 @@ export const formSchema = yup.object().shape({
           .string()
           .max(5000, 'Comments must be less than 5000 characters'),
         teamId: yup.string().required('Team ID is required'),
+        playerGrades: yup.array().of(playerGradeSchema),
       }),
     )
     .required('All teams must have a grade'),
