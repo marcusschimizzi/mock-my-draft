@@ -15,6 +15,7 @@ import playerGradesRoutes from './routes/player-grades.routes';
 import draftPicksRoutes from './routes/draft-picks.routes';
 import draftPickTradesRoutes from './routes/draft-pick-trades.routes';
 import playerRankingsRoutes from './routes/player-rankings.routes';
+import draftClassRoutes from './routes/draft-class.routes';
 
 import { initializeDatabase } from './database';
 import logger from './middleware/logger';
@@ -64,6 +65,7 @@ app.use('/api/player-grades', playerGradesRoutes);
 app.use('/api/draft-pick-trades', draftPickTradesRoutes);
 app.use('/api/draft-picks', draftPicksRoutes);
 app.use('/api/player-rankings', playerRankingsRoutes);
+app.use('/api/draft-classes', draftClassRoutes);
 
 app.get('/api/health', (req, res) => {
   //TODO: Add database health check
