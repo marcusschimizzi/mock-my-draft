@@ -215,7 +215,7 @@ function DraftGradeDrawer({
                 Cancel
               </Button>
               <Button
-                colorScheme="blue"
+                colorScheme="primary"
                 onClick={handleSubmit}
                 isDisabled={!isValid}
               >
