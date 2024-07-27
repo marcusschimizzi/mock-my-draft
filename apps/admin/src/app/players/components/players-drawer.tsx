@@ -66,14 +66,18 @@ export const HeightInput: ComponentType<HeightInputProps> = ({
     field: { onChange, value },
     fieldState: { error },
   } = useController({
-    name: 'height',
+    name,
     control,
-    rules: { required: 'Height is required' },
+    rules: { required: `${label} is required.` },
   });
+  let feet = 0;
+  let inches = 0;
 
-  const totalInches = value || 0;
-  const feet = Math.floor(totalInches / 12);
-  const inches = totalInches % 12;
+  if (value && typeof value === 'number') {
+    const totalInches = value || 0;
+    feet = Math.floor(totalInches / 12);
+    inches = totalInches % 12;
+  }
 
   const handleFeetChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newFeet = parseInt(e.target.value, 10) || 0;
@@ -87,7 +91,7 @@ export const HeightInput: ComponentType<HeightInputProps> = ({
 
   return (
     <Controller
-      name={'height'}
+      name={name}
       control={control}
       render={({ field }) => (
         <FormControl>
@@ -461,6 +465,16 @@ function PlayersDrawer({
           dateOfBirth: data.dateOfBirth,
           height: data.height,
           weight: data.weight,
+          armLength: data.armLength,
+          handSize: data.handSize,
+          fortyYardDash: data.fortyYardDash,
+          tenYardSplit: data.tenYardSplit,
+          twentyYardSplit: data.twentyYardSplit,
+          twentyYardShuttle: data.twentyYardShuttle,
+          threeConeDrill: data.threeConeDrill,
+          verticalJump: data.verticalJump,
+          broadJump: data.broadJump,
+          benchPress: data.benchPress,
         });
         toast({
           title: 'Player updated.',
@@ -477,6 +491,16 @@ function PlayersDrawer({
           dateOfBirth: data.dateOfBirth,
           height: data.height,
           weight: data.weight,
+          armLength: data.armLength,
+          handSize: data.handSize,
+          fortyYardDash: data.fortyYardDash,
+          tenYardSplit: data.tenYardSplit,
+          twentyYardSplit: data.twentyYardSplit,
+          twentyYardShuttle: data.twentyYardShuttle,
+          threeConeDrill: data.threeConeDrill,
+          verticalJump: data.verticalJump,
+          broadJump: data.broadJump,
+          benchPress: data.benchPress,
         });
         toast({
           title: 'Player created.',
