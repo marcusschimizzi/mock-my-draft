@@ -83,6 +83,8 @@ export type Player = Entity & {
   benchPress?: number;
 };
 
+export type CreatePlayerDto = Omit<Player, 'id'>;
+
 export const defaultPlayer: Partial<Player> = {
   name: '',
   position: '',
@@ -134,6 +136,42 @@ export type CreateDraftGradeDto = {
   text?: string;
 };
 
+export type PlayerGrade = Entity & {
+  grade: string;
+  gradeNumeric: number;
+  text?: string;
+  player: {
+    id: string;
+    name: string;
+    position: string;
+    college: string;
+  };
+  team: DraftGradeTeam;
+  sourceArticle: {
+    id: string;
+    title: string;
+    url: string;
+    source: DraftGradeSource;
+  };
+  draftPick: {
+    id: string;
+    round: number;
+    pick: number;
+    year: number;
+  };
+};
+
+export type CreatePlayerGradeDto = {
+  playerId: string;
+  sourceArticleId: string;
+  teamId: string;
+  draftPickId: string;
+  grade?: string;
+  text?: string;
+};
+
+export type UpdatePlayerGradeDto = Entity & Partial<CreatePlayerGradeDto>;
+
 export type SourceArticle = Entity & {
   title: string;
   url: string;
@@ -168,6 +206,7 @@ export type DraftPick = Entity & {
   year: number;
   originalTeam: Pick<Team, 'id' | 'name' | 'abbreviation'>;
   currentTeam: Pick<Team, 'id' | 'name' | 'abbreviation'>;
+  player?: Player;
 };
 
 export type CreateDraftPickDto = {
@@ -176,6 +215,11 @@ export type CreateDraftPickDto = {
   year: number;
   originalTeamId: string;
   currentTeamId: string;
+  player?: CreatePlayerDto;
+};
+
+export type CreateDraftPickWithPlayerDto = CreateDraftPickDto & {
+  player: CreatePlayerDto;
 };
 
 export type UpdateDraftPickDto = Entity & Partial<CreateDraftPickDto>;
@@ -186,4 +230,25 @@ export const defaultDraftPick: Partial<CreateDraftPickDto> = {
   year: 2024,
   originalTeamId: '',
   currentTeamId: '',
+};
+
+export type DraftClass = {
+  year: number;
+  teamId: string;
+  draftPicks: DraftPick[];
+};
+
+export type CreateDraftClassDto = {
+  year: number;
+  teamId: string;
+  draftPicks: CreateDraftPickDto[];
+};
+
+export type UpdateDraftClassDraftPickDto = Partial<CreateDraftPickDto> & {
+  id?: string;
+  playerId?: string;
+};
+
+export type UpdateDraftClassDto = {
+  draftPicks: UpdateDraftClassDraftPickDto[];
 };
