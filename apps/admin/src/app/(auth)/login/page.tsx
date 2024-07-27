@@ -8,7 +8,7 @@ import {
   Skeleton,
   Stack,
 } from '@chakra-ui/react';
-import { LoginForm } from '../../components/login-form';
+import { LoginForm } from '@/components/login-form';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
 import { boxShadow } from '@/utils/style-utils';
