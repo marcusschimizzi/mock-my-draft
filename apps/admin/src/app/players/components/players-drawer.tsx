@@ -27,13 +27,14 @@ import { ComponentType, useState } from 'react';
 import {
   Control,
   Controller,
+  FieldPath,
   SubmitHandler,
   useController,
   useForm,
 } from 'react-hook-form';
 import * as yup from 'yup';
 
-const positionOptions = [
+export const positionOptions = [
   { value: Position.Quarterback, label: 'Quarterback' },
   { value: Position.RunningBack, label: 'Running back' },
   { value: Position.WideReceiver, label: 'Wide receiver' },
@@ -53,24 +54,30 @@ const positionOptions = [
 interface HeightInputProps {
   control: Control<PlayerFormValues>;
   label?: string;
+  name: FieldPath<PlayerFormValues>;
 }
 
-const HeightInput: ComponentType<HeightInputProps> = ({
+export const HeightInput: ComponentType<HeightInputProps> = ({
   control,
+  name,
   label = 'Height',
 }) => {
   const {
     field: { onChange, value },
     fieldState: { error },
   } = useController({
-    name: 'height',
+    name,
     control,
-    rules: { required: 'Height is required' },
+    rules: { required: `${label} is required.` },
   });
+  let feet = 0;
+  let inches = 0;
 
-  const totalInches = value || 0;
-  const feet = Math.floor(totalInches / 12);
-  const inches = totalInches % 12;
+  if (value && typeof value === 'number') {
+    const totalInches = value || 0;
+    feet = Math.floor(totalInches / 12);
+    inches = totalInches % 12;
+  }
 
   const handleFeetChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newFeet = parseInt(e.target.value, 10) || 0;
@@ -84,7 +91,7 @@ const HeightInput: ComponentType<HeightInputProps> = ({
 
   return (
     <Controller
-      name={'height'}
+      name={name}
       control={control}
       render={({ field }) => (
         <FormControl>
@@ -129,6 +136,16 @@ interface PlayerFormValues {
   dateOfBirth?: string;
   height?: number;
   weight?: number;
+  armLength?: number;
+  handSize?: number;
+  fortyYardDash?: number;
+  tenYardSplit?: number;
+  twentyYardSplit?: number;
+  twentyYardShuttle?: number;
+  threeConeDrill?: number;
+  verticalJump?: number;
+  broadJump?: number;
+  benchPress?: number;
 }
 
 const playerFormSchema = yup.object().shape({
@@ -138,6 +155,31 @@ const playerFormSchema = yup.object().shape({
   dateOfBirth: yup.string(),
   height: yup.number().positive('Height must be a positive number'),
   weight: yup.number().positive('Weight must be a positive number'),
+  armLength: yup.number().positive('Arm length must be a positive number'),
+  handSize: yup.number().positive('Hand size must be a positive number'),
+  fortyYardDash: yup
+    .number()
+    .positive('40-yard dash must be a positive number'),
+  tenYardSplit: yup
+    .number()
+    .positive('10-yard split must be a positive number'),
+  twentyYardSplit: yup
+    .number()
+    .positive('20-yard split must be a positive number'),
+  twentyYardShuttle: yup
+    .number()
+    .positive('20-yard shuttle must be a positive number'),
+  threeConeDrill: yup
+    .number()
+    .positive('3-cone drill must be a positive number'),
+  verticalJump: yup
+    .number()
+    .positive('Vertical jump must be a positive number'),
+  broadJump: yup.number().positive('Broad jump must be a positive number'),
+  benchPress: yup
+    .number()
+    .integer()
+    .positive('Bench press must be a positive number'),
 });
 
 interface PlayerFormProps {
@@ -146,7 +188,11 @@ interface PlayerFormProps {
   handleSubmit: (data: PlayerFormValues) => void;
 }
 
-function PlayerForm({ player, onChange, handleSubmit }: PlayerFormProps) {
+export function PlayerForm({
+  player,
+  onChange,
+  handleSubmit,
+}: PlayerFormProps) {
   const {
     handleSubmit: formSubmit,
     control,
@@ -168,6 +214,16 @@ function PlayerForm({ player, onChange, handleSubmit }: PlayerFormProps) {
         : '',
       height: player.height || undefined,
       weight: player.weight || undefined,
+      armLength: player.armLength || undefined,
+      handSize: player.handSize || undefined,
+      fortyYardDash: player.fortyYardDash || undefined,
+      tenYardSplit: player.tenYardSplit || undefined,
+      twentyYardSplit: player.twentyYardSplit || undefined,
+      twentyYardShuttle: player.twentyYardShuttle || undefined,
+      threeConeDrill: player.threeConeDrill || undefined,
+      verticalJump: player.verticalJump || undefined,
+      broadJump: player.broadJump || undefined,
+      benchPress: player.benchPress || undefined,
     },
     mode: 'onBlur',
   });
@@ -239,7 +295,7 @@ function PlayerForm({ player, onChange, handleSubmit }: PlayerFormProps) {
             </FormControl>
           )}
         />
-        <HeightInput control={control} />
+        <HeightInput control={control} name="height" />
         <Controller
           name="weight"
           control={control}
@@ -251,6 +307,124 @@ function PlayerForm({ player, onChange, handleSubmit }: PlayerFormProps) {
                 <InputRightAddon>lbs</InputRightAddon>
               </InputGroup>
               {error && <FormErrorMessage>{error.message}</FormErrorMessage>}
+            </FormControl>
+          )}
+        />
+        <Controller
+          name="armLength"
+          control={control}
+          render={({ field }) => (
+            <FormControl>
+              <FormLabel>Arm length</FormLabel>
+              <InputGroup>
+                <Input {...field} type="number" />
+                <InputRightAddon>in</InputRightAddon>
+              </InputGroup>
+            </FormControl>
+          )}
+        />
+        <Controller
+          name="handSize"
+          control={control}
+          render={({ field }) => (
+            <FormControl>
+              <FormLabel>Hand size</FormLabel>
+              <InputGroup>
+                <Input {...field} type="number" />
+                <InputRightAddon>in</InputRightAddon>
+              </InputGroup>
+            </FormControl>
+          )}
+        />
+        <Controller
+          name="fortyYardDash"
+          control={control}
+          render={({ field }) => (
+            <FormControl>
+              <FormLabel>40-yard dash</FormLabel>
+              <InputGroup>
+                <Input {...field} type="number" />
+                <InputRightAddon>s</InputRightAddon>
+              </InputGroup>
+            </FormControl>
+          )}
+        />
+        <Controller
+          name="tenYardSplit"
+          control={control}
+          render={({ field }) => (
+            <FormControl>
+              <FormLabel>10-yard split</FormLabel>
+              <InputGroup>
+                <Input {...field} type="number" />
+                <InputRightAddon>s</InputRightAddon>
+              </InputGroup>
+            </FormControl>
+          )}
+        />
+        <Controller
+          name="twentyYardSplit"
+          control={control}
+          render={({ field }) => (
+            <FormControl>
+              <FormLabel>20-yard split</FormLabel>
+              <InputGroup>
+                <Input {...field} type="number" />
+                <InputRightAddon>s</InputRightAddon>
+              </InputGroup>
+            </FormControl>
+          )}
+        />
+        <Controller
+          name="twentyYardShuttle"
+          control={control}
+          render={({ field }) => (
+            <FormControl>
+              <FormLabel>20-yard shuttle</FormLabel>
+              <InputGroup>
+                <Input {...field} type="number" />
+                <InputRightAddon>s</InputRightAddon>
+              </InputGroup>
+            </FormControl>
+          )}
+        />
+        <Controller
+          name="threeConeDrill"
+          control={control}
+          render={({ field }) => (
+            <FormControl>
+              <FormLabel>3-cone drill</FormLabel>
+              <InputGroup>
+                <Input {...field} type="number" />
+                <InputRightAddon>s</InputRightAddon>
+              </InputGroup>
+            </FormControl>
+          )}
+        />
+        <Controller
+          name="verticalJump"
+          control={control}
+          render={({ field }) => (
+            <FormControl>
+              <FormLabel>Vertical jump</FormLabel>
+              <InputGroup>
+                <Input {...field} type="number" />
+                <InputRightAddon>in</InputRightAddon>
+              </InputGroup>
+            </FormControl>
+          )}
+        />
+        <HeightInput name="broadJump" label="Broad jump" control={control} />
+        <Controller
+          name="benchPress"
+          control={control}
+          render={({ field }) => (
+            <FormControl>
+              <FormLabel>Bench press</FormLabel>
+              <InputGroup>
+                <Input {...field} type="number" />
+                <InputRightAddon>reps</InputRightAddon>
+              </InputGroup>
             </FormControl>
           )}
         />
@@ -291,6 +465,16 @@ function PlayersDrawer({
           dateOfBirth: data.dateOfBirth,
           height: data.height,
           weight: data.weight,
+          armLength: data.armLength,
+          handSize: data.handSize,
+          fortyYardDash: data.fortyYardDash,
+          tenYardSplit: data.tenYardSplit,
+          twentyYardSplit: data.twentyYardSplit,
+          twentyYardShuttle: data.twentyYardShuttle,
+          threeConeDrill: data.threeConeDrill,
+          verticalJump: data.verticalJump,
+          broadJump: data.broadJump,
+          benchPress: data.benchPress,
         });
         toast({
           title: 'Player updated.',
@@ -307,6 +491,16 @@ function PlayersDrawer({
           dateOfBirth: data.dateOfBirth,
           height: data.height,
           weight: data.weight,
+          armLength: data.armLength,
+          handSize: data.handSize,
+          fortyYardDash: data.fortyYardDash,
+          tenYardSplit: data.tenYardSplit,
+          twentyYardSplit: data.twentyYardSplit,
+          twentyYardShuttle: data.twentyYardShuttle,
+          threeConeDrill: data.threeConeDrill,
+          verticalJump: data.verticalJump,
+          broadJump: data.broadJump,
+          benchPress: data.benchPress,
         });
         toast({
           title: 'Player created.',

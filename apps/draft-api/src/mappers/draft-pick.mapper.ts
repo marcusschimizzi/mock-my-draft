@@ -1,16 +1,19 @@
 import { DraftPick } from '../database/models/draft-pick';
+import { Player } from '../database/models/player';
 import { Team } from '../database/models/team';
 import {
   CreateDraftPickDto,
   DraftPickResponseDto,
   UpdateDraftPickDto,
 } from '../dtos/draft-pick.dto';
+import { PlayerMapper } from './player.mapper';
 
 export class DraftPickMapper {
   static toEntity(
     dto: CreateDraftPickDto,
     originalTeam: Team,
     currentTeam: Team,
+    player?: Player,
   ): DraftPick {
     const entity = new DraftPick();
     entity.round = dto.round;
@@ -18,6 +21,7 @@ export class DraftPickMapper {
     entity.year = dto.year;
     entity.originalTeam = originalTeam;
     entity.currentTeam = currentTeam;
+    entity.player = player;
     return entity;
   }
 
@@ -26,12 +30,14 @@ export class DraftPickMapper {
     dto: UpdateDraftPickDto,
     originalTeam?: Team,
     currentTeam?: Team,
+    player?: Player,
   ): DraftPick {
     if (dto.round !== undefined) entity.round = dto.round;
     if (dto.pickNumber !== undefined) entity.pickNumber = dto.pickNumber;
     if (dto.year !== undefined) entity.year = dto.year;
     if (originalTeam !== undefined) entity.originalTeam = originalTeam;
     if (currentTeam !== undefined) entity.currentTeam = currentTeam;
+    if (player !== undefined) entity.player = player;
     return entity;
   }
 
@@ -51,6 +57,9 @@ export class DraftPickMapper {
         name: draftPick.currentTeam.name,
         abbreviation: draftPick.currentTeam.abbreviation,
       },
+      player: draftPick.player
+        ? PlayerMapper.toResponseDto(draftPick.player)
+        : undefined,
     };
   }
 }

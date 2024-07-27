@@ -18,8 +18,13 @@ export class PlayerGradeMapper {
     draftPick: DraftPick,
   ): PlayerGrade {
     const entity = new PlayerGrade();
+    if (!dto.grade && !dto.text) {
+      throw new Error('Grade or text must be provided');
+    }
+
     if (!dto.grade && !dto.gradeNumeric) {
-      throw new Error('Either grade or gradeNumeric must be provided');
+      entity.grade = '';
+      entity.gradeNumeric = null;
     } else if (dto.grade && dto.gradeNumeric) {
       // Check that they are consistent if both are provided
       if (dto.grade !== PlayerGradeMapper.gradeFromNumeric(dto.gradeNumeric)) {

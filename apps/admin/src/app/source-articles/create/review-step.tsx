@@ -36,8 +36,11 @@ import {
   AccordionPanel,
   Badge,
   HStack,
+  List,
+  ListItem,
 } from '@chakra-ui/react';
 import { Source, Team } from '@/types';
+import { usePlayers } from '@/lib/players';
 
 interface ReviewStepProps {
   watch: UseFormWatch<FormValues>;
@@ -53,6 +56,9 @@ const ReviewStep = ({ watch, setStep, teams, sources }: ReviewStepProps) => {
   const sourceId = watch('sourceId');
   const publicationDate = watch('publicationDate');
   const draftClassGrades = watch('draftClassGrades');
+
+  // Change this to only grabbing players from the right year
+  const { players } = usePlayers();
 
   const gradeDistribution = calculateGradeDistribution(draftClassGrades);
   const teamGradesData = prepareTeamGradesData(teams, draftClassGrades);
@@ -139,6 +145,29 @@ const ReviewStep = ({ watch, setStep, teams, sources }: ReviewStepProps) => {
               <AccordionPanel pb={4}>
                 <Text fontWeight="bold">Comments:</Text>
                 <Text>{grade.comments || 'No comments'}</Text>
+                <List mt={8}>
+                  {grade.playerGrades?.map((playerGrade, index) => (
+                    <ListItem
+                      key={index}
+                      p={4}
+                      borderWidth={1}
+                      borderRadius="md"
+                    >
+                      <Text fontWeight="bold">
+                        {
+                          players.find(
+                            (player) => player.id === playerGrade.playerId,
+                          )?.name
+                        }{' '}
+                        -{' '}
+                        <Badge bg={getGradeColor(playerGrade.grade ?? '')}>
+                          {playerGrade.grade || 'No grade'}
+                        </Badge>
+                      </Text>
+                      <Text>{playerGrade.comments || 'No comments'}</Text>
+                    </ListItem>
+                  ))}
+                </List>
               </AccordionPanel>
             </AccordionItem>
           ))}
@@ -180,7 +209,32 @@ const ReviewStep = ({ watch, setStep, teams, sources }: ReviewStepProps) => {
               <BarChart data={teamGradesData}>
                 <XAxis dataKey="name" />
                 <YAxis />
-                <Tooltip />
+                <Tooltip
+                  content={({ payload }) => {
+                    if (payload && payload.length > 0) {
+                      return (
+                        <Box
+                          p={2}
+                          bg="elevations.light.base"
+                          color="text.light"
+                          _dark={{
+                            bg: 'elevations.dark.base',
+                            color: 'text.dark',
+                          }}
+                          borderRadius="md"
+                          borderWidth={1}
+                        >
+                          <Text fontWeight="bold">
+                            {payload[0].payload.name} -{' '}
+                            {payload[0].payload.grade}
+                          </Text>
+                          <Text>{payload[0].payload.comments}</Text>
+                        </Box>
+                      );
+                    }
+                    return null;
+                  }}
+                />
                 <Bar dataKey="grade">
                   {teamGradesData.map((entry, index) => (
                     <Cell

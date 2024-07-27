@@ -34,6 +34,32 @@ export class DraftPicksService {
     return DraftPickMapper.toResponseDto(pick);
   }
 
+  async getDraftPicksByYearAndTeamId(
+    year: number,
+    teamId: string,
+  ): Promise<DraftPickResponseDto[]> {
+    const picks = await this.draftPickRepository.find({
+      where: {
+        year,
+        currentTeam: { id: teamId },
+      },
+      order: { round: 'ASC', pickNumber: 'ASC' },
+      relations: ['originalTeam', 'currentTeam', 'player'],
+    });
+
+    return picks.map((pick) => DraftPickMapper.toResponseDto(pick));
+  }
+
+  async getDraftPicksByYear(year: number): Promise<DraftPickResponseDto[]> {
+    const picks = await this.draftPickRepository.find({
+      where: { year },
+      order: { round: 'ASC', pickNumber: 'ASC' },
+      relations: ['originalTeam', 'currentTeam', 'player'],
+    });
+
+    return picks.map((pick) => DraftPickMapper.toResponseDto(pick));
+  }
+
   async getDraftPickByYearRoundAndPickNumber(
     year: number,
     round: number,

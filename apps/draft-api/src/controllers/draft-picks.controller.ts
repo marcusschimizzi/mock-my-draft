@@ -40,6 +40,23 @@ export class DraftPicksController {
     }
   };
 
+  public getDraftPicksByYearAndTeamId = async (
+    req: Request,
+    res: Response,
+  ): Promise<void> => {
+    try {
+      const picks = await this.draftPicksService.getDraftPicksByYearAndTeamId(
+        parseInt(req.params.year),
+        req.params.teamId,
+      );
+
+      res.status(200).json(picks);
+    } catch (error) {
+      console.error('Error getting draft picks by year and team id:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  };
+
   public getDraftPickByYearRoundAndPickNumber = async (
     req: Request,
     res: Response,

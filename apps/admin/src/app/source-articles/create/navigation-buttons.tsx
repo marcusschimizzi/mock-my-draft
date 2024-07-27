@@ -2,6 +2,7 @@ import { Button, HStack } from '@chakra-ui/react';
 
 interface NavigationButtonsProps {
   step: number;
+  numSteps: number;
   isNextDisabled: () => boolean;
   isSubmitting: boolean;
   onBack: () => void;
@@ -10,6 +11,7 @@ interface NavigationButtonsProps {
 
 function NavigationButtons({
   step,
+  numSteps,
   isNextDisabled,
   isSubmitting,
   onBack,
@@ -17,15 +19,15 @@ function NavigationButtons({
 }: NavigationButtonsProps) {
   return (
     <HStack justifyContent="space-between" mt={8}>
-      {step > 1 && (
+      {step > 0 && (
         <Button onClick={onBack} isDisabled={isSubmitting}>
           Previous
         </Button>
       )}
-      {step === 3 && (
+      {step === numSteps - 1 && (
         <Button
           type="submit"
-          colorScheme="green"
+          colorScheme="secondary"
           isLoading={isSubmitting}
           loadingText="Submitting..."
           isDisabled={isNextDisabled()}
@@ -33,9 +35,9 @@ function NavigationButtons({
           Submit
         </Button>
       )}
-      {step !== 3 && (
+      {step !== numSteps - 1 && (
         <Button
-          colorScheme={'blue'}
+          colorScheme={'primary'}
           isDisabled={isNextDisabled()}
           onClick={onNext}
         >
