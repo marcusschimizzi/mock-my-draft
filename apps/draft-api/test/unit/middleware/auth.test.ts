@@ -1,10 +1,10 @@
 import { Response, NextFunction } from 'express';
-import { AuthService } from '../src/services/auth-service';
-import { AuthenticatedRequest } from '../src/types';
-import { User } from '../src/database/models/user';
-import { authenticate, requireAdmin } from '../src/middleware/auth';
+import { AuthService } from '../../../src/services/auth-service';
+import { AuthenticatedRequest } from '../../../src/types';
+import { User } from '../../../src/database/models/user';
+import { authenticate, requireAdmin } from '../../../src/middleware/auth';
 
-jest.mock('../src/services/auth-service');
+jest.mock('../../../src/services/auth-service');
 
 const TEST_USER: User = {
   id: 'test-user',
@@ -18,12 +18,16 @@ const TEST_USER: User = {
 
 describe('authenticate middleware', () => {
   let req: AuthenticatedRequest;
-  let res: Response;
+  let res: Partial<Response>;
   let next: NextFunction;
 
   beforeEach(() => {
     req = {} as AuthenticatedRequest;
-    res = {} as Response;
+    res = {
+      status: jest.fn().mockReturnThis(),
+      cookie: jest.fn(),
+      json: jest.fn(),
+    };
     next = jest.fn();
   });
 
@@ -33,7 +37,7 @@ describe('authenticate middleware', () => {
     const payload = { id: 1, isAdmin: false };
     (AuthService.prototype.verifyToken as jest.Mock).mockReturnValue(payload);
 
-    authenticate(req, res, next);
+    authenticate(req, res as Response, next);
 
     expect(req.user).toEqual(payload);
     expect(next).toHaveBeenCalled();
@@ -45,7 +49,7 @@ describe('authenticate middleware', () => {
     const jsonMock = jest.fn();
     res.status = jest.fn().mockReturnValue({ json: jsonMock });
 
-    authenticate(req, res, next);
+    authenticate(req, res as Response, next);
 
     expect(res.status).toHaveBeenCalledWith(401);
     expect(jsonMock).toHaveBeenCalledWith({ message: 'Unauthorized' });
@@ -61,10 +65,35 @@ describe('authenticate middleware', () => {
     const jsonMock = jest.fn();
     res.status = jest.fn().mockReturnValue({ json: jsonMock });
 
-    authenticate(req, res, next);
+    authenticate(req, res as Response, next);
 
     expect(res.status).toHaveBeenCalledWith(401);
     expect(jsonMock).toHaveBeenCalledWith({ message: 'Unauthorized' });
+  });
+
+  it('should refresh token if it is about to expire', () => {
+    const token = 'valid-token';
+    req.cookies = { token };
+    const mockPayload = { id: 1, isAdmin: false, username: 'test-user' };
+    res.status = jest.fn().mockReturnThis();
+    jest
+      .spyOn(AuthService.prototype, 'verifyToken')
+      .mockReturnValue(mockPayload);
+    jest
+      .spyOn(AuthService.prototype, 'shouldRefreshToken')
+      .mockReturnValue(true);
+    jest
+      .spyOn(AuthService.prototype, 'generateToken')
+      .mockReturnValue('new-token');
+
+    authenticate(req, res as Response, next);
+
+    expect(res.cookie).toHaveBeenCalledWith(
+      'token',
+      'new-token',
+      expect.any(Object),
+    );
+    expect(next).toHaveBeenCalled();
   });
 });
 

@@ -4,6 +4,12 @@ import bcrypt from 'bcrypt';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 
 const SECRET_KEY = process.env.JWT_SECRET_KEY;
+const REFRESH_THRESHOLD = 10 * 60; // 10 minutes
+
+export interface AuthToken {
+  exp: number;
+  iat: number;
+}
 
 export class AuthService {
   private usersService: UsersService;
@@ -29,11 +35,21 @@ export class AuthService {
       SECRET_KEY,
       {
         expiresIn: '1h',
+        issuer: 'draft-api',
       },
     );
   }
 
-  verifyToken(token: string): JwtPayload | string {
-    return jwt.verify(token, SECRET_KEY);
+  verifyToken(token: string): JwtPayload | string | null {
+    try {
+      return jwt.verify(token, SECRET_KEY);
+    } catch (error) {
+      return null;
+    }
+  }
+
+  shouldRefreshToken(token: AuthToken): boolean {
+    const now = Math.floor(Date.now() / 1000);
+    return token.exp - now < REFRESH_THRESHOLD;
   }
 }

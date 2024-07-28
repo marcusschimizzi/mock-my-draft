@@ -1,4 +1,4 @@
-import logger from '../src/middleware/logger';
+import logger from '../../src/middleware/logger';
 import { Request, Response, NextFunction } from 'express';
 
 jest.useFakeTimers().setSystemTime(new Date('2021-01-01T00:00:00Z'));
