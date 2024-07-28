@@ -5,6 +5,7 @@ import { authenticate, requireAdmin } from '../middleware/auth';
 const router = Router();
 const draftClassController = new DraftClassController();
 
+router.get('/years', draftClassController.getYears);
 router.get(
   '/:year/team/:teamId',
   draftClassController.getDraftClassByYearAndTeamId,
