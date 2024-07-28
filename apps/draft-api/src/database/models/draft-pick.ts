@@ -13,6 +13,7 @@ import {
 import { DraftPickTrade } from './draft-pick-trade';
 import { Team } from './team';
 import { Player } from './player';
+import { IsInt, Max, Min } from 'class-validator';
 
 @Entity('draft_picks')
 @Unique('unique_draft_pick', ['year', 'round', 'pickNumber'])
@@ -21,6 +22,9 @@ export class DraftPick {
   id: string;
 
   @Column()
+  @IsInt()
+  @Min(1936)
+  @Max(2050)
   year: number;
 
   @Column()
