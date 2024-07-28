@@ -6,6 +6,7 @@ const router = Router();
 const draftPicksController = new DraftPicksController();
 
 router.get('/', draftPicksController.getAllDraftPicks);
+router.get('/years', draftPicksController.getYears);
 router.get('/:id', draftPicksController.getDraftPickById);
 router.get(
   '/:year/team/:teamId',
