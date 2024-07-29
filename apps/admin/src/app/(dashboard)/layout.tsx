@@ -1,22 +1,14 @@
 'use client';
 
 import { Box } from '@chakra-ui/react';
-import { ReactNode } from 'react';
 import { Protected } from '@/components/protected';
 import SideNavMenu from '@/components/side-nav';
+import { ReactNode } from 'react';
 
-interface DashboardLayoutProps {
-  children: ReactNode;
-  requireAdmin?: boolean;
-}
-
-function DashboardLayout({
-  children,
-  requireAdmin = true,
-}: DashboardLayoutProps) {
+function DashboardLayout({ children }: { children: ReactNode }) {
   return (
     <>
-      <Protected requireAdmin={requireAdmin}>
+      <Protected requireAdmin={true}>
         <SideNavMenu />
         <Box ml={{ base: 0, md: 64 }} p={4}>
           {children}

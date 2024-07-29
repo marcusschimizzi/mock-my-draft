@@ -42,6 +42,16 @@ export class DraftClassController {
     }
   };
 
+  public getYears = async (req: Request, res: Response): Promise<void> => {
+    try {
+      const years = await this.draftClassService.getYears();
+      res.status(200).json(years);
+    } catch (error) {
+      console.error('Error getting years:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  };
+
   public createDraftClass = async (
     req: Request,
     res: Response,

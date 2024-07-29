@@ -83,6 +83,16 @@ export class DraftPicksService {
     return DraftPickMapper.toResponseDto(pick);
   }
 
+  async getYears(): Promise<number[]> {
+    const years = await this.draftPickRepository
+      .createQueryBuilder('draftPick')
+      .select('DISTINCT draftPick.year', 'year')
+      .orderBy('draftPick.year', 'ASC')
+      .getRawMany();
+
+    return years.map((result) => result.year);
+  }
+
   async createDraftPick(
     dto: CreateDraftPickDto,
   ): Promise<DraftPickResponseDto> {

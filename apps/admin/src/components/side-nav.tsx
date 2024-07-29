@@ -12,6 +12,7 @@ import {
   faFootball,
   faFootballBall,
   faPeopleArrows,
+  faAdd,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   Accordion,
@@ -113,9 +114,14 @@ const navItems: (NavItem | NavCategory)[] = [
         icon: <FontAwesomeIcon icon={faFootballBall} />,
       },
       {
-        name: 'Manage draft classes',
+        name: 'Draft classes',
         path: '/draft-classes',
         icon: <FontAwesomeIcon icon={faPeopleArrows} />,
+      },
+      {
+        name: 'Add draft classes',
+        path: '/draft-classes/create',
+        icon: <FontAwesomeIcon icon={faAdd} />,
       },
     ],
   },

@@ -44,6 +44,10 @@ export class DraftClassService {
     }));
   }
 
+  async getYears(): Promise<number[]> {
+    return await this.draftPicksService.getYears();
+  }
+
   async createDraftClass(
     dto: CreateDraftClassDto,
   ): Promise<DraftClassResponseDto> {
