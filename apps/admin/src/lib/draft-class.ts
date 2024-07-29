@@ -33,6 +33,23 @@ export const updateDraftClass = async (
   );
 };
 
+export const getDraftClassYears = async (): Promise<number[]> => {
+  return await apiClient.get('/draft-classes/years');
+};
+
+export const useDraftClassYears = () => {
+  const { data, isFetching, isFetched, isError } = useQuery({
+    queryKey: ['draft-classes', 'years'],
+    queryFn: getDraftClassYears,
+  });
+
+  return {
+    years: data,
+    isLoading: isFetching && !isFetched,
+    isError,
+  };
+};
+
 export const useDraftClass = (year: number, teamId: string) => {
   const { data, isFetching, isFetched, isError } = useQuery({
     queryKey: ['draft-classes', year, teamId],
