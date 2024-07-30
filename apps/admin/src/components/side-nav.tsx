@@ -13,6 +13,8 @@ import {
   faFootballBall,
   faPeopleArrows,
   faAdd,
+  faSun,
+  faMoon,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   Accordion,
@@ -26,11 +28,17 @@ import {
   DrawerBody,
   DrawerCloseButton,
   DrawerContent,
+  DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
+  FormControl,
+  FormLabel,
   Heading,
+  HStack,
+  Switch,
   Text,
   useBreakpointValue,
+  useColorMode,
   useDisclosure,
   VStack,
 } from '@chakra-ui/react';
@@ -151,6 +159,7 @@ const isNavCategory = (item: NavItem | NavCategory): item is NavCategory =>
 const SideNavMenu: React.FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const isMobile = useBreakpointValue({ base: true, md: false });
+  const { colorMode, toggleColorMode } = useColorMode();
 
   const NavContent = () => (
     <VStack align="stretch" spacing={4}>
@@ -205,14 +214,56 @@ const SideNavMenu: React.FC = () => {
         >
           <FontAwesomeIcon icon={faBars} />
         </Button>
-        <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
+        <Drawer isOpen={isOpen} placement="left" onClose={onClose} size="full">
           <DrawerOverlay />
-          <DrawerContent>
+          <DrawerContent
+            bg="elevations.light.base"
+            _dark={{
+              bg: 'elevations.dark.base',
+            }}
+          >
             <DrawerCloseButton />
             <DrawerHeader>Menu</DrawerHeader>
             <DrawerBody>
               <NavContent />
             </DrawerBody>
+            <DrawerFooter>
+              <Box w="full">
+                <Box w="full">
+                  <FormControl
+                    display="flex"
+                    justifyContent="space-between"
+                    alignItems="center"
+                  >
+                    <FormLabel htmlFor="theme-switch" p={0} m={0}>
+                      Theme
+                    </FormLabel>
+                    <HStack>
+                      <FontAwesomeIcon
+                        icon={faSun}
+                        color={colorMode === 'dark' ? 'gray.400' : 'gray.600'}
+                      />
+                      <Switch
+                        id="theme-switch"
+                        colorScheme="primary"
+                        isChecked={colorMode === 'dark'}
+                        onChange={toggleColorMode}
+                        size="lg"
+                      />
+                      <FontAwesomeIcon
+                        icon={faMoon}
+                        color={colorMode === 'dark' ? 'gray.600' : 'gray.400'}
+                      />
+                    </HStack>
+                  </FormControl>
+                </Box>
+                <Link href="/logout">
+                  <Button w="full" colorScheme="red" mt={4}>
+                    Logout
+                  </Button>
+                </Link>
+              </Box>
+            </DrawerFooter>
           </DrawerContent>
         </Drawer>
       </>
@@ -240,6 +291,33 @@ const SideNavMenu: React.FC = () => {
         </Text>
         <NavContent />
         <Box position="absolute" bottom={4} w="full">
+          <Box>
+            <FormControl
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+            >
+              <FormLabel htmlFor="theme-switch" p={0} m={0}>
+                Theme
+              </FormLabel>
+              <HStack>
+                <FontAwesomeIcon
+                  icon={faSun}
+                  color={colorMode === 'dark' ? 'gray.400' : 'gray.600'}
+                />
+                <Switch
+                  id="theme-switch"
+                  colorScheme="primary"
+                  isChecked={colorMode === 'dark'}
+                  onChange={toggleColorMode}
+                />
+                <FontAwesomeIcon
+                  icon={faMoon}
+                  color={colorMode === 'dark' ? 'gray.600' : 'gray.400'}
+                />
+              </HStack>
+            </FormControl>
+          </Box>
           <Link href="/logout">
             <Button w="full" colorScheme="red" mt={4}>
               Logout
