@@ -31,31 +31,41 @@ export default function Index() {
           columnGap={4}
           rowGap={4}
         >
-          <DataSummary title="Teams" data={teams} isLoading={teamsLoading} />
+          <DataSummary
+            title="Teams"
+            data={teams}
+            isLoading={teamsLoading}
+            link="/teams"
+          />
           <DataSummary
             title="Sources"
             data={sources}
             isLoading={sourcesLoading}
+            link="/sources"
           />
           <DataSummary
             title="Source Articles"
             data={sourceArticles}
             isLoading={sourceArticlesLoading}
+            link="/source-articles"
           />
           <DataSummary
             title="Draft Grades"
             data={draftGrades}
             isLoading={draftGradesLoading}
+            link="/draft-grades"
           />
           <DataSummary
             title="Draft Picks"
             data={draftPicks}
             isLoading={draftPicksLoading}
+            link="/draft-picks"
           />
           <DataSummary
             title="Players"
             data={players}
             isLoading={playersLoading}
+            link="/players"
           />
         </SimpleGrid>
       </Box>

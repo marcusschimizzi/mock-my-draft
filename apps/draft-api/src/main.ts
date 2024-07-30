@@ -23,6 +23,7 @@ import { errorHandler } from './middleware/error-handler.middleware';
 
 config();
 const app = express();
+app.disable('x-powered-by');
 
 const allowedOrigins = process.env.CLIENT_ORIGIN
   ? process.env.CLIENT_ORIGIN.split(',')
