@@ -136,7 +136,7 @@ export default function Nav() {
                       </VStack>
                       <Box
                         position={'absolute'}
-                        bottom={16}
+                        bottom={'env(safe-area-inset-bottom, 16px)'}
                         w="full"
                         display="flex"
                         justifyContent="center"
