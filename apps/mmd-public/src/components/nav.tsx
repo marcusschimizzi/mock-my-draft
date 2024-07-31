@@ -23,6 +23,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import TeamsMenu from './teams-menu';
 import { boxShadow } from '../utils/style-utils';
+import ColorModeToggle from './color-mode-toggle';
 
 export default function Nav() {
   const [atTop, setAtTop] = useState(true);
@@ -115,7 +116,7 @@ export default function Nav() {
                 >
                   <DrawerCloseButton />
 
-                  <DrawerBody>
+                  <DrawerBody position={'relative'}>
                     <Flex
                       width="full"
                       height="full"
@@ -133,6 +134,15 @@ export default function Nav() {
                           <Text fontSize="xx-large">Contact</Text>
                         </Link>
                       </VStack>
+                      <Box
+                        position={'absolute'}
+                        bottom={4}
+                        w="full"
+                        display="flex"
+                        justifyContent="center"
+                      >
+                        <ColorModeToggle />
+                      </Box>
                     </Flex>
                   </DrawerBody>
                 </DrawerContent>
