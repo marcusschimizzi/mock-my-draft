@@ -114,7 +114,7 @@ export default function Nav() {
                   _dark={{ bg: 'elevations.dark.dp12' }}
                   boxShadow={boxShadow(12)}
                 >
-                  <DrawerCloseButton />
+                  <DrawerCloseButton zIndex={35} size="lg" />
 
                   <DrawerBody position={'relative'}>
                     <Flex
@@ -136,7 +136,7 @@ export default function Nav() {
                       </VStack>
                       <Box
                         position={'absolute'}
-                        bottom={4}
+                        bottom={16}
                         w="full"
                         display="flex"
                         justifyContent="center"
