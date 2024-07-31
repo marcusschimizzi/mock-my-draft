@@ -1,8 +1,6 @@
-const { position } = require('@chakra-ui/react');
+const { readFile, writeFile } = require('fs').promises;
 
-const { readFile } = require('fs').promises;
-
-const getFilename = (year) => `${year}_draft_data.json`;
+const getFilename = (year) => `data/${year}_draft_data.json`;
 
 async function groupDraftClass(year) {
   // Read in the file
@@ -40,7 +38,9 @@ async function groupDraftClass(year) {
     });
   });
 
-  console.log(teamDraftClasses['Pittsburgh Steelers']);
+  // Write out the grouped data
+  const outputFilename = `data/${year}_draft_classes.json`;
+  await writeFile(outputFilename, JSON.stringify(teamDraftClasses, null, 2));
 }
 
 groupDraftClass(2024);
