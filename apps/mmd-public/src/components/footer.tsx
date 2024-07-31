@@ -10,8 +10,6 @@ export default function Footer() {
   return (
     <Box
       as="footer"
-      // bg="elevations.light.dp02"
-      // _dark={{ bg: 'elevations.dark.dp02' }}
       bgGradient={{
         base: 'linear(to-br, primary.100 0%, elevations.light.base 10%, elevations.light.dp04 90%, secondary.100)',
       }}
