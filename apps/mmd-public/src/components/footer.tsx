@@ -1,25 +1,29 @@
 'use client';
 
-import { Box, Grid, GridItem, Text, VStack } from '@chakra-ui/react';
+import { Box, Heading, SimpleGrid, Text, VStack } from '@chakra-ui/react';
 import { Link } from '@chakra-ui/next-js';
 import Logo from './logo';
 import { boxShadow } from '../utils/style-utils';
+import ColorModeToggle from './color-mode-toggle';
 
 export default function Footer() {
   return (
     <Box
       as="footer"
-      bg="elevations.light.dp01"
-      _dark={{ bg: 'elevations.dark.dp01' }}
-      boxShadow={boxShadow(2)}
-      py={[16, null, 20, null, 28]}
+      // bg="elevations.light.dp02"
+      // _dark={{ bg: 'elevations.dark.dp02' }}
+      bgGradient={{
+        base: 'linear(to-br, primary.100 0%, elevations.light.base 10%, elevations.light.dp04 90%, secondary.100)',
+      }}
+      _dark={{
+        bgGradient:
+          'linear(to-br, primary.900 0%, elevations.dark.base 10%, elevations.dark.dp04 90%, secondary.900)',
+      }}
+      boxShadow={boxShadow(4)}
     >
-      <Box margin="0 auto" maxW="80rem">
-        <Grid
-          templateColumns={{
-            base: 'repeat(6, 1fr)',
-            md: 'repeat(12, 1fr)',
-          }}
+      <Box margin="0 auto" maxW="80rem" py={[12, null, 16, null, 20]}>
+        <SimpleGrid
+          columns={{ base: 1, md: 3 }}
           gridGap={{
             base: 4,
             md: 6,
@@ -31,17 +35,16 @@ export default function Footer() {
             xl: 0,
           }}
         >
-          <GridItem gridColumnStart={1} gridColumnEnd={{ base: 7, xl: 3 }}>
+          <Box>
             <Link href="/">
               <Logo />
             </Link>
-          </GridItem>
-          <GridItem
-            gridColumnStart={{ base: 1, xl: 9 }}
-            gridColumnEnd={{ base: 4, xl: 13 }}
-            gridRowStart={{ base: 2, xl: 1 }}
-          >
+          </Box>
+          <Box>
             <VStack alignItems="start">
+              <Heading as="h2" size="md">
+                Quick Links
+              </Heading>
               <Link href="/about">
                 <Text size="sm">About</Text>
               </Link>
@@ -49,11 +52,23 @@ export default function Footer() {
                 <Text size="sm">Contact</Text>
               </Link>
             </VStack>
-          </GridItem>
-          <GridItem gridColumnStart={1} gridColumnEnd={7}>
-            <Text size="sm">© 2024 Mock My Draft. All rights reserved.</Text>
-          </GridItem>
-        </Grid>
+          </Box>
+          <Box>
+            <ColorModeToggle />
+          </Box>
+        </SimpleGrid>
+      </Box>
+      <Box w="full" py={4}>
+        <Box
+          margin="0 auto"
+          maxW="80rem"
+          px={{
+            base: 8,
+            xl: 0,
+          }}
+        >
+          <Text size="sm">© 2024 Mock My Draft. All rights reserved.</Text>
+        </Box>
       </Box>
     </Box>
   );
