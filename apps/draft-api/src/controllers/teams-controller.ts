@@ -20,11 +20,11 @@ export class TeamsController {
 
   public getTeamByIdOrSlug = async (
     req: Request,
-    res: Response
+    res: Response,
   ): Promise<void> => {
     try {
       const team = await this.teamsService.getTeamByIdOrSlug(
-        req.params.idOrSlug
+        req.params.idOrSlug,
       );
 
       if (!team) {
@@ -45,6 +45,19 @@ export class TeamsController {
       res.status(201).json(team);
     } catch (error) {
       console.error('Error creating team:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  };
+
+  public bulkCreateTeams = async (
+    req: Request,
+    res: Response,
+  ): Promise<void> => {
+    try {
+      const result = await this.teamsService.bulkCreateTeams(req.body);
+      res.status(207).json(result);
+    } catch (error) {
+      console.error('Error bulk creating teams:', error);
       res.status(500).json({ message: 'Internal server error' });
     }
   };
