@@ -17,6 +17,12 @@ router.post(
   requireAdmin,
   draftClassController.createDraftClass,
 );
+router.post(
+  '/bulk',
+  authenticate,
+  requireAdmin,
+  draftClassController.bulkCreateDraftClasses,
+);
 router.put(
   '/:year/team/:teamId',
   authenticate,
