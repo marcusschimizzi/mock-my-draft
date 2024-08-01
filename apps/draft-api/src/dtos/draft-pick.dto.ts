@@ -78,6 +78,15 @@ export class DraftClassResponseDto {
   draftPicks: DraftPickResponseDto[];
 }
 
+export class BulkDraftClassResponseDto {
+  message: string;
+  successfulClasses: DraftClassResponseDto[];
+  failedClasses: {
+    index: number;
+    error: string;
+  }[];
+}
+
 export class UpdateDraftPickDto {
   @IsOptional()
   @IsString()

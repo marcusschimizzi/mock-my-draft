@@ -2,6 +2,7 @@ import { AppDataSource } from '../database';
 import { DraftPick } from '../database/models/draft-pick';
 import { Player } from '../database/models/player';
 import {
+  BulkDraftClassResponseDto,
   CreateDraftClassDto,
   DraftClassResponseDto,
   UpdateDraftClassDto,
@@ -86,22 +87,37 @@ export class DraftClassService {
           throw new Error(`Team with id ${dto.teamId} not found`);
         }
 
-        const draftPick = queryRunner.manager.create(
-          DraftPick,
-          DraftPickMapper.toEntity(
-            {
-              year: dto.year,
-              round: pick.round,
-              pickNumber: pick.pickNumber,
-              originalTeamId: dto.teamId,
-              currentTeamId: dto.teamId,
-            },
-            team,
-            team,
-            player,
-          ),
-        );
-        await queryRunner.manager.save(DraftPick, draftPick);
+        const existingPick = await queryRunner.manager.findOne(DraftPick, {
+          where: {
+            year: dto.year,
+            round: pick.round,
+            pickNumber: pick.pickNumber,
+            currentTeam: { id: dto.teamId },
+          },
+        });
+
+        if (existingPick) {
+          existingPick.player = player;
+          existingPick.currentTeam = team;
+          await queryRunner.manager.save(DraftPick, existingPick);
+        } else {
+          const draftPick = queryRunner.manager.create(
+            DraftPick,
+            DraftPickMapper.toEntity(
+              {
+                year: dto.year,
+                round: pick.round,
+                pickNumber: pick.pickNumber,
+                originalTeamId: dto.teamId,
+                currentTeamId: dto.teamId,
+              },
+              team,
+              team,
+              player,
+            ),
+          );
+          await queryRunner.manager.save(DraftPick, draftPick);
+        }
       }
 
       await queryRunner.commitTransaction();
@@ -121,6 +137,64 @@ export class DraftClassService {
     } finally {
       await queryRunner.release();
     }
+  }
+
+  async bulkCreateDraftClasses(
+    dto: CreateDraftClassDto[],
+  ): Promise<BulkDraftClassResponseDto> {
+    const results = await Promise.allSettled(
+      dto.map(async (draftClass, index) => {
+        try {
+          const createdClass = await this.createDraftClass(draftClass);
+          return {
+            index,
+            class: createdClass,
+            success: true,
+          };
+        } catch (error) {
+          return {
+            index,
+            success: false,
+            error: error.message,
+          };
+        }
+      }),
+    );
+
+    const successfulClasses = results
+      .filter(
+        (
+          result,
+        ): result is PromiseFulfilledResult<{
+          index: number;
+          class: DraftClassResponseDto;
+          success: true;
+        }> => result.status === 'fulfilled' && result.value.success,
+      )
+      .map((result) => result.value.class);
+
+    const failedClasses = results
+      .filter(
+        (
+          result,
+        ): result is PromiseFulfilledResult<{
+          index: number;
+          success: false;
+          error: string;
+        }> => result.status === 'rejected',
+      )
+      .map((result) => {
+        return {
+          index: result.value.index,
+          error: result.value.error,
+        };
+      });
+
+    return {
+      message: 'Bulk operation complete',
+      successfulClasses,
+      failedClasses,
+    };
   }
 
   async updateDraftClass(

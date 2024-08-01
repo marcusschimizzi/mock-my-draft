@@ -67,6 +67,21 @@ export class DraftClassController {
     }
   };
 
+  public bulkCreateDraftClasses = async (
+    req: Request,
+    res: Response,
+  ): Promise<void> => {
+    try {
+      const draftClasses = await this.draftClassService.bulkCreateDraftClasses(
+        req.body,
+      );
+      res.status(207).json(draftClasses);
+    } catch (error) {
+      console.error('Error bulk creating draft classes:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  };
+
   public updateDraftClass = async (
     req: Request,
     res: Response,
