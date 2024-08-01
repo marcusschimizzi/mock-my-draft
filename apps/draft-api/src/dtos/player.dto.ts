@@ -68,6 +68,10 @@ export class CreatePlayerDto {
   @IsNumber()
   @IsOptional()
   benchPress?: number;
+
+  @IsString()
+  @IsOptional()
+  hometown?: string;
 }
 
 export class UpdatePlayerDto {
@@ -139,6 +143,10 @@ export class UpdatePlayerDto {
   @IsNumber()
   @IsOptional()
   benchPress?: number;
+
+  @IsString()
+  @IsOptional()
+  hometown?: string;
 }
 
 export class PlayerResponseDto {
@@ -159,6 +167,7 @@ export class PlayerResponseDto {
   readonly verticalJump?: number;
   readonly broadJump?: number;
   readonly benchPress?: number;
+  readonly hometown?: string;
 }
 
 export type PlayerCollectionResponseDto = PlayerResponseDto[];

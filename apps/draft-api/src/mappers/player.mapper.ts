@@ -26,6 +26,7 @@ export class PlayerMapper {
     entity.verticalJump = dto.verticalJump;
     entity.broadJump = dto.broadJump;
     entity.benchPress = dto.benchPress;
+    entity.hometown = dto.hometown;
     return entity;
   }
 
@@ -53,6 +54,7 @@ export class PlayerMapper {
     if (dto.verticalJump !== undefined) entity.verticalJump = dto.verticalJump;
     if (dto.broadJump !== undefined) entity.broadJump = dto.broadJump;
     if (dto.benchPress !== undefined) entity.benchPress = dto.benchPress;
+    if (dto.hometown !== undefined) entity.hometown = dto.hometown;
     return entity;
   }
 
@@ -75,6 +77,7 @@ export class PlayerMapper {
       verticalJump: player.verticalJump,
       broadJump: player.broadJump,
       benchPress: player.benchPress,
+      hometown: player.hometown,
     };
   }
 }
