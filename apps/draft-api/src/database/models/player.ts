@@ -11,6 +11,8 @@ import {
 import { PlayerGrade } from './player-grade';
 import { PlayerRanking } from './player-ranking';
 import { DraftPick } from './draft-pick';
+import { IsEnum } from 'class-validator';
+import { Position } from '../../types';
 
 @Entity('players')
 export class Player {
@@ -21,6 +23,7 @@ export class Player {
   name: string;
 
   @Column()
+  @IsEnum(Position)
   position: string;
 
   @Column({ nullable: true })
@@ -64,6 +67,9 @@ export class Player {
 
   @Column({ nullable: true, type: 'integer' })
   benchPress?: number;
+
+  @Column({ nullable: true })
+  hometown?: string;
 
   @CreateDateColumn()
   createdAt: Date;
