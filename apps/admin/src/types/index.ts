@@ -81,6 +81,7 @@ export type Player = Entity & {
   verticalJump?: number;
   broadJump?: number;
   benchPress?: number;
+  hometown?: string;
 };
 
 export type CreatePlayerDto = Omit<Player, 'id'>;
