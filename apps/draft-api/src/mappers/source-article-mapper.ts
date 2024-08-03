@@ -65,16 +65,6 @@ export class SourceArticleMapper {
         name: entity.source.name,
         slug: entity.source.slug,
       },
-      playerGrades: entity.playerGrades.map((grade) => ({
-        id: grade.id,
-        grade: grade.grade,
-        player: {
-          id: grade.player.id,
-          name: grade.player.name,
-          position: grade.player.position,
-          college: grade.player.college,
-        },
-      })),
       draftClassGrades: entity.draftClassGrades.map((grade) => ({
         id: grade.id,
         grade: grade.grade,
@@ -85,6 +75,25 @@ export class SourceArticleMapper {
           name: grade.team.name,
           abbreviation: grade.team.abbreviation,
         },
+        playerGrades: entity.playerGrades
+          .filter((playerGrade) => playerGrade.team.id === grade.team.id)
+          .map((playerGrade) => ({
+            id: playerGrade.id,
+            grade: playerGrade.grade,
+            text: playerGrade.text,
+            player: {
+              id: playerGrade.player.id,
+              name: playerGrade.player.name,
+              position: playerGrade.player.position,
+              college: playerGrade.player.college,
+            },
+            draftPick: {
+              id: playerGrade.draftPick.id,
+              round: playerGrade.draftPick.round,
+              pick: playerGrade.draftPick.pickNumber,
+              year: playerGrade.draftPick.year,
+            },
+          })),
       })),
     };
   }

@@ -91,16 +91,6 @@ export class SourceArticleResponseWithGradesDto {
     name: string;
     slug: string;
   };
-  readonly playerGrades: {
-    id: string;
-    grade: string;
-    player: {
-      id: string;
-      name: string;
-      position: string;
-      college: string;
-    };
-  }[];
   readonly draftClassGrades: {
     id: string;
     grade: string;
@@ -111,6 +101,23 @@ export class SourceArticleResponseWithGradesDto {
       name: string;
       abbreviation: string;
     };
+    playerGrades: {
+      id: string;
+      grade?: string;
+      text?: string;
+      player: {
+        id: string;
+        name: string;
+        position: string;
+        college: string;
+      };
+      draftPick: {
+        id: string;
+        round: number;
+        pick: number;
+        year: number;
+      };
+    }[];
   }[];
 }
 
