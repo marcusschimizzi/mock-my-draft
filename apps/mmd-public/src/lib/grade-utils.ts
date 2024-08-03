@@ -2,7 +2,7 @@ export const getGradeColor = (grade: string | number) => {
   if (typeof grade === 'number') {
     grade = gradeToLetter(grade);
   }
-  grade = grade.toUpperCase();
+  grade = (grade ?? '').toUpperCase();
   switch (grade) {
     case 'A+':
       return '#1A9850';

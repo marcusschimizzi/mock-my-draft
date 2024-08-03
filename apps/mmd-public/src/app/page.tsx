@@ -263,7 +263,7 @@ export default function Home() {
                       )}
                       fontSize="1.1rem"
                     >
-                      {team.averageGrade.toFixed(2)}
+                      {team?.averageGrade?.toFixed(2) ?? 'N/A'}
                     </Badge>
                   </HStack>
                 ))}
@@ -297,7 +297,7 @@ export default function Home() {
                       )}
                       fontSize="1.1rem"
                     >
-                      {team.averageGrade.toFixed(2)}
+                      {team?.averageGrade?.toFixed(2) ?? 'N/A'}
                     </Badge>
                   </HStack>
                 ))}
@@ -406,7 +406,7 @@ export default function Home() {
               )}
               <Tooltip
                 content={({ payload }) => {
-                  if (!payload || !payload.length) {
+                  if (!payload || !payload.length || !payload[0].payload) {
                     return null;
                   }
                   const gradeRange = payload[0].payload as GradeRange;
@@ -530,7 +530,7 @@ export default function Home() {
                           py={1}
                           px={2}
                         >
-                          {entry.averageGrade.toFixed(2)}
+                          {entry?.averageGrade?.toFixed(2) ?? 'N/A'}
                         </Badge>
                       </Td>
                     </Tr>
