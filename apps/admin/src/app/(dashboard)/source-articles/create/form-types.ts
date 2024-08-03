@@ -23,10 +23,12 @@ export interface FormValues {
   publicationDate?: string;
   year: number;
   draftClassGrades: {
+    id?: string;
     teamId: string;
     grade: string;
     comments?: string;
     playerGrades?: {
+      id?: string;
       playerId: string;
       grade?: string;
       comments?: string;
