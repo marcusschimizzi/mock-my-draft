@@ -52,6 +52,7 @@ function PlayerPage() {
       </HStack>
       <Stack>
         <Text>College: {player.college ? player.college : '--'}</Text>
+        <Text>Hometown: {player.hometown ? player.hometown : '--'}</Text>
         <Text>
           Height: {player.height ? formattedHeight(player.height) : '--'}
         </Text>

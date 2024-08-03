@@ -2,6 +2,7 @@ import {
   ArrayMaxSize,
   ArrayMinSize,
   IsArray,
+  IsEnum,
   IsHexColor,
   Length,
 } from 'class-validator';
@@ -17,6 +18,7 @@ import {
 } from 'typeorm';
 import { DraftClassGrade } from './draft-class-grade';
 import { PlayerGrade } from './player-grade';
+import { Conference, Division } from '../../types';
 
 @Entity('teams')
 @Unique(['slug'])
@@ -41,9 +43,11 @@ export class Team {
   slug: string;
 
   @Column()
+  @IsEnum(Conference)
   conference: 'afc' | 'nfc';
 
   @Column()
+  @IsEnum(Division)
   division: 'north' | 'south' | 'east' | 'west';
 
   @Column()
