@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { CreateDraftGradeDto, DraftGrade } from '../types';
+import { CreateDraftGradeDto, DraftGrade, UpdateDraftGradeDto } from '../types';
 import apiClient from './api-client';
 import { queryClient } from './react-query';
 
@@ -15,7 +15,7 @@ export const createDraftGrade = async (
 
 export const updateDraftGrade = async (
   draftGradeId: string,
-  draftGradeData: Partial<DraftGrade>,
+  draftGradeData: UpdateDraftGradeDto,
 ): Promise<DraftGrade> => {
   return await apiClient.put(
     `/draft-class-grades/${draftGradeId}`,
@@ -66,8 +66,12 @@ export const useUpdateDraftGrade = ({
 }: {
   onSuccess?: (draftGrade: DraftGrade) => void;
 }) => {
-  const { mutate: submit, isPending } = useMutation({
-    mutationFn: (draftGradeData: DraftGrade) =>
+  const {
+    mutate: submit,
+    isPending,
+    mutateAsync: submitAsync,
+  } = useMutation({
+    mutationFn: (draftGradeData: UpdateDraftGradeDto) =>
       updateDraftGrade(draftGradeData.id, draftGradeData),
     onSuccess: (draftGrade) => {
       queryClient.invalidateQueries({ queryKey: ['draft-grades'] });
@@ -75,7 +79,7 @@ export const useUpdateDraftGrade = ({
     },
   });
 
-  return { submit, isLoading: isPending };
+  return { submit, isLoading: isPending, submitAsync };
 };
 
 export const useDeleteDraftGrade = ({

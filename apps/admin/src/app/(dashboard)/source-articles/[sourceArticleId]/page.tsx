@@ -23,6 +23,9 @@ import { EditIcon } from '@chakra-ui/icons';
 import SourceArticleDrawer from '../components/source-article-drawer';
 import { useRef, useState } from 'react';
 import { CreateSourceArticleDto, SourceArticle } from '@/types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { Link as NextLink } from '@chakra-ui/next-js';
 
 function SourceArticlePage() {
   const { sourceArticleId } = useParams<{ sourceArticleId: string }>();
@@ -55,6 +58,16 @@ function SourceArticlePage() {
   return (
     <>
       <Heading maxW="90%">{sourceArticle?.title}</Heading>
+      <Button
+        colorScheme="primary"
+        mt={8}
+        w="full"
+        leftIcon={<FontAwesomeIcon icon={faEdit} />}
+        as={NextLink}
+        href={`/source-articles/${sourceArticleId}/edit`}
+      >
+        Edit article & grades
+      </Button>
       <SimpleGrid columns={2} mt={4} spacing={4}>
         <VStack
           align="start"
@@ -63,8 +76,19 @@ function SourceArticlePage() {
           borderRadius={8}
           bg="elevations.light.dp02"
           _dark={{ bg: 'elevations.dark.dp02' }}
+          position="relative"
         >
           <Heading size="sm">Details</Heading>
+          <Button
+            colorScheme="primary"
+            position="absolute"
+            right={8}
+            top={8}
+            ref={editButtonRef}
+            onClick={() => handleEdit(sourceArticle)}
+          >
+            <EditIcon />
+          </Button>
 
           {sourceArticle?.url && (
             <Text>
@@ -157,16 +181,6 @@ function SourceArticlePage() {
           </Accordion>
         </VStack>
       )}
-      <Button
-        colorScheme="primary"
-        position="absolute"
-        right={8}
-        top={8}
-        ref={editButtonRef}
-        onClick={() => handleEdit(sourceArticle)}
-      >
-        <EditIcon />
-      </Button>
       <SourceArticleDrawer
         sourceArticle={newSourceArticle}
         isOpen={isOpen}
