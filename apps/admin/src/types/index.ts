@@ -137,6 +137,8 @@ export type CreateDraftGradeDto = {
   text?: string;
 };
 
+export type UpdateDraftGradeDto = Entity & Partial<CreateDraftGradeDto>;
+
 export type PlayerGrade = Entity & {
   grade: string;
   gradeNumeric: number;
@@ -183,6 +185,23 @@ export type SourceArticle = Entity & {
     DraftGrade,
     'id' | 'grade' | 'year' | 'text' | 'team'
   >[];
+};
+
+export type SourceArticleWithGrades = Entity & {
+  title: string;
+  url: string;
+  year: number;
+  publicationDate?: string;
+  source: SourceArticleSource;
+  draftClassGrades: (Pick<
+    DraftGrade,
+    'id' | 'grade' | 'year' | 'text' | 'team'
+  > & {
+    playerGrades: Pick<
+      PlayerGrade,
+      'id' | 'grade' | 'text' | 'player' | 'draftPick'
+    >[];
+  })[];
 };
 
 export type CreateSourceArticleDto = {
