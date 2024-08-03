@@ -7,7 +7,6 @@ import {
   Flex,
   Heading,
   Stat,
-  StatGroup,
   StatHelpText,
   StatLabel,
   StatNumber,
@@ -20,8 +19,6 @@ import {
   Tr,
   Text,
   Badge,
-  Wrap,
-  WrapItem,
   SimpleGrid,
   useBreakpointValue,
   Accordion,
@@ -155,12 +152,12 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
                       getGradeColor(draftSummary.averageGrade),
                     )}
                   >
-                    {draftSummary?.averageGrade.toFixed(2)}
+                    {draftSummary?.averageGrade?.toFixed(2) ?? 'N/A'}
                   </Badge>
                 </StatNumber>
               </Stat>
             </Card>
-            {sortedGrades && (
+            {sortedGrades && sortedGrades?.length > 0 && (
               <Card flex={1} h={36}>
                 <Stat>
                   <StatLabel>Highest grade</StatLabel>
@@ -183,7 +180,7 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
                 </Stat>
               </Card>
             )}
-            {sortedGrades && (
+            {sortedGrades && sortedGrades?.length > 0 && (
               <Card flex={1} h={36}>
                 <Stat>
                   <StatLabel>Lowest grade</StatLabel>
