@@ -110,7 +110,7 @@ export function useUpdatePlayerGrade({
     isPending,
     mutateAsync: submitAsync,
   } = useMutation({
-    mutationFn: (playerGrade: PlayerGrade) =>
+    mutationFn: (playerGrade: UpdatePlayerGradeDto) =>
       updatePlayerGrade(playerGrade.id, playerGrade),
     onSuccess: (playerGrade) => {
       queryClient.invalidateQueries({ queryKey: ['player-grades'] });

@@ -2,6 +2,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import {
   CreateSourceArticleDto,
   SourceArticle,
+  SourceArticleWithGrades,
   UpdateSourceArticleDto,
 } from '../types';
 import apiClient from './api-client';
@@ -13,7 +14,7 @@ export const getSourceArticles = async (): Promise<SourceArticle[]> => {
 
 export const getSourceArticle = async (
   sourceArticleId: string,
-): Promise<SourceArticle> => {
+): Promise<SourceArticleWithGrades> => {
   return await apiClient.get(`/source-articles/${sourceArticleId}`);
 };
 
@@ -88,8 +89,12 @@ export const useUpdateSourceArticle = ({
 }: {
   onSuccess?: (sourceArticle: SourceArticle) => void;
 }) => {
-  const { mutate: submit, isPending } = useMutation({
-    mutationFn: (sourceArticleData: SourceArticle) =>
+  const {
+    mutate: submit,
+    isPending,
+    mutateAsync: submitAsync,
+  } = useMutation({
+    mutationFn: (sourceArticleData: UpdateSourceArticleDto & { id: string }) =>
       updateSourceArticle(sourceArticleData.id, sourceArticleData),
     onSuccess: (sourceArticle) => {
       queryClient.invalidateQueries({ queryKey: ['source-articles'] });
@@ -97,7 +102,7 @@ export const useUpdateSourceArticle = ({
     },
   });
 
-  return { submit, isLoading: isPending };
+  return { submit, isLoading: isPending, submitAsync };
 };
 
 export const useDeleteSourceArticle = ({

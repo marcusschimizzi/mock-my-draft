@@ -1,6 +1,12 @@
-import { useCreateDraftGrade } from '@/lib/draft-grades';
-import { useCreatePlayerGrade } from '@/lib/player-grades';
-import { useCreateSourceArticle } from '@/lib/sources-articles';
+import { useCreateDraftGrade, useUpdateDraftGrade } from '@/lib/draft-grades';
+import {
+  useCreatePlayerGrade,
+  useUpdatePlayerGrade,
+} from '@/lib/player-grades';
+import {
+  useCreateSourceArticle,
+  useUpdateSourceArticle,
+} from '@/lib/sources-articles';
 import { useTeams } from '@/lib/teams';
 import { DraftClass } from '@/types';
 import { useEffect, useState } from 'react';
@@ -17,7 +23,13 @@ import { useToast } from '@chakra-ui/react';
 import { getDraftClassesByYear } from '@/lib/draft-class';
 import { useSources } from '@/lib/sources';
 
-export const useSourceArticleForm = () => {
+interface UseSourceArticleFormProps {
+  existingSourceArticle?: FormValues & { id: string };
+}
+
+export const useSourceArticleForm = ({
+  existingSourceArticle,
+}: UseSourceArticleFormProps = {}) => {
   const [step, setStep] = useState(0);
   const [progress, setProgress] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
@@ -28,8 +40,11 @@ export const useSourceArticleForm = () => {
   const { sources, isLoading: sourcesLoading } = useSources();
   const { teams, isLoading: isTeamsLoading } = useTeams();
   const { submitAsync: submitSourceArticleAsync } = useCreateSourceArticle({});
+  const { submitAsync: updateSourceArticleAsync } = useUpdateSourceArticle({});
   const { submitAsync: submitDraftGradeAsync } = useCreateDraftGrade({});
+  const { submitAsync: updateDraftGradeAsync } = useUpdateDraftGrade({});
   const { submitAsync: submitPlayerGradeAsync } = useCreatePlayerGrade({});
+  const { submitAsync: updatePlayerGradeAsync } = useUpdatePlayerGrade({});
 
   const router = useRouter();
   const toast = useToast();
@@ -47,12 +62,16 @@ export const useSourceArticleForm = () => {
     resolver: yupResolver(formSchema),
     mode: 'onBlur',
     defaultValues: {
-      sourceId: '',
-      title: '',
-      url: '',
-      publicationDate: '',
-      year: new Date().getFullYear(),
-      draftClassGrades: [],
+      sourceId: existingSourceArticle?.sourceId ?? '',
+      title: existingSourceArticle?.title ?? '',
+      url: existingSourceArticle?.url ?? '',
+      publicationDate: existingSourceArticle?.publicationDate
+        ? new Date(existingSourceArticle.publicationDate)
+            .toISOString()
+            .split('T')[0]
+        : '',
+      year: existingSourceArticle?.year ?? new Date().getFullYear(),
+      draftClassGrades: existingSourceArticle?.draftClassGrades ?? [],
     },
   });
 
@@ -120,10 +139,6 @@ export const useSourceArticleForm = () => {
 
     if (step === 0) {
       return !(
-        formMethods.formState.touchedFields.title &&
-        formMethods.formState.touchedFields.url &&
-        formMethods.formState.touchedFields.year &&
-        formMethods.formState.touchedFields.sourceId &&
         !formMethods.formState.errors.title &&
         !formMethods.formState.errors.url &&
         !formMethods.formState.errors.year &&
@@ -152,13 +167,25 @@ export const useSourceArticleForm = () => {
     setProgress(0);
 
     try {
-      const sourceArticle = await submitSourceArticleAsync({
-        sourceId: values.sourceId,
-        title: values.title,
-        url: values.url,
-        year: values.year,
-        publicationDate: values.publicationDate,
-      });
+      let sourceArticle;
+      if (existingSourceArticle) {
+        sourceArticle = await updateSourceArticleAsync({
+          id: existingSourceArticle.id,
+          sourceId: values.sourceId,
+          title: values.title,
+          url: values.url,
+          year: values.year,
+          publicationDate: values.publicationDate,
+        });
+      } else {
+        sourceArticle = await submitSourceArticleAsync({
+          sourceId: values.sourceId,
+          title: values.title,
+          url: values.url,
+          year: values.year,
+          publicationDate: values.publicationDate,
+        });
+      }
       setProgress(10);
 
       for (let i = 0; i < values.draftClassGrades.length; i++) {
@@ -171,30 +198,58 @@ export const useSourceArticleForm = () => {
             // Only submit if either grade or comments are present
             if (playerGrade.grade || playerGrade.comments) {
               console.info('Submitting player grade', playerGrade);
-              await submitPlayerGradeAsync({
-                sourceArticleId: sourceArticle.id,
-                teamId: grade.teamId,
-                playerId: playerGrade.playerId,
-                grade: playerGrade.grade,
-                text: playerGrade.comments,
-                draftPickId: playerGrade.draftPickId,
-              });
+              if (existingSourceArticle && playerGrade.id) {
+                await updatePlayerGradeAsync({
+                  id: playerGrade.id,
+                  sourceArticleId: sourceArticle.id,
+                  teamId: grade.teamId,
+                  playerId: playerGrade.playerId,
+                  grade: playerGrade.grade,
+                  text: playerGrade.comments,
+                  draftPickId: playerGrade.draftPickId,
+                });
+              } else {
+                await submitPlayerGradeAsync({
+                  sourceArticleId: sourceArticle.id,
+                  teamId: grade.teamId,
+                  playerId: playerGrade.playerId,
+                  grade: playerGrade.grade,
+                  text: playerGrade.comments,
+                  draftPickId: playerGrade.draftPickId,
+                });
+              }
             }
           }
         }
 
-        await submitDraftGradeAsync({
-          sourceArticleId: sourceArticle.id,
-          teamId: grade.teamId,
-          grade: grade.grade,
-          text: grade.comments,
-          year: values.year,
-        });
+        // Submit draft grades
+        if (existingSourceArticle && grade.id) {
+          await updateDraftGradeAsync({
+            id: grade.id,
+            sourceArticleId: sourceArticle.id,
+            teamId: grade.teamId,
+            grade: grade.grade,
+            text: grade.comments,
+            year: values.year,
+          });
+        } else {
+          await submitDraftGradeAsync({
+            sourceArticleId: sourceArticle.id,
+            teamId: grade.teamId,
+            grade: grade.grade,
+            text: grade.comments,
+            year: values.year,
+          });
+        }
         setProgress(10 + ((i + 1) / values.draftClassGrades.length) * 90);
       }
       toast({
-        title: 'Draft grades submitted',
-        description: 'All draft grades have been submitted successfully',
+        title: existingSourceArticle
+          ? 'Draft grades updated'
+          : 'Draft grades submitted',
+        description: `All draft grades have been ${
+          existingSourceArticle ? 'updated' : 'submitted'
+        } successfully`,
         status: 'success',
         duration: 3000,
         isClosable: true,
@@ -205,7 +260,9 @@ export const useSourceArticleForm = () => {
     } catch (error) {
       toast({
         title: 'Error',
-        description: 'An error occurred while submitting the draft grades',
+        description: `An error occurred while ${
+          existingSourceArticle ? 'updating' : 'submitting'
+        } the draft grades`,
         status: 'error',
         duration: 3000,
         isClosable: true,
@@ -217,20 +274,33 @@ export const useSourceArticleForm = () => {
   };
 
   useEffect(() => {
-    const initializeForm = () => {
-      if (teams.length > 0) {
-        const initialDraftClassGrades = teams.map((team) => ({
-          teamId: team.id,
-          grade: '',
-          comments: '',
-          playerGrades: [],
-        }));
+    const initializeForm = async () => {
+      if (teams.length > 0 && !isFormInitialized) {
+        let initialDraftClassGrades;
+        if (existingSourceArticle) {
+          initialDraftClassGrades = existingSourceArticle.draftClassGrades;
+        } else {
+          initialDraftClassGrades = teams.map((team) => ({
+            teamId: team.id,
+            grade: '',
+            comments: '',
+            playerGrades: [],
+          }));
+        }
         setValue('draftClassGrades', initialDraftClassGrades);
+
+        if (existingSourceArticle) {
+          const draftClasses = await getDraftClassesByYear(
+            existingSourceArticle.year,
+          );
+          setDraftClasses(draftClasses);
+        }
+
         setIsFormInitialized(true);
       }
     };
     initializeForm();
-  }, [teams, setValue]);
+  }, [teams, setValue, existingSourceArticle, isFormInitialized]);
 
   return {
     step,
@@ -249,5 +319,6 @@ export const useSourceArticleForm = () => {
     isNextDisabled,
     teams,
     sources,
+    isEditing: !!existingSourceArticle,
   };
 };
