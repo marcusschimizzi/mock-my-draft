@@ -43,6 +43,8 @@ export class SourceArticlesService {
         'source',
         'playerGrades',
         'playerGrades.player',
+        'playerGrades.draftPick',
+        'playerGrades.team',
         'draftClassGrades',
         'draftClassGrades.team',
       ],

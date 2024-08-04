@@ -39,7 +39,12 @@ export interface FormValues {
 
 const playerGradeSchema = yup.object().shape({
   playerId: yup.string().required('Player ID is required'),
-  grade: yup.string().oneOf(gradeOptions, 'Grade is not valid'),
+  grade: yup
+    .string()
+    .transform((value, originalValue) =>
+      originalValue.trim() === '' ? undefined : value,
+    )
+    .oneOf([...gradeOptions, undefined], 'Grade is not valid'),
   comments: yup
     .string()
     .max(5000, 'Comments must be less than 5000 characters'),
