@@ -46,6 +46,8 @@ import {
 } from 'recharts';
 import { getContrastingColor, getGradeColor } from '../../../lib/grade-utils';
 import { boxShadow } from '../../../utils/style-utils';
+import { useDraftClass } from '../../../lib/draft-class';
+import { Loading } from '../../../components/loading';
 
 interface GradeCount {
   grade: string;
@@ -56,6 +58,10 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
   const [year, setYear] = useState(2024);
   const { years, isLoading: isYearsLoading } = useYears();
   const { draftSummary, isLoading } = useTeamDraftSummary(year, params.teamId);
+  const { draftClass, isLoading: isDraftClassLoading } = useDraftClass(
+    year,
+    params.teamId,
+  );
   const [sortedGrades, setSortedGrades] = useState<DraftGrade[] | null>(null);
   const [gradeCounts, setGradeCounts] = useState<GradeCount[] | null>(null);
   const isMobile = useBreakpointValue({ base: true, md: false });
@@ -99,8 +105,12 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
     return null;
   }
 
-  if (isLoading) {
-    return <div>Loading...</div>;
+  if (isLoading || isYearsLoading || isDraftClassLoading) {
+    return (
+      <Container as="main" maxW="container.xl" my={8}>
+        <Loading />
+      </Container>
+    );
   }
 
   return (
@@ -132,7 +142,7 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
           </Flex>
           <SimpleGrid
             marginTop={8}
-            py={4}
+            pt={4}
             columns={{
               base: 1,
               md: 3,
@@ -211,6 +221,38 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
               </Card>
             )}
           </SimpleGrid>
+          {draftClass && (
+            <Card mt={8} py={4}>
+              <TableContainer>
+                <Table variant="simple">
+                  <Thead>
+                    <Tr>
+                      <Th>Round</Th>
+                      <Th>Pick</Th>
+                      <Th>Player</Th>
+                      <Th>Position</Th>
+                      <Th>College</Th>
+                    </Tr>
+                  </Thead>
+                  <Tbody>
+                    {draftClass.draftPicks.map((pick) => (
+                      <Tr key={pick.id}>
+                        <Td>{pick.round}</Td>
+                        <Td>{pick.pickNumber}</Td>
+                        <Td>{pick.player?.name}</Td>
+                        <Td>
+                          <Badge fontSize="1.2rem">
+                            {pick.player?.position}
+                          </Badge>
+                        </Td>
+                        <Td>{pick.player?.college ?? '--'}</Td>
+                      </Tr>
+                    ))}
+                  </Tbody>
+                </Table>
+              </TableContainer>
+            </Card>
+          )}
           {gradeCounts && (
             <Card mt={8} py={4}>
               <Heading size="md">Grade distribution</Heading>
