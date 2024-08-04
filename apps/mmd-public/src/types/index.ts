@@ -52,3 +52,40 @@ export interface DraftGrade {
     };
   };
 }
+
+export type Player = {
+  id: string;
+  name: string;
+  position: string;
+  dateOfBirth?: string;
+  college?: string;
+  height?: number;
+  weight?: number;
+  armLength?: number;
+  handSize?: number;
+  fortyYardDash?: number;
+  tenYardSplit?: number;
+  twentyYardSplit?: number;
+  twentyYardShuttle?: number;
+  threeConeDrill?: number;
+  verticalJump?: number;
+  broadJump?: number;
+  benchPress?: number;
+  hometown?: string;
+};
+
+export type DraftPick = {
+  id: string;
+  round: number;
+  pickNumber: number;
+  year: number;
+  originalTeam: Pick<Team, 'id' | 'name' | 'abbreviation'>;
+  currentTeam: Pick<Team, 'id' | 'name' | 'abbreviation'>;
+  player?: Player;
+};
+
+export type DraftClass = {
+  year: number;
+  teamId: string;
+  draftPicks: DraftPick[];
+};
