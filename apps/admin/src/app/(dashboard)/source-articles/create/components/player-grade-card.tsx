@@ -45,7 +45,11 @@ const PlayerGradeCard = ({
       render={({ field, fieldState: { error } }) => (
         <FormControl isInvalid={!!error} maxW={48}>
           <FormLabel>Grade</FormLabel>
-          <Select {...field}>
+          <Select
+            {...field}
+            value={field.value || ''}
+            onChange={(e) => field.onChange(e.target.value || undefined)}
+          >
             <option value="">Select a grade</option>
             {gradeOptions.map((grade) => (
               <option key={grade} value={grade}>
