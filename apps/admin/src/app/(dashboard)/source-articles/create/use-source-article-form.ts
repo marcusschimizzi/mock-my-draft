@@ -58,6 +58,8 @@ export const useSourceArticleForm = ({
     { title: 'Review', description: 'Review and submit' },
   ];
 
+  console.info('Existing source article', existingSourceArticle);
+
   const formMethods = useForm<FormValues>({
     resolver: yupResolver(formSchema),
     mode: 'onBlur',
