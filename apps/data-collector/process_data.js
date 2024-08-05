@@ -1,6 +1,6 @@
 const { readFile, writeFile } = require('fs').promises;
 
-const teamsApiUrl = 'http://localhost:3333/api/teams';
+const teamsApiUrl = 'https://api.mockmydraft.com/api/teams';
 
 const fetchTeams = async () => {
   const response = await fetch(teamsApiUrl);
@@ -11,6 +11,7 @@ const fetchTeams = async () => {
 const acceptedPositions = [
   'QB',
   'RB',
+  'FB',
   'WR',
   'TE',
   'T',
@@ -55,6 +56,7 @@ const normalizePosition = (position) => {
     OC: 'C',
     DE: 'ED',
     DT: 'DI',
+    NT: 'DI',
     ILB: 'LB',
     MLB: 'LB',
     OLB: 'ED',

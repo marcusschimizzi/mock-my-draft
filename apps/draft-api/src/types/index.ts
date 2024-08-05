@@ -8,6 +8,7 @@ export interface AuthenticatedRequest extends Request {
 export enum Position {
   Quarterback = 'QB',
   RunningBack = 'RB',
+  FullBack = 'FB',
   WideReceiver = 'WR',
   TightEnd = 'TE',
   Center = 'C',

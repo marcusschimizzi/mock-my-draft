@@ -149,8 +149,6 @@ export const useSourceArticleForm = ({
     if (step === 1) {
       return !draftClassFields.every(
         (_, index) =>
-          formMethods.formState.touchedFields.draftClassGrades?.[index]
-            ?.grade &&
           !formMethods.formState.errors.draftClassGrades?.[index]?.grade,
       );
     }
@@ -278,7 +276,53 @@ export const useSourceArticleForm = ({
       if (teams.length > 0 && !isFormInitialized) {
         let initialDraftClassGrades;
         if (existingSourceArticle) {
-          initialDraftClassGrades = existingSourceArticle.draftClassGrades;
+          // We need to make sure that the draft class grades are in the same order as the teams
+          const draftClasses = await getDraftClassesByYear(
+            existingSourceArticle.year,
+          );
+          setDraftClasses(draftClasses);
+
+          initialDraftClassGrades = teams.map((team) => {
+            const existingDraftClassGrade =
+              existingSourceArticle.draftClassGrades.find(
+                (grade) => grade.teamId === team.id,
+              );
+            const draftClass = draftClasses.find((dc) => dc.teamId === team.id);
+            if (existingDraftClassGrade) {
+              return {
+                ...existingDraftClassGrade,
+                playerGrades: draftClass?.draftPicks
+                  .filter((pick) => pick.player !== undefined)
+                  .map((draftPick) => {
+                    const existingPlayerGrade =
+                      existingDraftClassGrade.playerGrades?.find(
+                        (pg) => pg.playerId === draftPick.player?.id,
+                      );
+                    return {
+                      id: existingPlayerGrade?.id,
+                      playerId: draftPick.player!.id,
+                      grade: existingPlayerGrade?.grade || '',
+                      comments: existingPlayerGrade?.comments || '',
+                      draftPickId: draftPick.id,
+                    };
+                  }),
+              };
+            }
+            return {
+              teamId: team.id,
+              grade: '',
+              comments: '',
+              playerGrades:
+                draftClass?.draftPicks
+                  .filter((pick) => pick.player !== undefined)
+                  .map((draftPick) => ({
+                    playerId: draftPick.player!.id,
+                    grade: '',
+                    comments: '',
+                    draftPickId: draftPick.id,
+                  })) || [],
+            };
+          });
         } else {
           initialDraftClassGrades = teams.map((team) => ({
             teamId: team.id,
@@ -287,20 +331,15 @@ export const useSourceArticleForm = ({
             playerGrades: [],
           }));
         }
-        setValue('draftClassGrades', initialDraftClassGrades);
-
-        if (existingSourceArticle) {
-          const draftClasses = await getDraftClassesByYear(
-            existingSourceArticle.year,
-          );
-          setDraftClasses(draftClasses);
-        }
-
+        formMethods.reset({
+          ...formMethods.getValues(),
+          draftClassGrades: initialDraftClassGrades,
+        });
         setIsFormInitialized(true);
       }
     };
     initializeForm();
-  }, [teams, setValue, existingSourceArticle, isFormInitialized]);
+  }, [teams, formMethods, existingSourceArticle, isFormInitialized]);
 
   return {
     step,
