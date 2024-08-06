@@ -1,12 +1,13 @@
 'use client';
-import { Box, Button, Heading, useDisclosure } from '@chakra-ui/react';
-import { Loading } from '@/components/loading';
+import { Box, Button, Heading, HStack, useDisclosure } from '@chakra-ui/react';
 import { useDeleteTeam, useTeams } from '@/lib/teams';
-import { AddIcon } from '@chakra-ui/icons';
+import { AddIcon, DeleteIcon, EditIcon } from '@chakra-ui/icons';
 import { useRef, useState } from 'react';
 import TeamsDrawer from './components/teams-drawer';
 import TeamsTable from './components/teams-table';
 import { defaultTeam, Team } from '@/types';
+import Table from '@/components/table';
+import Image from 'next/image';
 
 function TeamsPage() {
   const { teams, isLoading } = useTeams();
@@ -25,22 +26,22 @@ function TeamsPage() {
     deleteTeam.submit(team.id);
   };
 
-  if (isLoading) {
-    return <Loading />;
-  }
-
   return (
-    <Box maxWidth={800} mx="auto" mt={8} p={4}>
-      <Heading mb={6}>Team Management</Heading>
-      <Button
-        mb={4}
-        w="full"
-        leftIcon={<AddIcon />}
-        ref={teamDrawerRef}
-        onClick={onOpen}
-      >
-        Add a new team
-      </Button>
+    <Box maxWidth="container.xl" mx="auto" mt={8} p={4}>
+      <HStack spacing={4} justifyContent="space-between" alignItems="center">
+        <Heading mb={6}>Team Management</Heading>
+        <Box maxW="200px">
+          <Button
+            mb={4}
+            w="full"
+            leftIcon={<AddIcon />}
+            ref={teamDrawerRef}
+            onClick={onOpen}
+          >
+            Add a new team
+          </Button>
+        </Box>
+      </HStack>
       <TeamsDrawer
         team={newTeam}
         onChange={setNewTeam}
@@ -48,7 +49,62 @@ function TeamsPage() {
         onClose={onClose}
         toggleBtnRef={teamDrawerRef}
       />
-      <TeamsTable teams={teams} onEdit={handleEdit} onDelete={handleDelete} />
+      <Box my={12}>
+        <Table
+          isLoading={isLoading}
+          data={teams.map((team) => {
+            return [
+              { column: 'Name', value: team.name, type: 'text' },
+              {
+                column: 'Logo',
+                value: team.logo ? (
+                  <Image
+                    src={team.logo}
+                    alt={`${team.name} logo`}
+                    width={36}
+                    height={36}
+                  />
+                ) : (
+                  '--'
+                ),
+                type: 'component',
+              },
+              {
+                column: 'Abbreviation',
+                value: team.abbreviation,
+                type: 'text',
+              },
+              {
+                column: 'Division',
+                value: `${team.conference.toUpperCase()} ${team.division.toUpperCase()}`,
+                type: 'text',
+              },
+              {
+                column: 'Actions',
+                value: (
+                  <Box w="full" display="flex" justifyContent="space-around">
+                    <Button
+                      colorScheme="blue"
+                      size="sm"
+                      onClick={() => handleEdit(team)}
+                    >
+                      <EditIcon />
+                    </Button>
+                    <Button
+                      colorScheme="secondary"
+                      size="sm"
+                      onClick={() => handleDelete(team)}
+                    >
+                      <DeleteIcon />
+                    </Button>
+                  </Box>
+                ),
+                type: 'component',
+              },
+            ];
+          })}
+        />
+      </Box>
     </Box>
   );
 }
