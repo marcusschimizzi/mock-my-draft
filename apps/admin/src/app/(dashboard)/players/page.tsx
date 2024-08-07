@@ -30,7 +30,7 @@ function PlayersPage() {
   };
 
   return (
-    <Box p={4} maxW={800} mx="auto" mt={8}>
+    <Box p={4} maxW="container.xl" mx="auto" mt={8}>
       <Heading mb={6}>Player management</Heading>
       <Button
         mb={4}

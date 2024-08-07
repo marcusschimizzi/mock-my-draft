@@ -103,7 +103,7 @@ const ViewDraftClassesPage = () => {
   };
 
   return (
-    <Box maxW={800} mx="auto" mt={8} p={4}>
+    <Box maxW="container.xl" mx="auto" mt={8} p={4}>
       <HStack mb={6} justifyContent="space-between">
         <Heading>View Draft Classes</Heading>
         <Select

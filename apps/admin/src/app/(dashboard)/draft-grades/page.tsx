@@ -51,7 +51,7 @@ function DraftGradesPage() {
   }
 
   return (
-    <Box maxWidth={800} mx="auto" mt={8} p={4}>
+    <Box maxWidth="container.xl" mx="auto" mt={8} p={4}>
       <Heading mb={6}>Draft grade management</Heading>
       <Button
         mb={4}

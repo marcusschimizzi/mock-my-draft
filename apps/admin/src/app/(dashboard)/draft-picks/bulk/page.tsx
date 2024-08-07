@@ -282,7 +282,7 @@ function BulkEditDraftPicksPage() {
   };
 
   return (
-    <Box maxWidth="800px" mx="auto" mt={8} p={4}>
+    <Box maxWidth="container.xl" mx="auto" mt={8} p={4}>
       <Heading mb={6}>Bulk edit draft picks</Heading>
       <Box as="form" onSubmit={handleSubmit(onSubmit)}>
         <VStack spacing={4} align="stretch">

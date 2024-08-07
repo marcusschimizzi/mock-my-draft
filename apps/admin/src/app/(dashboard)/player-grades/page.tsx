@@ -74,7 +74,7 @@ const PlayerGradesTable = ({ playerGrades }: PlayerGradesTableProps) => {
 };
 
 const WrappedPlayerGrades = () => (
-  <Box mt={8} p={4} maxWidth={800} mx="auto">
+  <Box mt={8} p={4} maxWidth="container.xl" mx="auto">
     <PlayerGrades />
   </Box>
 );

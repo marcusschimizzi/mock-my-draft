@@ -4,7 +4,7 @@ import { Box, Heading, Table, Thead } from '@chakra-ui/react';
 
 function UsersPage() {
   return (
-    <Box maxWidth={800} mx="auto" mt={8} p={4}>
+    <Box maxWidth="container.xl" mx="auto" mt={8} p={4}>
       <Heading mb={6}>User management</Heading>
       <Table>
         <Thead>
