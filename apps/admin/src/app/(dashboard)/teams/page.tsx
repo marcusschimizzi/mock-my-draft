@@ -4,7 +4,6 @@ import { useDeleteTeam, useTeams } from '@/lib/teams';
 import { AddIcon, DeleteIcon, EditIcon } from '@chakra-ui/icons';
 import { useRef, useState } from 'react';
 import TeamsDrawer from './components/teams-drawer';
-import TeamsTable from './components/teams-table';
 import { defaultTeam, Team } from '@/types';
 import Table from '@/components/table';
 import Image from 'next/image';

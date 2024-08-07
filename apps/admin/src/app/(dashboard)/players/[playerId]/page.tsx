@@ -106,7 +106,7 @@ function PlayerPage() {
 }
 
 const WrappedPlayerPage = () => (
-  <Box maxWidth={800} mx="auto" mt={8} p={4} position="relative">
+  <Box maxWidth="container.xl" mx="auto" mt={8} p={4} position="relative">
     <PlayerPage />
   </Box>
 );

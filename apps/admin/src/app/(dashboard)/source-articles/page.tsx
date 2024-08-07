@@ -58,7 +58,7 @@ function SourceArticlesPage() {
   }
 
   return (
-    <Box maxWidth={800} mx="auto" mt={8} p={4}>
+    <Box maxWidth="container.xl" mx="auto" mt={8} p={4}>
       <Heading mb={6}>Source article management</Heading>
       <Button
         mb={4}

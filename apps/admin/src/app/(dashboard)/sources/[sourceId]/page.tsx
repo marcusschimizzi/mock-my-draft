@@ -91,7 +91,7 @@ function SourcePage() {
 }
 
 const WrappedSourcePage = () => (
-  <Box maxWidth={800} mx="auto" mt={8} p={4} position="relative">
+  <Box maxWidth="container.xl" mx="auto" mt={8} p={4} position="relative">
     <SourcePage />
   </Box>
 );
