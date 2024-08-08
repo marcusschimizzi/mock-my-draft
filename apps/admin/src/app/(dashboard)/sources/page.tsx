@@ -1,13 +1,14 @@
 'use client';
 
 import { Box, Button, Heading, useDisclosure } from '@chakra-ui/react';
-import { AddIcon } from '@chakra-ui/icons';
-import SourcesTable from './components/sources-table';
+import { AddIcon, DeleteIcon, EditIcon } from '@chakra-ui/icons';
 import { useDeleteSource, useSources } from '@/lib/sources';
 import { Loading } from '@/components/loading';
 import { useRef, useState } from 'react';
 import SourcesDrawer from './components/source-drawer';
 import { defaultSource, Source } from '@/types';
+import Table from '@/components/table';
+import { Link } from '@chakra-ui/next-js';
 
 function SourcesPage() {
   const [source, setSource] = useState(defaultSource);
@@ -24,6 +25,10 @@ function SourcesPage() {
   const handleEdit = (source: Source) => {
     setSource(source);
     onOpen();
+  };
+
+  const handleDelete = (source: Source) => {
+    deleteSource.submit(source.id);
   };
 
   if (isLoading) {
@@ -49,10 +54,37 @@ function SourcesPage() {
         onClose={onClose}
         toggleBtnRef={toggleDrawerBtnRef}
       />
-      <SourcesTable
-        sources={sources}
-        onEdit={handleEdit}
-        onDelete={(source) => deleteSource.submit(source.id)}
+      <Table
+        data={sources.map((source) => [
+          {
+            column: 'Name',
+            value: <Link href={`/sources/${source.id}`}>{source.name}</Link>,
+            type: 'component',
+          },
+          { column: 'URL', value: source.baseUrl, type: 'text' },
+          {
+            column: 'Actions',
+            value: (
+              <Box w="full" display="flex" justifyContent="space-around">
+                <Button
+                  colorScheme="blue"
+                  size="sm"
+                  onClick={() => handleEdit(source)}
+                >
+                  <EditIcon />
+                </Button>
+                <Button
+                  colorScheme="secondary"
+                  size="sm"
+                  onClick={() => handleDelete(source)}
+                >
+                  <DeleteIcon />
+                </Button>
+              </Box>
+            ),
+            type: 'component',
+          },
+        ])}
       />
     </Box>
   );
