@@ -8,6 +8,7 @@ import { useRef, useState } from 'react';
 import SourcesDrawer from './components/source-drawer';
 import { defaultSource, Source } from '@/types';
 import Table from '@/components/table';
+import { Link } from '@chakra-ui/next-js';
 
 function SourcesPage() {
   const [source, setSource] = useState(defaultSource);
@@ -55,7 +56,11 @@ function SourcesPage() {
       />
       <Table
         data={sources.map((source) => [
-          { column: 'Name', value: source.name, type: 'text' },
+          {
+            column: 'Name',
+            value: <Link href={`/sources/${source.id}`}>{source.name}</Link>,
+            type: 'component',
+          },
           { column: 'URL', value: source.baseUrl, type: 'text' },
           {
             column: 'Actions',
