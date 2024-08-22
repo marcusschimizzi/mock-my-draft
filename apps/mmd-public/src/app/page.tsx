@@ -45,6 +45,7 @@ import {
   gradeToLetter,
 } from '../lib/grade-utils';
 import { boxShadow } from '../utils/style-utils';
+import { Loading } from '../components/loading';
 
 interface GradeRange {
   team: Team;
@@ -121,7 +122,7 @@ export default function Home() {
   if (isLoading) {
     return (
       <Container as="main" maxW="container.xl" minH="80vh">
-        <Heading>Loading...</Heading>
+        <Loading />
       </Container>
     );
   }
