@@ -1,11 +1,12 @@
 'use client';
 
-import { Box, SimpleGrid, SkeletonText, Text, VStack } from '@chakra-ui/react';
+import { Box, SimpleGrid, Text, VStack } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { useTeams } from '../../lib/teams';
 import { capitalize } from '../../lib/common-utils';
 import TeamLogo from '../../components/team-logo';
 import { Link } from '@chakra-ui/next-js';
+import { Loading } from '../../components/loading';
 
 interface Division {
   name: string;
@@ -38,7 +39,7 @@ export default function TeamsPage() {
   return (
     <Box py={16} minH="80vh" fontSize="1.2rem">
       {isLoading ? (
-        <SkeletonText noOfLines={4} spacing="4" />
+        <Loading />
       ) : (
         <Box>
           <SimpleGrid
