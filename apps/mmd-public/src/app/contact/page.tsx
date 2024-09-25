@@ -13,8 +13,8 @@ export default function ContactPage() {
         If you have any comments, questions, suggestions or just want to say hi,
         you can send an email to us here:
       </Box>
-      <Box as="p" mb={6} fontSize="2rem">
-        <a href="mailto:hello@mockmydraft.com">hello@mockmydraft.com</a>
+      <Box as="p" mb={6} fontSize="2rem" className="contact-link">
+        <a href="mailto:%68%65%6c%6c%6f%40%6d%6f%63%6b%6d%79%64%72%61%66%74%2e%63%6f%6d">hello [at] <b>askjkslkds</b> mockmydraft <b>skljfksjkdlsjkjlks</b> [dot] com</a>
       </Box>
     </Box>
   );
