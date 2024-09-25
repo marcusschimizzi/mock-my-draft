@@ -62,3 +62,6 @@ pre {
 .rounded {
   border-radius: 1.5rem;
 }
+.contact-link > a > b {
+  display: none;
+}
