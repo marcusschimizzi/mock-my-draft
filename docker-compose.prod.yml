@@ -63,7 +63,7 @@ services:
     environment:
       - NODE_ENV=production
     ports:
-      - '${TEXT_ANALYSIS_PORT:-8000}:8000'
+      - '${TEXT_ANALYSIS_PORT:-8888}:8888'
     restart: always
     healthcheck:
       test: ['CMD', 'python', 'scripts/healthcheck.js']
