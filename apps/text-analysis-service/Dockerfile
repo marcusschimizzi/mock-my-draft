@@ -11,7 +11,7 @@ RUN pip install poetry
 COPY /apps/text-analysis-service/pyproject.toml /apps/text-analysis-service/poetry.lock* ./
 
 RUN poetry config virtualenvs.create false \
-    && poetry install --only main --no-interaction --no-ansi
+    && poetry install --only main --no-root --no-interaction --no-ansi
 
 FROM python:3.9-slim AS runner
 
