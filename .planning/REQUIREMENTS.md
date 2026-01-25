@@ -83,16 +83,30 @@ Explicitly excluded. Documented to prevent scope creep.
 
 Which phases cover which requirements. Updated during roadmap creation.
 
-| Requirement | Phase | Status |
-| ----------- | ----- | ------ |
+| Requirement | Phase   | Status  |
+| ----------- | ------- | ------- |
+| DATA-01     | Phase 1 | Pending |
+| DATA-02     | Phase 1 | Pending |
+| SETUP-01    | Phase 2 | Pending |
+| SETUP-02    | Phase 2 | Pending |
+| BOARD-01    | Phase 3 | Pending |
+| BOARD-02    | Phase 3 | Pending |
+| BOARD-03    | Phase 3 | Pending |
+| FLOW-01     | Phase 4 | Pending |
+| FLOW-02     | Phase 4 | Pending |
+| FLOW-03     | Phase 4 | Pending |
+| FLOW-04     | Phase 4 | Pending |
+| RESULT-01   | Phase 5 | Pending |
+| RESULT-02   | Phase 5 | Pending |
+| RESULT-03   | Phase 5 | Pending |
 
 **Coverage:**
 
 - v1 requirements: 14 total
-- Mapped to phases: 0
-- Unmapped: 14 ⚠️
+- Mapped to phases: 14
+- Unmapped: 0
 
 ---
 
 _Requirements defined: 2026-01-24_
-_Last updated: 2026-01-24 after initial definition_
+_Last updated: 2026-01-24 after roadmap creation_
