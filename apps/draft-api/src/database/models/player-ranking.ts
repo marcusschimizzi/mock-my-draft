@@ -7,6 +7,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { DataVersion } from './data-version';
 import { Player } from './player';
 import { SourceArticle } from './source-article';
 
@@ -18,6 +19,10 @@ export class PlayerRanking {
   @ManyToOne(() => Player, (player) => player.rankings)
   @JoinColumn({ name: 'player_id' })
   player: Player;
+
+  @ManyToOne(() => DataVersion, (dataVersion) => dataVersion.rankings)
+  @JoinColumn({ name: 'data_version_id' })
+  dataVersion: DataVersion;
 
   @ManyToOne(() => SourceArticle)
   @JoinColumn({ name: 'source_article_id' })

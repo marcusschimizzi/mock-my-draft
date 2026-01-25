@@ -14,6 +14,8 @@ import { SourceArticle } from './models/source-article';
 import { PlayerGrade } from './models/player-grade';
 import { PlayerRanking } from './models/player-ranking';
 import { DraftPickTrade } from './models/draft-pick-trade';
+import { DataVersion } from './models/data-version';
+import { DataImportLog } from './models/data-import-log';
 import { snakeCase } from 'typeorm/util/StringUtils';
 
 class SnakeNamingStrategy
@@ -61,6 +63,8 @@ export const AppDataSource: DataSource = new DataSource({
     PlayerGrade,
     PlayerRanking,
     DraftPickTrade,
+    DataVersion,
+    DataImportLog,
   ],
   synchronize: true,
   logging: true,
