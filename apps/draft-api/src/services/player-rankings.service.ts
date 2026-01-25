@@ -8,23 +8,38 @@ import {
   UpdatePlayerRankingDto,
 } from '../dtos/player-ranking.dto';
 import { PlayerRankingMapper } from '../mappers/player-ranking.mapper';
+import { DataVersionsService } from './data-versions-service';
 
 export class PlayerRankingsService {
   private playerRankingsRepository = AppDataSource.getRepository(PlayerRanking);
   private playerRepository = AppDataSource.getRepository(Player);
   private sourceArticleRepository = AppDataSource.getRepository(SourceArticle);
+  private dataVersionsService = new DataVersionsService();
 
   async getAllPlayerRankings(filters?: {
     playerId?: string;
+    dataVersionId?: string;
     sourceId?: string;
     year?: number;
     position?: string;
   }): Promise<PlayerRankingResponseDto[]> {
+    const scopedVersionId =
+      filters?.dataVersionId ??
+      (await this.dataVersionsService.getActiveVersion())?.id;
+    if (!scopedVersionId) {
+      return [];
+    }
+
     const queryBuilder = this.playerRankingsRepository
       .createQueryBuilder('playerRanking')
       .leftJoinAndSelect('playerRanking.player', 'player')
       .leftJoinAndSelect('playerRanking.sourceArticle', 'sourceArticle')
-      .leftJoinAndSelect('sourceArticle.source', 'source');
+      .leftJoinAndSelect('sourceArticle.source', 'source')
+      .innerJoin('playerRanking.dataVersion', 'dataVersion');
+
+    queryBuilder.andWhere('dataVersion.id = :dataVersionId', {
+      dataVersionId: scopedVersionId,
+    });
 
     if (filters?.playerId) {
       queryBuilder.andWhere('player.id = :playerId', {
@@ -57,13 +72,31 @@ export class PlayerRankingsService {
     );
   }
 
-  async getPlayerRankingById(id: string): Promise<PlayerRankingResponseDto> {
-    const playerRanking = await this.playerRankingsRepository.findOne({
-      where: { id },
-      relations: ['player', 'sourceArticle', 'sourceArticle.source'],
-    });
+  async getPlayerRankingById(
+    id: string,
+    dataVersionId?: string,
+  ): Promise<PlayerRankingResponseDto> {
+    const scopedVersionId =
+      dataVersionId ?? (await this.dataVersionsService.getActiveVersion())?.id;
+    if (!scopedVersionId) {
+      return null;
+    }
 
-    return PlayerRankingMapper.toResponseDto(playerRanking);
+    const playerRanking = await this.playerRankingsRepository
+      .createQueryBuilder('playerRanking')
+      .leftJoinAndSelect('playerRanking.player', 'player')
+      .leftJoinAndSelect('playerRanking.sourceArticle', 'sourceArticle')
+      .leftJoinAndSelect('sourceArticle.source', 'source')
+      .innerJoin('playerRanking.dataVersion', 'dataVersion')
+      .where('playerRanking.id = :id', { id })
+      .andWhere('dataVersion.id = :dataVersionId', {
+        dataVersionId: scopedVersionId,
+      })
+      .getOne();
+
+    return playerRanking
+      ? PlayerRankingMapper.toResponseDto(playerRanking)
+      : null;
   }
 
   async createPlayerRanking(
