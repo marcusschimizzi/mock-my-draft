@@ -30,11 +30,14 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 1. Users see player data that reflects the latest daily refresh.
 2. Admin can run a manual import and the updated data appears in the app.
-   **Plans**: TBD
+   **Plans**: 4 plans
 
 Plans:
 
-- [ ] 01-01: TBD
+- [x] 01-01-PLAN.md — Add data versioning entities and active data filtering
+- [ ] 01-02-PLAN.md — Build import pipeline, endpoints, and daily scheduler
+- [ ] 01-03-PLAN.md — Add admin manual import controls and status display
+- [ ] 01-04-PLAN.md — Show last updated timestamp in public UI
 
 ### Phase 2: Draft Setup
 
@@ -107,7 +110,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase                | Plans Complete | Status      | Completed |
 | -------------------- | -------------- | ----------- | --------- |
-| 1. Data Updates      | 0/TBD          | Not started | -         |
+| 1. Data Updates      | 1/4            | In progress | -         |
 | 2. Draft Setup       | 0/TBD          | Not started | -         |
 | 3. Player Board      | 0/TBD          | Not started | -         |
 | 4. Draft Flow        | 0/TBD          | Not started | -         |
