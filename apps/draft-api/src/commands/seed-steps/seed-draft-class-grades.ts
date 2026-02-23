@@ -3,13 +3,7 @@ import path from 'path';
 import { AppDataSource } from '../../database';
 import { Team } from '../../database/models/team';
 import { DraftClassGrade } from '../../database/models/draft-class-grade';
-
-type SeedResult = {
-  step: string;
-  success: number;
-  failed: number;
-  skipped: number;
-};
+import { SeedResult } from '../seed';
 
 type GradeEntry = {
   teamName: string;

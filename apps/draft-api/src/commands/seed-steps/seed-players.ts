@@ -1,12 +1,6 @@
 import { DataImportService } from '../../services/data-import-service';
 import { DataVersionStatus } from '../../database/models/data-version';
-
-type SeedResult = {
-  step: string;
-  success: number;
-  failed: number;
-  skipped: number;
-};
+import { SeedResult } from '../seed';
 
 export async function seedPlayers(year: number): Promise<SeedResult> {
   // Set the draft year env var so DataImportService reads the right file

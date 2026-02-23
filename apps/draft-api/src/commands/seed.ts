@@ -10,12 +10,14 @@ config();
 
 type StepName = 'teams' | 'players' | 'draft-classes' | 'grades';
 
-type StepResult = {
+export type SeedResult = {
   step: string;
   success: number;
   failed: number;
   skipped: number;
 };
+
+const VALID_STEPS: StepName[] = ['teams', 'players', 'draft-classes', 'grades'];
 
 function parseArgs(): { steps: StepName[] | null; year: number } {
   const args = process.argv.slice(2);
@@ -24,11 +26,20 @@ function parseArgs(): { steps: StepName[] | null; year: number } {
 
   for (let i = 0; i < args.length; i++) {
     if (args[i] === '--step' && args[i + 1]) {
-      steps = [args[i + 1] as StepName];
+      const stepArg = args[i + 1];
+      if (!VALID_STEPS.includes(stepArg as StepName)) {
+        console.error(`Unknown step: "${stepArg}". Valid steps: ${VALID_STEPS.join(', ')}`);
+        process.exit(1);
+      }
+      steps = [stepArg as StepName];
       i++;
     }
     if (args[i] === '--year' && args[i + 1]) {
       year = parseInt(args[i + 1], 10);
+      if (isNaN(year)) {
+        console.error(`Invalid year: "${args[i + 1]}"`);
+        process.exit(1);
+      }
       i++;
     }
   }
@@ -45,13 +56,13 @@ async function main() {
   await AppDataSource.initialize();
   console.log('Database connected.\n');
 
-  const results: StepResult[] = [];
+  const results: SeedResult[] = [];
   const allSteps: StepName[] = ['teams', 'players', 'draft-classes', 'grades'];
   const stepsToRun = steps ?? allSteps;
 
   for (const step of stepsToRun) {
     console.log(`--- Running step: ${step} ---`);
-    let result: StepResult;
+    let result: SeedResult;
 
     switch (step) {
       case 'teams':

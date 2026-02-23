@@ -4,13 +4,7 @@ import { AppDataSource } from '../../database';
 import { Team } from '../../database/models/team';
 import { Player } from '../../database/models/player';
 import { DraftPick } from '../../database/models/draft-pick';
-
-type SeedResult = {
-  step: string;
-  success: number;
-  failed: number;
-  skipped: number;
-};
+import { SeedResult } from '../seed';
 
 // Same mapping as process_data.js for historical team names
 const oldTeamNames: Record<string, string> = {
