@@ -4,12 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.78.0",
     "cheerio": "^1.0.0-rc.12"
+  },
+  "devDependencies": {
+    "jest": "^30.2.0"
   }
 }

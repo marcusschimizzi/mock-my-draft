@@ -1,0 +1,10 @@
+[
+  {
+    "source": "NFL.com",
+    "slug": "nfl-com",
+    "baseUrl": "https://www.nfl.com",
+    "articles": {
+      "2024": "https://www.nfl.com/news/2024-nfl-draft-grades-for-all-32-teams"
+    }
+  }
+]
