@@ -238,15 +238,27 @@ export class DataImportService {
     }
 
     const positionRankTracker = new Map<string, number>();
+    let overallRank = 0;
 
-    const players = entries.map((entry, index) => {
-      const overallRank = index + 1;
-      const positionRank = (positionRankTracker.get(entry.position) ?? 0) + 1;
-      positionRankTracker.set(entry.position, positionRank);
+    const players: DataImportPlayerDto[] = [];
 
-      return {
-        name: entry.player?.trim(),
-        position: entry.position?.trim(),
+    for (let index = 0; index < entries.length; index++) {
+      const entry = entries[index];
+      const name = entry.player?.trim();
+      const position = entry.position?.trim();
+
+      if (!name || !position) {
+        console.warn(`  Skipping entry ${index + 1}: missing name or position`);
+        continue;
+      }
+
+      overallRank++;
+      const positionRank = (positionRankTracker.get(position) ?? 0) + 1;
+      positionRankTracker.set(position, positionRank);
+
+      players.push({
+        name,
+        position,
         college: entry.college?.trim(),
         measurements: {
           height: entry.playerDetails?.height,
@@ -268,17 +280,8 @@ export class DataImportService {
           overallRank,
           positionRank,
         },
-      } as DataImportPlayerDto;
-    });
-
-    players.forEach((player, index) => {
-      if (!player.name || !player.position) {
-        errors.push(`Entry ${index + 1} is missing name or position`);
-      }
-      if (!player.rankings?.overallRank) {
-        errors.push(`Entry ${index + 1} is missing overall rank`);
-      }
-    });
+      });
+    }
 
     return { players, errors };
   }

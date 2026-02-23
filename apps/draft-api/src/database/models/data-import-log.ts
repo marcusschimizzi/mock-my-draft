@@ -6,11 +6,8 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import {
-  DataVersion,
-  DataVersionSource,
-  DataVersionStatus,
-} from './data-version';
+import { DataVersion } from './data-version';
+import { DataVersionSource, DataVersionStatus } from './data-version-enums';
 
 @Entity('data_import_logs')
 export class DataImportLog {

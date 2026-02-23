@@ -9,17 +9,9 @@ import {
 import { DataImportLog } from './data-import-log';
 import { Player } from './player';
 import { PlayerRanking } from './player-ranking';
+import { DataVersionSource, DataVersionStatus } from './data-version-enums';
 
-export enum DataVersionSource {
-  Daily = 'daily',
-  Manual = 'manual',
-}
-
-export enum DataVersionStatus {
-  Pending = 'pending',
-  Published = 'published',
-  Failed = 'failed',
-}
+export { DataVersionSource, DataVersionStatus };
 
 @Entity('data_versions')
 export class DataVersion {

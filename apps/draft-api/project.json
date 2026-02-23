@@ -8,7 +8,7 @@
     "seed": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "ts-node -r tsconfig-paths/register apps/draft-api/src/commands/seed.ts",
+        "command": "ts-node --project apps/draft-api/tsconfig.app.json apps/draft-api/src/commands/seed.ts",
         "envFile": "apps/draft-api/.env"
       }
     },
