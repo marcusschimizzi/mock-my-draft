@@ -1,6 +1,7 @@
 import 'reflect-metadata';
 import { config } from 'dotenv';
 import { AppDataSource } from '../database';
+import { seedDraftClasses } from './seed-steps/seed-draft-classes';
 import { seedDraftClassGrades } from './seed-steps/seed-draft-class-grades';
 import { seedPlayers } from './seed-steps/seed-players';
 import { seedTeams } from './seed-steps/seed-teams';
@@ -58,6 +59,9 @@ async function main() {
         break;
       case 'players':
         result = await seedPlayers(year);
+        break;
+      case 'draft-classes':
+        result = await seedDraftClasses(year);
         break;
       case 'grades':
         result = await seedDraftClassGrades(year);
