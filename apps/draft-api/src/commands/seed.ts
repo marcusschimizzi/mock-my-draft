@@ -1,6 +1,8 @@
 import 'reflect-metadata';
 import { config } from 'dotenv';
 import { AppDataSource } from '../database';
+import { seedDraftClassGrades } from './seed-steps/seed-draft-class-grades';
+import { seedPlayers } from './seed-steps/seed-players';
 import { seedTeams } from './seed-steps/seed-teams';
 
 config();
@@ -53,6 +55,12 @@ async function main() {
     switch (step) {
       case 'teams':
         result = await seedTeams();
+        break;
+      case 'players':
+        result = await seedPlayers(year);
+        break;
+      case 'grades':
+        result = await seedDraftClassGrades(year);
         break;
       default:
         console.log(`  Step "${step}" not yet implemented.\n`);
