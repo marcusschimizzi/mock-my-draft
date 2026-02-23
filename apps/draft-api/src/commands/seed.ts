@@ -1,6 +1,7 @@
 import 'reflect-metadata';
 import { config } from 'dotenv';
 import { AppDataSource } from '../database';
+import { seedTeams } from './seed-steps/seed-teams';
 
 config();
 
@@ -47,8 +48,21 @@ async function main() {
 
   for (const step of stepsToRun) {
     console.log(`--- Running step: ${step} ---`);
-    // Steps will be wired in subsequent tasks
-    console.log(`Step "${step}" not yet implemented.\n`);
+    let result: StepResult;
+
+    switch (step) {
+      case 'teams':
+        result = await seedTeams();
+        break;
+      default:
+        console.log(`  Step "${step}" not yet implemented.\n`);
+        continue;
+    }
+
+    results.push(result);
+    console.log(
+      `  Done: ${result.success} created, ${result.failed} failed, ${result.skipped} skipped\n`,
+    );
   }
 
   console.log('\n=== Seed Summary ===');
