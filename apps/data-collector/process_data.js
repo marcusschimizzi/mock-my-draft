@@ -1,4 +1,5 @@
 const { readFile, writeFile } = require('fs').promises;
+const path = require('path');
 
 const teamsApiUrl = 'https://api.mockmydraft.com/api/teams';
 
@@ -66,7 +67,7 @@ const normalizePosition = (position) => {
   return positionMap[position];
 };
 
-const getFilename = (year) => `data/${year}_draft_data.json`;
+const getFilename = (year) => path.join(__dirname, 'data', `${year}_draft_data.json`);
 
 async function groupDraftClass(year) {
   // Read in the file
@@ -137,11 +138,12 @@ async function groupDraftClass(year) {
   }
 
   // Write out the grouped data
-  const outputFilename = `data/${year}_draft_classes.json`;
+  const outputFilename = path.join(__dirname, 'data', `${year}_draft_classes.json`);
   await writeFile(
     outputFilename,
     JSON.stringify(formattedDraftClasses, null, 2),
   );
 }
 
-groupDraftClass(2024);
+const year = parseInt(process.argv[2], 10) || 2025;
+groupDraftClass(year);
