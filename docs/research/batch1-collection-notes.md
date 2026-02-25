@@ -124,3 +124,57 @@
 - Debug files saved in `apps/data-collector/data/debug/2023_*_raw.json`
 - Final output saved in `apps/data-collector/data/2023_draft_class_grades.json` (183 KB, 2241 lines)
 - Yahoo Sports article had an unusual format focusing on best/worst picks per team rather than overall grades, resulting in empty extraction
+
+## 2022 Collection
+
+**Date:** February 25, 2026
+**Sources processed:** 11 (ESPN, Bleacher Report, CBS Sports, Yahoo Sports, PFF, Fox Sports, NFL.com, San Diego Union Tribune, SBNation, Sports Illustrated, The Ringer)
+**Total grades extracted:** 182 (6 sources)
+
+### Warnings
+
+- **ESPN** extraction returned 0 teams - ESPN+ Insider paywall restriction
+- **PFF** extraction returned 0 teams - JavaScript-rendered content may not have loaded properly despite browser mode
+- **Sports Illustrated** unknown grade format warnings:
+  - Unknown grade "A–" (with en dash instead of hyphen) for New York Giants and Pittsburgh Steelers
+  - Unknown grade "B–" for Atlanta Falcons, Buffalo Bills, Jacksonville Jaguars, Los Angeles Chargers, New England Patriots, Tampa Bay Buccaneers
+  - Unknown grade "D–" for Minnesota Vikings
+  - Total: 9 teams skipped due to en dash character (should be normalized)
+- **San Diego Union Tribune** unknown grade warning:
+  - Unknown grade "A++" for Baltimore Ravens (non-standard grade format)
+
+### Errors
+
+- None. All non-problematic sources successfully extracted expected team grades.
+
+### Successful Sources (6)
+
+1. **Bleacher Report** - 32 teams extracted
+2. **CBS Sports** - 32 teams extracted
+3. **Yahoo Sports** - 32 teams extracted
+4. **NFL.com** - 32 teams extracted
+5. **San Diego Union Tribune** - 31 teams extracted (1 team skipped due to "A++" grade)
+6. **Sports Illustrated** - 23 teams extracted (9 teams skipped due to en dash in grades)
+
+### Failed Sources (2)
+
+1. **ESPN** - 0 teams extracted (ESPN+ Insider paywall)
+2. **PFF** - 0 teams extracted (browser rendering issue)
+
+### Skipped Sources (3)
+
+- **Fox Sports** - No 2022 article URL configured
+- **SBNation** - No 2022 article URL configured
+- **The Ringer** - No 2022 article URL configured
+
+### Notes
+
+- The extraction process completed successfully with 182 total grade entries
+- 6 out of 11 configured sources provided data (4 complete, 2 partial)
+- **Grade normalization issue identified:** Sports Illustrated uses en dash (–) instead of standard hyphen (-) in grades like "A–", "B–", "D–"
+  - Recommendation: Update `gradeToNumeric` function to handle en dash character variants
+- **Non-standard grade identified:** San Diego Union Tribune used "A++" for Baltimore Ravens
+  - Recommendation: Decide whether to support "A++" as a valid grade or treat as "A+"
+- Debug files saved in `apps/data-collector/data/debug/2022_*_raw.json`
+- Final output saved in `apps/data-collector/data/2022_draft_class_grades.json` (146 KB, 2045 lines)
+- Despite grade normalization issues, the collection provides adequate coverage with 6 sources and 182 team grades
