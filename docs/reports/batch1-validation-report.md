@@ -674,7 +674,128 @@ Production API endpoints have been tested to verify that Batch 1 sources are cor
 
 ---
 
+## 10. Frontend Verification
+
+**Test Date:** February 25, 2026
+**Production Frontend:** https://mockmydraft.com
+**Method:** Playwright browser automation
+
+### Main Page Verification
+
+**✅ Year Selector Working**
+- All 6 years (2020-2025) available in dropdown
+- Year selection updates data correctly
+- Page navigation smooth without errors
+
+**✅ Source Count Display (2025)**
+Table header shows all 9 sources:
+1. San Diego Union Tribune
+2. **SBNation** ⭐ (NEW - Batch 1)
+3. CBS Sports
+4. Bleacher Report
+5. Yahoo Sports
+6. Fox Sports (gap-filling)
+7. PFF
+8. NFL.com
+9. **Sports Illustrated** ⭐ (NEW - Batch 1)
+
+**✅ Visual Layout**
+- Responsive grid layout functioning
+- Team logos displaying correctly
+- Grade badges showing with proper colors
+- Charts rendering (Grade distribution, Top/Bottom performers)
+- League statistics displaying (League Average: B+, Teams Graded: 32)
+
+### Team Detail Page Verification
+
+**Tested Team:** Kansas City Chiefs
+
+**✅ 2025 Detail Page**
+- All 9 sources displayed in detailed grades table
+- **SBNation** (A+) - NEW source visible ✅
+- **Sports Illustrated** (A-) - NEW source visible ✅
+- Fox Sports (A) - Gap-filling visible ✅
+- San Diego Union Tribune (A) - Gap-filling visible ✅
+- All other sources present (CBS, PFF, NFL.com, Yahoo, Bleacher Report)
+
+**✅ Grade Distribution Chart**
+- Shows breakdown of 9 grades (A, A-, B+, B)
+- Responsive bar chart rendering correctly
+- Tooltip functionality working
+
+**✅ Draft Performance History Chart**
+- 6-year trend line visible (2020-2025)
+- Team performance vs. league average comparison
+- Historical data integration successful
+
+**✅ Division Comparison Chart**
+- Shows all division teams with grades
+- Current team highlighted correctly
+- Sorted by grade (highest to lowest)
+
+**✅ 2020 Detail Page (Gap-Filling Verification)**
+- Year selector successfully changed to 2020
+- **5 sources displayed** (matches validation report expectations):
+  1. NFL.com (A-)
+  2. Bleacher Report (B+)
+  3. CBS Sports (B+)
+  4. Yahoo Sports (B)
+  5. **San Diego Union Tribune (B-)** ⭐ **Gap-filling success!**
+
+**✅ Grade Text Quality**
+- Full analytical text displayed for each source
+- No navigation elements or ads in grade text
+- "View Source" links present and functional
+- Text content meaningful and substantive (400-1000+ characters)
+
+**✅ Draft Picks Table**
+- All draft picks displayed with player names, positions, colleges
+- Data loads correctly for different years
+
+### Screenshots Captured
+
+1. `main-page-2025.png` - Main page showing all teams with 9 sources
+2. `kc-chiefs-detail-2025.png` - KC Chiefs 2025 with all new Batch 1 sources
+3. `kc-chiefs-2020-gap-filling.png` - KC Chiefs 2020 showing SDUT gap-filling
+
+### Frontend Verification Summary
+
+| Verification Item | Expected | Actual | Status |
+|-------------------|----------|--------|--------|
+| Year selector (2020-2025) | 6 years | 6 years | ✅ |
+| Main page 2025 sources | 9 sources | 9 sources | ✅ |
+| Sports Illustrated visible | Yes | Yes (2025) | ✅ |
+| SBNation visible | Yes | Yes (2025) | ✅ |
+| Fox Sports gap-filling | Yes | Yes (2023-2025) | ✅ |
+| SDUT 2020 gap-filling | Yes | Yes (B- grade) | ✅ |
+| Team detail grades table | All sources | All sources | ✅ |
+| Historical chart (2020-2025) | 6 years | 6 years | ✅ |
+| Division comparison | Working | Working | ✅ |
+| Grade distribution | Working | Working | ✅ |
+| View Source links | Functional | Functional | ✅ |
+| Draft picks table | Complete | Complete | ✅ |
+
+**Overall Frontend Status:** ✅ **PRODUCTION READY**
+
+### New Sources Confirmed Visible
+
+1. **Sports Illustrated** - Visible in 2025, 2024, 2023, 2022 (partial)
+2. **SBNation** - Visible in 2025
+3. **The Ringer** - Confirmed via API (2021, 2023)
+
+### Gap-Filling Confirmed Visible
+
+1. **San Diego Union Tribune 2020** - Visible (B- grade for KC Chiefs)
+2. **Fox Sports 2023-2025** - Visible in table headers
+3. **NFL.com all years** - Consistent presence across 2020-2025
+
+### Issues Found
+
+**None** - All expected functionality working correctly.
+
+---
+
 **Report Complete**
 **Status:** ✅ Seeding complete (598 draft class grades + 217 player grades added)
 **Status:** ✅ API verification complete (all endpoints passing)
-**Next Task:** Verify frontend display
+**Status:** ✅ Frontend verification complete (Playwright automation - all tests passing)
