@@ -392,6 +392,21 @@ The high skip rate is expected and healthy, indicating:
 2. Previous collection attempts were successful
 3. Data consistency is maintained across multiple runs
 
+### Player Grades
+
+| Year | Grades Seeded | Skipped | Failed | Notes |
+|------|---------------|---------|--------|-------|
+| 2020 | 0             | 0       | 72     | All player names not found in database |
+| 2021 | 0             | 0       | 6      | All player names not found in database |
+| 2022 | 0             | 0       | 32     | All player names not found in database |
+| 2023 | 0             | 0       | 0      | No player-level grades in sources |
+| 2024 | 107           | 0       | 5      | CBS Sports Prisco article with player commentary |
+| 2025 | 110           | 0       | 18     | CBS Sports Prisco article with player commentary |
+
+**Total player grades seeded:** 217
+
+**Note:** Player-level grades are optional in articles. Low counts are expected as not all sources provide individual player grades. The failures in 2020-2022 are due to players not yet being seeded in the database (they need to be imported from draft data first). The 2024 and 2025 CBS Sports articles by Pete Prisco included player-specific commentary that was successfully extracted and seeded.
+
 ---
 
 ## 7. Summary
@@ -520,5 +535,5 @@ apps/data-collector/data/
 ---
 
 **Report Complete**
-**Status:** ✅ Seeding complete (598 new entries added)
-**Next Task:** Seed player grades and verify API responses
+**Status:** ✅ Seeding complete (598 draft class grades + 217 player grades added)
+**Next Task:** Verify API responses and frontend display
