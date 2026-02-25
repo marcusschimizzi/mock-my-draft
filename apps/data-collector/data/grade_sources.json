@@ -6,5 +6,29 @@
     "articles": {
       "2024": "https://www.nfl.com/news/2024-nfl-draft-final-quick-snap-grades-for-all-32-teams"
     }
+  },
+  {
+    "source": "PFF",
+    "slug": "pff",
+    "baseUrl": "https://www.pff.com",
+    "articles": {
+      "2025": "https://www.pff.com/news/draft-grades-for-all-32-teams-2025-nfl-draft"
+    }
+  },
+  {
+    "source": "San Diego Union Tribune",
+    "slug": "sdut",
+    "baseUrl": "https://www.sandiegouniontribune.com",
+    "articles": {
+      "2025": "https://www.sandiegouniontribune.com/2025/04/28/2025-nfl-draft-grades-for-all-32-teams-patriots-raiders-among-big-winners/"
+    }
+  },
+  {
+    "source": "SBNation",
+    "slug": "sbnation",
+    "baseUrl": "https://www.sbnation.com",
+    "articles": {
+      "2025": "https://www.sbnation.com/nfl/2025/4/28/24419371/nfl-draft-grades-teams-final-full-class-best-drafts-panthers"
+    }
   }
 ]
