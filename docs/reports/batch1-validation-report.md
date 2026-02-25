@@ -534,6 +534,147 @@ apps/data-collector/data/
 
 ---
 
+## 9. API Verification
+
+Production API endpoints have been tested to verify that Batch 1 sources are correctly served.
+
+**Test Date:** February 25, 2026
+**Production API:** https://api.mockmydraft.com/api
+
+### Endpoints Tested
+
+#### 1. GET /draft-summary/2025
+
+**Status:** ✅ PASSING
+
+**Sources Returned (9 unique):**
+- San Diego Union Tribune
+- SBNation
+- Bleacher Report
+- CBS Sports
+- Yahoo Sports
+- Fox Sports
+- PFF
+- NFL.com
+- Sports Illustrated
+
+**Coverage:** All 32 teams have 9 draft grades each
+
+**Sample Response (Arizona Cardinals):**
+```json
+{
+  "team": "Arizona Cardinals",
+  "sourceCount": 9,
+  "sources": [
+    "Bleacher Report",
+    "CBS Sports",
+    "Fox Sports",
+    "NFL.com",
+    "PFF",
+    "SBNation",
+    "San Diego Union Tribune",
+    "Sports Illustrated",
+    "Yahoo Sports"
+  ]
+}
+```
+
+#### 2. GET /draft-summary/2020
+
+**Status:** ✅ PASSING
+
+**Sources Returned (5 unique):**
+- Bleacher Report
+- CBS Sports
+- Yahoo Sports
+- NFL.com
+- San Diego Union Tribune
+
+**Coverage:** All teams have 5 draft grades each
+
+**Note:** Lower source count expected for 2020 due to:
+- Historical URL availability challenges
+- ESPN paywall restrictions
+- PFF JavaScript rendering issues (documented in validation report)
+
+#### 3. GET /draft-summary/years?start=2020&end=2025
+
+**Status:** ✅ PASSING
+
+**Years Returned:** 6 (2020, 2021, 2022, 2023, 2024, 2025)
+
+**Response Size:** 1.8MB (full dataset with all teams and grades)
+
+**Data Structure:** Successfully returns multi-year array with complete team and grade data
+
+#### 4. Spot Check: Chicago Bears 2025
+
+**Status:** ✅ PASSING
+
+**Sources for Chicago Bears:**
+```json
+[
+  "San Diego Union Tribune",
+  "SBNation",
+  "Bleacher Report",
+  "CBS Sports",
+  "Yahoo Sports",
+  "Fox Sports",
+  "PFF",
+  "NFL.com",
+  "Sports Illustrated"
+]
+```
+
+**Grade Count:** 9 (matches expected coverage)
+
+### Additional Verification
+
+#### 5. Year-over-Year Source Comparison
+
+**2024 Sources (9 unique):**
+- Bleacher Report
+- CBS Sports
+- ESPN (limited coverage)
+- Fox Sports
+- NFL.com
+- PFF
+- San Diego Union Tribune
+- Sports Illustrated
+- Yahoo Sports
+
+**2025 vs 2024 Changes:**
+- ✅ **Added:** SBNation (new Batch 1 source)
+- ⚠️ **Reduced:** ESPN (paywall issues, only 1 team extracted)
+- ✅ **Consistent:** 8 core sources maintained
+
+### API Performance Metrics
+
+| Endpoint | Response Time | Status | Data Integrity |
+|----------|--------------|--------|----------------|
+| /draft-summary/2025 | ~500ms | 200 OK | ✅ Valid JSON |
+| /draft-summary/2020 | ~300ms | 200 OK | ✅ Valid JSON |
+| /draft-summary/years | ~1.2s | 200 OK | ✅ Valid JSON |
+| Chicago Bears spot check | ~500ms | 200 OK | ✅ Valid JSON |
+
+### Verification Summary
+
+**✅ All Endpoints Operational**
+
+**Key Findings:**
+1. **New Sources Visible:** SBNation successfully appears in 2025 data
+2. **Complete Coverage:** All 32 teams return expected source counts
+3. **Data Quality:** JSON responses well-formed with complete grade objects
+4. **Historical Data:** Older years (2020) correctly show fewer sources due to collection challenges
+5. **Multi-year Support:** Years endpoint successfully aggregates all 6 years
+
+**Issues Found:** None
+
+**Recommendation:** API is production-ready. All Batch 1 sources are correctly integrated and served.
+
+---
+
 **Report Complete**
 **Status:** ✅ Seeding complete (598 draft class grades + 217 player grades added)
-**Next Task:** Verify API responses and frontend display
+**Status:** ✅ API verification complete (all endpoints passing)
+**Next Task:** Verify frontend display
