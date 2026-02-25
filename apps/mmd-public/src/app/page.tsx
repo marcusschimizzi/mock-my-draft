@@ -27,7 +27,7 @@ import {
   useBreakpointValue,
 } from '@chakra-ui/react';
 import { useDraftSummary, useYears } from '../lib/draft-summary';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { TeamDraftSummary, Team } from '../types';
 import {
   ResponsiveContainer,
@@ -46,6 +46,10 @@ import {
 } from '../lib/grade-utils';
 import { boxShadow } from '../utils/style-utils';
 import { Loading } from '../components/loading';
+import { GradeBadge } from '../components/grade-badge';
+import { HeroStats } from '../components/hero-stats';
+import { ChartSkeleton, HeroStatsSkeleton, TableSkeleton } from '../components/chart-skeleton';
+import { calculateLeagueStatistics, calculateYearOverYearDeltas } from '../lib/statistics';
 
 interface GradeRange {
   team: Team;
@@ -55,6 +59,7 @@ interface GradeRange {
 export default function Home() {
   const [year, setYear] = useState(2024);
   const { draftSummary, isLoading } = useDraftSummary(year);
+  const { draftSummary: previousYearSummary } = useDraftSummary(year - 1);
   const { years, isLoading: isYearsLoading } = useYears();
   const [sources, setSources] = useState<string[]>([]);
   const [sortedTeams, setSortedTeams] = useState<TeamDraftSummary[] | null>(
@@ -111,6 +116,37 @@ export default function Home() {
     setYear(years[0]);
   }, [years]);
 
+  // Calculate hero stats
+  const heroStatsData = useMemo(() => {
+    if (!draftSummary) {
+      return null;
+    }
+
+    const currentYearGrades = draftSummary.teams.flatMap(team =>
+      team.draftGrades.map(grade => ({
+        grade: grade.grade,
+        source: grade.sourceArticle.source.name,
+        teamId: team.team.id,
+      }))
+    );
+
+    const stats = calculateLeagueStatistics(currentYearGrades);
+
+    let deltas = { leagueAverage: 0, sourceAgreement: 0 };
+    if (previousYearSummary) {
+      const previousYearGrades = previousYearSummary.teams.flatMap(team =>
+        team.draftGrades.map(grade => ({
+          grade: grade.grade,
+          source: grade.sourceArticle.source.name,
+          teamId: team.team.id,
+        }))
+      );
+      deltas = calculateYearOverYearDeltas(currentYearGrades, previousYearGrades);
+    }
+
+    return { stats, deltas };
+  }, [draftSummary, previousYearSummary]);
+
   if (!draftSummary && !isLoading) {
     return (
       <Container as="main" maxW="container.xl" minH="80vh">
@@ -121,15 +157,17 @@ export default function Home() {
 
   if (isLoading) {
     return (
-      <Container as="main" maxW="container.xl" minH="80vh">
-        <Loading />
+      <Container as="main" maxW="container.xl" my={8}>
+        <Heading fontSize="4xl" mb={8}>NFL Draft Class Grades</Heading>
+        <HeroStatsSkeleton />
+        <ChartSkeleton />
       </Container>
     );
   }
 
   return (
     <Container as="main" maxW="container.xl" my={8}>
-      <Heading w="full" display="flex" justifyContent="space-between">
+      <Heading fontSize="4xl" w="full" display="flex" justifyContent="space-between" mb={8}>
         <Text>NFL Draft Class Grades</Text>
         <Select
           value={year}
@@ -144,6 +182,14 @@ export default function Home() {
           ))}
         </Select>
       </Heading>
+      {heroStatsData && (
+        <HeroStats
+          currentYear={year}
+          previousYear={year - 1}
+          stats={heroStatsData.stats}
+          deltas={heroStatsData.deltas}
+        />
+      )}
       <Card mt={8} py={4}>
         <ResponsiveContainer width="100%" height={400}>
           <BarChart
@@ -194,16 +240,14 @@ export default function Home() {
                 const team = draftSummary.team;
                 return (
                   <Box
-                    bg="elevations.light.base"
-                    _dark={{
-                      bg: 'elevations.dark.base',
-                    }}
+                    bg="elevations.dark.dp08"
                     p={4}
-                    rounded="md"
-                    borderColor={team.colors[1]}
+                    rounded="lg"
+                    borderColor={`${team.colors[0]}40`}
                     borderStyle={'solid'}
-                    borderWidth={3}
-                    boxShadow={boxShadow(2)}
+                    borderWidth={1}
+                    boxShadow={`0 4px 20px ${team.colors[0]}30, 0 0 40px ${team.colors[0]}20`}
+                    backdropFilter="blur(12px)"
                   >
                     <Box>
                       <TeamLogo
@@ -237,7 +281,7 @@ export default function Home() {
           rowGap={4}
         >
           <Card flex={1} py={4} px={8}>
-            <Heading size="md">Top performers</Heading>
+            <Heading size="lg" mb={4}>Top performers</Heading>
             <List>
               {sortedTeams &&
                 sortedTeams.slice(0, 3).map((team, index) => (
@@ -257,21 +301,13 @@ export default function Home() {
                         {team.team.name}
                       </Text>
                     </HStack>
-                    <Badge
-                      bg={getGradeColor(team.averageGrade)}
-                      color={getContrastingColor(
-                        getGradeColor(team.averageGrade),
-                      )}
-                      fontSize="1.1rem"
-                    >
-                      {team?.averageGrade?.toFixed(2) ?? 'N/A'}
-                    </Badge>
+                    <GradeBadge grade={team.averageGrade} />
                   </HStack>
                 ))}
             </List>
           </Card>
           <Card flex={1}>
-            <Heading size="md">Bottom performers</Heading>
+            <Heading size="lg" mb={4}>Bottom performers</Heading>
             <List>
               {sortedTeams &&
                 sortedTeams.slice(-3).map((team) => (
@@ -291,15 +327,7 @@ export default function Home() {
                         {team.team.name}
                       </Text>
                     </HStack>
-                    <Badge
-                      bg={getGradeColor(team.averageGrade)}
-                      color={getContrastingColor(
-                        getGradeColor(team.averageGrade),
-                      )}
-                      fontSize="1.1rem"
-                    >
-                      {team?.averageGrade?.toFixed(2) ?? 'N/A'}
-                    </Badge>
+                    <GradeBadge grade={team.averageGrade} />
                   </HStack>
                 ))}
             </List>
@@ -414,16 +442,14 @@ export default function Home() {
                   const team = gradeRange.team;
                   return (
                     <Box
-                      bg="elevations.light.base"
-                      _dark={{
-                        bg: 'elevations.dark.base',
-                      }}
+                      bg="elevations.dark.dp08"
                       p={4}
-                      boxShadow={boxShadow(2)}
-                      rounded="md"
-                      borderColor={team.colors[1]}
+                      rounded="lg"
+                      borderColor={`${team.colors[0]}40`}
                       borderStyle={'solid'}
-                      borderWidth={3}
+                      borderWidth={1}
+                      boxShadow={`0 4px 20px ${team.colors[0]}30, 0 0 40px ${team.colors[0]}20`}
+                      backdropFilter="blur(12px)"
                     >
                       <Box>
                         <TeamLogo
@@ -507,32 +533,12 @@ export default function Home() {
                       {entry.draftGrades.map((grade) => {
                         return (
                           <Td key={grade.id}>
-                            <Badge
-                              bg={getGradeColor(grade.grade)}
-                              color={getContrastingColor(
-                                getGradeColor(grade.grade),
-                              )}
-                              fontSize="1.1rem"
-                              py={1}
-                              px={2}
-                            >
-                              {grade.grade}
-                            </Badge>
+                            <GradeBadge grade={grade.gradeNumeric} />
                           </Td>
                         );
                       })}
                       <Td>
-                        <Badge
-                          bg={getGradeColor(entry.averageGrade)}
-                          color={getContrastingColor(
-                            getGradeColor(entry.averageGrade),
-                          )}
-                          fontSize="1.1rem"
-                          py={1}
-                          px={2}
-                        >
-                          {entry?.averageGrade?.toFixed(2) ?? 'N/A'}
-                        </Badge>
+                        <GradeBadge grade={entry.averageGrade} />
                       </Td>
                     </Tr>
                   );
@@ -583,18 +589,7 @@ export default function Home() {
                               <Text as="span">
                                 {capitalize(grade.sourceArticle.source.name)}
                               </Text>
-                              <Badge
-                                bg={getGradeColor(grade.grade)}
-                                color={getContrastingColor(
-                                  getGradeColor(grade.grade),
-                                )}
-                                fontSize="1.1rem"
-                                py={1}
-                                px={2}
-                                mr={2}
-                              >
-                                {grade.grade}
-                              </Badge>
+                              <GradeBadge grade={grade.gradeNumeric} mr={2} />
                             </ListItem>
                           );
                         })}

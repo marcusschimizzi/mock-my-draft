@@ -1,0 +1,1872 @@
+[
+  {
+    "teamName": "Arizona Cardinals",
+    "year": 2024,
+    "grade": "A",
+    "gradeNumeric": 4,
+    "text": null,
+    "sourceName": "ESPN",
+    "sourceUrl": "https://www.espn.com/nfl/draft2024/insider/story/_/id/40030429/2024-nfl-draft-grades-all-32-teams-mel-kiper-winners-losers-steals-sleepers-favorite-picks-classes",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Arizona Cardinals",
+    "year": 2024,
+    "grade": "B+",
+    "gradeNumeric": 3.3,
+    "text": null,
+    "sourceName": "Bleacher Report",
+    "sourceUrl": "https://bleacherreport.com/articles/10118547-2024-nfl-draft-grades-for-every-team",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Atlanta Falcons",
+    "year": 2024,
+    "grade": "D",
+    "gradeNumeric": 1,
+    "text": null,
+    "sourceName": "Bleacher Report",
+    "sourceUrl": "https://bleacherreport.com/articles/10118547-2024-nfl-draft-grades-for-every-team",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Baltimore Ravens",
+    "year": 2024,
+    "grade": "B+",
+    "gradeNumeric": 3.3,
+    "text": null,
+    "sourceName": "Bleacher Report",
+    "sourceUrl": "https://bleacherreport.com/articles/10118547-2024-nfl-draft-grades-for-every-team",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Buffalo Bills",
+    "year": 2024,
+    "grade": "B",
+    "gradeNumeric": 3,
+    "text": null,
+    "sourceName": "Bleacher Report",
+    "sourceUrl": "https://bleacherreport.com/articles/10118547-2024-nfl-draft-grades-for-every-team",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Carolina Panthers",
+    "year": 2024,
+    "grade": "C+",
+    "gradeNumeric": 2.3,
+    "text": null,
+    "sourceName": "Bleacher Report",
+    "sourceUrl": "https://bleacherreport.com/articles/10118547-2024-nfl-draft-grades-for-every-team",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Chicago Bears",
+    "year": 2024,
+    "grade": "A",
+    "gradeNumeric": 4,
+    "text": null,
+    "sourceName": "Bleacher Report",
+    "sourceUrl": "https://bleacherreport.com/articles/10118547-2024-nfl-draft-grades-for-every-team",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Cincinnati Bengals",
+    "year": 2024,
+    "grade": "B",
+    "gradeNumeric": 3,
+    "text": null,
+    "sourceName": "Bleacher Report",
+    "sourceUrl": "https://bleacherreport.com/articles/10118547-2024-nfl-draft-grades-for-every-team",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Cleveland Browns",
+    "year": 2024,
+    "grade": "B-",
+    "gradeNumeric": 2.7,
+    "text": null,
+    "sourceName": "Bleacher Report",
+    "sourceUrl": "https://bleacherreport.com/articles/10118547-2024-nfl-draft-grades-for-every-team",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Dallas Cowboys",
+    "year": 2024,
+    "grade": "B-",
+    "gradeNumeric": 2.7,
+    "text": null,
+    "sourceName": "Bleacher Report",
+    "sourceUrl": "https://bleacherreport.com/articles/10118547-2024-nfl-draft-grades-for-every-team",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Denver Broncos",
+    "year": 2024,
+    "grade": "C+",
+    "gradeNumeric": 2.3,
+    "text": null,
+    "sourceName": "Bleacher Report",
+    "sourceUrl": "https://bleacherreport.com/articles/10118547-2024-nfl-draft-grades-for-every-team",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Detroit Lions",
+    "year": 2024,
+    "grade": "A-",
+    "gradeNumeric": 3.7,
+    "text": null,
+    "sourceName": "Bleacher Report",
+    "sourceUrl": "https://bleacherreport.com/articles/10118547-2024-nfl-draft-grades-for-every-team",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Green Bay Packers",
+    "year": 2024,
+    "grade": "B",
+    "gradeNumeric": 3,
+    "text": null,
+    "sourceName": "Bleacher Report",
+    "sourceUrl": "https://bleacherreport.com/articles/10118547-2024-nfl-draft-grades-for-every-team",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Houston Texans",
+    "year": 2024,
+    "grade": "B+",
+    "gradeNumeric": 3.3,
+    "text": null,
+    "sourceName": "Bleacher Report",
+    "sourceUrl": "https://bleacherreport.com/articles/10118547-2024-nfl-draft-grades-for-every-team",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Indianapolis Colts",
+    "year": 2024,
+    "grade": "A",
+    "gradeNumeric": 4,
+    "text": null,
+    "sourceName": "Bleacher Report",
+    "sourceUrl": "https://bleacherreport.com/articles/10118547-2024-nfl-draft-grades-for-every-team",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Jacksonville Jaguars",
+    "year": 2024,
+    "grade": "B-",
+    "gradeNumeric": 2.7,
+    "text": null,
+    "sourceName": "Bleacher Report",
+    "sourceUrl": "https://bleacherreport.com/articles/10118547-2024-nfl-draft-grades-for-every-team",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Kansas City Chiefs",
+    "year": 2024,
+    "grade": "B+",
+    "gradeNumeric": 3.3,
+    "text": null,
+    "sourceName": "Bleacher Report",
+    "sourceUrl": "https://bleacherreport.com/articles/10118547-2024-nfl-draft-grades-for-every-team",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Las Vegas Raiders",
+    "year": 2024,
+    "grade": "B+",
+    "gradeNumeric": 3.3,
+    "text": null,
+    "sourceName": "Bleacher Report",
+    "sourceUrl": "https://bleacherreport.com/articles/10118547-2024-nfl-draft-grades-for-every-team",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Los Angeles Chargers",
+    "year": 2024,
+    "grade": "A-",
+    "gradeNumeric": 3.7,
+    "text": null,
+    "sourceName": "Bleacher Report",
+    "sourceUrl": "https://bleacherreport.com/articles/10118547-2024-nfl-draft-grades-for-every-team",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Los Angeles Rams",
+    "year": 2024,
+    "grade": "A",
+    "gradeNumeric": 4,
+    "text": null,
+    "sourceName": "Bleacher Report",
+    "sourceUrl": "https://bleacherreport.com/articles/10118547-2024-nfl-draft-grades-for-every-team",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Miami Dolphins",
+    "year": 2024,
+    "grade": "C+",
+    "gradeNumeric": 2.3,
+    "text": null,
+    "sourceName": "Bleacher Report",
+    "sourceUrl": "https://bleacherreport.com/articles/10118547-2024-nfl-draft-grades-for-every-team",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Minnesota Vikings",
+    "year": 2024,
+    "grade": "A-",
+    "gradeNumeric": 3.7,
+    "text": null,
+    "sourceName": "Bleacher Report",
+    "sourceUrl": "https://bleacherreport.com/articles/10118547-2024-nfl-draft-grades-for-every-team",
+    "playerGrades": []
+  },
+  {
+    "teamName": "New England Patriots",
+    "year": 2024,
+    "grade": "A",
+    "gradeNumeric": 4,
+    "text": null,
+    "sourceName": "Bleacher Report",
+    "sourceUrl": "https://bleacherreport.com/articles/10118547-2024-nfl-draft-grades-for-every-team",
+    "playerGrades": []
+  },
+  {
+    "teamName": "New Orleans Saints",
+    "year": 2024,
+    "grade": "A",
+    "gradeNumeric": 4,
+    "text": null,
+    "sourceName": "Bleacher Report",
+    "sourceUrl": "https://bleacherreport.com/articles/10118547-2024-nfl-draft-grades-for-every-team",
+    "playerGrades": []
+  },
+  {
+    "teamName": "New York Giants",
+    "year": 2024,
+    "grade": "B-",
+    "gradeNumeric": 2.7,
+    "text": null,
+    "sourceName": "Bleacher Report",
+    "sourceUrl": "https://bleacherreport.com/articles/10118547-2024-nfl-draft-grades-for-every-team",
+    "playerGrades": []
+  },
+  {
+    "teamName": "New York Jets",
+    "year": 2024,
+    "grade": "B+",
+    "gradeNumeric": 3.3,
+    "text": null,
+    "sourceName": "Bleacher Report",
+    "sourceUrl": "https://bleacherreport.com/articles/10118547-2024-nfl-draft-grades-for-every-team",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Philadelphia Eagles",
+    "year": 2024,
+    "grade": "A+",
+    "gradeNumeric": 4.3,
+    "text": null,
+    "sourceName": "Bleacher Report",
+    "sourceUrl": "https://bleacherreport.com/articles/10118547-2024-nfl-draft-grades-for-every-team",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Pittsburgh Steelers",
+    "year": 2024,
+    "grade": "A+",
+    "gradeNumeric": 4.3,
+    "text": null,
+    "sourceName": "Bleacher Report",
+    "sourceUrl": "https://bleacherreport.com/articles/10118547-2024-nfl-draft-grades-for-every-team",
+    "playerGrades": []
+  },
+  {
+    "teamName": "San Francisco 49ers",
+    "year": 2024,
+    "grade": "B",
+    "gradeNumeric": 3,
+    "text": null,
+    "sourceName": "Bleacher Report",
+    "sourceUrl": "https://bleacherreport.com/articles/10118547-2024-nfl-draft-grades-for-every-team",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Seattle Seahawks",
+    "year": 2024,
+    "grade": "B",
+    "gradeNumeric": 3,
+    "text": null,
+    "sourceName": "Bleacher Report",
+    "sourceUrl": "https://bleacherreport.com/articles/10118547-2024-nfl-draft-grades-for-every-team",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Tampa Bay Buccaneers",
+    "year": 2024,
+    "grade": "A-",
+    "gradeNumeric": 3.7,
+    "text": null,
+    "sourceName": "Bleacher Report",
+    "sourceUrl": "https://bleacherreport.com/articles/10118547-2024-nfl-draft-grades-for-every-team",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Tennessee Titans",
+    "year": 2024,
+    "grade": "C",
+    "gradeNumeric": 2,
+    "text": null,
+    "sourceName": "Bleacher Report",
+    "sourceUrl": "https://bleacherreport.com/articles/10118547-2024-nfl-draft-grades-for-every-team",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Washington Commanders",
+    "year": 2024,
+    "grade": "B+",
+    "gradeNumeric": 3.3,
+    "text": null,
+    "sourceName": "Bleacher Report",
+    "sourceUrl": "https://bleacherreport.com/articles/10118547-2024-nfl-draft-grades-for-every-team",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Washington Commanders",
+    "year": 2024,
+    "grade": "A+",
+    "gradeNumeric": 4.3,
+    "text": "In my book, there were five teams that had really good drafts, the best of them all being the Washington Commanders, who received my only A+ grade. First-year general manager Adam Peters, who came over from San Francisco, nailed his first draft, starting with quarterback Jayden Daniels, who they took second overall. He will be a star. Peters kept going after that, loading up on good, talented players, many of whom I liked throughout the process. Yes, my film evaluation plays into the grades.",
+    "sourceName": "CBS Sports",
+    "sourceUrl": "https://www.cbssports.com/nfl/news/priscos-nfl-draft-2024-grades-for-all-32-teams-including-best-and-worst-picks-commanders-receive-only-a/",
+    "playerGrades": [
+      {
+        "playerName": "Jayden Daniels",
+        "grade": "A+",
+        "gradeNumeric": 4.3,
+        "text": "It was their first one, quarterback Jayden Daniels. I think he will be the best quarterback from this draft. They locked up a franchise passer with pick No. 2. He will be dynamic."
+      }
+    ]
+  },
+  {
+    "teamName": "Arizona Cardinals",
+    "year": 2024,
+    "grade": "A",
+    "gradeNumeric": 4,
+    "text": "The Cardinals had a lot of ammunition with 12 picks and Monti Ossenfort used it well. I liked a lot of their picks, starting with receiver Marvin Harrison Jr., who is a much-needed, dynamic playmaker. They added a bunch of potential starters the rest of the way, giving this rising team a lot of talented players. They also added four defensive backs, which was a must.",
+    "sourceName": "CBS Sports",
+    "sourceUrl": "https://www.cbssports.com/nfl/news/priscos-nfl-draft-2024-grades-for-all-32-teams-including-best-and-worst-picks-commanders-receive-only-a/",
+    "playerGrades": [
+      {
+        "playerName": "Marvin Harrison Jr.",
+        "grade": "A",
+        "gradeNumeric": 4,
+        "text": "Loved the pick of running back Trey Benson in the third round. That is the right area to take a back, and Benson was my top-rated back. He will give them a nice 1-2 combo with James Conner."
+      },
+      {
+        "playerName": "Trey Benson",
+        "grade": "A",
+        "gradeNumeric": 4,
+        "text": "Loved the pick of running back Trey Benson in the third round. That is the right area to take a back, and Benson was my top-rated back. He will give them a nice 1-2 combo with James Conner."
+      }
+    ]
+  },
+  {
+    "teamName": "Kansas City Chiefs",
+    "year": 2024,
+    "grade": "A",
+    "gradeNumeric": 4,
+    "text": "The Chiefs had a good draft. They traded up to get receiver Xavier Worthy in the first, then did the same to take Suamataia in the second. Worthy will be a game changer for Patrick Mahomes. Taking two of my Better-Than team players makes this grade go up.",
+    "sourceName": "CBS Sports",
+    "sourceUrl": "https://www.cbssports.com/nfl/news/priscos-nfl-draft-2024-grades-for-all-32-teams-including-best-and-worst-picks-commanders-receive-only-a/",
+    "playerGrades": [
+      {
+        "playerName": "Xavier Worthy",
+        "grade": "A",
+        "gradeNumeric": 4,
+        "text": "The Chiefs had a good draft. They traded up to get receiver Xavier Worthy in the first, then did the same to take Suamataia in the second. Worthy will be a game changer for Patrick Mahomes."
+      }
+    ]
+  },
+  {
+    "teamName": "Pittsburgh Steelers",
+    "year": 2024,
+    "grade": "A",
+    "gradeNumeric": 4,
+    "text": "They took a lot of quality players, including three offensive linemen in their first five picks. It started with tackle Troy Fautanu in the first and then got Frazier in the second and guard Mason McCormick in the fourth. Wilson and third-round receiver Roman Wilson will play early.",
+    "sourceName": "CBS Sports",
+    "sourceUrl": "https://www.cbssports.com/nfl/news/priscos-nfl-draft-2024-grades-for-all-32-teams-including-best-and-worst-picks-commanders-receive-only-a/",
+    "playerGrades": [
+      {
+        "playerName": "Troy Fautanu",
+        "grade": "A",
+        "gradeNumeric": 4,
+        "text": "They took a lot of quality players, including three offensive linemen in their first five picks. It started with tackle Troy Fautanu in the first and then got Frazier in the second and guard Mason McCormick in the fourth."
+      },
+      {
+        "playerName": "Payton Wilson",
+        "grade": "A",
+        "gradeNumeric": 4,
+        "text": "I love the pick of third-round linebacker Payton Wilson. He might have some medical issues, but the Steelers fans will come to love him and his style of play. He will start early."
+      }
+    ]
+  },
+  {
+    "teamName": "Los Angeles Rams",
+    "year": 2024,
+    "grade": "A",
+    "gradeNumeric": 4,
+    "text": "They finally had a first-round pick after not having one since 2016 and used it on edge Jared Verse. He fills a need and will be a tough, edge player. They followed that up by trading up to take Florida State defensive tackle Braden Fiske in the second. They gave up a lot to get him, so they must love him. Les Snead had another good draft.",
+    "sourceName": "CBS Sports",
+    "sourceUrl": "https://www.cbssports.com/nfl/news/priscos-nfl-draft-2024-grades-for-all-32-teams-including-best-and-worst-picks-commanders-receive-only-a/",
+    "playerGrades": [
+      {
+        "playerName": "Jared Verse",
+        "grade": "A",
+        "gradeNumeric": 4,
+        "text": "They finally had a first-round pick after not having one since 2016 and used it on edge Jared Verse. He fills a need and will be a tough, edge player."
+      }
+    ]
+  },
+  {
+    "teamName": "Atlanta Falcons",
+    "year": 2024,
+    "grade": "C-",
+    "gradeNumeric": 1.7,
+    "text": "This draft will be all about how the Falcons play out the Cousins-Penix dynamic. They had a chance to get a much-needed edge rusher if they didn't take Penix. Trading up to get defensive tackle Ruke Orhorhoro in the second round was questionable as well. They did add some good players in third-round edge Bralen Trice and Dorlus.",
+    "sourceName": "CBS Sports",
+    "sourceUrl": "https://www.cbssports.com/nfl/news/priscos-nfl-draft-2024-grades-for-all-32-teams-including-best-and-worst-picks-commanders-receive-only-a/",
+    "playerGrades": [
+      {
+        "playerName": "Brandon Dorlus",
+        "grade": "B",
+        "gradeNumeric": 3,
+        "text": "Fourth-round defensive tackle Brandon Dorlus from Oregon has a chance to be an early rotation player. He's not huge at 6-3, 295, but he can push the pocket. He will be a steal in the Grady Jarrett mold."
+      }
+    ]
+  },
+  {
+    "teamName": "Baltimore Ravens",
+    "year": 2024,
+    "grade": "B",
+    "gradeNumeric": 3,
+    "text": "The Ravens and general manager Eric DeCosta are usually among the best in the league when it comes to drafting. This was a solid draft as usual, filling a bunch of needs. First-round corner Nate Wiggins should be a long-term starter. He can cover, but needs to work on tackling.",
+    "sourceName": "CBS Sports",
+    "sourceUrl": "https://www.cbssports.com/nfl/news/priscos-nfl-draft-2024-grades-for-all-32-teams-including-best-and-worst-picks-commanders-receive-only-a/",
+    "playerGrades": [
+      {
+        "playerName": "T.J. Tampa",
+        "grade": "B",
+        "gradeNumeric": 3,
+        "text": "Fourth-round corner T.J. Tampa will prove to be really good pick. He can play the corner, but I also think he can move inside to safety. Versatility is huge in the Ravens defense."
+      }
+    ]
+  },
+  {
+    "teamName": "Buffalo Bills",
+    "year": 2024,
+    "grade": "B",
+    "gradeNumeric": 3,
+    "text": "I like the way general manager Brandon Beane managed his picks, moving down in the first round to add more ammunition. They still ended up with a good haul for a team that needed an influx of players, starting with second-round receiver Keon Coleman, a bigger target that was needed.",
+    "sourceName": "CBS Sports",
+    "sourceUrl": "https://www.cbssports.com/nfl/news/priscos-nfl-draft-2024-grades-for-all-32-teams-including-best-and-worst-picks-commanders-receive-only-a/",
+    "playerGrades": [
+      {
+        "playerName": "DeWayne Carter",
+        "grade": "B",
+        "gradeNumeric": 3,
+        "text": "Third-round defensive tackle DeWayne Carter is a bit undersized, but he will be a good player. They need rotation guys inside and he will fill that role early in his career."
+      }
+    ]
+  },
+  {
+    "teamName": "Carolina Panthers",
+    "year": 2024,
+    "grade": "B-",
+    "gradeNumeric": 2.7,
+    "text": "They didn't have a first-round pick -- traded away in the Young deal -- but they still ended up with one by trading up to land receiver Xavier Legette in the first round. They then moved around in the second and third to add extra picks, which I liked, and added good players like third-round linebacker Trevin Wallace and Sanders. Legette has to be Young's go-to guy.",
+    "sourceName": "CBS Sports",
+    "sourceUrl": "https://www.cbssports.com/nfl/news/priscos-nfl-draft-2024-grades-for-all-32-teams-including-best-and-worst-picks-commanders-receive-only-a/",
+    "playerGrades": [
+      {
+        "playerName": "Ja'Tavion Sanders",
+        "grade": "B",
+        "gradeNumeric": 3,
+        "text": "Fourth-round tight end Ja'Tavion Sanders from Texas has the skills to be a big-time pass catcher. He isn't a blocking tight end, but even though he didn't time well him the 40, he plays fast."
+      }
+    ]
+  },
+  {
+    "teamName": "Chicago Bears",
+    "year": 2024,
+    "grade": "B",
+    "gradeNumeric": 3,
+    "text": "Getting Williams and receiver Rome Odunze (ninth overall) will give the Bears a lot of firepower on offense. If Williams can seamlessly step in and be a good starter right away, the Bears will push for a division title. It would have been tough to mess this draft up with the first and ninth picks in the first round, but I didn't love what they did after that.",
+    "sourceName": "CBS Sports",
+    "sourceUrl": "https://www.cbssports.com/nfl/news/priscos-nfl-draft-2024-grades-for-all-32-teams-including-best-and-worst-picks-commanders-receive-only-a/",
+    "playerGrades": [
+      {
+        "playerName": "Caleb Williams",
+        "grade": "B",
+        "gradeNumeric": 3,
+        "text": "Even though he wasn't my top quarterback, getting Caleb Williams with the first overall pick could change the fate of this franchise. He has all the tools to be a star and could be their first true star passer since Sid Luckman."
+      }
+    ]
+  },
+  {
+    "teamName": "Cincinnati Bengals",
+    "year": 2024,
+    "grade": "B-",
+    "gradeNumeric": 2.7,
+    "text": "Duke Tobin has done a nice job drafting for the Bengals and this is a nice group -- and could be a great one. The risk is first-round offensive tackle Amarius Mims, who has just eight starts in his career. He is a boom-or-bust player in my book. Taking Kris Jenkins and Jackson will help offset the loss of D.J. Reader in free agency.",
+    "sourceName": "CBS Sports",
+    "sourceUrl": "https://www.cbssports.com/nfl/news/priscos-nfl-draft-2024-grades-for-all-32-teams-including-best-and-worst-picks-commanders-receive-only-a/",
+    "playerGrades": [
+      {
+        "playerName": "McKinnley Jackson",
+        "grade": "B",
+        "gradeNumeric": 3,
+        "text": "Third-round defensive tackle McKinnley Jackson has run-stuff skills that can help on the inside of their defense. He has the size at 6-2, 325 to be a power player inside, but he has to be more consistent."
+      }
+    ]
+  },
+  {
+    "teamName": "Cleveland Browns",
+    "year": 2024,
+    "grade": "C-",
+    "gradeNumeric": 1.7,
+    "text": "They didn't have a first-round pick -- sent to the Texans for Deshaun Watson -- so they had to wait until until the 22nd pick of the second round to make a pick. That pick was Michael Hall Jr., a defensive tackle from Ohio State. He's a good player. The rest of the draft was just OK.",
+    "sourceName": "CBS Sports",
+    "sourceUrl": "https://www.cbssports.com/nfl/news/priscos-nfl-draft-2024-grades-for-all-32-teams-including-best-and-worst-picks-commanders-receive-only-a/",
+    "playerGrades": [
+      {
+        "playerName": "Jamari Thrash",
+        "grade": "B",
+        "gradeNumeric": 3,
+        "text": "Fifth-round receiver Jamari Thrash is a good route runner who is a physical to give them a young weapon to add to their group. He will make the team."
+      }
+    ]
+  },
+  {
+    "teamName": "Dallas Cowboys",
+    "year": 2024,
+    "grade": "B-",
+    "gradeNumeric": 2.7,
+    "text": "I thought the Cowboys had a solid draft. Trading down and adding an extra pick and taking tackle Tyler Guyton in the first was a hit. He will start as a rookie and has the tools to do so. They added some good football players the rest of the way, guys like Beebe and Wake Forest corner Caelen Carson (fifth). It wasn't splashy, but it was solid.",
+    "sourceName": "CBS Sports",
+    "sourceUrl": "https://www.cbssports.com/nfl/news/priscos-nfl-draft-2024-grades-for-all-32-teams-including-best-and-worst-picks-commanders-receive-only-a/",
+    "playerGrades": [
+      {
+        "playerName": "Cooper Beebe",
+        "grade": "B",
+        "gradeNumeric": 3,
+        "text": "Third-round offensive lineman Cooper Beebe can play anywhere on the line, although I think he will be an inside player for Dallas. Beebe played tackle at Kansas State."
+      }
+    ]
+  },
+  {
+    "teamName": "Denver Broncos",
+    "year": 2024,
+    "grade": "B-",
+    "gradeNumeric": 2.7,
+    "text": "This draft will be defined by how well Nix plays. If Nix is starting for Payton in three years, it will be a great pick. Otherwise, Payton's job could be tied to him. At least they got Franklin in the fourth. Fifth-round corner Kris Abrams-Draine from Missouri has talent.",
+    "sourceName": "CBS Sports",
+    "sourceUrl": "https://www.cbssports.com/nfl/news/priscos-nfl-draft-2024-grades-for-all-32-teams-including-best-and-worst-picks-commanders-receive-only-a/",
+    "playerGrades": [
+      {
+        "playerName": "Bo Nix",
+        "grade": "B-",
+        "gradeNumeric": 2.7,
+        "text": "It's not that they drafted Nix with the 12th overall pick, but rather why not trade back and take him? Nix has talent and Sean Payton knows quarterbacks, but this one will be fun to watch."
+      },
+      {
+        "playerName": "Troy Franklin",
+        "grade": "B",
+        "gradeNumeric": 3,
+        "text": "I love fourth-round receiver Troy Franklin. He is a player who will add speed to the offense and he's joining former teammate Bo Nix, the Broncos' first-round pick. I don't know why he went in the fourth because he's better than that."
+      }
+    ]
+  },
+  {
+    "teamName": "Detroit Lions",
+    "year": 2024,
+    "grade": "B",
+    "gradeNumeric": 3,
+    "text": "They landed one of the best corners in the draft in the first round in Terrion Arnold, then came back and used a second-round pick on corner Ennis Rakestraw Jr. from Missouri. That's good drafting, addressing need with two players who will be starters at some point -- one this season. I love Vaki and sixth-round defensive tackle Mekhi Wingo has some good tape.",
+    "sourceName": "CBS Sports",
+    "sourceUrl": "https://www.cbssports.com/nfl/news/priscos-nfl-draft-2024-grades-for-all-32-teams-including-best-and-worst-picks-commanders-receive-only-a/",
+    "playerGrades": [
+      {
+        "playerName": "Sione Vaki",
+        "grade": "A",
+        "gradeNumeric": 4,
+        "text": "Fourth-round safety-running back Sione Vaki was the captain of my Better-Than team. He is a tough, physical player who can be a starting safety, but also a major contributor on special teams. He also has played running back."
+      },
+      {
+        "playerName": "Terrion Arnold",
+        "grade": "B",
+        "gradeNumeric": 3,
+        "text": "They landed one of the best corners in the draft in the first round in Terrion Arnold, then came back and used a second-round pick on corner Ennis Rakestraw Jr. from Missouri. That's good drafting, addressing need with two players who will be starters at some point -- one this season."
+      }
+    ]
+  },
+  {
+    "teamName": "Green Bay Packers",
+    "year": 2024,
+    "grade": "B",
+    "gradeNumeric": 3,
+    "text": "The Packers do a nice job with the draft, and this one will give them some players who could start as rookies. The Packers clearly drafted for need, landing Morgan, Cooper and second-round safety Javon Bullard. Running back MarShawn Lloyd will be a nice addition to the offense behind Josh Jacobs. Quarterback Michael Pratt in the seventh is a nice pick, even if he won't play other than for injury.",
+    "sourceName": "CBS Sports",
+    "sourceUrl": "https://www.cbssports.com/nfl/news/priscos-nfl-draft-2024-grades-for-all-32-teams-including-best-and-worst-picks-commanders-receive-only-a/",
+    "playerGrades": [
+      {
+        "playerName": "Edgerrin Cooper",
+        "grade": "B",
+        "gradeNumeric": 3,
+        "text": "Second-round linebacker Edgerrin Cooper will pay off in a big way. He can fly and will add a ton of speed on the second level for the Packers."
+      }
+    ]
+  },
+  {
+    "teamName": "Houston Texans",
+    "year": 2024,
+    "grade": "C+",
+    "gradeNumeric": 2.3,
+    "text": "After having a great draft last year, I didn't love this year's version. They didn't have a first-round pick -- traded to Minnesota -- and then they picked a tackle in Blake Fisher (who won't start) and two secondary players who probably won't start with their next two picks. Hard to doubt Nick Cesario after last year, but I will for this draft.",
+    "sourceName": "CBS Sports",
+    "sourceUrl": "https://www.cbssports.com/nfl/news/priscos-nfl-draft-2024-grades-for-all-32-teams-including-best-and-worst-picks-commanders-receive-only-a/",
+    "playerGrades": [
+      {
+        "playerName": "Calen Bullock",
+        "grade": "B",
+        "gradeNumeric": 3,
+        "text": "Third-round safety Calen Bullock is a rangy safety who will give them depth this season, but will eventually become a starter. He can run."
+      }
+    ]
+  },
+  {
+    "teamName": "Indianapolis Colts",
+    "year": 2024,
+    "grade": "B+",
+    "gradeNumeric": 3.3,
+    "text": "I liked the Colts' first four picks, but I would have taken Dallas Turner at No. 15 rather than Laiatu Latu, the pass rusher the Colts took. Latu does fill a need. Mitchell might end up being a steal. He is big and can run. The Colts had a good, solid haul.",
+    "sourceName": "CBS Sports",
+    "sourceUrl": "https://www.cbssports.com/nfl/news/priscos-nfl-draft-2024-grades-for-all-32-teams-including-best-and-worst-picks-commanders-receive-only-a/",
+    "playerGrades": [
+      {
+        "playerName": "Adonai Mitchell",
+        "grade": "B+",
+        "gradeNumeric": 3.3,
+        "text": "I love the pick of receiver Adonai Mitchell in the second. He is a tall, fast receiver who will give them a nice addition to Michael Pittman and Josh Downs."
+      }
+    ]
+  },
+  {
+    "teamName": "Jacksonville Jaguars",
+    "year": 2024,
+    "grade": "B",
+    "gradeNumeric": 3,
+    "text": "I have been critical of Trent Baalke's drafts in the past, but this was a good one. First-round receiver Brian Thomas Jr. gives them a game-changer on offense that they've lacked, while Smith can be a beast up front. Trading down and adding picks in this draft and next year's draft was a smart move by Baalke.",
+    "sourceName": "CBS Sports",
+    "sourceUrl": "https://www.cbssports.com/nfl/news/priscos-nfl-draft-2024-grades-for-all-32-teams-including-best-and-worst-picks-commanders-receive-only-a/",
+    "playerGrades": [
+      {
+        "playerName": "Maason Smith",
+        "grade": "A",
+        "gradeNumeric": 4,
+        "text": "I love second-round defensive tackle Maason Smith from LSU. His skill set is impressive. A torn ACL in 2022 set him back, but he started to look like himself late last season. He can be dominant."
+      },
+      {
+        "playerName": "Brian Thomas Jr.",
+        "grade": "A",
+        "gradeNumeric": 4,
+        "text": "First-round receiver Brian Thomas Jr. gives them a game-changer on offense that they've lacked, while Smith can be a beast up front."
+      }
+    ]
+  },
+  {
+    "teamName": "Las Vegas Raiders",
+    "year": 2024,
+    "grade": "C",
+    "gradeNumeric": 2,
+    "text": "They didn't get a chance to take one of the top quarterbacks since they were all gone, so they took Bowers. Like I said, good player, but needed other positions. Oregon center Jackson Powers-Johnson came in the second, and he is moving to guard. I didn't love fourth-round tackle Delmar Glaze.",
+    "sourceName": "CBS Sports",
+    "sourceUrl": "https://www.cbssports.com/nfl/news/priscos-nfl-draft-2024-grades-for-all-32-teams-including-best-and-worst-picks-commanders-receive-only-a/",
+    "playerGrades": [
+      {
+        "playerName": "Decamerion Richardson",
+        "grade": "B",
+        "gradeNumeric": 3,
+        "text": "Fourth-round corner Decamerion Richardson from Mississippi State is a long corner who can play man coverage and will compete for playing time right away. He's a good corner and the Raiders need one to emerge."
+      }
+    ]
+  },
+  {
+    "teamName": "Los Angeles Chargers",
+    "year": 2024,
+    "grade": "B+",
+    "gradeNumeric": 3.3,
+    "text": "They took tackle Joe Alt in the first round with the fifth overall pick, passing on taking a receiver to do so. Alt will play right tackle, which will be an adjustment for him. It's a solid pick, rather than sexy. That's the Harbaugh way. I think second-round receiver Ladd McConkey can start right away.",
+    "sourceName": "CBS Sports",
+    "sourceUrl": "https://www.cbssports.com/nfl/news/priscos-nfl-draft-2024-grades-for-all-32-teams-including-best-and-worst-picks-commanders-receive-only-a/",
+    "playerGrades": [
+      {
+        "playerName": "Junior Colson",
+        "grade": "A",
+        "gradeNumeric": 4,
+        "text": "Third-round linebacker Junior Colson reunites with college coach Jim Harbaugh and he will be a starter early in his career. He is a tough, physical player who can run and cover as well as play the run."
+      }
+    ]
+  },
+  {
+    "teamName": "Miami Dolphins",
+    "year": 2024,
+    "grade": "B+",
+    "gradeNumeric": 3.3,
+    "text": "Many will question their first two picks -- tackle Patrick Paul was the second-round pick -- but not me. I love Robinson and Paul was on my Better-Than team. He might not start right away, but Terron Armstead is up in the years and missed seven games last season. They added a bunch of other good players.",
+    "sourceName": "CBS Sports",
+    "sourceUrl": "https://www.cbssports.com/nfl/news/priscos-nfl-draft-2024-grades-for-all-32-teams-including-best-and-worst-picks-commanders-receive-only-a/",
+    "playerGrades": [
+      {
+        "playerName": "Chop Robinson",
+        "grade": "A",
+        "gradeNumeric": 4,
+        "text": "It was their first one, edge Chop Robinson. He didn't have a lot of sack production, but he can get after the quarterback. He has an explosive first step and helps fill a need with their two top edge players coming off injury."
+      }
+    ]
+  },
+  {
+    "teamName": "Minnesota Vikings",
+    "year": 2024,
+    "grade": "B-",
+    "gradeNumeric": 2.7,
+    "text": "Like all the teams that took quarterbacks, their drafts will be defined by how well they play. That's the Vikings with McCarthy. Even if Turner becomes a true star, which I think he will, this draft is about McCarthy. Period. They also traded a lot of future picks to get McCarthy and Turner, so they better be stars.",
+    "sourceName": "CBS Sports",
+    "sourceUrl": "https://www.cbssports.com/nfl/news/priscos-nfl-draft-2024-grades-for-all-32-teams-including-best-and-worst-picks-commanders-receive-only-a/",
+    "playerGrades": [
+      {
+        "playerName": "Dallas Turner",
+        "grade": "A",
+        "gradeNumeric": 4,
+        "text": "The Vikings moved up in the first round to take pass rusher Dallas Turner. That was a good move. He will be a big-time rusher in Brian Flores' scheme. Turner's best pass-rushing days are ahead of him."
+      }
+    ]
+  },
+  {
+    "teamName": "New England Patriots",
+    "year": 2024,
+    "grade": "B-",
+    "gradeNumeric": 2.7,
+    "text": "It doesn't matter what else the Patriots do in the draft, this one will be defined by taking North Carolina quarterback Drake Maye with the third overall pick. If he's a star, this draft will be special. If not, it won't be. I like his game, but it might take time. The cast around him isn't great.",
+    "sourceName": "CBS Sports",
+    "sourceUrl": "https://www.cbssports.com/nfl/news/priscos-nfl-draft-2024-grades-for-all-32-teams-including-best-and-worst-picks-commanders-receive-only-a/",
+    "playerGrades": [
+      {
+        "playerName": "Drake Maye",
+        "grade": "B-",
+        "gradeNumeric": 2.7,
+        "text": "It doesn't matter what else the Patriots do in the draft, this one will be defined by taking North Carolina quarterback Drake Maye with the third overall pick. If he's a star, this draft will be special. If not, it won't be. I like his game, but it might take time."
+      },
+      {
+        "playerName": "Javon Baker",
+        "grade": "B",
+        "gradeNumeric": 3,
+        "text": "Fourth-round receiver Javon Baker will help the passing game right away. He is already squawking about teams passing on him. I love that attitude -- and he plays with it, too."
+      }
+    ]
+  },
+  {
+    "teamName": "New Orleans Saints",
+    "year": 2024,
+    "grade": "B+",
+    "gradeNumeric": 3.3,
+    "text": "They addressed major problems with their first two picks, taking tackle Taliese Fuaga in the first round and then McKinstry in the second. Fuaga will be a plug-and-play starter, while McKinstry could start. Means and fifth-round quarterback Spencer Rattler are nice value picks.",
+    "sourceName": "CBS Sports",
+    "sourceUrl": "https://www.cbssports.com/nfl/news/priscos-nfl-draft-2024-grades-for-all-32-teams-including-best-and-worst-picks-commanders-receive-only-a/",
+    "playerGrades": [
+      {
+        "playerName": "Bub Means",
+        "grade": "B",
+        "gradeNumeric": 3,
+        "text": "Fifth-round receiver Bub Means is a long receiver who can run. With a little polish in terms of his route running, Means can become a nice addition to their offense when it comes to the deep ball."
+      }
+    ]
+  },
+  {
+    "teamName": "New York Giants",
+    "year": 2024,
+    "grade": "B-",
+    "gradeNumeric": 2.7,
+    "text": "The Giants made the decision to pass on a quarterback to take Nabers. They supposedly tried to move up to get Drake Maye, but when they didn't they passed on McCarthy to take Nabers. Smart move. The rest of the draft was just OK in my book, but keep an eye on fourth-round tight end Theo Johnson.",
+    "sourceName": "CBS Sports",
+    "sourceUrl": "https://www.cbssports.com/nfl/news/priscos-nfl-draft-2024-grades-for-all-32-teams-including-best-and-worst-picks-commanders-receive-only-a/",
+    "playerGrades": [
+      {
+        "playerName": "Malik Nabers",
+        "grade": "B",
+        "gradeNumeric": 3,
+        "text": "It was their first one, receiver Malik Nabers. Some will say they should have taken quarterback J.J. McCarthy in that spot, but I like taking the best receiver in the draft. Nabers will be special."
+      }
+    ]
+  },
+  {
+    "teamName": "New York Jets",
+    "year": 2024,
+    "grade": "B-",
+    "gradeNumeric": 2.7,
+    "text": "By taking tackle Olu Fashanu, the Jets did the right thing. But it sure didn't look like an all-in move for Rodgers since Fashanu is going to likely sit for a year. Corley will be a nice pick, but this wasn't a great draft for immediate help.",
+    "sourceName": "CBS Sports",
+    "sourceUrl": "https://www.cbssports.com/nfl/news/priscos-nfl-draft-2024-grades-for-all-32-teams-including-best-and-worst-picks-commanders-receive-only-a/",
+    "playerGrades": [
+      {
+        "playerName": "Malachi Corley",
+        "grade": "B",
+        "gradeNumeric": 3,
+        "text": "Third-round receiver Malachi Corley will come in and immediately help the passing game. He is a strong player after the catch. Aaron Rodgers had to be happy with that pick."
+      }
+    ]
+  },
+  {
+    "teamName": "Philadelphia Eagles",
+    "year": 2024,
+    "grade": "B+",
+    "gradeNumeric": 3.3,
+    "text": "General manager Howie Roseman usually likes to trade up on draft night, but he refrained from that in the first round and it worked by landing Mitchell. He did trade up in the second to land corner-safety Cooper DeJean. In fact, he made eight trades enhancing his reputation as the trader GM. The best thing is a team problem in coverage last year likely got fixed with the first two picks.",
+    "sourceName": "CBS Sports",
+    "sourceUrl": "https://www.cbssports.com/nfl/news/priscos-nfl-draft-2024-grades-for-all-32-teams-including-best-and-worst-picks-commanders-receive-only-a/",
+    "playerGrades": [
+      {
+        "playerName": "Quinyon Mitchell",
+        "grade": "A",
+        "gradeNumeric": 4,
+        "text": "Rather than panicking and trading up, they stayed put and landed the top cover corner in the draft in Quinyon Mitchell in the first round. It was a gamble that paid off."
+      }
+    ]
+  },
+  {
+    "teamName": "San Francisco 49ers",
+    "year": 2024,
+    "grade": "C+",
+    "gradeNumeric": 2.3,
+    "text": "The 49ers clearly are drafting for the future with Pearsall in the first -- or readying to trade one of their starters, either Brandon Aiyuk or Deebo Samuel. Third-round offensive lineman Dominick Puni could develop into a starter -- probably at guard. Green will be good value, while fourth-round receiver Jacob Cowing could be a sleeper.",
+    "sourceName": "CBS Sports",
+    "sourceUrl": "https://www.cbssports.com/nfl/news/priscos-nfl-draft-2024-grades-for-all-32-teams-including-best-and-worst-picks-commanders-receive-only-a/",
+    "playerGrades": [
+      {
+        "playerName": "Renardo Green",
+        "grade": "B",
+        "gradeNumeric": 3,
+        "text": "Second-round corner Renardo Green fills a need and might be able to be their corner right away. Green had just one pick in college, but he is a playmaker and would fit in their scheme."
+      }
+    ]
+  },
+  {
+    "teamName": "Seattle Seahawks",
+    "year": 2024,
+    "grade": "C+",
+    "gradeNumeric": 2.3,
+    "text": "Murphy will be a star, which will make this draft a hit down the road. But the rest of it was just OK for me. I do like third-round guard Christian Haynes, who fills a need.",
+    "sourceName": "CBS Sports",
+    "sourceUrl": "https://www.cbssports.com/nfl/news/priscos-nfl-draft-2024-grades-for-all-32-teams-including-best-and-worst-picks-commanders-receive-only-a/",
+    "playerGrades": [
+      {
+        "playerName": "Byron Murphy",
+        "grade": "A",
+        "gradeNumeric": 4,
+        "text": "It was their first pick, defensive tackle Byron Murphy. He has the tools to be a dominant inside player. He will be a lot like Baltimore's Justin Madubuike for Seattle."
+      }
+    ]
+  },
+  {
+    "teamName": "Tampa Bay Buccaneers",
+    "year": 2024,
+    "grade": "B+",
+    "gradeNumeric": 3.3,
+    "text": "They did a nice job landing good players and also filling needs. It started with first-round guard-center Graham Barton, who will likely be the starting center. Braswell was picked for need and will be a rotation player early. I do like McMillan and fifth-round running back Bucky Irving.",
+    "sourceName": "CBS Sports",
+    "sourceUrl": "https://www.cbssports.com/nfl/news/priscos-nfl-draft-2024-grades-for-all-32-teams-including-best-and-worst-picks-commanders-receive-only-a/",
+    "playerGrades": [
+      {
+        "playerName": "Jalen McMillan",
+        "grade": "A",
+        "gradeNumeric": 4,
+        "text": "Third-round receiver Jalen McMillan will prove to be a major steal. He was Washington's leading receiver in 2022, with more catches than Rome Odunze, who went ninth in this draft. McMillan will become a good slot receiver."
+      }
+    ]
+  },
+  {
+    "teamName": "Tennessee Titans",
+    "year": 2024,
+    "grade": "B",
+    "gradeNumeric": 3,
+    "text": "Getting tackle JC Latham in the first round will pay off in a big way. He will be their starting left tackle for a long time. The Swift pick is feast or famine. Brownlee will prove to be a steal and sixth-round receiver Jha'Quan Jackson can fly and will help the return game.",
+    "sourceName": "CBS Sports",
+    "sourceUrl": "https://www.cbssports.com/nfl/news/priscos-nfl-draft-2024-grades-for-all-32-teams-including-best-and-worst-picks-commanders-receive-only-a/",
+    "playerGrades": [
+      {
+        "playerName": "Jarvis Brownlee Jr.",
+        "grade": "B",
+        "gradeNumeric": 3,
+        "text": "Fifth-round corner Jarvis Brownlee Jr. will be a nickel starter at some point in his career. Brownlee is a smallish corner, but he can cover."
+      }
+    ]
+  },
+  {
+    "teamName": "Dallas Cowboys",
+    "year": 2024,
+    "grade": "C+",
+    "gradeNumeric": 2.3,
+    "text": "This draft went about how most people expected. The Cowboys got a potential Tyron Smith replacement in the first round, added front seven help and got depth on the offensive line. This draft might not have huge immediate returns for the Cowboys, but they made some strong dice rolls on future starters. The team sits in limbo as Jerry Jones decides what he wants to do next with his franchise, making this an important draft for the Cowboys to nail.",
+    "sourceName": "Yahoo Sports",
+    "sourceUrl": "https://sports.yahoo.com/2024-nfl-draft-grades-for-all-32-teams-170438870.html",
+    "playerGrades": []
+  },
+  {
+    "teamName": "New York Giants",
+    "year": 2024,
+    "grade": "B+",
+    "gradeNumeric": 3.3,
+    "text": "The Giants wanted a quarterback, but they still came away with a solid group of players despite not taking one. Malik Nabers is the receiver they've needed for quite some time and they found a solid replacement for Xavier McKinney in Tyler Nubin. Theo Johnson is a smart draft pick in response to Darren Waller being unsure about his playing future. The Giants might not have been able to make the splash they wanted but they should feel good about where they stand.",
+    "sourceName": "Yahoo Sports",
+    "sourceUrl": "https://sports.yahoo.com/2024-nfl-draft-grades-for-all-32-teams-170438870.html",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Philadelphia Eagles",
+    "year": 2024,
+    "grade": "A-",
+    "gradeNumeric": 3.7,
+    "text": "The Eagles played the draft so well. They let Quinyon Mitchell fall right into their lap with the 22nd overall pick and he has all the tools necessary to be a CB1 in the NFL. Then, they jumped back up in Round 2 to grab the falling Cooper DeJean. Taking swings on Ainias Smith and Johnny Wilson on the third day of the draft might work for them and they made the feel-good selection of Jeremiah Trotter Jr. They also added a couple picks in 2025, including a future third-round selection from the Dolphins. Well played, Howie Roseman.",
+    "sourceName": "Yahoo Sports",
+    "sourceUrl": "https://sports.yahoo.com/2024-nfl-draft-grades-for-all-32-teams-170438870.html",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Washington Commanders",
+    "year": 2024,
+    "grade": "B",
+    "gradeNumeric": 3,
+    "text": "It's a new day for the Commanders. They have a new franchise quarterback, a couple impact defenders and even a freak athlete on the offensive line to develop. The Jayden Daniels pick is risky based on his prospect profile, but he still should be a drastic upgrade over what they had in Sam Howell last season. This class hinges on Daniels being a top-tier starter, but they did grab some solid players in the draft. This draft class should make fans feel more hopeful after a shaky free agency period.",
+    "sourceName": "Yahoo Sports",
+    "sourceUrl": "https://sports.yahoo.com/2024-nfl-draft-grades-for-all-32-teams-170438870.html",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Chicago Bears",
+    "year": 2024,
+    "grade": "A",
+    "gradeNumeric": 4,
+    "text": "You made it, Bears fans. A quarterback prospect who has real deal superstar upside is here. Caleb Williams has all the talent in the world to finally be the dynamic passer the Bears have been waiting for — and he is set up well for success. They drafted Rome Odunze with their second top-10 pick and a developmental tackle in the third round with Kiran Amegadjie. Even their fifth-round selection of Austin Booker was quality! This draft class can be so impactful that it gets an A even with picking a punter in the fourth round.",
+    "sourceName": "Yahoo Sports",
+    "sourceUrl": "https://sports.yahoo.com/2024-nfl-draft-grades-for-all-32-teams-170438870.html",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Detroit Lions",
+    "year": 2024,
+    "grade": "B",
+    "gradeNumeric": 3,
+    "text": "Detroit made some great picks in the first two rounds of the draft and some risky ones to kick off Day 3. They accomplished their goal of getting better at cornerback this offseason, now featuring a completely revamped room as Terrion Arnold and Ennis Rakestraw Jr. will join Carlton Davis in Detroit. The Lions even got a couple sixth-rounders with potential to close out their day. It's really just the selections in the fourth round that are giving a bit of pause here.",
+    "sourceName": "Yahoo Sports",
+    "sourceUrl": "https://sports.yahoo.com/2024-nfl-draft-grades-for-all-32-teams-170438870.html",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Green Bay Packers",
+    "year": 2024,
+    "grade": "B",
+    "gradeNumeric": 3,
+    "text": "The Packers made a ton of draft picks and came out looking pretty good. Their linebacker picks were questionable (although the entire linebacker class was down this year), but they found a potential franchise left tackle in Jordan Morgan at the end of the first round. They took three safeties as well and might have a tough, versatile duo now between Javon Bullard and Xavier McKinney. MarShawn Lloyd is a quality addition at running back while they test Josh Jacobs for at least a season.",
+    "sourceName": "Yahoo Sports",
+    "sourceUrl": "https://sports.yahoo.com/2024-nfl-draft-grades-for-all-32-teams-170438870.html",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Minnesota Vikings",
+    "year": 2024,
+    "grade": "C+",
+    "gradeNumeric": 2.3,
+    "text": "The Vikings went all in and got their quarterback and edge rusher of the future. Whew. As a result, they barely have any 2025 picks. They do have some talented prospects at key positions to build around. J.J. McCarthy and Dallas Turner can be solid NFL players, but the Vikings paid a high price to attain them. Right now, the only top-100 pick they're slated to have in 2025 is their first-round pick (with at least one third-round compensatory pick coming their way for Kirk Cousins). This better work!",
+    "sourceName": "Yahoo Sports",
+    "sourceUrl": "https://sports.yahoo.com/2024-nfl-draft-grades-for-all-32-teams-170438870.html",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Atlanta Falcons",
+    "year": 2024,
+    "grade": "D-",
+    "gradeNumeric": 0.7,
+    "text": "Baffling. Pretty baffling use of the eighth overall pick. After signing Kirk Cousins, it was a bit of a shocker for the Falcons to use the pick on a backup quarterback rather than take someone who can play this year. Unless the Cousins signing is a total disaster, it will be years before the Falcons see Michael Penix Jr. on the field. This team is not ready for a resource allocation like that. The Falcons also failed to grab a cornerback in this draft, but they made some very solid picks along the defensive line that should help them finally stabilize that position group. The defensive line picks are the only thing keeping this from being an F grade.",
+    "sourceName": "Yahoo Sports",
+    "sourceUrl": "https://sports.yahoo.com/2024-nfl-draft-grades-for-all-32-teams-170438870.html",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Carolina Panthers",
+    "year": 2024,
+    "grade": "C",
+    "gradeNumeric": 2,
+    "text": "The Panthers took some risks in this draft class. It's hard to say whether it's bad or good because making risky draft picks is not inherently a bad thing. Carolina decided to spend its picks taking home-run swings that have low floors and big upside. The gambles are fun, but the Panthers' early draft picks have shaky profiles in one way or another. Even though they're getting a C, it's hard not to be caught by the allure of the unknown here. It's a really interesting class.",
+    "sourceName": "Yahoo Sports",
+    "sourceUrl": "https://sports.yahoo.com/2024-nfl-draft-grades-for-all-32-teams-170438870.html",
+    "playerGrades": []
+  },
+  {
+    "teamName": "New Orleans Saints",
+    "year": 2024,
+    "grade": "B-",
+    "gradeNumeric": 2.7,
+    "text": "All those trades in the past left the Saints with only two picks in the top 100 of the draft and they went over 100 selections in between their own picks at one point. Still, the Saints grabbed an immediate starter at guard or tackle in Taliese Fuaga. He is another member of an extremely talented offensive line class that should have success in the NFL. The Saints grabbed a starting-caliber cornerback in Kool-Aid McKinstry and a developmental option at quarterback in Spencer Rattler. For as few draft assets as they came into the draft with, the Saints fared pretty well.",
+    "sourceName": "Yahoo Sports",
+    "sourceUrl": "https://sports.yahoo.com/2024-nfl-draft-grades-for-all-32-teams-170438870.html",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Tampa Bay Buccaneers",
+    "year": 2024,
+    "grade": "B+",
+    "gradeNumeric": 3.3,
+    "text": "Really solid draft for the Buccaneers. Offensive lineman Graham Barton is one of the cleanest prospects in the draft and can play all five positions up front. This is a terrific player to pair with Tristan Wirfs. The Bucs also grabbed a solid wide receiver prospect in Jalen McMillan and a quality running back in Bucky Irving. How linebacker Chris Braswell and defensive back Tykee Smith develop will be important for the overall impact of this draft class. This is a nice haul for the Buccaneers.",
+    "sourceName": "Yahoo Sports",
+    "sourceUrl": "https://sports.yahoo.com/2024-nfl-draft-grades-for-all-32-teams-170438870.html",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Arizona Cardinals",
+    "year": 2024,
+    "grade": "B+",
+    "gradeNumeric": 3.3,
+    "text": "Shoutout to Arizona for not overthinking it. Grab the best player in the draft and keep it moving. They took some chances with the selections of Max Melton, Trey Benson and Xavier Thomas, giving them more credible prospects to continue this rebuild. The Cardinals might not win the division this season, but this draft class should help them get to competing for the playoffs soon, especially if Kyler Murray can build on his late-season resurgence.",
+    "sourceName": "Yahoo Sports",
+    "sourceUrl": "https://sports.yahoo.com/2024-nfl-draft-grades-for-all-32-teams-170438870.html",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Los Angeles Rams",
+    "year": 2024,
+    "grade": "B-",
+    "gradeNumeric": 2.7,
+    "text": "This was a safe, logical draft for the Rams, which makes sense for where they are now. They beefed up their defensive line, added a quality back and also a much-needed safety within the top 100 picks. There isn't a lot of big upside here, but most of these players should have high floors for the NFL. It's hard to see this draft class failing for the Rams, but they might not have true star power here.",
+    "sourceName": "Yahoo Sports",
+    "sourceUrl": "https://sports.yahoo.com/2024-nfl-draft-grades-for-all-32-teams-170438870.html",
+    "playerGrades": []
+  },
+  {
+    "teamName": "San Francisco 49ers",
+    "year": 2024,
+    "grade": "C-",
+    "gradeNumeric": 1.7,
+    "text": "Weird draft class for the 49ers, but it might not matter. They've turned a former \"Mr. Irrelevant\" into one of the most productive quarterbacks in the NFL. Ricky Pearsall was a surprise and head coach Kyle Shanahan made his patented mid-round running back pick. Yet it's hard to look at a draft class that has Pearsall as a first-round selection and feel super great about it. Dominick Puni is a name to watch for them as a long-term developmental offensive guard. He's has the movement skills Shanahan likes in his linemen.",
+    "sourceName": "Yahoo Sports",
+    "sourceUrl": "https://sports.yahoo.com/2024-nfl-draft-grades-for-all-32-teams-170438870.html",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Seattle Seahawks",
+    "year": 2024,
+    "grade": "C+",
+    "gradeNumeric": 2.3,
+    "text": "Mixed feelings is the best way to describe the Seahawks' draft. They grabbed a potentially disruptive defensive lineman in Byron Murphy II — a piece they desperately needed. They also found someone who can compete for a starting role on the offensive line with Christian Haynes in the third round. Still, their Day 3 picks leave a bit to be desired, especially with no second-round pick this year due to the Leonard Williams trade.",
+    "sourceName": "Yahoo Sports",
+    "sourceUrl": "https://sports.yahoo.com/2024-nfl-draft-grades-for-all-32-teams-170438870.html",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Buffalo Bills",
+    "year": 2024,
+    "grade": "C+",
+    "gradeNumeric": 2.3,
+    "text": "The Bills played this draft safe and took home 10 players, although only one wide receiver in Keon Coleman. Even though Coleman didn't have the cleanest end to his season and a slow 40-yard dash time at the scouting combine, he still has shown serious talent in college football. Coleman will start right away for the Bills and will immediately have a chance to prove whether he can separate from NFL cornerbacks. The Bills had another solid pickup in Ray Davis, but other than that this draft class was just fine. Probably not too many movers and shakers, but some quality players at positions of need. It will be interesting to see what happens with Travis Clayton, a developmental offensive line prospect from England.",
+    "sourceName": "Yahoo Sports",
+    "sourceUrl": "https://sports.yahoo.com/2024-nfl-draft-grades-for-all-32-teams-170438870.html",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Miami Dolphins",
+    "year": 2024,
+    "grade": "B+",
+    "gradeNumeric": 3.3,
+    "text": "It's a strong draft haul for the Dolphins. They found a potential 10-sack edge rusher with Chop Robinson in the first round and grabbed a future starter at offensive tackle with Patrick Paul. Their trade-up for Jaylen Wright in the fourth was perplexing. Overall this is still a good group of players. Malik Washington and Tahj Washington are two wide receivers who had a lot of buzz in college and could compete for reps behind Tyreek Hill and Jaylen Waddle.",
+    "sourceName": "Yahoo Sports",
+    "sourceUrl": "https://sports.yahoo.com/2024-nfl-draft-grades-for-all-32-teams-170438870.html",
+    "playerGrades": []
+  },
+  {
+    "teamName": "New England Patriots",
+    "year": 2024,
+    "grade": "A-",
+    "gradeNumeric": 3.7,
+    "text": "New England had a tough decision to make on how it wanted to start its rebuild and it ultimately turned down a boatload of draft picks to stay at the top of the draft and pick Drake Maye. Maye has ridiculous upside and gives the Patriots a playmaking option while they fill out the rest of their roster. Ja'Lynn Polk and Javon Baker should compete for starting reps in one of the weaker wide receiver rooms in the league. Joe Milton III is an intriguing pick in the sixth round and it'll at least be fun to track his development. If just one of their offensive line picks hit, this could be the foundation for a new run of excellence in New England.",
+    "sourceName": "Yahoo Sports",
+    "sourceUrl": "https://sports.yahoo.com/2024-nfl-draft-grades-for-all-32-teams-170438870.html",
+    "playerGrades": []
+  },
+  {
+    "teamName": "New York Jets",
+    "year": 2024,
+    "grade": "B-",
+    "gradeNumeric": 2.7,
+    "text": "The Jets didn't have a ton of draft capital to work with, but they still found some quality players, including a potential franchise tackle in Olu Fashanu from Penn State. He'll be a fixture up front for a long, long time if the injury issues from last season don't reappear. Wideout Malachi Corley will make fans happy early with his ability to run after the catch and Braelon Allen is a talented running back to develop behind Breece Hall. The trade up for QB Jordan Travis was baffling, but that was in the fifth round so no need to ding too much in the grand scheme of things.",
+    "sourceName": "Yahoo Sports",
+    "sourceUrl": "https://sports.yahoo.com/2024-nfl-draft-grades-for-all-32-teams-170438870.html",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Baltimore Ravens",
+    "year": 2024,
+    "grade": "B+",
+    "gradeNumeric": 3.3,
+    "text": "Once again, the Ravens walked away with a strong draft class after letting players fall right into their laps. They started things off with Clemson cornerback Nate Wiggins and doubled back at the position with a potential huge steal by grabbing Iowa State cornerback T.J. Tampa in the fourth round. Tampa was projected to go much higher. The Ravens should also have a Day 1 starter at right tackle in Roger Rosengarten from Washington. They even found some quality depth they can develop on the edge with Penn State's Adisa Isaac. The Ravens, as usual, didn't overthink it and it looks like a great new crop of rookies.",
+    "sourceName": "Yahoo Sports",
+    "sourceUrl": "https://sports.yahoo.com/2024-nfl-draft-grades-for-all-32-teams-170438870.html",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Cincinnati Bengals",
+    "year": 2024,
+    "grade": "B+",
+    "gradeNumeric": 3.3,
+    "text": "The Bengals should be happy with how they played the first two days of the draft. Amarius Mims has the ability to be a decade-long starter at either tackle spot — if he can stay on the field. Kris Jenkins is a quality body on the defensive line and Jermaine Burton is an explosive playmaker who gives the Bengals flexibility at wide receiver. McKinnley Jackson might have been a reach to close the third round but the Bengals walked away with immediate impact and long-term potential at key spots.",
+    "sourceName": "Yahoo Sports",
+    "sourceUrl": "https://sports.yahoo.com/2024-nfl-draft-grades-for-all-32-teams-170438870.html",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Cleveland Browns",
+    "year": 2024,
+    "grade": "B",
+    "gradeNumeric": 3,
+    "text": "The Browns didn't make their first pick until nearly the end of the second round, taking ultra-athletic defensive tackle Michael Hall Jr. from Ohio State. They added offensive line depth, picked a wide receiver and found some dart throws on defense in the sixth and seventh rounds. You can't be too mad given the amount of capital they held walking into the draft.",
+    "sourceName": "Yahoo Sports",
+    "sourceUrl": "https://sports.yahoo.com/2024-nfl-draft-grades-for-all-32-teams-170438870.html",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Pittsburgh Steelers",
+    "year": 2024,
+    "grade": "A",
+    "gradeNumeric": 4,
+    "text": "The Steelers looked at their offensive line from last year and emphatically said \"never again!\" Their two first draft picks were on the o-line and then they came back for a third time to kick off the fourth round. Payton Wilson has his concerns in terms of injury, but he was a great playmaker for NC State. Getting him with the 98th overall pick is a great spot for Pittsburgh. Quarterback will be the ultimate decider in how the Steelers' season turns out, but they may have found two impact starters on the offensive line in Troy Fautanu and Zach Frazier.",
+    "sourceName": "Yahoo Sports",
+    "sourceUrl": "https://sports.yahoo.com/2024-nfl-draft-grades-for-all-32-teams-170438870.html",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Jacksonville Jaguars",
+    "year": 2024,
+    "grade": "C",
+    "gradeNumeric": 2,
+    "text": "The Jaguars' offseason has been just OK and the draft followed suit. They did a great job moving down from their original spot in Round 1 of the draft while still landing a big-time wide receiver prospect, which they needed after clumsily letting Calvin Ridley walk to a divisional rival in free agency. Beyond that, it doesn't seem like they got too much positive impact, but if Thomas is the final key that allows the Jaguars' passing game to be consistent in the future, it's fine. Getting Trevor Lawrence another receiver was priority No. 1 and they might have gotten the best of the second wave of wide receivers.",
+    "sourceName": "Yahoo Sports",
+    "sourceUrl": "https://sports.yahoo.com/2024-nfl-draft-grades-for-all-32-teams-170438870.html",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Houston Texans",
+    "year": 2024,
+    "grade": "B",
+    "gradeNumeric": 3,
+    "text": "The Texans didn't have a first-round pick, but they still grabbed a few quality players, including a starting nickel corner and developmental offensive tackle. Their first four picks have a chance to be immediate contributors, which is all you can ask for without a pick on the first day. It's not the sexy draft that the Texans had last year when they nabbed C.J. Stroud and Will Anderson Jr., but it's a draft that will help strengthen the team's foundation.",
+    "sourceName": "Yahoo Sports",
+    "sourceUrl": "https://sports.yahoo.com/2024-nfl-draft-grades-for-all-32-teams-170438870.html",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Tennessee Titans",
+    "year": 2024,
+    "grade": "C+",
+    "gradeNumeric": 2.3,
+    "text": "The Titans nailed their first pick, but could have done better the rest of the way. JC Latham is a \"set it and forget it\" type of offensive tackle who is already penciled in as a starter. It'll be interesting to see how Latham handles being a left tackle in the NFL. He has enough talent to be successful. Getting Cedric Gray in the fourth round could be a long-term steal for the Titans, but overall it wasn't a draft class to get excited about unless T'Vondre Sweat develops into a pass rusher.",
+    "sourceName": "Yahoo Sports",
+    "sourceUrl": "https://sports.yahoo.com/2024-nfl-draft-grades-for-all-32-teams-170438870.html",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Indianapolis Colts",
+    "year": 2024,
+    "grade": "B+",
+    "gradeNumeric": 3.3,
+    "text": "This was a productive draft class for the Colts. They found the edge rusher they needed in Laiatu Latu and may have gotten a steal with the Adonai Mitchell pick in the second round. Depth along the offensive line was a need they filled as well and Anthony Gould in the fifth round may be a steal at wide receiver. If Anthony Richardson can stay healthy and build on what he accomplished as a rookie, the Colts might be able to actually get into the playoffs with the additions in this draft class.",
+    "sourceName": "Yahoo Sports",
+    "sourceUrl": "https://sports.yahoo.com/2024-nfl-draft-grades-for-all-32-teams-170438870.html",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Denver Broncos",
+    "year": 2024,
+    "grade": "D",
+    "gradeNumeric": 1,
+    "text": "Sorry, Broncos fans. There's no other way to slice this. The Broncos made some fantastic selections on the second and third days of the draft, but taking Bo Nix with the 12th overall pick is a head-scratcher. Nix wasn't a prospect who was highly in demand and his ceiling appears limited in the NFL. Nix should win the starting job over Jarrett Stidham and Zach Wilson, but Nix will need to develop a level of playmaking that wasn't really there on his college tape. Maybe head coach Sean Payton is right and he can make Nix the next Drew Brees, but that's selling the peak of Brees' play awfully short. It's a strange start for the Broncos as they kick off their rebuild. Outside of Nix, they may have found immediate, quality contributors with Utah edge rusher Jonah Elliss, Oregon WR Troy Franklin and Notre Dame RB Audric Estime. Franklin and Estime are younger prospects with legitimate upside.",
+    "sourceName": "Yahoo Sports",
+    "sourceUrl": "https://sports.yahoo.com/2024-nfl-draft-grades-for-all-32-teams-170438870.html",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Kansas City Chiefs",
+    "year": 2024,
+    "grade": "A",
+    "gradeNumeric": 4,
+    "text": "Hell of a draft for the back-to-back defending champs. They added elite, gamebreaking speed with their selection of Xavier Worthy in the first round and might have found a franchise left tackle in the second. Jared Wiley and Jaden Hicks were quality pickups in Round 4 and they took a couple dart throws on the offensive line later on. Wiley has the potential to be the Chiefs' starting tight end after Travis Kelce moves on, showing off rare movement ability for a 6-foot-6 player. Worthy, Kingsley Suamataia and Wiley may be cornerstones for the Chiefs' offense when this is all said and done.",
+    "sourceName": "Yahoo Sports",
+    "sourceUrl": "https://sports.yahoo.com/2024-nfl-draft-grades-for-all-32-teams-170438870.html",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Las Vegas Raiders",
+    "year": 2024,
+    "grade": "B",
+    "gradeNumeric": 3,
+    "text": "The Raiders got a couple of impact players on offense, even if the fit isn't immediately clear. Brock Bowers has superstar potential in the NFL. Figuring out how he'll mesh with Michael Mayer and where their skills can be used simultaneously will be an interesting challenge for the Raiders' coaching staff. Jackson Powers-Johnson should be a good fixture on the offensive line for the next few years and Delmar Glaze may wind up being a starter too. Solid first Raiders draft for general manager Tom Telesco and head coach Antonio Pierce. Now it's time to figure out how the pieces fit together.",
+    "sourceName": "Yahoo Sports",
+    "sourceUrl": "https://sports.yahoo.com/2024-nfl-draft-grades-for-all-32-teams-170438870.html",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Los Angeles Chargers",
+    "year": 2024,
+    "grade": "B+",
+    "gradeNumeric": 3.3,
+    "text": "People might not like the Chargers taking an offensive tackle over a wide receiver with the fifth overall pick, but this is not a team that was a player away from getting to the top. They went 5-12 last season for a reason, mainly because they weren't that good. The Chargers needed help everywhere, including offensive tackle, and got a franchise player in Joe Alt. He and Rashawn Slater will form a tremendously talented tackle duo to protect Justin Herbert and help head coach Jim Harbaugh get his offense off the ground in Los Angeles. They still grabbed an explosive wide receiver at the top of the second and a speedy linebacker from Michigan in the third round. The Chargers will need time to restock their roster with talent.",
+    "sourceName": "Yahoo Sports",
+    "sourceUrl": "https://sports.yahoo.com/2024-nfl-draft-grades-for-all-32-teams-170438870.html",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Arizona Cardinals",
+    "year": 2024,
+    "grade": "B+",
+    "gradeNumeric": 3.3,
+    "text": null,
+    "sourceName": "PFF",
+    "sourceUrl": "https://www.pff.com/news/draft-2024-nfl-draft-grades-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Atlanta Falcons",
+    "year": 2024,
+    "grade": "C-",
+    "gradeNumeric": 1.7,
+    "text": null,
+    "sourceName": "PFF",
+    "sourceUrl": "https://www.pff.com/news/draft-2024-nfl-draft-grades-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Baltimore Ravens",
+    "year": 2024,
+    "grade": "A-",
+    "gradeNumeric": 3.7,
+    "text": null,
+    "sourceName": "PFF",
+    "sourceUrl": "https://www.pff.com/news/draft-2024-nfl-draft-grades-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Buffalo Bills",
+    "year": 2024,
+    "grade": "B-",
+    "gradeNumeric": 2.7,
+    "text": null,
+    "sourceName": "PFF",
+    "sourceUrl": "https://www.pff.com/news/draft-2024-nfl-draft-grades-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Carolina Panthers",
+    "year": 2024,
+    "grade": "C",
+    "gradeNumeric": 2,
+    "text": null,
+    "sourceName": "PFF",
+    "sourceUrl": "https://www.pff.com/news/draft-2024-nfl-draft-grades-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Chicago Bears",
+    "year": 2024,
+    "grade": "A",
+    "gradeNumeric": 4,
+    "text": null,
+    "sourceName": "PFF",
+    "sourceUrl": "https://www.pff.com/news/draft-2024-nfl-draft-grades-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Cincinnati Bengals",
+    "year": 2024,
+    "grade": "B+",
+    "gradeNumeric": 3.3,
+    "text": null,
+    "sourceName": "PFF",
+    "sourceUrl": "https://www.pff.com/news/draft-2024-nfl-draft-grades-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Cleveland Browns",
+    "year": 2024,
+    "grade": "C+",
+    "gradeNumeric": 2.3,
+    "text": null,
+    "sourceName": "PFF",
+    "sourceUrl": "https://www.pff.com/news/draft-2024-nfl-draft-grades-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Dallas Cowboys",
+    "year": 2024,
+    "grade": "B-",
+    "gradeNumeric": 2.7,
+    "text": null,
+    "sourceName": "PFF",
+    "sourceUrl": "https://www.pff.com/news/draft-2024-nfl-draft-grades-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Denver Broncos",
+    "year": 2024,
+    "grade": "A-",
+    "gradeNumeric": 3.7,
+    "text": null,
+    "sourceName": "PFF",
+    "sourceUrl": "https://www.pff.com/news/draft-2024-nfl-draft-grades-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Detroit Lions",
+    "year": 2024,
+    "grade": "A",
+    "gradeNumeric": 4,
+    "text": null,
+    "sourceName": "PFF",
+    "sourceUrl": "https://www.pff.com/news/draft-2024-nfl-draft-grades-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Green Bay Packers",
+    "year": 2024,
+    "grade": "B+",
+    "gradeNumeric": 3.3,
+    "text": null,
+    "sourceName": "PFF",
+    "sourceUrl": "https://www.pff.com/news/draft-2024-nfl-draft-grades-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Houston Texans",
+    "year": 2024,
+    "grade": "B+",
+    "gradeNumeric": 3.3,
+    "text": null,
+    "sourceName": "PFF",
+    "sourceUrl": "https://www.pff.com/news/draft-2024-nfl-draft-grades-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Indianapolis Colts",
+    "year": 2024,
+    "grade": "A+",
+    "gradeNumeric": 4.3,
+    "text": null,
+    "sourceName": "PFF",
+    "sourceUrl": "https://www.pff.com/news/draft-2024-nfl-draft-grades-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Jacksonville Jaguars",
+    "year": 2024,
+    "grade": "B",
+    "gradeNumeric": 3,
+    "text": null,
+    "sourceName": "PFF",
+    "sourceUrl": "https://www.pff.com/news/draft-2024-nfl-draft-grades-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Kansas City Chiefs",
+    "year": 2024,
+    "grade": "B+",
+    "gradeNumeric": 3.3,
+    "text": null,
+    "sourceName": "PFF",
+    "sourceUrl": "https://www.pff.com/news/draft-2024-nfl-draft-grades-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Las Vegas Raiders",
+    "year": 2024,
+    "grade": "B+",
+    "gradeNumeric": 3.3,
+    "text": null,
+    "sourceName": "PFF",
+    "sourceUrl": "https://www.pff.com/news/draft-2024-nfl-draft-grades-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Los Angeles Chargers",
+    "year": 2024,
+    "grade": "A",
+    "gradeNumeric": 4,
+    "text": null,
+    "sourceName": "PFF",
+    "sourceUrl": "https://www.pff.com/news/draft-2024-nfl-draft-grades-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Los Angeles Rams",
+    "year": 2024,
+    "grade": "B+",
+    "gradeNumeric": 3.3,
+    "text": null,
+    "sourceName": "PFF",
+    "sourceUrl": "https://www.pff.com/news/draft-2024-nfl-draft-grades-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Miami Dolphins",
+    "year": 2024,
+    "grade": "B-",
+    "gradeNumeric": 2.7,
+    "text": null,
+    "sourceName": "PFF",
+    "sourceUrl": "https://www.pff.com/news/draft-2024-nfl-draft-grades-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Minnesota Vikings",
+    "year": 2024,
+    "grade": "B+",
+    "gradeNumeric": 3.3,
+    "text": null,
+    "sourceName": "PFF",
+    "sourceUrl": "https://www.pff.com/news/draft-2024-nfl-draft-grades-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "New England Patriots",
+    "year": 2024,
+    "grade": "B+",
+    "gradeNumeric": 3.3,
+    "text": null,
+    "sourceName": "PFF",
+    "sourceUrl": "https://www.pff.com/news/draft-2024-nfl-draft-grades-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "New Orleans Saints",
+    "year": 2024,
+    "grade": "A+",
+    "gradeNumeric": 4.3,
+    "text": null,
+    "sourceName": "PFF",
+    "sourceUrl": "https://www.pff.com/news/draft-2024-nfl-draft-grades-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "New York Giants",
+    "year": 2024,
+    "grade": "A-",
+    "gradeNumeric": 3.7,
+    "text": null,
+    "sourceName": "PFF",
+    "sourceUrl": "https://www.pff.com/news/draft-2024-nfl-draft-grades-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "New York Jets",
+    "year": 2024,
+    "grade": "A",
+    "gradeNumeric": 4,
+    "text": null,
+    "sourceName": "PFF",
+    "sourceUrl": "https://www.pff.com/news/draft-2024-nfl-draft-grades-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Philadelphia Eagles",
+    "year": 2024,
+    "grade": "A+",
+    "gradeNumeric": 4.3,
+    "text": null,
+    "sourceName": "PFF",
+    "sourceUrl": "https://www.pff.com/news/draft-2024-nfl-draft-grades-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Pittsburgh Steelers",
+    "year": 2024,
+    "grade": "A+",
+    "gradeNumeric": 4.3,
+    "text": null,
+    "sourceName": "PFF",
+    "sourceUrl": "https://www.pff.com/news/draft-2024-nfl-draft-grades-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "San Francisco 49ers",
+    "year": 2024,
+    "grade": "B+",
+    "gradeNumeric": 3.3,
+    "text": null,
+    "sourceName": "PFF",
+    "sourceUrl": "https://www.pff.com/news/draft-2024-nfl-draft-grades-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Seattle Seahawks",
+    "year": 2024,
+    "grade": "B+",
+    "gradeNumeric": 3.3,
+    "text": null,
+    "sourceName": "PFF",
+    "sourceUrl": "https://www.pff.com/news/draft-2024-nfl-draft-grades-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Tampa Bay Buccaneers",
+    "year": 2024,
+    "grade": "A",
+    "gradeNumeric": 4,
+    "text": null,
+    "sourceName": "PFF",
+    "sourceUrl": "https://www.pff.com/news/draft-2024-nfl-draft-grades-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Tennessee Titans",
+    "year": 2024,
+    "grade": "B",
+    "gradeNumeric": 3,
+    "text": null,
+    "sourceName": "PFF",
+    "sourceUrl": "https://www.pff.com/news/draft-2024-nfl-draft-grades-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Washington Commanders",
+    "year": 2024,
+    "grade": "A",
+    "gradeNumeric": 4,
+    "text": null,
+    "sourceName": "PFF",
+    "sourceUrl": "https://www.pff.com/news/draft-2024-nfl-draft-grades-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Arizona Cardinals",
+    "year": 2024,
+    "grade": "A-",
+    "gradeNumeric": 3.7,
+    "text": "The Cardinals did a nice job over the first two days of the draft. They acquired picks via trade, found home-run hitters on offense in Harrison and Benson and added an inside/outside pass-rush threat in Robinson. They landed athletic corners in Melton and Elijah Jones, as well. Adams and Reiman also met needs, though they were picked a bit earlier than I expected.\n\nTaylor-Demerson was my pick for the Cardinals in the fourth round of my seven-round mock draft because of his quickness as a slot defender and tackling ability. Thomas is athletic enough to stand up on the edge for the Cardinals, while Christian Jones and Palmer have the talent to take back-end roster spots and compete for playing time down the road.",
+    "sourceName": "NFL.com",
+    "sourceUrl": "https://www.nfl.com/news/2024-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Atlanta Falcons",
+    "year": 2024,
+    "grade": "C+",
+    "gradeNumeric": 2.3,
+    "text": "It was a strange draft for the Falcons, primarily because of the Penix selection, which was perplexing given their investment in Kirk Cousins this offseason. Penix's strong arm and accuracy from the pocket could make him a star if the injury woes that plagued him at Indiana don't return. Trading up to grab the athletic Orhorhoro was a reach, in my opinion, especially given the team's need at corner. Trice met a crucial need on the edge.\n\nDorlus fits the mold of Atlanta's defensive linemen. He should be able to play 5-technique or 3-technique depending on where he is needed. Bertrand should contribute on special teams before moving to defense in time. McClellan and Washington -- who broke out as a senior at Illinois -- offer depth at the skill positions. They'll need to find cornerbacks in the undrafted free agent pool after failing to address the position in the draft.",
+    "sourceName": "NFL.com",
+    "sourceUrl": "https://www.nfl.com/news/2024-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Baltimore Ravens",
+    "year": 2024,
+    "grade": "A-",
+    "gradeNumeric": 3.7,
+    "text": "The Ravens had yet another solid draft. Wiggins' elite recovery speed earned him a first-round slot, but he must answer questions about how his lean frame and inconsistent tackling translates to the next level. Rosengarten and Isaac were great value picks at two need spots.\n\nI liked the selection of Walker, an outside playmaker, early in Round 4, even after the team re-upped Rashod Bateman. Tampa's size and strength at the catch point made him worthy of a Day 2 pick, but Baltimore landed him on Day 3. Ali is coming off a biceps injury suffered at the Senior Bowl. Leary's arm and experience gained him a draft spot. Samac's a powerful interior lineman.",
+    "sourceName": "NFL.com",
+    "sourceUrl": "https://www.nfl.com/news/2024-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Buffalo Bills",
+    "year": 2024,
+    "grade": "B+",
+    "gradeNumeric": 3.3,
+    "text": "Buffalo found the potential big-play receiver it needed in Coleman after trading down twice in Round 1 (for relatively small gain). It will be interesting to see if dealing with the Chiefs so Kansas City could pick speedy pass-catcher Xavier Worthy comes back to bite the Bills. Bishop should be a good starter. Carter adds determination and leadership to the defensive line, although he was picked a bit earlier than I expected.\n\nDavis' tenacity as a runner is the perfect complement to James Cook. I projected Van Pran-Granger to the Bills a bit later in the fifth round in my final mock draft, but he was still a good value for a stout pivot. Securing a 2025 fourth-round pick for a fifth-rounder this year in a trade with the Bears will pay dividends down the road. Solomon is shorter than most Bills edge rushers, but he gets to the quarterback. Hardy could be a nickel candidate and is a strong return man.",
+    "sourceName": "NFL.com",
+    "sourceUrl": "https://www.nfl.com/news/2024-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Carolina Panthers",
+    "year": 2024,
+    "grade": "B",
+    "gradeNumeric": 3,
+    "text": "Carolina gave up what eventually turned into the No. 1 overall pick in this year's draft as part of last year's trade to select quarterback Bryce Young. The Panthers moved up a spot to pick Legette at the end of Round 1. He will need to show he was a better pick than several other receivers selected in the second round. Brooks should be an excellent back once recovered from his knee injury. Wallace was an excellent value in Round 3 and can take over for Frankie Luvu, who exited in free agency.\n\nSanders is a smooth pass-catching tight end who will be looking to outperform past Carolina draft picks Ian Thomas and Tommy Tremble. Smith-Wade is quicker than fast, making life difficult for receivers by sticking like glue.",
+    "sourceName": "NFL.com",
+    "sourceUrl": "https://www.nfl.com/news/2024-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Chicago Bears",
+    "year": 2024,
+    "grade": "A-",
+    "gradeNumeric": 3.7,
+    "text": "Williams and Odunze, combined with DJ Moore and Keenan Allen, could give the Bears their best passing attack since the merger. The second-round pick that was dealt to Washington for Montez Sweat should pay off now that his contract has been extended. Amegadjie should contribute as a backup in 2024 and has potential to start down the road.\n\nTaylor has a good leg and had plenty of reps at Iowa, but I believe picking him in the fourth round was a reach. Booker has potential as an edge rusher, but the Bears had to give up a 2025 fourth-round selection to get him because they had unloaded their other Day 3 picks in previous trades. They improved their interior offensive line by sending a fifth-round pick to Buffalo for Ryan Bates earlier this offseason.",
+    "sourceName": "NFL.com",
+    "sourceUrl": "https://www.nfl.com/news/2024-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Cincinnati Bengals",
+    "year": 2024,
+    "grade": "B-",
+    "gradeNumeric": 2.7,
+    "text": "Mims is a boom-or-bust pick at tackle. He certainly has the size to win at the next level, but his limited experience (eight starts at Georgia) is a concern. The team doubled up on defensive tackles on Day 2 as it looks to replace D.J. Reader. Burton presented excellent value. He could become a key contributor on offense, especially if the Bengals and Tee Higgins don't work out a long-term agreement.\n\nCincinnati was part of the tight end run in the fourth round, picking All despite injury concerns. Newton had a tough go at times during his senior year, but he could prove to be a nice find in the fifth round. Same goes for sixth-rounders McLachlan and Johnson. The Bengals picked Anthony with the seventh-round pick acquired from Houston for running back Joe Mixon.",
+    "sourceName": "NFL.com",
+    "sourceUrl": "https://www.nfl.com/news/2024-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Cleveland Browns",
+    "year": 2024,
+    "grade": "C+",
+    "gradeNumeric": 2.3,
+    "text": "The Browns' 2022 trade for Deshaun Watson is still very much a work in progress; the QB's performance thus far has not provided the team with much of a return on the raft of picks shipped to Houston, including first- and fourth-round picks this year. Hall and Zinter stay in Big Ten Country, with the former Buckeye looking to wreak havoc on the defensive line and Zinter likely to bounce back from injury to be a long-term starter.\n\nCleveland did not have many Day 3 picks because of past trades, including one this offseason for receiver Jerry Jeudy. Thrash could work himself into the role of a fourth or fifth receiver because of his speed. Nathaniel Watson's ferocious nature meets a need in the middle of the team's defense late in the draft, and Harden was one of the steals of the seventh round because of his fierceness and athleticism.",
+    "sourceName": "NFL.com",
+    "sourceUrl": "https://www.nfl.com/news/2024-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Dallas Cowboys",
+    "year": 2024,
+    "grade": "A-",
+    "gradeNumeric": 3.7,
+    "text": "Gaining a third-round pick in a move down the board and still landing a starting tackle made for a successful Thursday night for Dallas. Kneeland and Beebe should prove to be excellent values, while Liufau will be a solid addition to the middle of the Cowboys' defense. The Notre Dame 'backer was picked a bit early for my taste, though.\n\nIn Round 5, Dallas added Carson, a versatile corner/safety who was considered a Day 2 prospect near the start of last season. Flournoy has the tools to make the squad his rookie year. The Cowboys did not take a running back with any of their eight picks, leaving a sizable hole on their roster they'll still need to fill this offseason. Dallas had four picks within the top 90 selections, but were without a fourth-rounder, having sent theirs to San Francisco last August for Trey Lance. That investment could work out quite well if the former No. 3 overall pick is able to find his game at the pro level.",
+    "sourceName": "NFL.com",
+    "sourceUrl": "https://www.nfl.com/news/2024-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Denver Broncos",
+    "year": 2024,
+    "grade": "B-",
+    "gradeNumeric": 2.7,
+    "text": "Time will tell whether Nix will be a top-notch starting NFL quarterback or viewed as a reach by a team in desperate need of talent under center. Time will also tell whether the 2023 first- and 2024 second-rounders the Broncos sent the Saints to acquire coach Sean Payton (along with a 2024 third-round pick) will lead to a championship in Denver.\n\nElliss isn't a fantastic athlete but was productive at a need position for Utah, where he played for his father, former NFL lineman Luther Elliss. Denver traded up early in Round 4 to unite Franklin with Nix; the former is not the toughest receiver, but he can make defenders miss after the catch. The Broncos then found value at corner in wiry competitor Abrams-Draine before grabbing a power back in Estimé.",
+    "sourceName": "NFL.com",
+    "sourceUrl": "https://www.nfl.com/news/2024-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Detroit Lions",
+    "year": 2024,
+    "grade": "B",
+    "gradeNumeric": 3,
+    "text": "The Lions doubled up at corner in the first and second rounds, flexing their aggressiveness by trading a third-rounder to move up for Arnold instead of staying put and possibly selecting his 'Bama teammate, Kool-Aid McKinstry. Detroit got fair value on Rakestraw at the end of Round 2, though the team also could have used another edge rusher or receiver.\n\nWith Taylor Decker and Penei Sewell already in place at the two bookends, the Lions were one of the few teams able to take a chance on a massive, super-athletic tackle like Manu, a developmental prospect out of Canada. Vaki could turn out to be a hammer of a running back and special teamer, but the 32-spot jump to get him cost Detroit its fourth-rounder next year.",
+    "sourceName": "NFL.com",
+    "sourceUrl": "https://www.nfl.com/news/2024-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Green Bay Packers",
+    "year": 2024,
+    "grade": "B",
+    "gradeNumeric": 3,
+    "text": "Morgan's pass-protection skills give him a chance to replace three-time Pro Bowler David Bakhtiari at left tackle, or he could prove himself a nice positional blocker at guard, allowing the Packers to get their five best linemen on the field together. Cooper and Bullard were excellent picks in Round 2, with both filling needs, but I was a bit ambivalent on the team using third-round selections on a running back (albeit a good one in Lloyd) and a second linebacker.\n\nMonk and Glover should provide depth on the offensive line, while Williams' reliable tackling should make him a good special teams player. Trading a pick to move up for a second safety didn't seem like the best value, though -- especially when you consider Green Bay took another safety just one round later. Oladapo is also a quality defender, but using three choices on the same position means the team must now rely on free-agent edge rushers and 3-techniques to round out the defense. Pratt was an excellent value pick late in the draft, as was King, who has more upside than his pre-draft evaluation might suggest.",
+    "sourceName": "NFL.com",
+    "sourceUrl": "https://www.nfl.com/news/2024-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Houston Texans",
+    "year": 2024,
+    "grade": "A-",
+    "gradeNumeric": 3.7,
+    "text": "Houston built on the momentum from last season's playoff run with a strong 2024 draft plan. The pre-draft trade with Minnesota to move out of the No. 23 overall slot -- and out of Round 1 entirely -- netted the Texans a 2025 second-rounder and didn't prevent them from addressing a roster sore spot with Lassiter. The Vikings used their original second-round pick on Fisher, who still needs more polish to his game. Time will tell whether Bullock was the right pick over the numerous other safeties still on the board.\n\nStover was an excellent choice in Round 4. He'll be reunited with C.J. Stroud, who frequently leaned on the tight end on third downs when the two were teammates at Ohio State. Hill should be a special teams demon. Acquiring veteran running back Joe Mixon for a seventh-round pick earlier this offseason also factors into the grade above.",
+    "sourceName": "NFL.com",
+    "sourceUrl": "https://www.nfl.com/news/2024-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Indianapolis Colts",
+    "year": 2024,
+    "grade": "B+",
+    "gradeNumeric": 3.3,
+    "text": "Latu was the most consistent pass rusher in the draft class and will be productive if the neck injury he suffered while at Washington is not an issue moving forward. The team found a potential steal in Mitchell, provided his game matures, while trading down for two Day 3 picks. Trading up for Gonclaves seemed unnecessary, though he should be at least a solid swing tackle; he's been recovering from a foot injury but said after the draft that he feels 100%.\n\nBortolini looks like Ryan Kelly's heir apparent; he also has the experience, strength and athleticism to play guard until needed in the middle. Gould brings real value as a returner, especially with the new kickoff rules. Carlies moves from safety to linebacker for the Colts. Simpson could man corner or safety; the athletic defender played both spots in college. Abraham is the son of former NFL player Donnie Abraham and a tough-minded corner in his own right, but the team is still looking for depth at edge.",
+    "sourceName": "NFL.com",
+    "sourceUrl": "https://www.nfl.com/news/2024-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Jacksonville Jaguars",
+    "year": 2024,
+    "grade": "A-",
+    "gradeNumeric": 3.7,
+    "text": "Trading down for three picks (including two mid-rounders in 2025) and still landing a downfield target like Thomas was a win for the Jaguars. Smith and Jones filled needs with good value in the second and third rounds, respectively. Calvin Ridley restarted his career in Jacksonville, but essentially renting the receiver in exchange for two picks (including a third-rounder this year) did not really pay off for the Jags.\n\nFoster provides depth at offensive tackle and could start in 2025 if Cam Robinson and Walker Little do not return. Defensive tackle Jefferson joined Smith in fortifying the defensive line. Prince is a great athlete at cornerback. Robinson will be a change-of-pace back and explosive returner. The team got backup quarterback Mac Jones for a sixth-round pick this offseason. Starting guard Ezra Cleveland was also acquired for a sixth-rounder last October; he re-signed in March.",
+    "sourceName": "NFL.com",
+    "sourceUrl": "https://www.nfl.com/news/2024-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Kansas City Chiefs",
+    "year": 2024,
+    "grade": "A",
+    "gradeNumeric": 4,
+    "text": "If you're wondering how the Chiefs stay on top, just look at this draft haul. Worthy is the sort of speedy difference-maker the Chiefs have searched for since trading Tyreek Hill away in 2022, and they did not give up much value to AFC rival Buffalo in the trade up to select him. They also did not have to reach for Suamataia, who should work himself into the lineup at tackle or guard if he's able to improve on his footwork.\n\nWiley's potential as a mismatch against smaller defenders made him one of the top picks of the fourth round. Hicks joins past Chiefs picks L'Jarius Sneed and Chamarri Conner as yet another potential bargain defensive back in the fourth round. Nourzad could start at center or guard in the NFL. They'll be looking for corners, running backs and linebackers after the draft.",
+    "sourceName": "NFL.com",
+    "sourceUrl": "https://www.nfl.com/news/2024-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Las Vegas Raiders",
+    "year": 2024,
+    "grade": "B-",
+    "gradeNumeric": 2.7,
+    "text": "Bowers was too strong a value to ignore and will be a nice third-down and red-zone option for whomever is quarterbacking the squad over the next decade. Powers-Johnson was also a good find in the mid-second at a position of need. Glaze will need to show he was picked at the right time by eventually earning a starting spot.\n\nRichardson is exactly the kind of NFL-sized, physical corner the Raiders required. Eichenberg will be a reliable inside player for many years. Laube was a nice pick in the sixth round who will get carries off the bench and be a special teams ace. No quarterback was selected to enter the competition between Aidan O'Connell and Gardner Minshew, so that position should be their top priority in rookie free agency.",
+    "sourceName": "NFL.com",
+    "sourceUrl": "https://www.nfl.com/news/2024-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Los Angeles Chargers",
+    "year": 2024,
+    "grade": "A-",
+    "gradeNumeric": 3.7,
+    "text": "Alt will doubtlessly be a good offensive tackle for the next decade or more, but Chargers fans will keep one eye on receiver Malik Nabers, who went sixth overall to the Giants, to see if he would have been a better pick. McConkey could quiet any such concerns with his quickness and excellent routes if able to stay health. Head coach Jim Harbaugh found a leader on defense in Colson, who played that role for Harbaugh at Michigan.\n\nEboigbe fits as a rotational defensive lineman who gives full effort on each play. Hart and Still fulfill the team's need at corner for good value, and Rice (son of Hall of Famer Jerry Rice) and Johnson were needed for a thin receiver room. Vidal is a low-center-of-gravity back who could take over for departed veteran Austin Ekeler if veteran JK Dobbins is not ready to go following last year's torn Achilles.",
+    "sourceName": "NFL.com",
+    "sourceUrl": "https://www.nfl.com/news/2024-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Los Angeles Rams",
+    "year": 2024,
+    "grade": "A-",
+    "gradeNumeric": 3.7,
+    "text": "The run on offensive players in Round 1 allowed the Rams to land a bargain edge rusher (which they really needed) in Verse, their first first-round pick since 2016. Fiske will help make up for the loss of Aaron Donald to retirement, but we'll have to see if it made sense to trade a 2025 second-rounder to acquire him instead of getting Michael Hall at their original pick (No. 52; he went to the Browns 54th overall). Corum will play bigger and faster than his numbers indicate, and Kinchens is a downhill player at a soft spot for the Rams.\n\nJackson and Davis bolster the depth on the defensive line with former Florida State teammates Verse and Fiske. The Rams needed to find a kicker in his draft, and they chose Karty over Cam Little (who went to the Jags at No. 212). Limmer and Leveston should be long-time pros at center and guard, respectively. Rookie cornerbacks not drafted this weekend should be getting calls from the Rams.",
+    "sourceName": "NFL.com",
+    "sourceUrl": "https://www.nfl.com/news/2024-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Miami Dolphins",
+    "year": 2024,
+    "grade": "B-",
+    "gradeNumeric": 2.7,
+    "text": "Miami needed another edge rusher, especially with Jaelan Phillips coming off an Achilles injury and Bradley Chubb coming off a torn ACL, but Robinson must show he can be a factor in the run game and convert pressures into sacks more regularly in the NFL. Left tackle Terron Armstead's difficulty staying on the field made Paul a good pick in the second round. The teams' forfeiture of its third-round pick dragged down its grade.\n\nTrading a future third-round pick for a fourth in the current draft is usually not wise, and Miami has a few backs in the stable already, but finding a potential star in Wright waiting around made it easier to swallow. It would not surprise me if the relentless Kamara is as productive as Robinson early in his career. Both pass-catchers with the surname Washington (not related) will flourish as tough-minded slot receivers in Mike McDaniel's offense.",
+    "sourceName": "NFL.com",
+    "sourceUrl": "https://www.nfl.com/news/2024-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Minnesota Vikings",
+    "year": 2024,
+    "grade": "B+",
+    "gradeNumeric": 3.3,
+    "text": "The Vikings gave up pick value in 2023, Day 3 picks this year and much of their 2025 draft in moves that landed them McCarthy, tight end T.J. Hockenson (in a 2022 deadline deal with Detroit) and edge rusher Turner. McCarthy and Turner possess the skill set to make that investment worthwhile, though McCarthy will need to continue his winning ways at the next level and Turner must be an impact defender.\n\nJackson is a Riq Woolen-type corner, long and quick-footed, who presents excellent value in the fourth round. Rouse is a strong, experienced lineman who takes over for departed veteran Oli Udoh as the swing tackle. Don't overlook Jurgens' chances of making the roster. Reichard is the FBS' all-time leading scorer, and the Vikings need a reliable field goal kicker; I'm interested in how his career compares with that of Cam Little, who was picked by the Jags with pick No. 212.",
+    "sourceName": "NFL.com",
+    "sourceUrl": "https://www.nfl.com/news/2024-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "New England Patriots",
+    "year": 2024,
+    "grade": "B",
+    "gradeNumeric": 3,
+    "text": "New England needed a new signal-caller in the worst way. Refining Maye's skills could help the team compete in the AFC East over the next few seasons. The selections of Polk and Wallace addressed needs for the Patriots, but we'll see if staying put in the second round to take Ladd McConkey -- instead of trading down -- and focusing on a different position early in Round 3 would have been better choices.\n\nRobinson should have been a third-round pick, so I understood the selection, even after the team's investment in interior lineman in last year's draft. It would not surprise me if Baker turned out to be just as good as Polk in two years because of his ability to win downfield. The team picked the strong-armed but inconsistent Milton with the sixth-round selection it acquired from the Jaguars for Mac Jones.",
+    "sourceName": "NFL.com",
+    "sourceUrl": "https://www.nfl.com/news/2024-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "New Orleans Saints",
+    "year": 2024,
+    "grade": "A-",
+    "gradeNumeric": 3.7,
+    "text": "New Orleans took a step forward in the NFC South race this weekend. Fuaga and the Saints seemed like a perfect pairing, with the nasty lineman fitting the team's mold and filling a big need. They traded up in Round 2 for McKinstry, a potential first-round value at a position where you can never have enough talent.\n\nRattler will learn how to lead a team and take advantage of his physical gifts from a consummate professional in Derek Carr. He should compete against Jake Haener for the backup spot. Means is a tough receiver with athleticism and could fight for a roster spot. Ford's a pounder inside and I love Boyd's value in the sixth round. He can stuff run plays and get in the face of quarterbacks more often than you'd think.",
+    "sourceName": "NFL.com",
+    "sourceUrl": "https://www.nfl.com/news/2024-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "New York Giants",
+    "year": 2024,
+    "grade": "B+",
+    "gradeNumeric": 3.3,
+    "text": "The Giants ignored the historic quarterback run early on to grab Nabers, an explosive receiver with a game similar to the team's 2014 first-rounder, Odell Beckham Jr. We'll see if sticking with Daniel Jones and Drew Lock instead of taking another QB was the correct move. Nubin and Phillips were fair value in the secondary, where the team needed more talent.\n\nJohnson will be an excellent fourth-round pick if he can fully translate his athleticism to the field. Tracy is an offensive weapon in the making, whether at running back or receiver. Muasau will be a starter in the league despite being picked in the sixth.",
+    "sourceName": "NFL.com",
+    "sourceUrl": "https://www.nfl.com/news/2024-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "New York Jets",
+    "year": 2024,
+    "grade": "B+",
+    "gradeNumeric": 3.3,
+    "text": "Even after picking up veteran tackles Tyron Smith and Morgan Moses this offseason, the Jets selected Fashanu to help protect Aaron Rodgers. They spent their second-rounder on Rodgers last year and moved up for the tough-running Corley to improve the talent surrounding the future Hall of Famer.\n\nThe Jets did well picking up a 2025 third-rounder for one of their fourth-round selections. Adding in the big, nimble Allen to the backfield behind Breece Hall and Israel Abanikanda makes sense given how injuries have impacted depth at the position. I projected the Jets to bring in productive team leader Travis on Day 3, so trading up for him in the fifth wasn't surprising. Stiggers is a fantastic story, coming through the CFL to the NFL, and a competitive athlete outside.",
+    "sourceName": "NFL.com",
+    "sourceUrl": "https://www.nfl.com/news/2024-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Philadelphia Eagles",
+    "year": 2024,
+    "grade": "A-",
+    "gradeNumeric": 3.7,
+    "text": "Don't forget about the Eagles when identifying 2024 NFC title contenders, especially after this draft. Getting Mitchell to help the cornerback room without having to trade up was a major win. They moved up for DeJean like Detroit did for Brian Branch last year; I suspect he'll have a similar impact as a rookie. Hunt's potential on the edge was worth the third-round pick. The grade reflects the trade of this year's third-round pick for cornerback Kelee Ringo last year; the result is still uncertain.\n\nGeneral manager Howie Roseman traded several times Saturday, flipping the script on last year's Ringo deal by getting 2025 third- and fifth-round selections. All-purpose back Shipley and receiver Smith will likely play on special teams and the offense as rookies. My favorite pick of the day was Roseman trading for Trotter, a fine player and legacy pick for the Eagles. McMahon could start at center this year if Cam Jurgens does not, and Keegan was a great pick late to add youth to the guard depth chart.",
+    "sourceName": "NFL.com",
+    "sourceUrl": "https://www.nfl.com/news/2024-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Pittsburgh Steelers",
+    "year": 2024,
+    "grade": "A",
+    "gradeNumeric": 4,
+    "text": "It was just another value-filled draft for Pittsburgh. It was likely the Steelers would take offensive linemen on Day 1 or 2, and they found good value in Fautanu and Frazier. Both Wilsons selected on Day 2 were also fantastic finds and should make impacts in 2024 and beyond.\n\nThe Steelers went O-line again on Day 3, getting McCormick at least a round later than I placed his value because of his toughness and athleticism. Lee is a nice sixth-round pick who will excel at 5-technique due to his strength and motor. Watts will get a chance to use his physicality in the secondary, though the team could have used an earlier pick at cornerback instead of picking three offensive linemen.",
+    "sourceName": "NFL.com",
+    "sourceUrl": "https://www.nfl.com/news/2024-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "San Francisco 49ers",
+    "year": 2024,
+    "grade": "B",
+    "gradeNumeric": 3,
+    "text": "Pearsall's quickness and hands warranted first-round consideration, and the team needed a receiver with the potential trading away of Deebo Samuel or Brandon Aiyuk down the road. The 49ers could have also picked a cornerback or tackle at that spot. Green and Puni will contribute in areas of need, but trading up for Puni was a bit of a stretch. They did not re-sign Chase Young after sending a third to Washington at the deadline.\n\nMustapha, picked with the selection gained from Dallas for quarterback Trey Lance, should see time on defense and special teams as a rookie. The 49ers hope to get more from Guerendo than recent running back picks Trey Sermon and Tyrion Davis-Price. Cowing is small but crafty, and Kingston's guard/tackle versatility makes him a valuable backup.",
+    "sourceName": "NFL.com",
+    "sourceUrl": "https://www.nfl.com/news/2024-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Seattle Seahawks",
+    "year": 2024,
+    "grade": "A",
+    "gradeNumeric": 4,
+    "text": "Murphy was always the pick for Seattle if available at No. 16 because of his ability to pressure quarterbacks and play the run. Haynes will start as a rookie for the Seahawks due to his athleticism and toughness. Re-upping defensive lineman Leonard Williams paid off the second-round investment in that trade with the Giants.\n\nKnight is the strong tackler the Seahawks needed in the middle of their defense, though others like Jeremiah Trotter Jr. were available. Barner is a reliable receiver and blocker who can replace Will Dissly. Pritchett should have been picked much earlier. Laumea played well at tackle but projects as a power blocker at guard. No edge rushers were selected, so I suspect a couple top undrafted free agents will be signed.",
+    "sourceName": "NFL.com",
+    "sourceUrl": "https://www.nfl.com/news/2024-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Tampa Bay Buccaneers",
+    "year": 2024,
+    "grade": "B+",
+    "gradeNumeric": 3.3,
+    "text": "Barton's versatility, intelligence and toughness will make him one of the top linemen in this draft despite falling into the back part of the first round. Braswell met the team's need for an edge rusher but will need to prove he was worth his draft standing. Smith should contribute immediately, and McMillan could be a playmaker as his game matures.\n\nThe Buccaneers could have picked Will Shipley over Irving, but the former Oregon Duck will compete for playing time with Chase Edmonds as a complementary back in 2024. Another interior lineman was picked in Klein, but no cornerbacks were brought on board.",
+    "sourceName": "NFL.com",
+    "sourceUrl": "https://www.nfl.com/news/2024-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Tennessee Titans",
+    "year": 2024,
+    "grade": "A-",
+    "gradeNumeric": 3.7,
+    "text": "With Joe Alt off the board, the Titans picked the other top 10-caliber tackle. Latham's a wall on the outside who will excel on either side of the line. The team needed a big body like Sweat on the defensive line and chose him even after Sweat's recent DWI arrest; GM Ran Carthon said he discussed the incident with Sweat, and that Sweat \"accepted his responsibility.\" Tennessee will hope he can be dominant at the next level. The Titans' third-round pick was part of the package to move up for quarterback Will Levis last April.\n\nGray's recognition skills and quickness make him a fit in the middle of Tennessee's defense. Brownlee has the talent to step into the fray as a rookie and earn a starting job down the line. Jackson's quickness helps fill two needs: depth at receiver and as a returner. Harrell should have been picked much earlier as an edge rusher, a spot where the Titans needed depth.",
+    "sourceName": "NFL.com",
+    "sourceUrl": "https://www.nfl.com/news/2024-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+    "playerGrades": []
+  },
+  {
+    "teamName": "Washington Commanders",
+    "year": 2024,
+    "grade": "A-",
+    "gradeNumeric": 3.7,
+    "text": "The Commanders entered a new era with an excellent draft. Daniels could be an elite dual-threat playmaker if he becomes more efficient from the pocket. Newton is a force in the front four. Sainristil is a pain for opposing receivers to handle. Sinnott is an underappreciated receiving/blocking weapon. Coleman is a powerful guard/tackle. And McCaffrey is a reliable WR2 or WR3 option.\n\nWashington did not have a fourth-round pick after moving up to the third in the Sam Howell trade with Seattle. It found a future starting linebacker in Magee, whose explosiveness was underappreciated while he was playing at Temple. Hampton possesses a nice combination of size and quickness, and it won't be surprising if he plays as a rookie.",
+    "sourceName": "NFL.com",
+    "sourceUrl": "https://www.nfl.com/news/2024-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+    "playerGrades": []
+  }
+]

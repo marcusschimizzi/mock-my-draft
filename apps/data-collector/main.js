@@ -1,4 +1,5 @@
 const { writeFile } = require('fs').promises;
+const path = require('path');
 const { load } = require('cheerio');
 
 const base_url = 'https://en.wikipedia.org';
@@ -97,7 +98,8 @@ async function execute(year) {
   }
 
   // Write the data to a file
-  await writeFile(`${year}_draft_data.json`, JSON.stringify(picks, null, 2));
+  const outputPath = path.join(__dirname, 'data', `${year}_draft_data.json`);
+  await writeFile(outputPath, JSON.stringify(picks, null, 2));
 }
 
 async function collectTeamData(url) {
@@ -343,4 +345,6 @@ const collectDataForSpan = async (startYear, endYear) => {
   }
 };
 
-collectDataForSpan(2010, 2024);
+const startYear = parseInt(process.argv[2], 10) || 2025;
+const endYear = parseInt(process.argv[3], 10) || startYear;
+collectDataForSpan(startYear, endYear);

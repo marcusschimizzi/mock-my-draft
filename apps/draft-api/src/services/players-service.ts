@@ -6,20 +6,41 @@ import {
   UpdatePlayerDto,
 } from '../dtos/player.dto';
 import { PlayerMapper } from '../mappers/player.mapper';
+import { DataVersionsService } from './data-versions-service';
 
 export class PlayersService {
   private playerRepository = AppDataSource.getRepository(Player);
+  private dataVersionsService = new DataVersionsService();
 
-  async getAllPlayers(): Promise<PlayerCollectionResponseDto> {
+  async getAllPlayers(
+    dataVersionId?: string,
+  ): Promise<PlayerCollectionResponseDto> {
+    const scopedVersionId =
+      dataVersionId ?? (await this.dataVersionsService.getActiveVersion())?.id;
+    if (!scopedVersionId) {
+      return [];
+    }
+
     const players = await this.playerRepository.find({
-      where: { deletedAt: null },
+      where: { deletedAt: null, dataVersion: { id: scopedVersionId } },
       order: { name: 'ASC' },
     });
     return players.map(PlayerMapper.toResponseDto);
   }
 
-  async getPlayerById(id: string): Promise<PlayerResponseDto> {
-    const player = await this.playerRepository.findOneBy({ id });
+  async getPlayerById(
+    id: string,
+    dataVersionId?: string,
+  ): Promise<PlayerResponseDto> {
+    const scopedVersionId =
+      dataVersionId ?? (await this.dataVersionsService.getActiveVersion())?.id;
+    if (!scopedVersionId) {
+      return null;
+    }
+
+    const player = await this.playerRepository.findOne({
+      where: { id, dataVersion: { id: scopedVersionId } },
+    });
     return player ? PlayerMapper.toResponseDto(player) : null;
   }
 

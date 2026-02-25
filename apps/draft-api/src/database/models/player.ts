@@ -3,6 +3,8 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -11,6 +13,7 @@ import {
 import { PlayerGrade } from './player-grade';
 import { PlayerRanking } from './player-ranking';
 import { DraftPick } from './draft-pick';
+import { DataVersion } from './data-version';
 import { IsEnum } from 'class-validator';
 import { Position } from '../../types';
 
@@ -79,6 +82,10 @@ export class Player {
 
   @DeleteDateColumn()
   deletedAt?: Date;
+
+  @ManyToOne(() => DataVersion, (dataVersion) => dataVersion.players)
+  @JoinColumn({ name: 'data_version_id' })
+  dataVersion: DataVersion;
 
   @OneToMany(() => PlayerGrade, (playerGrade) => playerGrade.player)
   playerGrades: PlayerGrade[];
