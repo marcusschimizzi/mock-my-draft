@@ -24,6 +24,8 @@ export class DraftSummaryMapper {
       team: {
         abbreviation: teamDraftSummary.team.abbreviation,
         colors: teamDraftSummary.team.colors,
+        conference: teamDraftSummary.team.conference,
+        division: teamDraftSummary.team.division,
         id: teamDraftSummary.team.id,
         logo: teamDraftSummary.team.logo,
         name: teamDraftSummary.team.name,

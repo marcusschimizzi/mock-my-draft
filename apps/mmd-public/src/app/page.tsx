@@ -50,6 +50,8 @@ import { GradeBadge } from '../components/grade-badge';
 import { HeroStats } from '../components/hero-stats';
 import { ChartSkeleton, HeroStatsSkeleton, TableSkeleton } from '../components/chart-skeleton';
 import { calculateLeagueStatistics, calculateYearOverYearDeltas } from '../lib/statistics';
+import { Sparkline } from '../components/sparkline';
+import { useAllYearsData, buildTeamHistoricalData } from '../lib/historical-data';
 
 interface GradeRange {
   team: Team;
@@ -61,6 +63,7 @@ export default function Home() {
   const { draftSummary, isLoading } = useDraftSummary(year);
   const { draftSummary: previousYearSummary } = useDraftSummary(year - 1);
   const { years, isLoading: isYearsLoading } = useYears();
+  const { data: allYearsData, isLoading: isAllYearsLoading } = useAllYearsData();
   const [sources, setSources] = useState<string[]>([]);
   const [sortedTeams, setSortedTeams] = useState<TeamDraftSummary[] | null>(
     null,
@@ -155,7 +158,7 @@ export default function Home() {
     );
   }
 
-  if (isLoading) {
+  if (isLoading || isAllYearsLoading) {
     return (
       <Container as="main" maxW="container.xl" my={8}>
         <Heading fontSize="4xl" mb={8}>NFL Draft Class Grades</Heading>
@@ -514,6 +517,7 @@ export default function Home() {
                     <Th key={source}>{capitalize(source)}</Th>
                   ))}
                   <Th>Average</Th>
+                  <Th>Trend</Th>
                 </Tr>
               </Thead>
               <Tbody>
@@ -539,6 +543,14 @@ export default function Home() {
                       })}
                       <Td>
                         <GradeBadge grade={entry.averageGrade} />
+                      </Td>
+                      <Td>
+                        {allYearsData && (
+                          <Sparkline
+                            data={buildTeamHistoricalData(allYearsData, entry.team.id)}
+                            color={getGradeColor(entry.averageGrade)}
+                          />
+                        )}
                       </Td>
                     </Tr>
                   );
@@ -569,6 +581,15 @@ export default function Home() {
                     </AccordionButton>
                   </Heading>
                   <AccordionPanel pb={4}>
+                    {allYearsData && (
+                      <Box mb={4}>
+                        <Text fontSize="xs" color="gray.500" mb={2}>6-Year Trend</Text>
+                        <Sparkline
+                          data={buildTeamHistoricalData(allYearsData, entry.team.id)}
+                          color={getGradeColor(entry.averageGrade)}
+                        />
+                      </Box>
+                    )}
                     <List>
                       {entry.draftGrades
                         .sort((a, b) =>

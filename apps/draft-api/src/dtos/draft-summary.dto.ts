@@ -5,6 +5,8 @@ export class TeamDraftSummaryDto {
     readonly abbreviation: string;
     readonly logo: string;
     readonly colors: string[];
+    readonly conference: 'afc' | 'nfc';
+    readonly division: 'north' | 'south' | 'east' | 'west';
   };
   readonly draftGrades: {
     readonly id: string;
