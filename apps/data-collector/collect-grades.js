@@ -3,6 +3,7 @@ const path = require('path');
 const { cleanHtml } = require('./html-cleaner');
 const { extractGradesFromHtml } = require('./extract-grades');
 const { gradeToNumeric, normalizeTeamName } = require('./grades-utils');
+const puppeteer = require('puppeteer');
 
 const REQUEST_DELAY = 1000;
 const MAX_RETRIES = 3;
@@ -37,6 +38,28 @@ async function fetchWithRetry(url, retries = MAX_RETRIES) {
   }
 }
 
+async function fetchWithBrowser(url) {
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  });
+
+  try {
+    const page = await browser.newPage();
+    await page.setUserAgent('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
+
+    await page.goto(url, { waitUntil: 'networkidle2', timeout: 30000 });
+
+    // Wait a bit for any lazy-loaded content
+    await new Promise((r) => setTimeout(r, 2000));
+
+    const html = await page.content();
+    return html;
+  } finally {
+    await browser.close();
+  }
+}
+
 async function collectGradesForYear(year, sources) {
   const allGrades = [];
 
@@ -49,9 +72,15 @@ async function collectGradesForYear(year, sources) {
 
     console.log(`\n--- ${source.source}: ${year} ---`);
     console.log(`  Fetching: ${articleUrl}`);
+    const fetchMethod = source.fetchMethod || 'fetch';
+    if (fetchMethod === 'browser') {
+      console.log(`  Using headless browser for JavaScript-rendered content`);
+    }
 
     try {
-      const rawHtml = await fetchWithRetry(articleUrl);
+      const rawHtml = fetchMethod === 'browser'
+        ? await fetchWithBrowser(articleUrl)
+        : await fetchWithRetry(articleUrl);
       console.log(`  Fetched ${rawHtml.length} bytes`);
 
       const cleaned = cleanHtml(rawHtml);
