@@ -48,6 +48,8 @@ import { getContrastingColor, getGradeColor } from '../../../lib/grade-utils';
 import { boxShadow } from '../../../utils/style-utils';
 import { useDraftClass } from '../../../lib/draft-class';
 import { Loading } from '../../../components/loading';
+import { GradeBadge } from '../../../components/grade-badge';
+import { ChartSkeleton, StatsCardSkeleton, TableSkeleton } from '../../../components/chart-skeleton';
 
 interface GradeCount {
   grade: string;
@@ -108,7 +110,13 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
   if (isLoading || isYearsLoading || isDraftClassLoading) {
     return (
       <Container as="main" maxW="container.xl" my={8}>
-        <Loading />
+        <SimpleGrid columns={{ base: 1, md: 3 }} spacing={4} mb={8}>
+          <StatsCardSkeleton />
+          <StatsCardSkeleton />
+          <StatsCardSkeleton />
+        </SimpleGrid>
+        <ChartSkeleton />
+        <TableSkeleton rows={10} />
       </Container>
     );
   }
@@ -119,13 +127,13 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
         <Heading>Team not found</Heading>
       ) : (
         <>
-          <Flex justifyContent="space-between">
+          <Flex justifyContent="space-between" mb={8}>
             <HStack as="span">
               <TeamLogo
                 teamAbbreviation={draftSummary.team.abbreviation}
                 size="medium"
               />
-              <Heading>{capitalize(draftSummary.team.name)}</Heading>
+              <Heading fontSize="3xl">{capitalize(draftSummary.team.name)}</Heading>
             </HStack>
             <Box as="span" display="inline-block">
               <Select
@@ -153,17 +161,8 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
             <Card flex={1} h={36}>
               <Stat>
                 <StatLabel>Average grade</StatLabel>
-                <StatNumber>
-                  <Badge
-                    mt={2}
-                    fontSize="2rem"
-                    bg={getGradeColor(draftSummary.averageGrade)}
-                    color={getContrastingColor(
-                      getGradeColor(draftSummary.averageGrade),
-                    )}
-                  >
-                    {draftSummary?.averageGrade?.toFixed(2) ?? 'N/A'}
-                  </Badge>
+                <StatNumber mt={2}>
+                  <GradeBadge grade={draftSummary.averageGrade} fontSize="2rem" />
                 </StatNumber>
               </Stat>
             </Card>
@@ -171,18 +170,8 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
               <Card flex={1} h={36}>
                 <Stat>
                   <StatLabel>Highest grade</StatLabel>
-                  <StatNumber>
-                    {' '}
-                    <Badge
-                      mt={2}
-                      fontSize="2rem"
-                      bg={getGradeColor(sortedGrades[0].grade)}
-                      color={getContrastingColor(
-                        getGradeColor(sortedGrades[0].grade),
-                      )}
-                    >
-                      {capitalize(sortedGrades[0].grade)}
-                    </Badge>
+                  <StatNumber mt={2}>
+                    <GradeBadge grade={sortedGrades[0].gradeNumeric} fontSize="2rem" />
                   </StatNumber>
                   <StatHelpText>
                     Source: {sortedGrades[0].sourceArticle.source.name}
@@ -194,21 +183,8 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
               <Card flex={1} h={36}>
                 <Stat>
                   <StatLabel>Lowest grade</StatLabel>
-                  <StatNumber>
-                    <Badge
-                      mt={2}
-                      fontSize="2rem"
-                      bg={getGradeColor(
-                        sortedGrades[sortedGrades.length - 1].grade,
-                      )}
-                      color={getContrastingColor(
-                        getGradeColor(
-                          sortedGrades[sortedGrades.length - 1].grade,
-                        ),
-                      )}
-                    >
-                      {capitalize(sortedGrades[sortedGrades.length - 1].grade)}
-                    </Badge>
+                  <StatNumber mt={2}>
+                    <GradeBadge grade={sortedGrades[sortedGrades.length - 1].gradeNumeric} fontSize="2rem" />
                   </StatNumber>
                   <StatHelpText>
                     Source:{' '}
@@ -284,14 +260,14 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
                         );
                         return (
                           <Box
-                            bg="elevations.light.dp02"
-                            _dark={{ bg: 'elevations.dark.dp02' }}
-                            boxShadow={boxShadow(2)}
+                            bg="elevations.dark.dp08"
                             p={4}
-                            rounded="md"
-                            borderColor={getGradeColor(grade.grade)}
+                            rounded="lg"
+                            borderColor={`${getGradeColor(grade.grade)}40`}
                             borderStyle={'solid'}
-                            borderWidth={3}
+                            borderWidth={1}
+                            boxShadow={`0 4px 20px ${getGradeColor(grade.grade)}30, 0 0 40px ${getGradeColor(grade.grade)}20`}
+                            backdropFilter="blur(12px)"
                           >
                             <Text fontWeight="bold">{grade.grade}</Text>
                             <Text fontWeight="bold">Count: {grade.count}</Text>
@@ -334,16 +310,7 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
                         <Box flex="1" textAlign="left">
                           <HStack justifyContent="space-between" mr={2}>
                             <Text>{grade.sourceArticle.source.name}</Text>
-                            <Badge
-                              bg={getGradeColor(grade.grade)}
-                              color={getContrastingColor(
-                                getGradeColor(grade.grade),
-                              )}
-                              fontSize={'1.2rem'}
-                              padding={2}
-                            >
-                              {capitalize(grade.grade)}
-                            </Badge>
+                            <GradeBadge grade={grade.gradeNumeric} fontSize="1.2rem" />
                           </HStack>
                         </Box>
                         <AccordionIcon />
@@ -385,16 +352,7 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
                             {capitalize(response.sourceArticle.source.name)}
                           </Td>
                           <Td>
-                            <Badge
-                              bg={getGradeColor(response.grade)}
-                              color={getContrastingColor(
-                                getGradeColor(response.grade),
-                              )}
-                              fontSize={'1.2rem'}
-                              padding={2}
-                            >
-                              {capitalize(response.grade)}
-                            </Badge>
+                            <GradeBadge grade={response.gradeNumeric} fontSize="1.2rem" />
                           </Td>
                           <Td
                             whiteSpace="normal"
