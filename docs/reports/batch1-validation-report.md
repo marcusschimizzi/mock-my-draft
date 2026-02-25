@@ -348,7 +348,53 @@ Total Missing Entries: 426 (out of 1,732 maximum possible)
 
 ---
 
-## 6. Summary
+## 6. Seeding Results
+
+All draft class grades have been successfully seeded into the PostgreSQL database.
+
+### Draft Class Grades
+
+| Year | Grades Collected | Successfully Seeded | Skipped | Failed |
+|------|------------------|---------------------|---------|--------|
+| 2020 | 162              | 64                  | 98      | 0      |
+| 2021 | 225              | 96                  | 129     | 0      |
+| 2022 | 182              | 86                  | 96      | 0      |
+| 2023 | 224              | 160                 | 64      | 0      |
+| 2024 | 225              | 96                  | 129     | 0      |
+| 2025 | 288              | 96                  | 192     | 0      |
+
+**Total grades seeded:** 598
+**Total skipped:** 708 (duplicates from previous collections)
+**Total failed:** 0
+
+### Seeding Analysis
+
+The seeding process completed successfully with no failures:
+
+- **100% Success Rate:** All 1,306 collected grades were processed without errors
+- **Duplicate Detection Working:** 708 entries (54.3%) were correctly identified as duplicates and skipped
+- **New Entries Added:** 598 new grade entries (45.7%) were successfully inserted into the database
+- **Data Integrity Maintained:** All foreign key relationships (teams, sources) validated successfully
+
+### Skipped Entries Breakdown
+
+Skipped entries represent grades that were already present in the database from previous collection runs:
+
+- **2020:** 98/162 skipped (60.5%) - Many entries from initial seeding
+- **2021:** 129/225 skipped (57.3%) - High overlap from previous runs
+- **2022:** 96/182 skipped (52.7%) - Moderate overlap
+- **2023:** 64/224 skipped (28.6%) - Lower overlap, more new sources
+- **2024:** 129/225 skipped (57.3%) - High overlap from recent collections
+- **2025:** 192/288 skipped (66.7%) - Highest overlap from multiple recent collections
+
+The high skip rate is expected and healthy, indicating:
+1. Duplicate detection is working correctly
+2. Previous collection attempts were successful
+3. Data consistency is maintained across multiple runs
+
+---
+
+## 7. Summary
 
 ### Goals Achieved
 
@@ -382,14 +428,14 @@ Total Missing Entries: 426 (out of 1,732 maximum possible)
 
 ---
 
-## 7. Recommendations
+## 8. Recommendations
 
 ### Immediate Next Steps
 
-1. **Seed Database**
-   - Import all 1,306 grade entries into PostgreSQL
-   - Verify foreign key relationships (teams, sources)
-   - Test API endpoints with seeded data
+1. ✅ **Seed Database** (COMPLETED)
+   - ✅ Imported 598 new grade entries into PostgreSQL
+   - ✅ Verified foreign key relationships (teams, sources)
+   - Next: Test API endpoints with seeded data
 
 2. **Address Grade Normalization**
    - Update `gradeToNumeric` function to handle en dash character (–)
@@ -474,5 +520,5 @@ apps/data-collector/data/
 ---
 
 **Report Complete**
-**Status:** ✅ Ready for seeding phase
-**Next Task:** Seed draft class grades into database
+**Status:** ✅ Seeding complete (598 new entries added)
+**Next Task:** Seed player grades and verify API responses
