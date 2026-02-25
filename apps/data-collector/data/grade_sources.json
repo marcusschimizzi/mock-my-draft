@@ -1,11 +1,58 @@
 [
   {
-    "source": "NFL.com",
-    "slug": "nfl-com",
-    "baseUrl": "https://www.nfl.com",
+    "source": "ESPN",
+    "slug": "espn",
+    "baseUrl": "https://www.espn.com",
     "fetchMethod": "fetch",
     "articles": {
-      "2024": "https://www.nfl.com/news/2024-nfl-draft-final-quick-snap-grades-for-all-32-teams"
+      "2025": "https://www.espn.com/nfl/draft2025/insider/story/_/id/44792146/2025-nfl-draft-grades-32-teams-kiper-winners-losers-steals-sleepers-favorite-picks-classes",
+      "2024": "https://www.espn.com/nfl/draft2024/insider/story/_/id/40030429/2024-nfl-draft-grades-all-32-teams-mel-kiper-winners-losers-steals-sleepers-favorite-picks-classes",
+      "2023": "https://www.espn.com/nfl/insider/draft2023/insider/story/_/id/36187303/2023-nfl-draft-grades-all-32-teams-mel-kiper-steals-sleepers-favorite-picks-classes",
+      "2022": "https://www.espn.com/nfl/insider/draft2022/insider/story/_/id/33827196/nfl-draft-grades-mel-kiper-jr-picks-steals-sleepers-favorite-2022-classes-all-32-teams",
+      "2021": "https://www.espn.com/nfl/draft2021/insider/story/_/id/31344964/nfl-draft-grades-mel-kiper-picks-steals-sleepers-favorite-2021-classes-all-32-teams",
+      "2020": "https://www.espn.com/nfl/draft2020/insider/story/_/id/29056681/2020-nfl-draft-grades-mel-kiper-all-32-classes-best-picks-steals-sleepers"
+    }
+  },
+  {
+    "source": "Bleacher Report",
+    "slug": "bleacher-report",
+    "baseUrl": "https://bleacherreport.com",
+    "fetchMethod": "fetch",
+    "articles": {
+      "2025": "https://bleacherreport.com/articles/25190015-2025-nfl-draft-grades-every-team-br-nfl-scouting-dept",
+      "2024": "https://bleacherreport.com/articles/10118547-2024-nfl-draft-grades-for-every-team",
+      "2023": "https://bleacherreport.com/articles/10074273-2023-nfl-draft-grades-for-every-team",
+      "2022": "https://bleacherreport.com/articles/2955815-2022-nfl-draft-grades-for-every-team",
+      "2021": "https://bleacherreport.com/articles/2942511-2021-nfl-draft-grades-for-every-team",
+      "2020": "https://bleacherreport.com/articles/2889008-2020-nfl-draft-grades-for-every-team"
+    }
+  },
+  {
+    "source": "CBS Sports",
+    "slug": "cbs-sports",
+    "baseUrl": "https://www.cbssports.com",
+    "fetchMethod": "fetch",
+    "articles": {
+      "2025": "https://www.cbssports.com/nfl/news/priscos-nfl-draft-2025-grades-for-every-team-including-best-and-worst-picks-for-all-32-franchises/",
+      "2024": "https://www.cbssports.com/nfl/news/priscos-nfl-draft-2024-grades-for-all-32-teams-including-best-and-worst-picks-commanders-receive-only-a/",
+      "2023": "https://www.cbssports.com/nfl/news/priscos-nfl-draft-2023-grades-for-all-32-teams-cowboys-eagles-among-as-chiefs-49ers-receive-poor-marks/",
+      "2022": "https://www.cbssports.com/nfl/news/priscos-2022-nfl-draft-grades-for-all-32-teams-ravens-earn-a-chiefs-and-jets-get-as-bears-get-worst-mark/",
+      "2021": "https://www.cbssports.com/nfl/news/priscos-2021-nfl-draft-grades-for-all-32-teams-dolphins-among-three-to-earn-a-raiders-part-of-worst-trio/",
+      "2020": "https://www.cbssports.com/nfl/news/priscos-2020-nfl-draft-grades-for-all-32-teams-vikings-among-four-to-earn-an-a-packers-given-lowest-mark/"
+    }
+  },
+  {
+    "source": "Yahoo Sports",
+    "slug": "yahoo-sports",
+    "baseUrl": "https://sports.yahoo.com",
+    "fetchMethod": "fetch",
+    "articles": {
+      "2025": "https://sports.yahoo.com/article/2025-nfl-draft-grades-32-211418581.html",
+      "2024": "https://sports.yahoo.com/2024-nfl-draft-grades-for-all-32-teams-170438870.html",
+      "2023": "https://sports.yahoo.com/2023-nfl-draft-final-grades-155414197.html",
+      "2022": "https://sports.yahoo.com/2022-nfl-draft-grades-32-041025781.html",
+      "2021": "https://sports.yahoo.com/final-2021-nfl-draft-grades-002740584.html",
+      "2020": "https://sports.yahoo.com/final-2020-nfl-draft-grades-054820886.html"
     }
   },
   {
@@ -14,7 +61,30 @@
     "baseUrl": "https://www.pff.com",
     "fetchMethod": "browser",
     "articles": {
-      "2025": "https://www.pff.com/news/draft-grades-for-all-32-teams-2025-nfl-draft"
+      "2025": "https://www.pff.com/news/draft-grades-for-all-32-teams-2025-nfl-draft",
+      "2024": "https://www.pff.com/news/draft-2024-nfl-draft-grades-all-32-teams",
+      "2023": "https://www.pff.com/news/draft-2023-nfl-draft-grades-for-all-32-teams",
+      "2022": "https://www.pff.com/news/draft-2022-nfl-draft-grades",
+      "2021": "https://www.pff.com/news/draft-2021-nfl-draft-grades-all-32-teams",
+      "2020": "https://www.pff.com/news/draft-2020-nfl-draft-grades-for-all-32-teams"
+    }
+  },
+  {
+    "source": "Fox Sports",
+    "slug": "fox-sports",
+    "baseUrl": "https://www.foxsports.com",
+    "fetchMethod": "fetch",
+    "articles": {
+      "2025": "https://www.foxsports.com/stories/nfl/2025-nfl-draft-grades-analyzing-all-32-teams-classes"
+    }
+  },
+  {
+    "source": "NFL.com",
+    "slug": "nfl-com",
+    "baseUrl": "https://www.nfl.com",
+    "fetchMethod": "fetch",
+    "articles": {
+      "2024": "https://www.nfl.com/news/2024-nfl-draft-final-quick-snap-grades-for-all-32-teams"
     }
   },
   {
