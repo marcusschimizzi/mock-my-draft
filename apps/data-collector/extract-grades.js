@@ -99,8 +99,8 @@ function parseToolResponse(response) {
 async function extractGradesFromHtml(cleanedHtml) {
   const client = new Anthropic();
   const response = await client.messages.create({
-    model: 'claude-haiku-4-20250414',
-    max_tokens: 8192,
+    model: 'claude-haiku-4-5',
+    max_tokens: 16384,
     system: SYSTEM_PROMPT,
     messages: buildExtractionMessages(cleanedHtml),
     tools: [EXTRACTION_TOOL],
