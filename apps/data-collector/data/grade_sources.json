@@ -116,5 +116,29 @@
     "articles": {
       "2025": "https://www.sbnation.com/nfl/2025/4/28/24419371/nfl-draft-grades-teams-final-full-class-best-drafts-panthers"
     }
+  },
+  {
+    "source": "Sports Illustrated",
+    "slug": "sports-illustrated",
+    "baseUrl": "https://www.si.com",
+    "fetchMethod": "fetch",
+    "articles": {
+      "2025": "https://www.si.com/nfl/2025-nfl-draft-grades-analysis-for-every-team",
+      "2024": "https://www.si.com/nfl/2024/04/27/2024-nfl-draft-team-grades-analysis",
+      "2023": "https://www.si.com/nfl/2023/04/29/2023-nfl-draft-team-grades",
+      "2022": "https://www.si.com/nfl/2022/04/30/2022-nfl-draft-team-grades",
+      "2021": "https://www.si.com/nfl/2021/05/02/nfl-draft-2021-grades",
+      "2020": "https://www.si.com/nfl/2020/04/26/nfl-draft-2020-team-grades-picks-analysis"
+    }
+  },
+  {
+    "source": "The Ringer",
+    "slug": "the-ringer",
+    "baseUrl": "https://www.theringer.com",
+    "fetchMethod": "fetch",
+    "articles": {
+      "2023": "https://www.theringer.com/nfl/2023/4/29/23705099/grading-every-nfl-team-in-2023-draft-colts-eagles-cowboys-lions",
+      "2021": "https://www.theringer.com/2021/05/01/nfl-draft/nfl-draft-team-grades-picks-rounds-tracker"
+    }
   }
 ]
