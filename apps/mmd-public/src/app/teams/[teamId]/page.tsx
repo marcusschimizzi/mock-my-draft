@@ -31,10 +31,14 @@ import {
   Button,
   Select,
 } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useTeamDraftSummary, useYears } from '../../../lib/draft-summary';
 import { DraftGrade } from '../../../types';
 import Card from '../../../components/card';
+import { HistoricalChart } from '../../../components/historical-chart';
+import { DivisionComparison } from '../../../components/division-comparison';
+import { useAllYearsData, buildTeamHistoricalData } from '../../../lib/historical-data';
+import { calculateLeagueStatistics, buildDivisionComparisons } from '../../../lib/statistics';
 import {
   Bar,
   BarChart,
@@ -64,6 +68,7 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
     year,
     params.teamId,
   );
+  const { data: allYearsData, isLoading: isAllYearsLoading } = useAllYearsData();
   const [sortedGrades, setSortedGrades] = useState<DraftGrade[] | null>(null);
   const [gradeCounts, setGradeCounts] = useState<GradeCount[] | null>(null);
   const isMobile = useBreakpointValue({ base: true, md: false });
@@ -103,11 +108,70 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
     setGradeCounts(counts);
   }, [draftSummary]);
 
+  // Calculate team historical data for HistoricalChart
+  const teamHistoricalData = useMemo(() => {
+    if (!allYearsData || !draftSummary) return null;
+    return buildTeamHistoricalData(allYearsData, params.teamId);
+  }, [allYearsData, params.teamId, draftSummary]);
+
+  // Calculate league averages for HistoricalChart
+  const leagueAverages = useMemo(() => {
+    if (!allYearsData) return null;
+    const YEARS = [2020, 2021, 2022, 2023, 2024, 2025];
+    return YEARS.map((year, index) => {
+      const yearData = allYearsData[index];
+      if (!yearData) return { year, average: 0 };
+
+      // Flatten all teams' grades for this year
+      const allGrades = yearData.teams?.flatMap((team: any) =>
+        team.draftGrades.map((grade: any) => ({
+          grade: grade.grade,
+          source: grade.sourceArticle.source.name,
+          teamId: team.team.id,
+        }))
+      ) || [];
+
+      const stats = calculateLeagueStatistics(allGrades);
+      return { year, average: stats.leagueAverage };
+    });
+  }, [allYearsData]);
+
+  // Calculate division comparison data
+  const divisionComparisonData = useMemo(() => {
+    if (!draftSummary || !allYearsData) return null;
+
+    // Get current year's data for all teams
+    const currentYearData = allYearsData.find(yearData =>
+      yearData.year === year
+    );
+
+    if (!currentYearData) return null;
+
+    // Extract grades for buildDivisionComparisons
+    const allGrades = currentYearData.teams?.flatMap((team: any) =>
+      team.draftGrades.map((grade: any) => ({
+        grade: grade.grade,
+        source: grade.sourceArticle.source.name,
+        teamId: team.team.id,
+      }))
+    ) || [];
+
+    // Build teams array with division/conference (from API response)
+    const teams = currentYearData.teams?.map((t: any) => ({
+      id: t.team.id,
+      name: t.team.name,
+      division: t.team.division,
+      conference: t.team.conference,
+    })) || [];
+
+    return buildDivisionComparisons(allGrades, params.teamId, teams);
+  }, [draftSummary, allYearsData, year, params.teamId]);
+
   if (!draftSummary && !isLoading) {
     return null;
   }
 
-  if (isLoading || isYearsLoading || isDraftClassLoading) {
+  if (isLoading || isYearsLoading || isDraftClassLoading || isAllYearsLoading) {
     return (
       <Container as="main" maxW="container.xl" my={8}>
         <SimpleGrid columns={{ base: 1, md: 3 }} spacing={4} mb={8}>
@@ -115,6 +179,8 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
           <StatsCardSkeleton />
           <StatsCardSkeleton />
         </SimpleGrid>
+        <ChartSkeleton />
+        <ChartSkeleton />
         <ChartSkeleton />
         <TableSkeleton rows={10} />
       </Container>
@@ -294,6 +360,24 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
                   </BarChart>
                 </ResponsiveContainer>
               </Box>
+            </Card>
+          )}
+          {teamHistoricalData && leagueAverages && (
+            <Card mt={8} py={4}>
+              <HistoricalChart
+                teamData={teamHistoricalData}
+                leagueAverages={leagueAverages}
+                teamColor={getGradeColor(draftSummary.averageGrade)}
+                teamName={draftSummary.team.name}
+              />
+            </Card>
+          )}
+          {divisionComparisonData && (
+            <Card mt={8} py={4}>
+              <DivisionComparison
+                divisionTeams={divisionComparisonData}
+                currentTeamId={params.teamId}
+              />
             </Card>
           )}
           <Card mt={8} py={4}>

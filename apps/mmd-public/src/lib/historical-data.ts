@@ -1,5 +1,6 @@
-import { useQueries } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { gradeToNumber } from './grade-utils';
+import apiClient from './api-client';
 
 const YEARS = [2020, 2021, 2022, 2023, 2024, 2025];
 
@@ -9,18 +10,22 @@ interface Grade {
 }
 
 export function useAllYearsData() {
-  const queries = useQueries({
-    queries: YEARS.map((year) => ({
-      queryKey: ['grades', year],
-      queryFn: () => fetch(`/api/grades?year=${year}`).then((r) => r.json()),
-      staleTime: 1000 * 60 * 5, // 5 minutes
-    })),
+  const query = useQuery({
+    queryKey: ['draft-summary', 'all-years'],
+    queryFn: async (): Promise<any[]> => {
+      // apiClient interceptor already unwraps response.data
+      const data: { years: any[] } = await apiClient.get(
+        '/draft-summary/years?start=2020&end=2025'
+      );
+      return data.years;
+    },
+    staleTime: 1000 * 60 * 5, // 5 minutes
   });
 
   return {
-    data: queries.map((q) => q.data).filter(Boolean),
-    isLoading: queries.some((q) => q.isLoading),
-    isError: queries.some((q) => q.isError),
+    data: query.data,
+    isLoading: query.isLoading,
+    isError: query.isError,
   };
 }
 

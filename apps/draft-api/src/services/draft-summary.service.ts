@@ -60,6 +60,22 @@ export class DraftSummaryService {
     return years.map((year) => year.year);
   }
 
+  async getMultiYearSummary(
+    startYear: number,
+    endYear: number,
+  ): Promise<{ years: DraftSummaryDto[] }> {
+    const yearPromises: Promise<DraftSummaryDto>[] = [];
+
+    // Fetch all years in parallel
+    for (let year = startYear; year <= endYear; year++) {
+      yearPromises.push(this.getDraftSummary(year));
+    }
+
+    const years = await Promise.all(yearPromises);
+
+    return { years };
+  }
+
   async getTeamDraftSummary(
     year: number,
     teamId: string,
