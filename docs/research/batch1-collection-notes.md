@@ -224,3 +224,50 @@
 - Final output saved in `apps/data-collector/data/2021_draft_class_grades.json` (225 total entries)
 - Sports Illustrated error indicates the Haiku model returned unexpected data structure - may need investigation or retry
 - NFL.com warning message is misleading - actual extraction was complete and successful
+
+## 2020 Collection
+
+**Date:** February 25, 2026
+**Sources processed:** 11 (ESPN, Bleacher Report, CBS Sports, Yahoo Sports, PFF, Fox Sports, NFL.com, San Diego Union Tribune, SBNation, Sports Illustrated, The Ringer)
+**Total grades extracted:** 162 (5 sources × 32 teams + 1 partial source)
+
+### Warnings
+
+- **ESPN** extraction returned only 2 teams (Baltimore Ravens, Indianapolis Colts) - likely due to ESPN+ Insider paywall restriction. The article requires a subscription to access full content.
+- **Yahoo Sports** extraction warning: "Only 2 teams found — article may be partial" message appeared during extraction, but actually extracted all 32 teams successfully. The warning was misleading.
+- **PFF** extraction returned 0 teams - JavaScript-rendered content may not have loaded properly despite using headless browser mode.
+- **Sports Illustrated** extraction returned 0 teams - article may have unusual format or content structure that prevented extraction.
+
+### Errors
+
+- None. All sources either successfully extracted data or failed gracefully with no exceptions.
+
+### Successful Sources (5)
+
+1. **Bleacher Report** - 32 teams extracted
+2. **CBS Sports** - 32 teams extracted
+3. **Yahoo Sports** - 32 teams extracted (despite warning)
+4. **NFL.com** - 32 teams extracted
+5. **San Diego Union Tribune** - 32 teams extracted
+
+### Failed/Partial Sources (3)
+
+1. **ESPN** - Only 2 teams extracted (ESPN+ Insider paywall)
+2. **PFF** - 0 teams extracted (browser rendering issue)
+3. **Sports Illustrated** - 0 teams extracted (extraction format issue)
+
+### Skipped Sources (3)
+
+- **Fox Sports** - No 2020 article URL configured
+- **SBNation** - No 2020 article URL configured
+- **The Ringer** - No 2020 article URL configured
+
+### Notes
+
+- The extraction process took approximately 6-7 minutes
+- 5 out of 11 configured sources provided complete coverage of all 32 NFL teams
+- Debug files saved in `apps/data-collector/data/debug/2020_*_raw.json`
+- Final output saved in `apps/data-collector/data/2020_draft_class_grades.json` (164 KB, 2086 lines)
+- This was the final year of collection for Batch 1
+- Despite fewer successful sources than recent years (2021-2025), the collection still provides adequate coverage with 162 total entries from 5-6 sources
+- **Batch 1 collection complete:** All years from 2020-2025 have been collected
