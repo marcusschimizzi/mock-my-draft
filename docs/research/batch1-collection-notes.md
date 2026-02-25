@@ -178,3 +178,49 @@
 - Debug files saved in `apps/data-collector/data/debug/2022_*_raw.json`
 - Final output saved in `apps/data-collector/data/2022_draft_class_grades.json` (146 KB, 2045 lines)
 - Despite grade normalization issues, the collection provides adequate coverage with 6 sources and 182 team grades
+
+## 2021 Collection
+
+**Date:** February 25, 2026
+**Sources processed:** 11 (ESPN, Bleacher Report, CBS Sports, Yahoo Sports, PFF, Fox Sports, NFL.com, San Diego Union Tribune, SBNation, Sports Illustrated, The Ringer)
+**Total grades extracted:** 225 (7 sources × 32 teams + 1 partial source)
+
+### Warnings
+
+- **ESPN** extraction returned only 1 team (Los Angeles Chargers) - likely due to ESPN+ Insider paywall restriction. The article requires a subscription to access full content.
+- **NFL.com** extraction warning: "Only 1 teams found — article may be partial" message appeared, but actually extracted all 32 teams. The article format includes "Best pick" and "Worst pick" player mentions that generated many "Unknown player grade" warnings (64 warnings total), but these are expected as the article doesn't assign letter grades to individual players.
+
+### Errors
+
+- **Sports Illustrated** FAILED with error: "grades.map is not a function" - the Haiku extraction returned malformed data that couldn't be processed by the normalization code.
+
+### Successful Sources (7)
+
+1. **Bleacher Report** - 32 teams extracted
+2. **CBS Sports** - 32 teams extracted
+3. **Yahoo Sports** - 32 teams extracted
+4. **PFF** - 32 teams extracted (using headless browser)
+5. **NFL.com** - 32 teams extracted (despite warning message)
+6. **San Diego Union Tribune** - 32 teams extracted
+7. **The Ringer** - 32 teams extracted ✨ (NEW Batch 1 source)
+
+### Failed/Partial Sources (2)
+
+1. **ESPN** - Only 1 team extracted (ESPN+ Insider paywall)
+2. **Sports Illustrated** - FAILED with "grades.map is not a function" error
+
+### Skipped Sources (2)
+
+- **Fox Sports** - No 2021 article URL configured
+- **SBNation** - No 2021 article URL configured
+
+### Notes
+
+- The extraction process took approximately 2-3 minutes
+- 7 out of 11 configured sources provided complete coverage of all 32 NFL teams
+- **The Ringer successfully extracted** - confirming our new Batch 1 source works for 2021
+- PFF required headless browser mode and extracted successfully
+- Debug files saved in `apps/data-collector/data/debug/2021_*_raw.json`
+- Final output saved in `apps/data-collector/data/2021_draft_class_grades.json` (225 total entries)
+- Sports Illustrated error indicates the Haiku model returned unexpected data structure - may need investigation or retry
+- NFL.com warning message is misleading - actual extraction was complete and successful
