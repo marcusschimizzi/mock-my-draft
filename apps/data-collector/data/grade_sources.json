@@ -75,7 +75,9 @@
     "baseUrl": "https://www.foxsports.com",
     "fetchMethod": "fetch",
     "articles": {
-      "2025": "https://www.foxsports.com/stories/nfl/2025-nfl-draft-grades-analyzing-all-32-teams-classes"
+      "2025": "https://www.foxsports.com/stories/nfl/2025-nfl-draft-grades-analyzing-all-32-teams-classes",
+      "2024": "https://www.foxsports.com/stories/nfl/2024-nfl-draft-grades-analyzing-all-32-teams-classes-who-gets-top-marks",
+      "2023": "https://www.foxsports.com/stories/nfl/nfl-draft-grades-analyzing-all-32-teams-classes-with-eagles-leading-the-way"
     }
   },
   {
@@ -84,7 +86,12 @@
     "baseUrl": "https://www.nfl.com",
     "fetchMethod": "fetch",
     "articles": {
-      "2024": "https://www.nfl.com/news/2024-nfl-draft-final-quick-snap-grades-for-all-32-teams"
+      "2025": "https://www.nfl.com/news/2025-nfl-draft-final-snap-grades-for-all-32-teams",
+      "2024": "https://www.nfl.com/news/2024-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+      "2023": "https://www.nfl.com/news/2023-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+      "2022": "https://www.nfl.com/news/2022-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+      "2021": "https://www.nfl.com/news/2021-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+      "2020": "https://www.nfl.com/news/2020-nfl-draft-final-quick-snap-grades-for-all-32-teams-0ap3000001111711"
     }
   },
   {
@@ -93,7 +100,12 @@
     "baseUrl": "https://www.sandiegouniontribune.com",
     "fetchMethod": "fetch",
     "articles": {
-      "2025": "https://www.sandiegouniontribune.com/2025/04/28/2025-nfl-draft-grades-for-all-32-teams-patriots-raiders-among-big-winners/"
+      "2025": "https://www.sandiegouniontribune.com/2025/04/28/2025-nfl-draft-grades-for-all-32-teams-patriots-raiders-among-big-winners/",
+      "2024": "https://www.sandiegouniontribune.com/sports/story/2024-04-28/2024-nfl-draft-grades-for-all-32-teams-what-was-the-falcons-thinking",
+      "2023": "https://www.sandiegouniontribune.com/sports/story/2023-04-30/2023-nfl-draft-grades-for-all-32-teams",
+      "2022": "https://www.sandiegouniontribune.com/sports/story/2022-05-02/2022-nfl-draft-grades-for-all-32-teams/",
+      "2021": "https://www.sandiegouniontribune.com/2021/05/02/2021-nfl-draft-grades-for-all-32-teams/",
+      "2020": "https://www.sandiegouniontribune.com/sports/story/2020-04-26/2020-nfl-draft-grades-for-all-32-teams"
     }
   },
   {
