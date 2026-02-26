@@ -6,6 +6,16 @@ const GRADE_MAP = {
   'F': 0.0,
 };
 
+// PFF word-based grade mapping (used in historical articles 2017-2019)
+const WORD_GRADE_MAP = {
+  'ELITE': 'A+',
+  'EXCELLENT': 'A+',
+  'GOOD': 'A-',
+  'ABOVE AVERAGE': 'B+',
+  'AVERAGE': 'C',
+  'BELOW AVERAGE': 'D',
+};
+
 // Same mapping as process_data.js and seed-draft-classes.ts
 const OLD_TEAM_NAMES = {
   'Washington Football Team': 'Washington Commanders',
@@ -19,6 +29,14 @@ const OLD_TEAM_NAMES = {
 function gradeToNumeric(grade) {
   if (!grade || typeof grade !== 'string') return null;
   const normalized = grade.trim().toUpperCase();
+
+  // First check if it's a PFF word-based grade and convert to letter grade
+  const letterGrade = WORD_GRADE_MAP[normalized];
+  if (letterGrade) {
+    return GRADE_MAP[letterGrade];
+  }
+
+  // Otherwise look up directly in letter grade map
   return GRADE_MAP[normalized] ?? null;
 }
 

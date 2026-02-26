@@ -84,6 +84,13 @@ function parseToolResponse(response) {
   }
 
   const grades = toolUseBlock.input.grades || [];
+
+  // Haiku sometimes returns an object instead of an array - guard against this
+  if (!Array.isArray(grades)) {
+    console.warn('Haiku returned non-array grades structure, skipping');
+    return [];
+  }
+
   return grades.map((entry) => ({
     teamName: entry.teamName,
     grade: entry.grade,
