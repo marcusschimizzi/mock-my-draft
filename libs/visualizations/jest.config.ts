@@ -2,9 +2,9 @@
 export default {
   displayName: 'visualizations',
   preset: '../../jest.preset.js',
+  testEnvironment: 'jsdom',
   transform: {
-    '^(?!.*\\.(js|jsx|ts|tsx|css|json)$)': '@nx/react/plugins/jest',
-    '^.+\\.[tj]sx?$': ['babel-jest', { presets: ['@nx/react/babel'] }],
+    '^.+\\.[tj]sx?$': ['babel-jest', { presets: ['next/babel'] }],
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory: '../../coverage/libs/visualizations',
