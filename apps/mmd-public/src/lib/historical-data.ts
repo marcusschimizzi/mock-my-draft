@@ -1,20 +1,24 @@
 import { useQuery } from '@tanstack/react-query';
-import { gradeToNumber } from './grade-utils';
 import apiClient from './api-client';
 
 const YEARS = [2020, 2021, 2022, 2023, 2024, 2025];
 
-interface Grade {
-  grade: string;
-  teamId: string;
+interface YearSummary {
+  year: number;
+  teams: Array<{
+    team: { id: string };
+    averageGrade: number;
+    draftGrades: Array<{ grade: string; gradeNumeric: number }>;
+  }>;
+  averageGrade: number;
 }
 
 export function useAllYearsData() {
   const query = useQuery({
     queryKey: ['draft-summary', 'all-years'],
-    queryFn: async (): Promise<any[]> => {
+    queryFn: async (): Promise<YearSummary[]> => {
       // apiClient interceptor already unwraps response.data
-      const data: { years: any[] } = await apiClient.get(
+      const data: { years: YearSummary[] } = await apiClient.get(
         '/draft-summary/years?start=2020&end=2025'
       );
       return data.years;
@@ -30,15 +34,16 @@ export function useAllYearsData() {
 }
 
 export function buildTeamHistoricalData(
-  allYearsData: Grade[][],
+  allYearsData: YearSummary[],
   teamId: string
 ): Array<{ year: number; grade: number }> {
   return YEARS.map((year, index) => {
-    const yearGrades = allYearsData[index]?.filter((g) => g.teamId === teamId) || [];
-    const avgGrade =
-      yearGrades.length > 0
-        ? yearGrades.reduce((sum, g) => sum + gradeToNumber(g.grade), 0) / yearGrades.length
-        : 0;
-    return { year, grade: avgGrade };
+    const yearData = allYearsData[index];
+    if (!yearData) return { year, grade: 0 };
+
+    const teamData = yearData.teams?.find((t) => t.team.id === teamId);
+    if (!teamData) return { year, grade: 0 };
+
+    return { year, grade: teamData.averageGrade };
   }).filter((d) => d.grade > 0);
 }
