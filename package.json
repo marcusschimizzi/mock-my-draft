@@ -2,9 +2,18 @@
   "name": "@mmd/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "test": "turbo run test",
+    "lint": "turbo run lint"
+  },
+  "packageManager": "npm@11.7.0",
   "private": true,
-  "workspaces": ["apps/*", "libs/*"],
+  "workspaces": [
+    "apps/*",
+    "libs/*"
+  ],
   "dependencies": {
     "@chakra-ui/icons": "^2.1.1",
     "@chakra-ui/next-js": "^2.2.0",
@@ -102,6 +111,7 @@
     "sass": "1.62.1",
     "ts-jest": "^29.1.0",
     "ts-node": "10.9.1",
+    "turbo": "^2.8.11",
     "typescript": "~5.4.2",
     "vite": "^6.4.1",
     "vite-plugin-dts": "^2.3.0",
