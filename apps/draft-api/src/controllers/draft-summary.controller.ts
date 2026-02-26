@@ -14,6 +14,10 @@ export class DraftSummaryController {
   async getDraftSummary(req: Request, res: Response) {
     try {
       const year = Number(req.params.year);
+      if (isNaN(year)) {
+        res.status(400).json({ message: 'Invalid year parameter' });
+        return;
+      }
       const summary = await this.draftSummaryService.getDraftSummary(year);
       res.status(200).json(summary);
     } catch (error) {
@@ -56,6 +60,10 @@ export class DraftSummaryController {
   async getTeamDraftSummary(req: Request, res: Response) {
     try {
       const year = Number(req.params.year);
+      if (isNaN(year)) {
+        res.status(400).json({ message: 'Invalid year parameter' });
+        return;
+      }
       const teamId = req.params.teamId;
       const summary = await this.draftSummaryService.getTeamDraftSummary(
         year,
