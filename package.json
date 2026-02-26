@@ -6,7 +6,9 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "test": "turbo run test",
-    "lint": "turbo run lint"
+    "lint": "turbo run lint",
+    "db:seed": "ts-node --project apps/draft-api/tsconfig.app.json apps/draft-api/src/commands/seed.ts",
+    "db:seed-all": "ts-node --project apps/draft-api/tsconfig.app.json apps/draft-api/src/commands/seed-all.ts"
   },
   "packageManager": "npm@11.7.0",
   "private": true,

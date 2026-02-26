@@ -1,13 +1,11 @@
 import 'reflect-metadata';
-import { config } from 'dotenv';
+import 'dotenv/config';
 import { AppDataSource } from '../database';
 import { seedDraftClasses } from './seed-steps/seed-draft-classes';
 import { seedDraftClassGrades } from './seed-steps/seed-draft-class-grades';
 import { seedPlayerGrades } from './seed-steps/seed-player-grades';
 import { seedPlayers } from './seed-steps/seed-players';
 import { seedTeams } from './seed-steps/seed-teams';
-
-config();
 
 type StepName = 'teams' | 'players' | 'draft-classes' | 'grades' | 'player-grades';
 

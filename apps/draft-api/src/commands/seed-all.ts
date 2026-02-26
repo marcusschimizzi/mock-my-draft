@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { config } from 'dotenv';
+import 'dotenv/config';
 import { AppDataSource } from '../database';
 import { seedTeams } from './seed-steps/seed-teams';
 import { seedPlayers } from './seed-steps/seed-players';
@@ -7,8 +7,6 @@ import { seedDraftClasses } from './seed-steps/seed-draft-classes';
 import { seedDraftClassGrades } from './seed-steps/seed-draft-class-grades';
 import { seedPlayerGrades } from './seed-steps/seed-player-grades';
 import { SeedResult } from './seed';
-
-config();
 
 const YEARS = [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025];
 

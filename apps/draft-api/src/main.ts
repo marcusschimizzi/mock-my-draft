@@ -1,7 +1,7 @@
+import 'dotenv/config';
+import 'reflect-metadata';
 import express from 'express';
 import * as path from 'path';
-import { config } from 'dotenv';
-import 'reflect-metadata';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import authRoutes from './routes/auth-routes';
@@ -21,8 +21,6 @@ import dataImportsRoutes from './routes/data-imports.routes';
 import { initializeDatabase } from './database';
 import logger from './middleware/logger';
 import { errorHandler } from './middleware/error-handler.middleware';
-
-config();
 const app = express();
 app.disable('x-powered-by');
 
