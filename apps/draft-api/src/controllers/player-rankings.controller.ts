@@ -24,7 +24,7 @@ export class PlayerRankingsController {
   async getAllPlayerRankings(
     req: RequestWithValidatedQuery<PlayerRankingQueryDto>,
     res: Response,
-    next: NextFunction,
+    _next: NextFunction,
   ) {
     try {
       const playerRankings =

@@ -249,7 +249,7 @@ const HeightInput: ComponentType<HeightInputProps> = ({
 };
 
 const PlayersStep = ({
-  players,
+  players: _players,
   control,
   picks,
 }: {

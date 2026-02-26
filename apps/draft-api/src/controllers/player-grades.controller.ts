@@ -24,7 +24,7 @@ export class PlayerGradesController {
   async getAllPlayerGrades(
     req: RequestWithValidatedQuery<PlayerGradeQueryDto>,
     res: Response,
-    next: NextFunction,
+    _next: NextFunction,
   ) {
     try {
       const grades = await this.playerGradesService.getAllPlayerGrades(

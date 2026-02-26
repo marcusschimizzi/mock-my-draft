@@ -34,6 +34,7 @@ import {
 import { useEffect, useState, useMemo } from 'react';
 import { useTeamDraftSummary, useYears } from '../../../lib/draft-summary';
 import { DraftGrade } from '../../../types';
+import { YearSummary } from '../../../lib/historical-data';
 import Card from '../../../components/card';
 import { HistoricalChart } from '../../../components/historical-chart';
 import { DivisionComparison } from '../../../components/division-comparison';
@@ -48,10 +49,8 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
-import { getContrastingColor, getGradeColor } from '../../../lib/grade-utils';
-import { boxShadow } from '../../../utils/style-utils';
+import { getGradeColor } from '../../../lib/grade-utils';
 import { useDraftClass } from '../../../lib/draft-class';
-import { Loading } from '../../../components/loading';
 import { GradeBadge } from '../../../components/grade-badge';
 import { ChartSkeleton, StatsCardSkeleton, TableSkeleton } from '../../../components/chart-skeleton';
 
@@ -123,8 +122,8 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
       if (!yearData) return { year, average: 0 };
 
       // Flatten all teams' grades for this year
-      const allGrades = yearData.teams?.flatMap((team: any) =>
-        team.draftGrades.map((grade: any) => ({
+      const allGrades = yearData.teams?.flatMap((team) =>
+        team.draftGrades.map((grade) => ({
           grade: grade.grade,
           source: grade.sourceArticle.source.name,
           teamId: team.team.id,
@@ -148,8 +147,8 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
     if (!currentYearData) return null;
 
     // Extract grades for buildDivisionComparisons
-    const allGrades = currentYearData.teams?.flatMap((team: any) =>
-      team.draftGrades.map((grade: any) => ({
+    const allGrades = currentYearData.teams?.flatMap((team) =>
+      team.draftGrades.map((grade) => ({
         grade: grade.grade,
         source: grade.sourceArticle.source.name,
         teamId: team.team.id,
@@ -157,7 +156,7 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
     ) || [];
 
     // Build teams array with division/conference (from API response)
-    const teams = currentYearData.teams?.map((t: any) => ({
+    const teams = currentYearData.teams?.map((t: YearSummary['teams'][number]) => ({
       id: t.team.id,
       name: t.team.name,
       division: t.team.division,
@@ -383,7 +382,7 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
           <Card mt={8} py={4}>
             {isMobile ? (
               <Accordion allowToggle>
-                {draftSummary.draftGrades.map((grade: DraftGrade, index) => (
+                {draftSummary.draftGrades.map((grade: DraftGrade) => (
                   <AccordionItem key={grade.id}>
                     <Heading
                       borderBottom={'1px solid'}

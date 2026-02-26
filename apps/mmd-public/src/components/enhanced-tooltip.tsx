@@ -10,7 +10,7 @@ interface EnhancedTooltipProps extends TooltipProps<number, string> {
 export const EnhancedTooltip: React.FC<EnhancedTooltipProps> = ({
   active,
   payload,
-  variant = 'premium',
+  variant: _variant = 'premium',
 }) => {
   if (!active || !payload?.length) return null;
 

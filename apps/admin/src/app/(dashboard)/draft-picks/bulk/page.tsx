@@ -45,7 +45,7 @@ interface BulkEditDraftPicksFormValues {
  */
 function DraftRound({
   control,
-  picks,
+  picks: _picks,
   errors,
   roundDetails,
   currentRoundDetails,

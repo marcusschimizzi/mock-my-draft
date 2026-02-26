@@ -190,7 +190,7 @@ interface PlayerFormProps {
 
 export function PlayerForm({
   player,
-  onChange,
+  onChange: _onChange,
   handleSubmit,
 }: PlayerFormProps) {
   const {

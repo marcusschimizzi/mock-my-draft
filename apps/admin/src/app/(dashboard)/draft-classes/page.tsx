@@ -94,8 +94,7 @@ const ViewDraftClassesPage = () => {
     </Th>
   );
 
-  const AccordionComponentWrapper = ({ children, ...props }: any) => {
-    const { type, ...rest } = props;
+  const AccordionComponentWrapper = ({ children, type, ...rest }: { children: React.ReactNode; type?: string } & React.HTMLAttributes<HTMLDivElement>) => {
     if (type === 'AccordionItem') {
       return <>{children}</>;
     }

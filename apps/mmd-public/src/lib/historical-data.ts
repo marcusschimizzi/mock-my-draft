@@ -3,12 +3,16 @@ import apiClient from './api-client';
 
 const YEARS = [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025];
 
-interface YearSummary {
+export interface YearSummary {
   year: number;
   teams: Array<{
-    team: { id: string };
+    team: { id: string; name: string; division: string; conference: string };
     averageGrade: number;
-    draftGrades: Array<{ grade: string; gradeNumeric: number }>;
+    draftGrades: Array<{
+      grade: string;
+      gradeNumeric: number;
+      sourceArticle: { source: { name: string } };
+    }>;
   }>;
   averageGrade: number;
 }

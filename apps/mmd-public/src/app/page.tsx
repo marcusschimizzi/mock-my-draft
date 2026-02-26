@@ -44,11 +44,9 @@ import {
   getGradeColor,
   gradeToLetter,
 } from '../lib/grade-utils';
-import { boxShadow } from '../utils/style-utils';
-import { Loading } from '../components/loading';
 import { GradeBadge } from '../components/grade-badge';
 import { HeroStats } from '../components/hero-stats';
-import { ChartSkeleton, HeroStatsSkeleton, TableSkeleton } from '../components/chart-skeleton';
+import { ChartSkeleton, HeroStatsSkeleton } from '../components/chart-skeleton';
 import { calculateLeagueStatistics, calculateYearOverYearDeltas } from '../lib/statistics';
 import { Sparkline } from '../components/sparkline';
 import { useAllYearsData, buildTeamHistoricalData } from '../lib/historical-data';
@@ -62,7 +60,7 @@ export default function Home() {
   const [year, setYear] = useState(2024);
   const { draftSummary, isLoading } = useDraftSummary(year);
   const { draftSummary: previousYearSummary } = useDraftSummary(year - 1);
-  const { years, isLoading: isYearsLoading } = useYears();
+  const { years } = useYears();
   const { data: allYearsData, isLoading: isAllYearsLoading } = useAllYearsData();
   const [sources, setSources] = useState<string[]>([]);
   const [sortedTeams, setSortedTeams] = useState<TeamDraftSummary[] | null>(
@@ -287,7 +285,7 @@ export default function Home() {
             <Heading size="lg" mb={4}>Top performers</Heading>
             <List>
               {sortedTeams &&
-                sortedTeams.slice(0, 3).map((team, index) => (
+                sortedTeams.slice(0, 3).map((team) => (
                   <HStack
                     key={team.team.id}
                     w="full"

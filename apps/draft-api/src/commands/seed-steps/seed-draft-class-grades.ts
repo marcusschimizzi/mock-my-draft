@@ -1,5 +1,6 @@
 import { promises as fs } from 'fs';
 import path from 'path';
+import { Repository } from 'typeorm';
 import { AppDataSource } from '../../database';
 import { Team } from '../../database/models/team';
 import { DraftClassGrade } from '../../database/models/draft-class-grade';
@@ -147,8 +148,8 @@ async function resolveSourceArticle({
   sourceName: string;
   sourceUrl: string;
   year: number;
-  sourceRepository: any;
-  sourceArticleRepository: any;
+  sourceRepository: Repository<Source>;
+  sourceArticleRepository: Repository<SourceArticle>;
   sourceCache: Map<string, Source>;
   articleCache: Map<string, SourceArticle>;
 }): Promise<SourceArticle> {

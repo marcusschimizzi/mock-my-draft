@@ -24,7 +24,7 @@ export class DraftClassGradesController {
   async getAllDraftClassGrades(
     req: RequestWithValidatedQuery<DraftClassGradeQueryDto>,
     res: Response,
-    next: NextFunction,
+    _next: NextFunction,
   ) {
     try {
       const grades = await this.draftClassGradesService.getAllDraftClassGrades(

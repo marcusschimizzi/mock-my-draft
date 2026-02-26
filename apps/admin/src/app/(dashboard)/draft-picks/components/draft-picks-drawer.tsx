@@ -64,7 +64,7 @@ interface DraftPickFormProps {
 function DraftPickForm({
   draftPick,
   teams,
-  onChange,
+  onChange: _onChange,
   handleSubmit: handleFormSubmit,
 }: DraftPickFormProps) {
   const [toggleOriginalTeam, setToggleOriginalTeam] = useState(

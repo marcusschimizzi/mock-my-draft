@@ -26,7 +26,7 @@ export class SourceArticlesController {
   async getAllSourceArticles(
     req: RequestWithValidatedQuery<SourceArticleQueryDto>,
     res: Response,
-    next: NextFunction,
+    _next: NextFunction,
   ) {
     try {
       const articles = await this.sourceArticlesService.getAllSourceArticles(

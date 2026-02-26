@@ -23,7 +23,7 @@ export class DraftPickTradesController {
   async getAllDraftPickTrades(
     req: RequestWithValidatedQuery<DraftPickTradeQueryDto>,
     res: Response,
-    next: NextFunction,
+    _next: NextFunction,
   ) {
     try {
       const trades = await this.draftPickTradesService.getAllDraftPickTrades(

@@ -8,7 +8,7 @@ import PlayersTable from './components/players-table';
 import PlayersDrawer from './components/players-drawer';
 
 function PlayersPage() {
-  const { players, isLoading } = usePlayers();
+  const { players } = usePlayers();
   const { isOpen, onClose, onOpen } = useDisclosure();
   const playerDrawerRef = useRef(null);
   const [newPlayer, setNewPlayer] = useState<Partial<Player>>(defaultPlayer);
