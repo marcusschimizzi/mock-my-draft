@@ -7,7 +7,14 @@ export default function Logo(props: ChakraProps) {
     <Box {...props}>
       <HStack>
         <Image src={logoSvg} alt="Mock My Draft Logo" width={50} height={50} />
-        <Text fontSize="lg" fontWeight="bold" as="h1">
+        <Text
+          fontFamily="heading"
+          fontSize="lg"
+          fontWeight={800}
+          letterSpacing="0.06em"
+          textTransform="uppercase"
+          as="h1"
+        >
           Mock My Draft
         </Text>
       </HStack>

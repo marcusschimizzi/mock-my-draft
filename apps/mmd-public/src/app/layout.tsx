@@ -6,6 +6,29 @@ import { theme } from '../config/theme';
 import Footer from '../components/footer';
 import Nav from '../components/nav';
 import Fathom from '../lib/fathom';
+import { Saira_Condensed, Sora, Lora } from 'next/font/google';
+
+const saira = Saira_Condensed({
+  subsets: ['latin'],
+  weight: ['700', '800', '900'],
+  variable: '--font-saira',
+  display: 'swap',
+});
+
+const sora = Sora({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600'],
+  variable: '--font-sora',
+  display: 'swap',
+});
+
+const lora = Lora({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  style: ['normal', 'italic'],
+  variable: '--font-lora',
+  display: 'swap',
+});
 
 export const metadata = {
   title: 'Mock my draft',
@@ -23,7 +46,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className={`${saira.variable} ${sora.variable} ${lora.variable}`}
+    >
       <body>
         <Fathom />
         <ColorModeScript initialColorMode={theme.config.initialColorMode} />

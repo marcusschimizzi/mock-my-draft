@@ -1,0 +1,29 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "mmd-public",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["nx", "dev", "mmd-public"],
+      "port": 3000
+    },
+    {
+      "name": "admin",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["nx", "dev", "admin", "--", "--port", "3001"],
+      "port": 3001
+    },
+    {
+      "name": "draft-api",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["nx", "serve", "draft-api"],
+      "port": 3333
+    },
+    {
+      "name": "text-analysis-service",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["nx", "serve", "text-analysis-service"],
+      "port": 3000
+    }
+  ]
+}
