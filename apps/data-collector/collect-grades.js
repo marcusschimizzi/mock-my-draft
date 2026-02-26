@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({ path: require('path').join(__dirname, '.env') });
 const { readFile, writeFile, mkdir } = require('fs').promises;
 const path = require('path');
 const { cleanHtml } = require('./html-cleaner');

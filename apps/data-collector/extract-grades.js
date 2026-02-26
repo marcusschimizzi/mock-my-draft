@@ -84,6 +84,13 @@ function parseToolResponse(response) {
   }
 
   const grades = toolUseBlock.input.grades || [];
+
+  // Haiku sometimes returns an object instead of an array - guard against this
+  if (!Array.isArray(grades)) {
+    console.warn('Haiku returned non-array grades structure, skipping');
+    return [];
+  }
+
   return grades.map((entry) => ({
     teamName: entry.teamName,
     grade: entry.grade,
@@ -97,7 +104,14 @@ function parseToolResponse(response) {
 }
 
 async function extractGradesFromHtml(cleanedHtml) {
-  const client = new Anthropic();
+  if (!process.env.ANTHROPIC_API_KEY) {
+    throw new Error('ANTHROPIC_API_KEY environment variable is not set');
+  }
+
+  const client = new Anthropic({
+    apiKey: process.env.ANTHROPIC_API_KEY,
+  });
+
   const response = await client.messages.create({
     model: 'claude-haiku-4-5',
     max_tokens: 16384,

@@ -24,7 +24,17 @@
       "2023": "https://bleacherreport.com/articles/10074273-2023-nfl-draft-grades-for-every-team",
       "2022": "https://bleacherreport.com/articles/2955815-2022-nfl-draft-grades-for-every-team",
       "2021": "https://bleacherreport.com/articles/2942511-2021-nfl-draft-grades-for-every-team",
-      "2020": "https://bleacherreport.com/articles/2889008-2020-nfl-draft-grades-for-every-team"
+      "2020": "https://bleacherreport.com/articles/2889008-2020-nfl-draft-grades-for-every-team",
+      "2019": "https://bleacherreport.com/articles/2833518-2019-nfl-draft-grades-full-results-listings-and-final-team-marks",
+      "2018": "https://bleacherreport.com/articles/2773398-2018-nfl-draft-grades-for-every-team",
+      "2017": "https://bleacherreport.com/articles/2706925-nfl-draft-grades-2017-full-list-of-results-and-scores-for-all-32-teams",
+      "2016": "https://bleacherreport.com/articles/2637319-nfl-draft-grades-2016-full-list-of-results-and-scores-for-all-32-teams",
+      "2015": "https://bleacherreport.com/articles/2453208-nfl-draft-grades-2015-full-list-of-results-and-scores-for-all-32-teams",
+      "2014": "https://bleacherreport.com/articles/2059205-2014-nfl-draft-grades-full-results-listings-and-final-team-marks",
+      "2013": "https://bleacherreport.com/articles/1620969-2013-nfl-draft-grades-team-by-team-report-cards-results",
+      "2012": "https://bleacherreport.com/articles/1163416-2012-nfl-draft-grades-full-draft-results-report-card",
+      "2011": "https://bleacherreport.com/articles/684372-2011-nfl-draft-grades-final-report-cards-and-results-for-all-32-teams",
+      "2010": "https://bleacherreport.com/articles/383970-2010-nfl-draft-results-final-32-team-grades-for-all-seven-rounds"
     }
   },
   {
@@ -38,7 +48,13 @@
       "2023": "https://www.cbssports.com/nfl/news/priscos-nfl-draft-2023-grades-for-all-32-teams-cowboys-eagles-among-as-chiefs-49ers-receive-poor-marks/",
       "2022": "https://www.cbssports.com/nfl/news/priscos-2022-nfl-draft-grades-for-all-32-teams-ravens-earn-a-chiefs-and-jets-get-as-bears-get-worst-mark/",
       "2021": "https://www.cbssports.com/nfl/news/priscos-2021-nfl-draft-grades-for-all-32-teams-dolphins-among-three-to-earn-a-raiders-part-of-worst-trio/",
-      "2020": "https://www.cbssports.com/nfl/news/priscos-2020-nfl-draft-grades-for-all-32-teams-vikings-among-four-to-earn-an-a-packers-given-lowest-mark/"
+      "2020": "https://www.cbssports.com/nfl/news/priscos-2020-nfl-draft-grades-for-all-32-teams-vikings-among-four-to-earn-an-a-packers-given-lowest-mark/",
+      "2019": "https://www.cbssports.com/nfl/news/pete-priscos-2019-nfl-draft-grades-for-all-32-teams-patriots-earn-best-mark-texans-worst/",
+      "2018": "https://www.cbssports.com/nfl/draft/news/2018-nfl-draft-grades-for-all-32-teams-bears-bucs-ravens-panthers-get-top-marks/",
+      "2017": "https://www.cbssports.com/nfl/news/priscos-nfl-draft-grades-for-all-32-teams-five-earn-as-and-two-fall-short-with-ds/",
+      "2016": "https://www.cbssports.com/nfl/news/priscos-nfl-draft-grades-for-all-32-teams-five-earn-as-and-two-fall-short-with-ds/",
+      "2015": "https://www.cbssports.com/nfl/news/2015-nfl-draft-grades-jags-dolphins-ravens-cardinals-score-highest/",
+      "2014": "https://www.cbssports.com/nfl/news/2014-nfl-draft-final-team-grades-and-analysis/"
     }
   },
   {
@@ -66,7 +82,11 @@
       "2023": "https://www.pff.com/news/draft-2023-nfl-draft-grades-for-all-32-teams",
       "2022": "https://www.pff.com/news/draft-2022-nfl-draft-grades",
       "2021": "https://www.pff.com/news/draft-2021-nfl-draft-grades-all-32-teams",
-      "2020": "https://www.pff.com/news/draft-2020-nfl-draft-grades-for-all-32-teams"
+      "2020": "https://www.pff.com/news/draft-2020-nfl-draft-grades-for-all-32-teams",
+      "2019": "https://www.pff.com/news/draft-2019-nfl-draft-grades-for-all-32-teams",
+      "2018": "https://www.pff.com/news/pro-all-32-nfl-teams-2018-nfl-draft-grades",
+      "2017": "https://www.pff.com/news/draft-pffs-2017-nfl-draft-recap-for-all-32-teams",
+      "2016": "https://www.pff.com/news/draft-2016-nfl-draft-grades-for-all-32-teams"
     }
   },
   {
@@ -75,7 +95,9 @@
     "baseUrl": "https://www.foxsports.com",
     "fetchMethod": "fetch",
     "articles": {
-      "2025": "https://www.foxsports.com/stories/nfl/2025-nfl-draft-grades-analyzing-all-32-teams-classes"
+      "2025": "https://www.foxsports.com/stories/nfl/2025-nfl-draft-grades-analyzing-all-32-teams-classes",
+      "2024": "https://www.foxsports.com/stories/nfl/2024-nfl-draft-grades-analyzing-all-32-teams-classes-who-gets-top-marks",
+      "2023": "https://www.foxsports.com/stories/nfl/nfl-draft-grades-analyzing-all-32-teams-classes-with-eagles-leading-the-way"
     }
   },
   {
@@ -84,7 +106,15 @@
     "baseUrl": "https://www.nfl.com",
     "fetchMethod": "fetch",
     "articles": {
-      "2024": "https://www.nfl.com/news/2024-nfl-draft-final-quick-snap-grades-for-all-32-teams"
+      "2025": "https://www.nfl.com/news/2025-nfl-draft-final-snap-grades-for-all-32-teams",
+      "2024": "https://www.nfl.com/news/2024-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+      "2023": "https://www.nfl.com/news/2023-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+      "2022": "https://www.nfl.com/news/2022-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+      "2021": "https://www.nfl.com/news/2021-nfl-draft-final-quick-snap-grades-for-all-32-teams",
+      "2020": "https://www.nfl.com/news/2020-nfl-draft-final-quick-snap-grades-for-all-32-teams-0ap3000001111711",
+      "2019": "https://www.nfl.com/news/2019-nfl-draft-final-quick-snap-grades-for-all-32-teams-0ap3000001028874",
+      "2018": "https://www.nfl.com/news/2018-nfl-draft-final-quick-snap-grades-for-all-32-teams-0ap3000000930225",
+      "2017": "https://www.nfl.com/news/final-2017-nfl-draft-quick-snap-grades-for-all-32-teams-0ap3000000805312"
     }
   },
   {
@@ -93,7 +123,12 @@
     "baseUrl": "https://www.sandiegouniontribune.com",
     "fetchMethod": "fetch",
     "articles": {
-      "2025": "https://www.sandiegouniontribune.com/2025/04/28/2025-nfl-draft-grades-for-all-32-teams-patriots-raiders-among-big-winners/"
+      "2025": "https://www.sandiegouniontribune.com/2025/04/28/2025-nfl-draft-grades-for-all-32-teams-patriots-raiders-among-big-winners/",
+      "2024": "https://www.sandiegouniontribune.com/sports/story/2024-04-28/2024-nfl-draft-grades-for-all-32-teams-what-was-the-falcons-thinking",
+      "2023": "https://www.sandiegouniontribune.com/sports/story/2023-04-30/2023-nfl-draft-grades-for-all-32-teams",
+      "2022": "https://www.sandiegouniontribune.com/sports/story/2022-05-02/2022-nfl-draft-grades-for-all-32-teams/",
+      "2021": "https://www.sandiegouniontribune.com/2021/05/02/2021-nfl-draft-grades-for-all-32-teams/",
+      "2020": "https://www.sandiegouniontribune.com/sports/story/2020-04-26/2020-nfl-draft-grades-for-all-32-teams"
     }
   },
   {
@@ -103,6 +138,30 @@
     "fetchMethod": "fetch",
     "articles": {
       "2025": "https://www.sbnation.com/nfl/2025/4/28/24419371/nfl-draft-grades-teams-final-full-class-best-drafts-panthers"
+    }
+  },
+  {
+    "source": "Sports Illustrated",
+    "slug": "sports-illustrated",
+    "baseUrl": "https://www.si.com",
+    "fetchMethod": "fetch",
+    "articles": {
+      "2025": "https://www.si.com/nfl/2025-nfl-draft-grades-analysis-for-every-team",
+      "2024": "https://www.si.com/nfl/2024/04/27/2024-nfl-draft-team-grades-analysis",
+      "2023": "https://www.si.com/nfl/2023/04/29/2023-nfl-draft-team-grades",
+      "2022": "https://www.si.com/nfl/2022/04/30/2022-nfl-draft-team-grades",
+      "2021": "https://www.si.com/nfl/2021/05/02/nfl-draft-2021-grades",
+      "2020": "https://www.si.com/nfl/2020/04/26/nfl-draft-2020-team-grades-picks-analysis"
+    }
+  },
+  {
+    "source": "The Ringer",
+    "slug": "the-ringer",
+    "baseUrl": "https://www.theringer.com",
+    "fetchMethod": "fetch",
+    "articles": {
+      "2023": "https://www.theringer.com/nfl/2023/4/29/23705099/grading-every-nfl-team-in-2023-draft-colts-eagles-cowboys-lions",
+      "2021": "https://www.theringer.com/2021/05/01/nfl-draft/nfl-draft-team-grades-picks-rounds-tracker"
     }
   }
 ]
