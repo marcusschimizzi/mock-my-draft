@@ -1,72 +1,139 @@
 'use client';
 
-import { Box, Heading, SimpleGrid, Text, VStack } from '@chakra-ui/react';
+import {
+  Box,
+  Flex,
+  Grid,
+  GridItem,
+  Text,
+  VStack,
+} from '@chakra-ui/react';
 import { Link } from '@chakra-ui/next-js';
 import Logo from './logo';
-import { boxShadow } from '../utils/style-utils';
 import ColorModeToggle from './color-mode-toggle';
+
+function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <Link href={href}>
+      <Text
+        fontSize="sm"
+        fontWeight={400}
+        color="neutral.500"
+        _dark={{ color: 'neutral.400' }}
+        _hover={{
+          color: 'text.light',
+          _dark: { color: 'text.dark' },
+          transform: 'translateX(3px)',
+        }}
+        transition="all 0.2s ease"
+      >
+        {children}
+      </Text>
+    </Link>
+  );
+}
+
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <Text
+      fontFamily="heading"
+      fontWeight={700}
+      fontSize="xs"
+      letterSpacing="0.18em"
+      textTransform="uppercase"
+      mb={5}
+      color="neutral.500"
+      _dark={{ color: 'neutral.400' }}
+    >
+      {children}
+    </Text>
+  );
+}
 
 export default function Footer() {
   return (
-    <Box
-      as="footer"
-      bgGradient={{
-        base: 'linear(to-br, primary.100 0%, elevations.light.base 10%, elevations.light.dp04 90%, secondary.100)',
-      }}
-      _dark={{
-        bgGradient:
-          'linear(to-br, primary.900 0%, elevations.dark.base 10%, elevations.dark.dp04 90%, secondary.900)',
-      }}
-      boxShadow={boxShadow(4)}
-    >
-      <Box margin="0 auto" maxW="80rem" py={[12, null, 16, null, 20]}>
-        <SimpleGrid
-          columns={{ base: 1, md: 3 }}
-          gridGap={{
-            base: 4,
-            md: 6,
-          }}
-          gridRowGap={12}
-          width="100%"
-          px={{
-            base: 8,
-            xl: 0,
-          }}
+    <Box as="footer">
+      {/* Top border accent */}
+      <Box
+        h="1px"
+        bg="blackAlpha.200"
+        _dark={{ bg: 'whiteAlpha.100' }}
+      />
+
+      <Box margin="0 auto" maxW="80rem" py={{ base: 14, md: 20 }}>
+        <Grid
+          templateColumns={{ base: '1fr', md: '2fr 1fr 1fr' }}
+          gap={{ base: 10, md: 8 }}
+          px={{ base: 6, lg: 9, xl: 0 }}
         >
-          <Box>
-            <Link href="/">
+          {/* Brand column */}
+          <GridItem>
+            <Box mb={5}>
               <Logo />
-            </Link>
-          </Box>
-          <Box>
-            <VStack alignItems="start">
-              <Heading as="h2" size="md">
-                Quick Links
-              </Heading>
-              <Link href="/about">
-                <Text size="sm">About</Text>
-              </Link>
-              <Link href="/contact">
-                <Text size="sm">Contact</Text>
-              </Link>
+            </Box>
+            <Text
+              fontFamily="var(--font-lora), 'Lora', serif"
+              fontStyle="italic"
+              fontSize="sm"
+              color="neutral.500"
+              _dark={{ color: 'neutral.400' }}
+              maxW="280px"
+              lineHeight={1.7}
+            >
+              Aggregating NFL draft intelligence
+              <br />
+              and grading the grades since 2024.
+            </Text>
+          </GridItem>
+
+          {/* Navigation column */}
+          <GridItem>
+            <SectionLabel>Navigate</SectionLabel>
+            <VStack align="start" spacing={3}>
+              <FooterLink href="/about">About</FooterLink>
+              <FooterLink href="/contact">Contact</FooterLink>
+              <FooterLink href="/teams">Teams</FooterLink>
             </VStack>
-          </Box>
-          <Box>
+          </GridItem>
+
+          {/* Theme column */}
+          <GridItem>
+            <SectionLabel>Theme</SectionLabel>
             <ColorModeToggle />
-          </Box>
-        </SimpleGrid>
+          </GridItem>
+        </Grid>
       </Box>
-      <Box w="full" py={4}>
-        <Box
+
+      {/* Bottom bar */}
+      <Box
+        borderTop="1px solid"
+        borderColor="blackAlpha.100"
+        _dark={{ borderColor: 'whiteAlpha.50' }}
+        py={6}
+      >
+        <Flex
           margin="0 auto"
           maxW="80rem"
-          px={{
-            base: 8,
-            xl: 0,
-          }}
+          px={{ base: 6, lg: 9, xl: 0 }}
+          justify="space-between"
+          align="center"
         >
-          <Text size="sm">© 2024 Mock My Draft. All rights reserved.</Text>
-        </Box>
+          <Text
+            fontSize="xs"
+            color="neutral.400"
+            _dark={{ color: 'neutral.600' }}
+            fontWeight={400}
+          >
+            &copy; {new Date().getFullYear()} Mock My Draft. All rights
+            reserved.
+          </Text>
+          <Box
+            h="2px"
+            w="40px"
+            bgGradient="linear(to-r, primary.500, secondary.500)"
+            borderRadius="full"
+          />
+        </Flex>
       </Box>
     </Box>
   );
