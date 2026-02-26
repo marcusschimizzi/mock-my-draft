@@ -7,6 +7,7 @@
     "start": "node dist/main.js",
     "dev": "ts-node --project tsconfig.app.json src/main.ts",
     "seed": "ts-node --project tsconfig.app.json src/commands/seed.ts",
+    "db:seed-all": "ts-node --project tsconfig.app.json src/commands/seed-all.ts",
     "lint": "eslint src/",
     "test": "jest"
   }
