@@ -1,0 +1,11 @@
+{
+  "name": "@mmd/text-analysis-service",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "poetry build",
+    "dev": "poetry run uvicorn app.main:app --reload",
+    "test": "poetry run pytest tests/",
+    "lint": "poetry run flake8 ."
+  }
+}

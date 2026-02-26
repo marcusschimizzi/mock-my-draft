@@ -1,0 +1,8 @@
+{
+  "name": "@mmd/draft-api-e2e",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "e2e": "jest --config=jest.config.ts"
+  }
+}

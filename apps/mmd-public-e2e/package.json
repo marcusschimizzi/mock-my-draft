@@ -1,0 +1,8 @@
+{
+  "name": "@mmd/mmd-public-e2e",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "e2e": "playwright test"
+  }
+}

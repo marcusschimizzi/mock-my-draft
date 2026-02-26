@@ -1,0 +1,13 @@
+{
+  "name": "@mmd/draft-api",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc -p tsconfig.app.json",
+    "start": "node dist/main.js",
+    "dev": "ts-node --project tsconfig.app.json src/main.ts",
+    "seed": "ts-node --project tsconfig.app.json src/commands/seed.ts",
+    "lint": "eslint src/",
+    "test": "jest"
+  }
+}

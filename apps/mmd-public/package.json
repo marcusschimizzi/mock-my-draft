@@ -1,0 +1,15 @@
+{
+  "name": "@mmd/mmd-public",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "@mmd/visualizations": "*"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "jest"
+  }
+}
