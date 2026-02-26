@@ -1,31 +1,71 @@
-# Mock my draft
+# Mock My Draft
 
-## Start the application
+NFL draft grade aggregation and analysis.
 
-Run `npx nx dev mmd-public` to start the development server. Happy coding!
+## Apps
 
-## Build for production
+- `draft-api` — Express + TypeORM REST API (port 4000)
+- `mmd-public` — Next.js public site (port 3000)
+- `admin` — Next.js admin dashboard (port 3001)
+- `data-collector` — Python data pipeline (Poetry)
+- `libs/visualizations` — shared React component library (Vite)
 
-Run `npx nx build mmd-public` to build the application. The build artifacts are stored in the output directory (e.g. `dist/` or `build/`), ready to be deployed.
+## Local Development
+
+### Prerequisites
+
+- Node.js 18+
+- Docker (for Postgres)
+
+### 1. Start the database
+
+```bash
+docker compose -f docker-compose.local.yml up -d
+```
+
+This starts Postgres on port **5434** (mapped from container port 5432).
+
+### 2. Configure environment
+
+```bash
+cp apps/draft-api/.env.example apps/draft-api/.env
+```
+
+### 3. Seed the database
+
+```bash
+# Seed all years (2011-2025):
+npm run db:seed-all
+
+# Seed a single year:
+npm run db:seed -- --year 2024
+
+# Seed a specific step:
+npm run db:seed -- --step teams
+```
+
+The database schema is auto-created on first connection (`synchronize: true`).
+
+### 4. Start the apps
+
+```bash
+# All apps:
+npm run dev
+
+# Individual apps:
+npx turbo run dev --filter=@mmd/draft-api
+npx turbo run dev --filter=@mmd/mmd-public
+npx turbo run dev --filter=@mmd/admin
+```
 
 ## Running tasks
 
-To execute tasks with Nx use the following syntax:
-
-```
-npx nx <target> <project> <...options>
+```bash
+npx turbo run <lint|build|test> [--filter=@mmd/<package>]
 ```
 
-You can also run multiple targets:
+Exclude the Python service when running across all packages:
 
+```bash
+npx turbo run lint build test --filter=!@mmd/text-analysis-service --filter=!@mmd/text-analysis-service-e2e
 ```
-npx nx run-many -t <target1> <target2>
-```
-
-..or add `-p` to filter specific projects
-
-```
-npx nx run-many -t <target1> <target2> -p <proj1> <proj2>
-```
-
-Targets can be defined in the `package.json` or `projects.json`.
