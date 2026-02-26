@@ -36,11 +36,6 @@ export class DraftSummaryController {
           return;
         }
 
-        if (endYear - startYear > 10) {
-          res.status(400).json({ message: 'Year range cannot exceed 10 years' });
-          return;
-        }
-
         const summary = await this.draftSummaryService.getMultiYearSummary(
           startYear,
           endYear,
