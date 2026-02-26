@@ -1,9 +1,0 @@
-{
-  "name": "visualizations",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/visualizations/src",
-  "projectType": "library",
-  "tags": [],
-  "// targets": "to see all targets run: nx show project visualizations --web",
-  "targets": {}
-}
