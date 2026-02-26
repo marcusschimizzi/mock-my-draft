@@ -4,7 +4,18 @@ FROM base AS dependencies
 WORKDIR /app
 RUN apk add --no-cache libc6-compat
 
+# Copy all workspace package.json files so npm ci can resolve workspaces
 COPY package.json package-lock.json ./
+COPY apps/admin/package.json ./apps/admin/package.json
+COPY apps/admin-e2e/package.json ./apps/admin-e2e/package.json
+COPY apps/data-collector/package.json ./apps/data-collector/package.json
+COPY apps/draft-api/package.json ./apps/draft-api/package.json
+COPY apps/draft-api-e2e/package.json ./apps/draft-api-e2e/package.json
+COPY apps/mmd-public/package.json ./apps/mmd-public/package.json
+COPY apps/mmd-public-e2e/package.json ./apps/mmd-public-e2e/package.json
+COPY apps/text-analysis-service/package.json ./apps/text-analysis-service/package.json
+COPY apps/text-analysis-service-e2e/package.json ./apps/text-analysis-service-e2e/package.json
+COPY libs/visualizations/package.json ./libs/visualizations/package.json
 RUN npm ci
 
 FROM base AS builder
@@ -15,7 +26,7 @@ COPY . .
 
 ENV NEXT_TELEMETRY_DISABLED 1
 
-RUN npx nx build mmd-public
+RUN npm run build --workspace=@mmd/mmd-public
 
 FROM base AS runner
 WORKDIR /app
