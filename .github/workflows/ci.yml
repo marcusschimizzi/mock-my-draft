@@ -15,32 +15,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
-      # Setup Node.js
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'npm'
 
-      # Install Node.js dependencies
       - run: npm ci
-      - uses: nrwl/nx-set-shas@v4
 
-      # Setup python
       - uses: actions/setup-python@v5
         with:
           python-version: '3.9'
 
-      # Install Poetry
       - uses: snok/install-poetry@v1
         with:
           version: 1.8.3
           virtualenvs-create: true
           virtualenvs-in-project: true
 
-      # Cache poetry dependencies
       - uses: actions/cache@v4
         with:
           path: ~/.cache/pypoetry
@@ -48,12 +40,13 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-poetry-
 
-      # Install Python dependencies
       - run: |
           cd apps/text-analysis-service
           poetry install
 
-      - run: npx nx affected -t lint test build --verbose
+      - run: npx turbo run lint test build
+
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
-      - run: npx nx affected --parallel 1 -t e2e
+
+      - run: npx turbo run e2e --concurrency=1
