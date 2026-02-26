@@ -4,7 +4,7 @@
     {
       "name": "mmd-public",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["nx", "dev", "mmd-public"],
+      "runtimeArgs": ["turbo", "run", "dev", "--filter=@mmd/mmd-public"],
       "port": 3000
     },
     {

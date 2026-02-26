@@ -78,14 +78,29 @@ export default function Home() {
       draftSummary.teams.sort((a, b) => b.averageGrade - a.averageGrade),
     );
 
+    // Hide chart entirely when every team has only one grade (single source)
+    const allSingleSource = draftSummary.teams.every(
+      (team) => team.draftGrades.length <= 1,
+    );
+    if (allSingleSource) {
+      setGradeRanges(null);
+      return;
+    }
+
+    const MIN_SPREAD = 0.05;
     const gradeRanges: GradeRange[] = [];
     draftSummary.teams.forEach((team) => {
-      const min = Math.min(
+      let min = Math.min(
         ...team.draftGrades.map((grade) => grade.gradeNumeric),
       );
-      const max = Math.max(
+      let max = Math.max(
         ...team.draftGrades.map((grade) => grade.gradeNumeric),
       );
+      // Ensure zero-range bars are still visible as a thin stripe
+      if (min === max) {
+        min = Math.max(0, min - MIN_SPREAD);
+        max = Math.min(4.3, max + MIN_SPREAD);
+      }
       gradeRanges.push({
         team: team.team,
         range: [min, max],
@@ -460,29 +475,45 @@ export default function Home() {
                       </Box>
                       <Text fontWeight="bold">{team.name}</Text>
                       <Text fontWeight="bold">
-                        <Badge
-                          bg={getGradeColor(gradeRange.range[0])}
-                          color={getContrastingColor(
-                            getGradeColor(gradeRange.range[0]),
-                          )}
-                          mr={2}
-                          p={1}
-                          fontSize={'0.9rem'}
-                        >
-                          {gradeToLetter(gradeRange.range[0])}
-                        </Badge>
-                        to
-                        <Badge
-                          ml={2}
-                          p={1}
-                          fontSize={'0.9rem'}
-                          bg={getGradeColor(gradeRange.range[1])}
-                          color={getContrastingColor(
-                            getGradeColor(gradeRange.range[1]),
-                          )}
-                        >
-                          {gradeToLetter(gradeRange.range[1])}
-                        </Badge>
+                        {gradeToLetter(gradeRange.range[0]) ===
+                        gradeToLetter(gradeRange.range[1]) ? (
+                          <Badge
+                            bg={getGradeColor(gradeRange.range[0])}
+                            color={getContrastingColor(
+                              getGradeColor(gradeRange.range[0]),
+                            )}
+                            p={1}
+                            fontSize={'0.9rem'}
+                          >
+                            {gradeToLetter(gradeRange.range[0])}
+                          </Badge>
+                        ) : (
+                          <>
+                            <Badge
+                              bg={getGradeColor(gradeRange.range[0])}
+                              color={getContrastingColor(
+                                getGradeColor(gradeRange.range[0]),
+                              )}
+                              mr={2}
+                              p={1}
+                              fontSize={'0.9rem'}
+                            >
+                              {gradeToLetter(gradeRange.range[0])}
+                            </Badge>
+                            to
+                            <Badge
+                              ml={2}
+                              p={1}
+                              fontSize={'0.9rem'}
+                              bg={getGradeColor(gradeRange.range[1])}
+                              color={getContrastingColor(
+                                getGradeColor(gradeRange.range[1]),
+                              )}
+                            >
+                              {gradeToLetter(gradeRange.range[1])}
+                            </Badge>
+                          </>
+                        )}
                       </Text>
                     </Box>
                   );
