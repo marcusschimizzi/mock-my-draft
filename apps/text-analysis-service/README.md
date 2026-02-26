@@ -4,20 +4,21 @@ FastAPI service for sentiment analysis and word counting of draft evaluation tex
 
 ## Prerequisites
 
-- Python 3.9-3.10
-- [Poetry](https://python-poetry.org/docs/#installation)
+- [uv](https://docs.astral.sh/uv/getting-started/installation/)
+
+uv will automatically download the correct Python version (3.9-3.10).
 
 ## Setup
 
 ```bash
 cd apps/text-analysis-service
-poetry install
+uv sync
 ```
 
 ## Running
 
 ```bash
-poetry run uvicorn app.main:app --reload
+uv run uvicorn app.main:app --reload
 ```
 
 Or from the repo root:
@@ -44,7 +45,7 @@ The service uses Postgres for text analysis data. Set these in a `.env` file or 
 ## Tests
 
 ```bash
-poetry run pytest tests/
+uv run pytest tests/
 ```
 
 ## Endpoints

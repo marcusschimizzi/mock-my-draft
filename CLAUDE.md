@@ -5,7 +5,7 @@ npm workspaces + Turbo. Run tasks with:
 ```
 npx turbo run <lint|build|test> [--filter=@mmd/<package>]
 ```
-Always exclude the Python service when running across all packages — it requires a local Poetry setup:
+Always exclude the Python service when running across all packages — it requires uv:
 ```
 npx turbo run lint build test --filter=!@mmd/text-analysis-service --filter=!@mmd/text-analysis-service-e2e
 ```
@@ -14,7 +14,7 @@ npx turbo run lint build test --filter=!@mmd/text-analysis-service --filter=!@mm
 - `draft-api` — Express + TypeORM, deployed on Railway (port 4000)
 - `admin` — Next.js admin dashboard, deployed on Railway (port 3001)
 - `mmd-public` — Next.js public site, deployed on Railway (port 3000)
-- `data-collector` — Python data pipeline (Poetry)
+- `data-collector` — Python data pipeline (uv)
 - `libs/visualizations` — shared React component library (Vite)
 
 ## Local Dev Environment
