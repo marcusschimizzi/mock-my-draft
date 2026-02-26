@@ -26,9 +26,9 @@ export const DivisionComparison: React.FC<DivisionComparisonProps> = ({
       <Heading size="md" mb={4}>
         Division Comparison
       </Heading>
-      <ResponsiveContainer width="100%" height={300}>
-        <BarChart data={chartData}>
-          <XAxis dataKey="team" angle={-45} textAnchor="end" height={100} />
+      <ResponsiveContainer width="100%" height={350}>
+        <BarChart data={chartData} margin={{ left: 20, bottom: 10 }}>
+          <XAxis dataKey="team" angle={-45} textAnchor="end" height={120} />
           <YAxis domain={[0, 4.5]} />
           <Tooltip content={<EnhancedTooltip />} />
           <Bar

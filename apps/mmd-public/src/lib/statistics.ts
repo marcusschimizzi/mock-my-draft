@@ -81,6 +81,7 @@ interface Team {
   id: string;
   name: string;
   division: string;
+  conference: string;
 }
 
 export function buildDivisionComparisons(
@@ -91,7 +92,9 @@ export function buildDivisionComparisons(
   const currentTeam = teams.find((t) => t.id === teamId);
   if (!currentTeam) return [];
 
-  const divisionTeams = teams.filter((t) => t.division === currentTeam.division);
+  const divisionTeams = teams.filter(
+    (t) => t.division === currentTeam.division && t.conference === currentTeam.conference
+  );
 
   return divisionTeams
     .map((team) => {
