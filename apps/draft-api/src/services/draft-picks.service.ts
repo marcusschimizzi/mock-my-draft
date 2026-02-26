@@ -1,3 +1,4 @@
+import { isUUID } from 'class-validator';
 import { AppDataSource } from '../database';
 import { DraftPick } from '../database/models/draft-pick';
 import { Team } from '../database/models/team';
@@ -38,10 +39,20 @@ export class DraftPicksService {
     year: number,
     teamId: string,
   ): Promise<DraftPickResponseDto[]> {
+    let resolvedTeamId = teamId;
+
+    if (!isUUID(teamId)) {
+      const team = await this.teamRepository.findOneBy({ slug: teamId });
+      if (!team) {
+        throw new Error(`Team with slug ${teamId} not found`);
+      }
+      resolvedTeamId = team.id;
+    }
+
     const picks = await this.draftPickRepository.find({
       where: {
         year,
-        currentTeam: { id: teamId },
+        currentTeam: { id: resolvedTeamId },
       },
       order: { round: 'ASC', pickNumber: 'ASC' },
       relations: ['originalTeam', 'currentTeam', 'player'],
