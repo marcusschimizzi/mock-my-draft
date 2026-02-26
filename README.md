@@ -7,6 +7,7 @@ NFL draft grade aggregation and analysis.
 - `draft-api` — Express + TypeORM REST API (port 4000)
 - `mmd-public` — Next.js public site (port 3000)
 - `admin` — Next.js admin dashboard (port 3001)
+- `text-analysis-service` — FastAPI sentiment/word analysis (Poetry, Python 3.9-3.10)
 - `data-collector` — Python data pipeline (Poetry)
 - `libs/visualizations` — shared React component library (Vite)
 
@@ -57,6 +58,18 @@ npx turbo run dev --filter=@mmd/draft-api
 npx turbo run dev --filter=@mmd/mmd-public
 npx turbo run dev --filter=@mmd/admin
 ```
+
+### Text Analysis Service (optional)
+
+Requires Python 3.9-3.10 and [Poetry](https://python-poetry.org/docs/#installation):
+
+```bash
+cd apps/text-analysis-service
+poetry install
+poetry run uvicorn app.main:app --reload
+```
+
+See [apps/text-analysis-service/README.md](apps/text-analysis-service/README.md) for environment variables and endpoints.
 
 ## Running tasks
 
