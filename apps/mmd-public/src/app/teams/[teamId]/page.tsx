@@ -116,11 +116,7 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
   // Calculate league averages for HistoricalChart
   const leagueAverages = useMemo(() => {
     if (!allYearsData) return null;
-    const YEARS = [2020, 2021, 2022, 2023, 2024, 2025];
-    return YEARS.map((year, index) => {
-      const yearData = allYearsData[index];
-      if (!yearData) return { year, average: 0 };
-
+    return allYearsData.map((yearData) => {
       // Flatten all teams' grades for this year
       const allGrades = yearData.teams?.flatMap((team) =>
         team.draftGrades.map((grade) => ({
@@ -131,7 +127,7 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
       ) || [];
 
       const stats = calculateLeagueStatistics(allGrades);
-      return { year, average: stats.leagueAverage };
+      return { year: yearData.year, average: stats.leagueAverage };
     });
   }, [allYearsData]);
 

@@ -25,11 +25,13 @@ export const HistoricalChart: React.FC<HistoricalChartProps> = ({
   teamColor,
   teamName,
 }) => {
-  // Merge team data with league averages
+  // Merge team data with league averages, including fields the tooltip expects
   const chartData = teamData.map((td) => ({
     year: td.year,
     teamGrade: td.grade,
     leagueAverage: leagueAverages.find((la) => la.year === td.year)?.average || 0,
+    grade: td.grade,
+    team: teamName,
   }));
 
   return (
