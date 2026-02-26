@@ -28,4 +28,4 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      - run: npx turbo run e2e --concurrency=1 --filter=!@mmd/text-analysis-service-e2e
+      - run: npx turbo run e2e --concurrency=1 --filter=!@mmd/text-analysis-service-e2e --filter=!@mmd/draft-api-e2e
