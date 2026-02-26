@@ -12,4 +12,4 @@ ENV NODE_ENV=development
 
 EXPOSE 3000
 
-CMD npx nx dev admin
+CMD npm run dev --workspace=@mmd/admin

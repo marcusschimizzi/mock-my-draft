@@ -1,0 +1,19 @@
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: mmd
+      POSTGRES_PASSWORD: mmd
+      POSTGRES_DB: mmd_dev
+    ports:
+      - '5432:5432'
+    volumes:
+      - mmd-local-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD', 'pg_isready', '-U', 'mmd', '-d', 'mmd_dev']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  mmd-local-data:

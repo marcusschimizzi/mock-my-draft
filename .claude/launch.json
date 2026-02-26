@@ -10,20 +10,14 @@
     {
       "name": "admin",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["nx", "dev", "admin", "--", "--port", "3001"],
+      "runtimeArgs": ["turbo", "run", "dev", "--filter=@mmd/admin"],
       "port": 3001
     },
     {
       "name": "draft-api",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["nx", "serve", "draft-api"],
-      "port": 3333
-    },
-    {
-      "name": "text-analysis-service",
-      "runtimeExecutable": "npx",
-      "runtimeArgs": ["nx", "serve", "text-analysis-service"],
-      "port": 3000
+      "runtimeArgs": ["turbo", "run", "dev", "--filter=@mmd/draft-api"],
+      "port": 4000
     }
   ]
 }
