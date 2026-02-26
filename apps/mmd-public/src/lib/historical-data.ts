@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import apiClient from './api-client';
 
-const YEARS = [2020, 2021, 2022, 2023, 2024, 2025];
+const YEARS = [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025];
 
 interface YearSummary {
   year: number;
@@ -19,7 +19,7 @@ export function useAllYearsData() {
     queryFn: async (): Promise<YearSummary[]> => {
       // apiClient interceptor already unwraps response.data
       const data: { years: YearSummary[] } = await apiClient.get(
-        '/draft-summary/years?start=2020&end=2025'
+        '/draft-summary/years?start=2011&end=2025'
       );
       return data.years;
     },
