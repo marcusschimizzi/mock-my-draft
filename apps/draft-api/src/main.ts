@@ -16,6 +16,7 @@ import draftPicksRoutes from './routes/draft-picks.routes';
 import draftPickTradesRoutes from './routes/draft-pick-trades.routes';
 import playerRankingsRoutes from './routes/player-rankings.routes';
 import draftClassRoutes from './routes/draft-class.routes';
+import dataImportsRoutes from './routes/data-imports.routes';
 
 import { initializeDatabase } from './database';
 import logger from './middleware/logger';
@@ -24,6 +25,10 @@ import { errorHandler } from './middleware/error-handler.middleware';
 config();
 const app = express();
 app.disable('x-powered-by');
+
+app.get('/api/health', (req, res) => {
+  res.send({ status: 'OK' });
+});
 
 const allowedOrigins = process.env.CLIENT_ORIGIN
   ? process.env.CLIENT_ORIGIN.split(',')
@@ -67,11 +72,7 @@ app.use('/api/draft-pick-trades', draftPickTradesRoutes);
 app.use('/api/draft-picks', draftPicksRoutes);
 app.use('/api/player-rankings', playerRankingsRoutes);
 app.use('/api/draft-classes', draftClassRoutes);
-
-app.get('/api/health', (req, res) => {
-  //TODO: Add database health check
-  res.send({ status: 'OK' });
-});
+app.use('/api/data-imports', dataImportsRoutes);
 
 app.use(errorHandler);
 const port = process.env.PORT || 3333;
