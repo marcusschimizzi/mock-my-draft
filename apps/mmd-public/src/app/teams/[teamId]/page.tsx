@@ -110,8 +110,8 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
   // Calculate team historical data for HistoricalChart
   const teamHistoricalData = useMemo(() => {
     if (!allYearsData || !draftSummary) return null;
-    return buildTeamHistoricalData(allYearsData, params.teamId);
-  }, [allYearsData, params.teamId, draftSummary]);
+    return buildTeamHistoricalData(allYearsData, draftSummary.team.id);
+  }, [allYearsData, draftSummary]);
 
   // Calculate league averages for HistoricalChart
   const leagueAverages = useMemo(() => {
@@ -159,8 +159,8 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
       conference: t.team.conference,
     })) || [];
 
-    return buildDivisionComparisons(allGrades, params.teamId, teams);
-  }, [draftSummary, allYearsData, year, params.teamId]);
+    return buildDivisionComparisons(allGrades, draftSummary.team.id, teams);
+  }, [draftSummary, allYearsData, year]);
 
   if (!draftSummary && !isLoading) {
     return null;
@@ -371,7 +371,7 @@ export default function TeamPage({ params }: { params: { teamId: string } }) {
             <Card mt={8} py={4}>
               <DivisionComparison
                 divisionTeams={divisionComparisonData}
-                currentTeamId={params.teamId}
+                currentTeamId={draftSummary.team.id}
               />
             </Card>
           )}
