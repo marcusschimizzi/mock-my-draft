@@ -1,4 +1,4 @@
-import { SimpleGrid, Stat, StatLabel, StatNumber, StatHelpText, StatArrow, Text } from '@chakra-ui/react';
+import { SimpleGrid, Stat, StatLabel, StatNumber, StatHelpText, StatArrow } from '@chakra-ui/react';
 import Card from './card';
 import { GradeBadge } from './grade-badge';
 import { SentimentBadge } from './sentiment-badge';
