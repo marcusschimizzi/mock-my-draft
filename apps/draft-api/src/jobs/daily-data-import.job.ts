@@ -10,12 +10,16 @@ const DAILY_IMPORT_TIMEZONE = 'America/New_York';
 const LOG_PREFIX = '[daily-data-import]';
 
 /**
- * Whether the scheduled import should run in this process. Defaults to enabled.
- * Set DAILY_IMPORT_ENABLED=false to skip scheduling — useful for local dev and
- * for any replica that should not own the daily import.
+ * Whether the scheduled import should run in this process. Disabled by default;
+ * set DAILY_IMPORT_ENABLED=true to enable.
+ *
+ * It is opt-in because the import is not yet production-ready: it reads a data
+ * file (apps/data-collector/data) that is not shipped in the deploy image, and
+ * it has no cross-replica coordination, so multiple instances would race. Enable
+ * it only on a single instance once a real data source is wired up.
  */
 function isEnabled(): boolean {
-  return process.env.DAILY_IMPORT_ENABLED !== 'false';
+  return process.env.DAILY_IMPORT_ENABLED === 'true';
 }
 
 async function runDailyImport(): Promise<void> {
@@ -53,7 +57,7 @@ async function runDailyImport(): Promise<void> {
 export function scheduleDailyDataImport(): ScheduledTask | null {
   if (!isEnabled()) {
     console.log(
-      `${LOG_PREFIX} Scheduling disabled (DAILY_IMPORT_ENABLED=false)`,
+      `${LOG_PREFIX} Scheduling disabled (set DAILY_IMPORT_ENABLED=true to enable)`,
     );
     return null;
   }
