@@ -45,7 +45,10 @@ npm run db:seed -- --year 2024
 npm run db:seed -- --step teams
 ```
 
-The database schema is auto-created on first connection (`synchronize: true`).
+The schema is managed by TypeORM migrations, which run automatically on API
+startup. On a fresh database the initial migration creates the full schema. See
+[docs/database-migrations.md](docs/database-migrations.md) for the migration
+workflow.
 
 ### 4. Start the apps
 

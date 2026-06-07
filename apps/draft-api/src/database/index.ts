@@ -3,6 +3,7 @@ import {
   DefaultNamingStrategy,
   NamingStrategyInterface,
 } from 'typeorm';
+import { join } from 'path';
 import { User } from './models/user';
 import { initAdmin } from './utils/initAdmin';
 import { Team } from './models/team';
@@ -50,6 +51,11 @@ class SnakeNamingStrategy
   }
 }
 
+// Resolve migration/subscriber globs relative to this file so they work both
+// under ts-node (src/**/*.ts) and from the compiled build (dist/**/*.js).
+const migrationsGlob = join(__dirname, 'migrations', '*.{ts,js}');
+const subscribersGlob = join(__dirname, 'subscribers', '*.{ts,js}');
+
 export const AppDataSource: DataSource = new DataSource({
   type: 'postgres',
   url: process.env.DATABASE_URL,
@@ -68,17 +74,34 @@ export const AppDataSource: DataSource = new DataSource({
     DataImportLog,
     DraftSession,
   ],
-  synchronize: true,
+  // Schema is managed by migrations. Leave synchronize off; set DB_SYNCHRONIZE=true
+  // only for throwaway local experiments where you don't care about the schema.
+  synchronize: process.env.DB_SYNCHRONIZE === 'true',
   logging: true,
-  migrations: ['src/database/migrations/*.ts'],
-  subscribers: ['src/database/subscribers/*.ts'],
+  migrations: [migrationsGlob],
+  subscribers: [subscribersGlob],
   namingStrategy: new SnakeNamingStrategy(),
 });
+
+// Pending migrations run automatically on startup. Set RUN_MIGRATIONS=false to
+// disable (e.g. when migrations are applied as a separate deploy/release step).
+const shouldRunMigrations = process.env.RUN_MIGRATIONS !== 'false';
 
 export const initializeDatabase = async () => {
   try {
     await AppDataSource.initialize();
     console.log('Database initialized');
+
+    if (shouldRunMigrations) {
+      const executed = await AppDataSource.runMigrations();
+      console.log(
+        executed.length
+          ? `Ran ${executed.length} migration(s): ${executed
+              .map((migration) => migration.name)
+              .join(', ')}`
+          : 'No pending migrations',
+      );
+    }
 
     await initAdmin();
 
