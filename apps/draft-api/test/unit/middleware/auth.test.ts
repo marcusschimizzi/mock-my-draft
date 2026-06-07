@@ -1,10 +1,12 @@
 import { Response, NextFunction } from 'express';
 import { AuthService } from '../../../src/services/auth-service';
+import { UsersService } from '../../../src/services/users-service';
 import { AuthenticatedRequest } from '../../../src/types';
 import { User } from '../../../src/database/models/user';
 import { authenticate, requireAdmin } from '../../../src/middleware/auth';
 
 jest.mock('../../../src/services/auth-service');
+jest.mock('../../../src/services/users-service');
 
 const TEST_USER: User = {
   id: 'test-user',
@@ -101,36 +103,59 @@ describe('requireAdmin middleware', () => {
   let req: AuthenticatedRequest;
   let res: Response;
   let next: NextFunction;
+  let jsonMock: jest.Mock;
 
   beforeEach(() => {
-    req = {} as AuthenticatedRequest;
-    res = {} as Response;
+    jest.clearAllMocks();
+    req = { user: { ...TEST_USER } } as AuthenticatedRequest;
+    jsonMock = jest.fn();
+    res = { status: jest.fn().mockReturnValue({ json: jsonMock }) } as unknown as Response;
     next = jest.fn();
   });
 
-  it('should call next if user is an admin', () => {
-    req.user = {
+  it('should call next if the user is an admin in the database', async () => {
+    (UsersService.prototype.getUserById as jest.Mock).mockResolvedValue({
       ...TEST_USER,
       isAdmin: true,
-    };
+    });
 
-    requireAdmin(req, res, next);
+    await requireAdmin(req, res, next);
 
     expect(next).toHaveBeenCalled();
   });
 
-  it('should return 403 status if user is not an admin', () => {
-    req.user = {
+  it('should return 403 if the user is not an admin in the database', async () => {
+    // Even with isAdmin true on the (stale) token, the DB is the source of truth.
+    req.user = { ...TEST_USER, isAdmin: true };
+    (UsersService.prototype.getUserById as jest.Mock).mockResolvedValue({
       ...TEST_USER,
       isAdmin: false,
-    };
+    });
 
-    const jsonMock = jest.fn();
-    res.status = jest.fn().mockReturnValue({ json: jsonMock });
-
-    requireAdmin(req, res, next);
+    await requireAdmin(req, res, next);
 
     expect(res.status).toHaveBeenCalledWith(403);
     expect(jsonMock).toHaveBeenCalledWith({ message: 'Forbidden' });
+    expect(next).not.toHaveBeenCalled();
+  });
+
+  it('should return 403 if the user no longer exists', async () => {
+    (UsersService.prototype.getUserById as jest.Mock).mockResolvedValue(null);
+
+    await requireAdmin(req, res, next);
+
+    expect(res.status).toHaveBeenCalledWith(403);
+    expect(next).not.toHaveBeenCalled();
+  });
+
+  it('should return 500 if the lookup throws', async () => {
+    (UsersService.prototype.getUserById as jest.Mock).mockRejectedValue(
+      new Error('db down'),
+    );
+
+    await requireAdmin(req, res, next);
+
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(next).not.toHaveBeenCalled();
   });
 });
