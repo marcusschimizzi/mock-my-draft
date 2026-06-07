@@ -1,7 +1,7 @@
-# visualizations
+# @mmd/visualizations
 
-This library was generated with [Nx](https://nx.dev).
+Shared React component library, built with [Vite](https://vitejs.dev/) (library mode + `vite-plugin-dts`).
 
 ## Running unit tests
 
-Run `nx test visualizations` to execute the unit tests via [Vitest](https://vitest.dev/).
+Run `npx turbo run test --filter=@mmd/visualizations` to execute the unit tests via [Jest](https://jestjs.io/).

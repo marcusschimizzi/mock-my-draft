@@ -8,7 +8,7 @@ NFL draft grade aggregation and analysis.
 - `mmd-public` — Next.js public site (port 3000)
 - `admin` — Next.js admin dashboard (port 3001)
 - `text-analysis-service` — FastAPI sentiment/word analysis (uv, Python 3.9-3.10)
-- `data-collector` — Python data pipeline (Poetry)
+- `data-collector` — Node.js data pipeline (Puppeteer + Cheerio + Claude SDK)
 - `libs/visualizations` — shared React component library (Vite)
 
 ## Local Development
