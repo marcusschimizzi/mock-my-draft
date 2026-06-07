@@ -19,6 +19,7 @@ import draftClassRoutes from './routes/draft-class.routes';
 import dataImportsRoutes from './routes/data-imports.routes';
 
 import { initializeDatabase } from './database';
+import { scheduleDailyDataImport } from './jobs/daily-data-import.job';
 import logger from './middleware/logger';
 import { errorHandler } from './middleware/error-handler.middleware';
 const app = express();
@@ -77,6 +78,7 @@ const port = process.env.PORT || 3333;
 
 const startServer = async () => {
   await initializeDatabase();
+  scheduleDailyDataImport();
   const server = app.listen(port, () => {
     console.log(`Listening at http://localhost:${port}/api`);
   });
