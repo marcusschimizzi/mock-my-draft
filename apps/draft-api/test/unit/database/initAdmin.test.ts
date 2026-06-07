@@ -43,6 +43,10 @@ describe('initAdmin', () => {
       username: 'admin',
       isAdmin: false,
     });
+    (mockUsersService.updateUser as jest.Mock).mockResolvedValue({
+      id: 'user-1',
+      isAdmin: true,
+    });
 
     await initAdmin();
 
@@ -50,6 +54,23 @@ describe('initAdmin', () => {
       isAdmin: true,
     });
     expect(mockUsersService.createUser).not.toHaveBeenCalled();
+  });
+
+  it('logs an error when promotion fails (updateUser returns null)', async () => {
+    (mockUsersService.getUserByUsername as jest.Mock).mockResolvedValue({
+      id: 'user-1',
+      username: 'admin',
+      isAdmin: false,
+    });
+    (mockUsersService.updateUser as jest.Mock).mockResolvedValue(null);
+    const errorSpy = jest.spyOn(console, 'error').mockImplementation();
+
+    await initAdmin();
+
+    expect(errorSpy).toHaveBeenCalledWith(
+      'Failed to promote existing admin user to admin',
+    );
+    errorSpy.mockRestore();
   });
 
   it('leaves an existing admin untouched', async () => {
