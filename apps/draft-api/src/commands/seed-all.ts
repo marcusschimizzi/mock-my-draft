@@ -14,7 +14,8 @@ async function main() {
   console.log('\n=== Seed All: Full Database Population ===\n');
 
   await AppDataSource.initialize();
-  console.log('Database connected.\n');
+  await AppDataSource.runMigrations();
+  console.log('Database connected (migrations applied).\n');
 
   const results: SeedResult[] = [];
 

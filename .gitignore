@@ -5,6 +5,9 @@ dist
 tmp
 /out-tsc
 
+# Turbo
+.turbo
+
 # dependencies
 node_modules
 
@@ -45,7 +48,7 @@ Thumbs.db
 .next
 out
 
-// Env files
+# Env files
 .env
 .env.*
 !.env.example

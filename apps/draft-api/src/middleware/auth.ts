@@ -1,9 +1,11 @@
 import { Response, NextFunction } from 'express';
 import { AuthService, AuthToken } from '../services/auth-service';
+import { UsersService } from '../services/users-service';
 import { AuthenticatedRequest } from '../types';
 import { User } from '../database/models/user';
 
 const authService = new AuthService();
+const usersService = new UsersService();
 
 export const authenticate = (
   req: AuthenticatedRequest,
@@ -44,14 +46,26 @@ export const authenticate = (
   }
 };
 
-export const requireAdmin = (
+export const requireAdmin = async (
   req: AuthenticatedRequest,
   res: Response,
   next: NextFunction,
 ) => {
-  if (!req.user?.isAdmin) {
+  if (!req.user?.id) {
     return res.status(403).json({ message: 'Forbidden' });
   }
 
-  next();
+  try {
+    // Authorize against current DB state rather than trusting the JWT's isAdmin
+    // claim, so admin promotions/demotions take effect without re-login.
+    const user = await usersService.getUserById(req.user.id);
+    if (!user?.isAdmin) {
+      return res.status(403).json({ message: 'Forbidden' });
+    }
+
+    next();
+  } catch (error) {
+    console.error('Error verifying admin privileges:', error);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
 };

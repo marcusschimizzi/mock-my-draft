@@ -53,7 +53,8 @@ async function main() {
   console.log(`Steps: ${steps ? steps.join(', ') : 'all'}\n`);
 
   await AppDataSource.initialize();
-  console.log('Database connected.\n');
+  await AppDataSource.runMigrations();
+  console.log('Database connected (migrations applied).\n');
 
   const results: SeedResult[] = [];
   const allSteps: StepName[] = ['teams', 'players', 'draft-classes', 'grades', 'player-grades'];

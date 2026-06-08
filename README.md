@@ -8,7 +8,7 @@ NFL draft grade aggregation and analysis.
 - `mmd-public` — Next.js public site (port 3000)
 - `admin` — Next.js admin dashboard (port 3001)
 - `text-analysis-service` — FastAPI sentiment/word analysis (uv, Python 3.9-3.10)
-- `data-collector` — Python data pipeline (Poetry)
+- `data-collector` — Node.js data pipeline (Puppeteer + Cheerio + Claude SDK)
 - `libs/visualizations` — shared React component library (Vite)
 
 ## Local Development
@@ -45,7 +45,10 @@ npm run db:seed -- --year 2024
 npm run db:seed -- --step teams
 ```
 
-The database schema is auto-created on first connection (`synchronize: true`).
+The schema is managed by TypeORM migrations, which run automatically on API
+startup. On a fresh database the initial migration creates the full schema. See
+[docs/database-migrations.md](docs/database-migrations.md) for the migration
+workflow.
 
 ### 4. Start the apps
 

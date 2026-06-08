@@ -14,6 +14,7 @@ export class UsersService {
     user.username = data.username;
     user.email = data.email;
     user.password = await bcrypt.hash(data.password, 10);
+    user.isAdmin = data.isAdmin ?? false;
 
     return this.userRepository.save(user);
   }

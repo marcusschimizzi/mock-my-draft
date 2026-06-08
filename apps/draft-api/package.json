@@ -8,6 +8,11 @@
     "dev": "ts-node --project tsconfig.app.json src/main.ts",
     "seed": "ts-node --project tsconfig.app.json src/commands/seed.ts",
     "db:seed-all": "ts-node --project tsconfig.app.json src/commands/seed-all.ts",
+    "typeorm": "TS_NODE_PROJECT=tsconfig.app.json typeorm-ts-node-commonjs -d src/database/index.ts",
+    "migration:generate": "npm run typeorm -- migration:generate",
+    "migration:run": "npm run typeorm -- migration:run",
+    "migration:revert": "npm run typeorm -- migration:revert",
+    "migration:show": "npm run typeorm -- migration:show",
     "lint": "eslint src/",
     "test": "jest"
   }

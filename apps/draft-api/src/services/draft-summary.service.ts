@@ -28,20 +28,20 @@ export class DraftSummaryService {
         (grade) => grade.team.id === team.id,
       );
 
-      const averageGrade =
-        teamGrades.reduce((acc, grade) => acc + grade.gradeNumeric, 0) /
-        teamGrades.length;
-
       return DraftSummaryMapper.toTeamResponseDto({
         team,
         draftGrades: teamGrades,
-        averageGrade,
+        averageGrade: average(teamGrades.map((grade) => grade.gradeNumeric)),
       });
     });
 
-    const averageGrade =
-      teamDraftGrades.reduce((acc, team) => acc + team.averageGrade, 0) /
-      teamDraftGrades.length;
+    // Only teams that were actually graded count toward the league average, so
+    // an ungraded team neither drags it down nor poisons it with NaN.
+    const averageGrade = average(
+      teamDraftGrades
+        .filter((team) => team.draftGrades.length > 0)
+        .map((team) => team.averageGrade),
+    );
 
     return {
       year,
@@ -98,14 +98,22 @@ export class DraftSummaryService {
       relations: ['sourceArticle', 'sourceArticle.source'],
     });
 
-    const averageGrade =
-      draftGrades.reduce((acc, grade) => acc + grade.gradeNumeric, 0) /
-      draftGrades.length;
-
     return DraftSummaryMapper.toTeamResponseDto({
       team,
       draftGrades,
-      averageGrade,
+      averageGrade: average(draftGrades.map((grade) => grade.gradeNumeric)),
     });
   }
+}
+
+/**
+ * Mean of a list of numbers, returning 0 for an empty list so callers never
+ * produce NaN — which serializes to null and breaks number-typed API clients
+ * (e.g. the public site calls averageGrade.toFixed()).
+ */
+function average(values: number[]): number {
+  if (values.length === 0) {
+    return 0;
+  }
+  return values.reduce((sum, value) => sum + value, 0) / values.length;
 }

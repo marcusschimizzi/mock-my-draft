@@ -18,7 +18,22 @@ export async function initAdmin() {
     const existingAdmin = await userService.getUserByUsername(adminUsername);
 
     if (existingAdmin) {
-      console.log('Admin user already exists');
+      // Self-heal: ensure the configured admin actually has admin rights. This
+      // recovers accounts created before createUser honored the isAdmin flag.
+      if (!existingAdmin.isAdmin) {
+        const promoted = await userService.updateUser(existingAdmin.id, {
+          isAdmin: true,
+        });
+        if (promoted?.isAdmin) {
+          console.log('Existing admin user promoted to admin');
+        } else {
+          // updateUser swallows errors and returns null; surface the failure
+          // instead of falsely reporting success.
+          console.error('Failed to promote existing admin user to admin');
+        }
+      } else {
+        console.log('Admin user already exists');
+      }
       return;
     }
 
