@@ -86,3 +86,11 @@ Exclude the Python service when running across all packages:
 ```bash
 npx turbo run lint build test --filter=!@mmd/text-analysis-service --filter=!@mmd/text-analysis-service-e2e
 ```
+
+## Node security migration
+
+Use Node 22.12 or newer (Node 22 is selected by `.nvmrc`, CI, and the Node Dockerfiles). Run `npm ci` from the repository root; workspace lockfiles are not separate install entrypoints. Puppeteer 25 requires this runtime change.
+
+The apps now use Next 16.4.3. React 18 is retained for compatibility with the existing UI and tests; Next 16 supports it with a deprecation warning. Builds and development explicitly retain Webpack, and lint runs ESLint directly because Next 16 removes `next lint`. The client team page reads dynamic route values through `useParams`. Generated Next type references are updated by the build. The explicit loopback development origin supports local browser tests, and the root theme attributes preserve Chakra's pre-hydration color-mode script.
+
+This change does not alter production environment variables or deploy any service.

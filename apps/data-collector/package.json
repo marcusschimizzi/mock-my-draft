@@ -12,7 +12,7 @@
   "dependencies": {
     "@anthropic-ai/sdk": "^0.78.0",
     "cheerio": "^1.0.0-rc.12",
-    "puppeteer": "^24.37.5"
+    "puppeteer": "^25.16.0"
   },
   "devDependencies": {
     "jest": "^30.2.0"
