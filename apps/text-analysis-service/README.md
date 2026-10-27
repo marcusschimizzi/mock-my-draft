@@ -6,7 +6,9 @@ FastAPI service for sentiment analysis and word counting of draft evaluation tex
 
 - [uv](https://docs.astral.sh/uv/getting-started/installation/)
 
-uv will automatically download the correct Python version (3.9-3.10).
+uv will automatically download Python 3.12, matching `.python-version` and both Docker images.
+
+Python 3.9 and 3.10 environments must be recreated with `uv sync --locked`. The security update also upgrades FastAPI/Starlette and pytest plus its reporting plugins; the HTTP endpoints and JSON responses are unchanged. Python CI now runs lint, tests, packaging, and a lockfile vulnerability audit separately from the JavaScript jobs.
 
 ## Setup
 

@@ -1,4 +1,4 @@
-FROM python:3.9-slim-bookworm AS builder
+FROM python:3.12-slim-bookworm AS builder
 
 WORKDIR /app
 
@@ -14,7 +14,7 @@ COPY /apps/text-analysis-service/pyproject.toml /apps/text-analysis-service/uv.l
 
 RUN uv sync --locked --no-dev --no-install-project --python /usr/local/bin/python
 
-FROM python:3.9-slim-bookworm AS runner
+FROM python:3.12-slim-bookworm AS runner
 
 WORKDIR /app
 

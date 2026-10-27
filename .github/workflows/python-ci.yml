@@ -1,0 +1,30 @@
+name: Python CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  text-analysis:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/text-analysis-service
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install uv==0.7.21
+      - run: uv sync --locked
+      - run: uv run --frozen flake8 .
+      - run: uv run --frozen pytest tests/
+      - run: uv build
+      - name: Audit locked dependencies
+        run: |
+          uv export --frozen --no-emit-project --output-file "$RUNNER_TEMP/text-analysis-requirements.txt"
+          uvx pip-audit --disable-pip --no-deps -r "$RUNNER_TEMP/text-analysis-requirements.txt"

@@ -7,7 +7,7 @@ NFL draft grade aggregation and analysis.
 - `draft-api` — Express + TypeORM REST API (port 4000)
 - `mmd-public` — Next.js public site (port 3000)
 - `admin` — Next.js admin dashboard (port 3001)
-- `text-analysis-service` — FastAPI sentiment/word analysis (uv, Python 3.9-3.10)
+- `text-analysis-service` — FastAPI sentiment/word analysis (uv, Python 3.12)
 - `data-collector` — Node.js data pipeline (Puppeteer + Cheerio + Claude SDK)
 - `libs/visualizations` — shared React component library (Vite)
 
