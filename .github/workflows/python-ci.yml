@@ -1,0 +1,38 @@
+name: Python CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  text-analysis:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/text-analysis-service
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install uv==0.7.21
+      - run: uv sync --locked
+      - name: Provision NLTK corpora
+        run: uv run --frozen python -m nltk.downloader -e punkt punkt_tab stopwords vader_lexicon
+      - run: uv run --frozen flake8 .
+      - run: uv run --frozen pytest tests/
+      - run: uv build
+      - name: Audit locked dependencies
+        run: |
+          uv export --frozen --no-emit-project --output-file "$RUNNER_TEMP/text-analysis-requirements.txt"
+          uvx pip-audit --disable-pip --no-deps -r "$RUNNER_TEMP/text-analysis-requirements.txt"
+      - name: Build Python images and smoke test without network
+        run: |
+          docker build -f Dockerfile -t text-analysis-prod ../..
+          docker build -f Dockerfile.dev -t text-analysis-dev .
+          docker run --rm --network none text-analysis-prod python tests/container_smoke.py
+          docker run --rm --network none -v "$PWD:/app:ro" text-analysis-dev python tests/container_smoke.py

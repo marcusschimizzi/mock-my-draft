@@ -75,10 +75,8 @@ def test_word_count_route_with_stopwords(client):
 
 def test_word_count_route_with_sentiment(client):
     response = client.post("/wordcount", json={
-        "text": "I love this amazing product! It's incredibly helpful.",
-        "use_sentiment": True,
-        "sentiment_threshold": 0.1
-    })
+        "text": "I love this amazing product! It's incredibly helpful."
+    }, params={"use_sentiment": True, "sentiment_threshold": 0.1})
     assert response.status_code == 200
     assert 'love' in response.json()["word_count"]
     assert 'amazing' in response.json()["word_count"]
@@ -98,10 +96,8 @@ def test_word_count_route_empty_text(client):
 def test_word_count_route_invalid_sentiment_threshold(client):
     # When the sentiment threshold is invalid, it should fallback to the default value of 0.1
     response = client.post("/wordcount", json={
-        "text": "I love this amazing product! It's incredibly helpful.",
-        "use_sentiment": True,
-        "sentiment_threshold": 2.0
-    })
+        "text": "I love this amazing product! It's incredibly helpful."
+    }, params={"use_sentiment": True, "sentiment_threshold": 2.0})
     assert response.status_code == 200
     assert 'love' in response.json()["word_count"]
     assert 'amazing' in response.json()["word_count"]

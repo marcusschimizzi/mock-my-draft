@@ -6,14 +6,19 @@ FastAPI service for sentiment analysis and word counting of draft evaluation tex
 
 - [uv](https://docs.astral.sh/uv/getting-started/installation/)
 
-uv will automatically download the correct Python version (3.9-3.10).
+uv will automatically download Python 3.12, matching `.python-version` and both Docker images.
+
+Python 3.9 and 3.10 environments must be recreated with `uv sync --locked`. The security update also upgrades FastAPI/Starlette and pytest plus its reporting plugins; the HTTP endpoints and JSON responses are unchanged. Python CI now runs lint, tests, packaging, and a lockfile vulnerability audit separately from the JavaScript jobs.
 
 ## Setup
 
 ```bash
 cd apps/text-analysis-service
-uv sync
+uv sync --locked
+uv run --frozen python -m nltk.downloader -e punkt punkt_tab stopwords vader_lexicon
 ```
+
+Corpora are provisioned explicitly before starting the service or tests. Runtime imports and spawned word-count workers never download data. Both Docker images install corpora at build time in `/opt/nltk_data`, outside the development source bind mount. For offline use, provision this data ahead of time and set `NLTK_DATA` to its directory; missing corpora fail with NLTK's resource lookup error instead of attempting a network download.
 
 ## Running
 

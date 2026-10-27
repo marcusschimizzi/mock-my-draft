@@ -1,16 +1,10 @@
 from concurrent.futures import ProcessPoolExecutor
 import multiprocessing
-import nltk
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from nltk.sentiment import SentimentIntensityAnalyzer
 from collections import Counter
 from typing import List, Dict, Optional, Tuple
-
-nltk.download('punkt', quiet=True)
-nltk.download('punkt_tab', quiet=True)
-nltk.download('stopwords', quiet=True)
-nltk.download('vader_lexicon', quiet=True)
 
 
 class SentimentWordCounter:
@@ -59,7 +53,11 @@ class SentimentWordCounter:
             for chunk in word_chunks
         ]
 
-        with ProcessPoolExecutor(max_workers=multiprocessing.cpu_count()) as executor:
+        # Requests may run alongside other threads; avoid forking that state.
+        with ProcessPoolExecutor(
+            max_workers=multiprocessing.cpu_count(),
+            mp_context=multiprocessing.get_context("spawn"),
+        ) as executor:
             chunk_counters = list(executor.map(self.process_chunk, process_chunks))
 
         # Combine the results from each chunk
