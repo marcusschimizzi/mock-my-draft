@@ -37,6 +37,9 @@ exclude_lines = ['if TYPE_CHECKING:']
 show_missing = true
 
 [tool.pytest.ini_options]
+filterwarnings = [
+  "error:This process .* is multi-threaded:DeprecationWarning",
+]
 addopts = "--cov --cov-report html:'../../coverage/apps/text-analysis-service/html' --cov-report xml:'../../coverage/apps/text-analysis-service/coverage.xml' --html='../../reports/apps/text-analysis-service/unittests/html/index.html' --junitxml='../../reports/apps/text-analysis-service/unittests/junit.xml'"
 
 [tool.hatch.build.targets.wheel]
