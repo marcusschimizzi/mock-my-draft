@@ -25,6 +25,9 @@ ENV PATH="/opt/venv/bin:$PATH"
 
 COPY /apps/text-analysis-service/ .
 
+ENV NLTK_DATA=/opt/nltk_data
+RUN python -m nltk.downloader -e -d /opt/nltk_data punkt punkt_tab stopwords vader_lexicon
+
 ENV PORT=8000
 EXPOSE ${PORT}
 

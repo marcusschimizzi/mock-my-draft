@@ -1,16 +1,10 @@
 from concurrent.futures import ProcessPoolExecutor
 import multiprocessing
-import nltk
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from nltk.sentiment import SentimentIntensityAnalyzer
 from collections import Counter
 from typing import List, Dict, Optional, Tuple
-
-nltk.download('punkt', quiet=True)
-nltk.download('punkt_tab', quiet=True)
-nltk.download('stopwords', quiet=True)
-nltk.download('vader_lexicon', quiet=True)
 
 
 class SentimentWordCounter:

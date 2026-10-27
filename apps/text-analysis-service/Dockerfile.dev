@@ -27,6 +27,9 @@ COPY pyproject.toml uv.lock ./
 # Install project dependencies including development dependencies
 RUN uv sync --locked --no-install-project --python /usr/local/bin/python
 
+ENV NLTK_DATA=/opt/nltk_data
+RUN python -m nltk.downloader -e -d /opt/nltk_data punkt punkt_tab stopwords vader_lexicon
+
 # The source code will be mounted as a volume, so we don't copy it here
 
 # Expose the port the app runs on

@@ -14,8 +14,11 @@ Python 3.9 and 3.10 environments must be recreated with `uv sync --locked`. The 
 
 ```bash
 cd apps/text-analysis-service
-uv sync
+uv sync --locked
+uv run --frozen python -m nltk.downloader -e punkt punkt_tab stopwords vader_lexicon
 ```
+
+Corpora are provisioned explicitly before starting the service or tests. Runtime imports and spawned word-count workers never download data. Both Docker images install corpora at build time in `/opt/nltk_data`, outside the development source bind mount. For offline use, provision this data ahead of time and set `NLTK_DATA` to its directory; missing corpora fail with NLTK's resource lookup error instead of attempting a network download.
 
 ## Running
 

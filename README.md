@@ -68,7 +68,8 @@ Requires [uv](https://docs.astral.sh/uv/getting-started/installation/) (auto-dow
 
 ```bash
 cd apps/text-analysis-service
-uv sync
+uv sync --locked
+uv run --frozen python -m nltk.downloader -e punkt punkt_tab stopwords vader_lexicon
 uv run uvicorn app.main:app --reload
 ```
 
