@@ -61,6 +61,7 @@ describe('SourceArticleForm', () => {
       isNextDisabled: jest.fn().mockReturnValue(false),
       isLoading: false,
       isSubmitting: false,
+      isEditing: false,
       teams: [
         {
           id: '1',

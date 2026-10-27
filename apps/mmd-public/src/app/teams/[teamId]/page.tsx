@@ -32,6 +32,7 @@ import {
   Select,
 } from '@chakra-ui/react';
 import { useEffect, useState, useMemo } from 'react';
+import { useParams } from 'next/navigation';
 import { useTeamDraftSummary, useYears } from '../../../lib/draft-summary';
 import { DraftGrade } from '../../../types';
 import { YearSummary } from '../../../lib/historical-data';
@@ -59,7 +60,8 @@ interface GradeCount {
   count: number;
 }
 
-export default function TeamPage({ params }: { params: { teamId: string } }) {
+export default function TeamPage() {
+  const params = useParams<{ teamId: string }>();
   const [year, setYear] = useState(2024);
   const { years, isLoading: isYearsLoading } = useYears();
   const { draftSummary, isLoading } = useTeamDraftSummary(year, params.teamId);

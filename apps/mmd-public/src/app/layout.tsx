@@ -48,9 +48,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${saira.variable} ${sora.variable} ${lora.variable}`}
     >
-      <body>
+      {/* ColorModeScript updates root theme attributes before hydration. */}
+      <body suppressHydrationWarning>
         <Fathom />
         <ColorModeScript initialColorMode={theme.config.initialColorMode} />
         <AppProvider>
