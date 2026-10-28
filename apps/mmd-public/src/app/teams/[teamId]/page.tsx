@@ -54,6 +54,11 @@ import { getGradeColor } from '../../../lib/grade-utils';
 import { useDraftClass } from '../../../lib/draft-class';
 import { GradeBadge } from '../../../components/grade-badge';
 import { ChartSkeleton, StatsCardSkeleton, TableSkeleton } from '../../../components/chart-skeleton';
+import { SentimentBadge } from '../../../components/sentiment-badge';
+import { WordCloud } from '../../../components/word-cloud';
+import { SourceToneChart } from '../../../components/source-tone-chart';
+import { SentimentGradeScatter } from '../../../components/sentiment-grade-scatter';
+import { aggregateKeywords } from '../../../lib/statistics';
 
 interface GradeCount {
   grade: string;
@@ -163,6 +168,36 @@ export default function TeamPage() {
 
     return buildDivisionComparisons(allGrades, draftSummary.team.id, teams);
   }, [draftSummary, allYearsData, year]);
+
+  // Aggregate keywords for this team's grades
+  const teamKeywords = useMemo(() => {
+    if (!draftSummary) return [];
+    return aggregateKeywords(draftSummary.draftGrades);
+  }, [draftSummary]);
+
+  // Source tone data for this team
+  const sourceToneData = useMemo(() => {
+    if (!draftSummary) return [];
+    return draftSummary.draftGrades
+      .filter((g) => g.sentimentCompound != null)
+      .map((g) => ({
+        source: g.sourceArticle.source.name,
+        sentiment: g.sentimentCompound!,
+      }))
+      .sort((a, b) => b.sentiment - a.sentiment);
+  }, [draftSummary]);
+
+  // Scatter plot data
+  const sentimentGradeData = useMemo(() => {
+    if (!draftSummary) return [];
+    return draftSummary.draftGrades
+      .filter((g) => g.sentimentCompound != null)
+      .map((g) => ({
+        source: g.sourceArticle.source.name,
+        grade: g.gradeNumeric,
+        sentiment: g.sentimentCompound!,
+      }));
+  }, [draftSummary]);
 
   if (!draftSummary && !isLoading) {
     return null;
@@ -377,6 +412,24 @@ export default function TeamPage() {
               />
             </Card>
           )}
+          {teamKeywords.length > 0 && (
+            <Card mt={8} py={4}>
+              <WordCloud
+                keywords={teamKeywords}
+                color={draftSummary.team.colors?.[0]}
+              />
+            </Card>
+          )}
+          {sourceToneData.length > 0 && (
+            <Card mt={8} py={4}>
+              <SourceToneChart data={sourceToneData} />
+            </Card>
+          )}
+          {sentimentGradeData.length > 0 && (
+            <Card mt={8} py={4}>
+              <SentimentGradeScatter data={sentimentGradeData} />
+            </Card>
+          )}
           <Card mt={8} py={4}>
             {isMobile ? (
               <Accordion allowToggle>
@@ -391,7 +444,10 @@ export default function TeamPage() {
                         <Box flex="1" textAlign="left">
                           <HStack justifyContent="space-between" mr={2}>
                             <Text>{grade.sourceArticle.source.name}</Text>
-                            <GradeBadge grade={grade.gradeNumeric} fontSize="1.2rem" />
+                            <HStack>
+                              <GradeBadge grade={grade.gradeNumeric} fontSize="1.2rem" />
+                              <SentimentBadge sentiment={grade.sentimentCompound} />
+                            </HStack>
                           </HStack>
                         </Box>
                         <AccordionIcon />
@@ -434,6 +490,7 @@ export default function TeamPage() {
                           </Td>
                           <Td>
                             <GradeBadge grade={response.gradeNumeric} fontSize="1.2rem" />
+                            <SentimentBadge sentiment={response.sentimentCompound} />
                           </Td>
                           <Td
                             whiteSpace="normal"
